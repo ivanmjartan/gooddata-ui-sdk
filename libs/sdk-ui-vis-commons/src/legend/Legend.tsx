@@ -8,6 +8,7 @@ import isEmpty from "lodash/isEmpty";
 import { FluidLegend } from "./FluidLegend";
 import { StaticLegend, IStaticLegendProps } from "./StaticLegend";
 import { HeatmapLegend } from "./HeatmapLegend";
+import { PopUpLegend } from  "./PopUpLegend/PopUpLegend";
 import { IntlWrapper, IntlTranslationsProvider, ITranslationsComponentProps } from "@gooddata/sdk-ui";
 import { ItemBorderRadiusPredicate } from "./types";
 
@@ -64,6 +65,15 @@ export class Legend extends React.PureComponent<ILegendProps> {
         }
 
         return seriesWithVisibility;
+    };
+
+    public renderPopUpLegend = (): React.ReactNode => {
+        return <PopUpLegend>
+            {this.renderHeatmapLegend());
+        </PopUpLegend>
+        /*return <PopUpLegend
+            series={this.getSeries()}
+        />;*/
     };
 
     public renderFluid = (): React.ReactNode => {
@@ -128,11 +138,12 @@ export class Legend extends React.PureComponent<ILegendProps> {
     };
 
     public render(): React.ReactNode {
+
         const { responsive, showFluidLegend, heatmapLegend } = this.props;
 
         const isFluidLegend = Boolean(responsive && showFluidLegend);
 
-        if (heatmapLegend) {
+        /*if (heatmapLegend) {
             return this.renderHeatmapLegend();
         }
 
@@ -140,7 +151,9 @@ export class Legend extends React.PureComponent<ILegendProps> {
             return this.renderFluid();
         }
 
-        return this.renderStatic();
+        return this.renderStatic();*/
+
+        return this.renderPopUpLegend();
     }
 
     private renderHeatmapLegend = (): React.ReactNode => {

@@ -1,7 +1,7 @@
-// (C) 2007-2020 GoodData Corporation
+// (C) 2007-2021 GoodData Corporation
 const demoProject: { [domain: string]: string } = {
     "https://secure.gooddata.com": "k26dtejorcqlqf11crn6imbeevp2q4kg",
-    "https://staging3.intgdc.com": "mbuumy476p78ybcceiru61hcyr8i8lo8",
+    "https://staging3.intgdc.com": "lmnivlu3sowt63jvr2mo1wlse5fyv203",
     "https://staging2.intgdc.com": "ws7pxsamkx8o0t1s7kfvkj5o41uwcmqg",
     "https://staging.intgdc.com": "na1q8a0q4efb7cajbgre9mmm776dr1yv",
     "https://developer.na.gooddata.com": "xms7ga4tf3g3nzucd8380o2bev8oeknp",

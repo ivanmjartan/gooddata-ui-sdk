@@ -32,10 +32,6 @@ export {
 
 export { IColorMapping } from "./coloring/types";
 
-//
-//
-//
-
 export { Legend, ILegendProps } from "./legend/Legend";
 
 export { StaticLegend, IStaticLegendProps } from "./legend/StaticLegend";
@@ -46,7 +42,7 @@ export { HeatmapLegend, IHeatmapLegendProps } from "./legend/HeatmapLegend";
 
 export { ColorLegend, IColorLegendProps } from "./legend/ColorLegend";
 
-export { IPagingProps, Paging } from "./legend/Paging";
+export { IPagingProps, ButtonsOrientationType, Paging } from "./legend/Paging";
 
 export { IHeadlinePaginationProps, HeadlinePagination } from "./compactSize/HeadlinePagination";
 
@@ -66,6 +62,7 @@ export {
     IRange,
     LegendOptionsItemType,
     ItemBorderRadiusPredicate,
+    IHeatmapLegendSize,
 } from "./legend/types";
 
 export { fixEmptyHeaderItems } from "./utils/fixEmptyHeaderItems";

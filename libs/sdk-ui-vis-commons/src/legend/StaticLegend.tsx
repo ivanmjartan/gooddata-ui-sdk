@@ -120,8 +120,12 @@ export class StaticLegend extends React.PureComponent<IStaticLegendProps> {
             pagedSeries.length,
         );
 
+        const fullClassNames = cx(classNames, {
+            "no-width": visibleItemsFitOneColumn,
+        });
+
         return (
-            <div className={`${classNames} ${visibleItemsFitOneColumn}`}>
+            <div className={`${fullClassNames} ${visibleItemsFitOneColumn}`}>
                 <div className="series" style={{ height: seriesHeight }}>
                     {labelComponent}
                     <LegendList
@@ -137,4 +141,4 @@ export class StaticLegend extends React.PureComponent<IStaticLegendProps> {
 }
 
 const shouldItemsFitOneColumn = (visibleItemsCount: number, columnNum: number, pagedSeriesLength: number) =>
-    visibleItemsCount / columnNum >= pagedSeriesLength && "no-width";
+    visibleItemsCount / columnNum >= pagedSeriesLength;

@@ -2,6 +2,7 @@
 import { IDataView, ITheme } from "@gooddata/sdk-backend-spi";
 import invariant from "ts-invariant";
 import React from "react";
+import { ContentRect } from "react-measure";
 
 import {
     convertDrillableItemsToPredicates,
@@ -33,11 +34,11 @@ import Highcharts from "./lib";
 import { isChartSupported, stringifyChartTypes } from "./chartTypes/_util/common";
 
 export function renderHighCharts(props: IHighChartsRendererProps): JSX.Element {
-    return (
-        <HighChartsMeasuredRenderer>
-            <HighChartsRenderer {...props} />
-        </HighChartsMeasuredRenderer>
+    const childrenRenderer = (contentRect: ContentRect) => (
+        <HighChartsRenderer contentRect={contentRect} {...props} />
     );
+
+    return <HighChartsMeasuredRenderer childrenRenderer={childrenRenderer} />;
 }
 
 /**

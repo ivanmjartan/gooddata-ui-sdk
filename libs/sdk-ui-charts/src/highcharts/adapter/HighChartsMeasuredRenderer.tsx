@@ -2,6 +2,7 @@
 import React from "react";
 import Measure, { MeasuredComponentProps } from "react-measure";
 
+const MEASURED_ELEMENT_STYLE = { width: "100%", height: "100%" };
 export class HighChartsMeasuredRenderer extends React.PureComponent {
     private renderChildren(contentRect: any) {
         return React.Children.map(this.props.children, (child) => {
@@ -19,7 +20,7 @@ export class HighChartsMeasuredRenderer extends React.PureComponent {
                     return (
                         <div
                             className="visualization-container-measure-wrap"
-                            style={{ width: "100%", height: "100%" }}
+                            style={MEASURED_ELEMENT_STYLE}
                             ref={measureRef}
                         >
                             {this.renderChildren(contentRect)}

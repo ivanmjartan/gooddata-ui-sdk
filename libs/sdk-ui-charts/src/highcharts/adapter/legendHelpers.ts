@@ -19,6 +19,10 @@ export const SKIPPED_LABEL_TEXT = "...";
 export const UTF_NON_BREAKING_SPACE = "\u00A0";
 const STATIC_PAGING_HEIGHT = 44;
 
+const LEGEND_WIDTH_BREAKPOINT = 610;
+const LEGEND_HEIGHT_BREAKPOINT_SM = 194;
+const LEGEND_HEIGHT_BREAKPOINT_ML = 274;
+
 export function calculateFluidLegend(
     seriesCount: number,
     containerWidth: number,
@@ -231,16 +235,16 @@ function getLegendDetailsForAutoResponsive(
     const name = chartOptions?.legendLabel ? { name: chartOptions?.legendLabel } : {};
 
     // Decision logic: https://gooddata.invisionapp.com/console/share/KJ2A59MOAQ/548340571
-    if (width < 610) {
-        const maxRowsForTop = height < 274 ? 1 : 2;
+    if (width < LEGEND_WIDTH_BREAKPOINT) {
+        const maxRowsForTop = height < LEGEND_HEIGHT_BREAKPOINT_ML ? 1 : 2;
         return { ...name, position: TOP, renderPopUp: true, maxRows: maxRowsForTop };
     } else {
         const isLegendTopBottom = legendOptions.position === "top" || legendOptions.position === "bottom";
 
-        if (height < 194) {
+        if (height < LEGEND_HEIGHT_BREAKPOINT_SM) {
             return { ...name, position: RIGHT, renderPopUp: false };
         } else {
-            const maxRowsForTopBottom = height < 274 ? 1 : 2;
+            const maxRowsForTopBottom = height < LEGEND_HEIGHT_BREAKPOINT_ML ? 1 : 2;
             return {
                 ...name,
                 position: legendOptions.position,

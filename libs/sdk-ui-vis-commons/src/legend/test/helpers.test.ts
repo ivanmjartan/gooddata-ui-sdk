@@ -324,10 +324,10 @@ describe("helpers", () => {
         });
 
         it("should sum widths to 350", () => {
-            const labels = ["0", "1", "2", "3", "4", "5", "6", "7"];
+            const labelsMock = ["0", "1", "2", "3", "4", "5", "6", "7"];
 
             heatmapLegendConfigMatrix.forEach((config: any) => {
-                const elementsConfig = buildColorLabelsConfig(labels, config);
+                const elementsConfig = buildColorLabelsConfig(labelsMock, config);
 
                 const width = elementsConfig.reduce((sum: number, item: any) => {
                     return sum + item.style.width;
@@ -338,10 +338,10 @@ describe("helpers", () => {
         });
 
         it("should sum widths to 276 in medium legend", () => {
-            const labels = ["0", "1", "2", "3", "4", "5", "6", "7"];
+            const labelsMock = ["0", "1", "2", "3", "4", "5", "6", "7"];
 
             heatmapMediumLegendConfigMatrix.forEach((config: any) => {
-                const elementsConfig = buildColorLabelsConfig(labels, config);
+                const elementsConfig = buildColorLabelsConfig(labelsMock, config);
 
                 const width = elementsConfig.reduce((sum: number, item: any) => {
                     return sum + item.style.width;
@@ -352,10 +352,10 @@ describe("helpers", () => {
         });
 
         it("should sum widths to 126 in small legend", () => {
-            const labels = ["0", "1", "2", "3", "4", "5", "6", "7"];
+            const labelsMock = ["0", "1", "2", "3", "4", "5", "6", "7"];
 
             heatmapSmallLegendConfigMatrix.forEach((config: any) => {
-                const elementsConfig = buildColorLabelsConfig(labels, config);
+                const elementsConfig = buildColorLabelsConfig(labelsMock, config);
 
                 const width = elementsConfig.reduce((sum: number, item: any) => {
                     return sum + item.style.width;
@@ -366,9 +366,9 @@ describe("helpers", () => {
         });
 
         it("should sum heights to 210 in vertical legend", () => {
-            const labels = ["0", "1", "2", "3", "4", "5", "6", "7"];
+            const labelsMock = ["0", "1", "2", "3", "4", "5", "6", "7"];
 
-            const elementsConfig = buildColorLabelsConfig(labels, verticalHeatmapConfig);
+            const elementsConfig = buildColorLabelsConfig(labelsMock, verticalHeatmapConfig);
 
             const width = elementsConfig.reduce((sum: number, item: any) => {
                 return sum + item.style.height;

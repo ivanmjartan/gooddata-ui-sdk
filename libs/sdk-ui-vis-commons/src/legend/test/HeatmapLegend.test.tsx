@@ -9,8 +9,8 @@ describe("HeatmapLegend", () => {
         return mount(<HeatmapLegend {...props} />);
     }
 
-    const numericSymbols = ["k", "M", "G"];
-    const series = [
+    const defaultNumericSymbols = ["k", "M", "G"];
+    const defaultSeries = [
         {
             color: "abc",
             legendIndex: 0,
@@ -30,9 +30,9 @@ describe("HeatmapLegend", () => {
     ];
 
     it.each([
-        ["small", series, numericSymbols, "top"],
-        ["medium", series, numericSymbols, "top"],
-        ["large", series, numericSymbols, "top"],
+        ["small", defaultSeries, defaultNumericSymbols, "top"],
+        ["medium", defaultSeries, defaultNumericSymbols, "top"],
+        ["large", defaultSeries, defaultNumericSymbols, "top"],
     ])(
         "should render legend when size is %s",
         (

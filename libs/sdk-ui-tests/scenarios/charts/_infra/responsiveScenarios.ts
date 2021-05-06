@@ -13,7 +13,7 @@ export function responsiveScenarios<T extends VisProps>(
     component: React.ComponentType<T>,
     baseProps: UnboundVisProps<T>,
     sizes: Array<IResponsiveSize>,
-    generateInsight: boolean = false,
+    generateInsight: boolean,
     customizer?: ScenarioCustomizer<T>,
 ) {
     const tags = generateInsight ? [] : ["no-plug-viz-tests"];

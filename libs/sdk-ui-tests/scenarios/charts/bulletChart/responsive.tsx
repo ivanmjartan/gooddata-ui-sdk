@@ -19,6 +19,7 @@ const simpleScenarios = responsiveScenarios(
         config: { enableCompactSize: true, legend: { enabled: false } },
     },
     sizeVariantsSimple,
+    false,
 );
 
 const sizeVariantsComplex: Array<IResponsiveSize> = [
@@ -37,6 +38,7 @@ const complexScenarios = responsiveScenarios(
         config: { enableCompactSize: true, legend: { enabled: false } },
     },
     sizeVariantsComplex,
+    false,
 );
 
 export default [...complexScenarios, ...simpleScenarios];

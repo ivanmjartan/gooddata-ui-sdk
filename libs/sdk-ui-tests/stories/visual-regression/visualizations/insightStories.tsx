@@ -270,7 +270,7 @@ ScenarioGroupsByVis.forEach((groups) => {
         const visualOnly: ScenarioGroup<any> = group.forTestTypes("visual");
 
         visualOnly.scenarioList.forEach((scenario) => {
-            if (scenario.tags.indexOf("no-plug-viz-tests") !== -1) {
+            if (scenario.tags.includes("no-plug-viz-tests")) {
                 // this scenario is forced to skip via tag
                 return;
             }

@@ -428,7 +428,7 @@ export function calculateFluidLegend(
 function getStaticVisibleItemsCount(
     containerHeight: number,
     columnsNumber: number,
-    withPaging: boolean = false,
+    withPaging: boolean,
     paginationHeight: number,
 ) {
     const pagingHeight = withPaging ? paginationHeight : 0;

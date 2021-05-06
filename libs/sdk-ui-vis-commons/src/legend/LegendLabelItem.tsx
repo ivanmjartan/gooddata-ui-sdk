@@ -2,7 +2,7 @@
 import React from "react";
 
 export interface ILegendLabel {
-    label: string;
+    label?: string;
 }
 
 export const LegendLabelItem: React.FC<ILegendLabel> = (props) => {

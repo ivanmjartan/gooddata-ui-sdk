@@ -24,7 +24,7 @@ export type PagingButtonType = "prev" | "next";
 function getbuttonIcoStyle(
     type: PagingButtonType,
     buttonsOrientation: ButtonsOrientationType,
-): "up" | "down" | "left" | "right" {
+): "up" | "down" | "left" | "right" | undefined {
     if (type === "prev") {
         if (buttonsOrientation === "upDown") {
             return "up";
@@ -38,6 +38,8 @@ function getbuttonIcoStyle(
         }
         return "right";
     }
+
+    return undefined;
 }
 
 function renderPagingButton(

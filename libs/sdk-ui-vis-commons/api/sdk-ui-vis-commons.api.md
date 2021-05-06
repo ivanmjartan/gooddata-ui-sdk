@@ -111,7 +111,7 @@ export function getColorMappingPredicate(testValue: string): IHeaderPredicate;
 export function getColorPaletteFromColors(colors: string[]): IColorPalette;
 
 // @internal
-export const getHeadlineResponsiveClassName: (width: number, isShorttened?: boolean) => string;
+export const getHeadlineResponsiveClassName: (width: number, isShorttened?: boolean | undefined) => string;
 
 // @internal
 export function getLighterColor(color: string, percent: number): string;

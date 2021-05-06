@@ -73,7 +73,7 @@ export class Legend extends React.PureComponent<ILegendProps> {
     };
 
     public renderPopUpLegend = (): React.ReactNode => {
-        const { legendLabel, maximumRows, enableBorderRadius, containerId } = this.props;
+        const { legendLabel, maximumRows, enableBorderRadius, containerId = "" } = this.props;
 
         return (
             <PopUpLegend

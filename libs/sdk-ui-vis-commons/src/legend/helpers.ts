@@ -524,7 +524,7 @@ export function getColorLegendConfiguration(
     format: string | undefined,
     numericSymbols: string[],
     size: IHeatmapLegendSize,
-    position: string | null,
+    position: string,
     theme?: ITheme,
 ): IColorLegendConfig {
     const legendLabels = getColorLegendLabels(series, format, numericSymbols);

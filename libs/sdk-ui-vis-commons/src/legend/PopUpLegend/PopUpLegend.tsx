@@ -13,8 +13,8 @@ const PAGINATION_HEIGHT = 34;
 export interface IPopUpLegendProps {
     series: IPushpinCategoryLegendItem[];
     onLegendItemClick: (item: IPushpinCategoryLegendItem) => void;
-    name: string;
-    maxRows: number;
+    name?: string;
+    maxRows?: number;
     enableBorderRadius?: boolean | ItemBorderRadiusPredicate;
     containerId: string;
 }

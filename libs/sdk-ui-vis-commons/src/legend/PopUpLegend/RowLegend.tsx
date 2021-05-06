@@ -55,8 +55,8 @@ export const RowLegendIcoButton: React.FC<IRowLegendIcoButton> = (props) => {
 };
 
 export interface IRowLegendProps {
-    legendLabel: string;
-    maxRowsCount: number;
+    legendLabel?: string;
+    maxRowsCount?: number;
     series: IPushpinCategoryLegendItem[];
     enableBorderRadius?: boolean | ItemBorderRadiusPredicate;
     onDialogIconClick: () => void;
@@ -66,7 +66,7 @@ export interface IRowLegendProps {
 export const RowLegend: React.FC<IRowLegendProps> = (props) => {
     const {
         series,
-        maxRowsCount,
+        maxRowsCount = 1,
         legendLabel,
         enableBorderRadius,
         onDialogIconClick,

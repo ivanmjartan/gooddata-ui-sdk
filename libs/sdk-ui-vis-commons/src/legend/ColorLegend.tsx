@@ -33,6 +33,12 @@ interface IColorBoxesProps {
     boxes: IColorLegendBox[];
 }
 
+interface ILegendBoxesProps {
+    renderLabelsFirst: boolean;
+    boxes: IColorLegendBox[];
+    labels: IColorLegendLabel[];
+}
+
 export function ColorLabels(colorLabelProps: IColorLabelsProps): JSX.Element {
     const { labels } = colorLabelProps;
     return (
@@ -66,11 +72,7 @@ export function ColorBoxes(colorBoxProps: IColorBoxesProps): JSX.Element {
     );
 }
 
-function renderLegendBoxes(
-    renderLabelsFirst: boolean,
-    boxes: IColorLegendBox[],
-    labels: IColorLegendLabel[],
-) {
+function LegendBoxes({ renderLabelsFirst, boxes, labels }: ILegendBoxesProps): JSX.Element {
     return (
         <>
             {renderLabelsFirst && <ColorLabels labels={labels} />}
@@ -113,15 +115,14 @@ export const ColorLegend = withTheme((colorLegendProps: IColorLegendProps) => {
     const renderLabelsFirst = config.position === TOP;
     const { boxes, labels } = config;
 
-    const renderedBoxes = renderLegendBoxes(renderLabelsFirst, boxes, labels);
     return (
         <div className={classes}>
             {title ? (
                 <LegendWithTitle title={title} position={position}>
-                    {renderedBoxes}
+                    <LegendBoxes renderLabelsFirst={renderLabelsFirst} boxes={boxes} labels={labels} />
                 </LegendWithTitle>
             ) : (
-                renderedBoxes
+                <LegendBoxes renderLabelsFirst={renderLabelsFirst} boxes={boxes} labels={labels} />
             )}
         </div>
     );

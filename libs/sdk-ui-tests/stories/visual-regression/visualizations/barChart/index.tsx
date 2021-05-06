@@ -10,6 +10,7 @@ import "@gooddata/sdk-ui-charts/styles/css/main.css";
 import "../insightStories.css";
 import { BarChartWithLargeLegend } from "../../../../scenarios/charts/barChart/base";
 import { createElementCountResolver, ScreenshotReadyWrapper } from "../../../_infra/ScreenshotReadyWrapper";
+import { wrapWithTheme } from "../../themeWrapper";
 
 const backend = StorybookBackend();
 
@@ -55,6 +56,23 @@ storiesOf(`${CustomStories}/BarChart`, module).add("responsive popup legend", ()
             },
             paginatorClick: {
                 clickSelectors: [".s-legend-popup-icon", 200, ".icon-chevron-right"],
+                postInteractionWait: 300,
+            },
+        },
+    );
+});
+
+storiesOf(`${CustomStories}/BarChart`, module).add("themed popup legend", () => {
+    return withMultipleScreenshots(
+        wrapWithTheme(
+            <ScreenshotReadyWrapper resolver={createElementCountResolver(1)}>
+                <BarChartTest />
+            </ScreenshotReadyWrapper>,
+        ),
+        {
+            closed: {},
+            menuLegendClick: {
+                clickSelector: ".s-legend-popup-icon",
                 postInteractionWait: 300,
             },
         },

@@ -1,0 +1,11 @@
+{
+    "changes": [
+        {
+            "packageName": "@gooddata/sdk-ui-all",
+            "comment": "Legend responsive config extended for pou-up variant (responsive?: boolean | \"autoPositionWithPopup\") in pluggable visualization controlled by feature flag (enableKDWidgetCustomHeight)",
+            "type": "none"
+        }
+    ],
+    "packageName": "@gooddata/sdk-ui-all",
+    "email": " ivan.mjartan@gooddata.com"
+}

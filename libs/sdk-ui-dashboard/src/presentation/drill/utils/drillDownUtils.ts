@@ -38,6 +38,9 @@ export function getTotalDrillToUrlCount(drillDefinition: DashboardDrillDefinitio
 export function filterDrillFromAttributeByPriority(
     drillDefinitions: DashboardDrillDefinition[],
 ): DashboardDrillDefinition[] {
+    //here we have problem I not able recognize that drillFromUrl could be implicitly generated (this should has lower priority)
+    //Maybe introduce priority paramter into IDrillFromAttribute as origin
+    //I could add new type as I already tyred (Type defined but not used) but this is not good approach (type will be almost same)
     const drillOriginsWithoutDrillDown = compact(
         drillDefinitions.map((d) => {
             if (!isDrillToLegacyDashboard(d) && !isDrillDownDefinition(d)) {

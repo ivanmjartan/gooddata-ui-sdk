@@ -176,7 +176,7 @@ export namespace GdcCatalog {
     } | {
         expression: string;
     };
-    {};
+        {};
 }
 
 // @public (undocumented)
@@ -1223,6 +1223,7 @@ export namespace GdcMetadata {
             displayForms: IAttributeDisplayForm[];
             type?: string;
             drillDownStepAttributeDF?: Uri;
+            linkAttributeDF?: Uri;
         };
     }
     // (undocumented)
@@ -2913,6 +2914,5 @@ export type Timestamp = string;
 
 // @public (undocumented)
 export type Uri = string;
-
 
 ```

@@ -5,6 +5,7 @@ import {
     DrillDefinition,
     ICatalogAttribute,
     ICatalogDateAttribute,
+    IDrillToAttributeUrl,
     isDrillFromAttribute,
     isDrillFromMeasure,
     UnexpectedError,
@@ -29,7 +30,10 @@ import { DashboardDrillDefinition } from "../../../types";
 /////
 import { selectWidgetDrills } from "../layout/layoutSelectors";
 import { selectDrillTargetsByWidgetRef } from "../drillTargets/drillTargetsSelectors";
-import { selectAttributesWithDrillDown } from "../catalog/catalogSelectors";
+import {
+    selectAttributesWithDisplayFormLink,
+    selectAttributesWithDrillDown,
+} from "../catalog/catalogSelectors";
 import { selectDrillableItems } from "../drill/drillSelectors";
 import { selectDisableDefaultDrills } from "../config/configSelectors";
 import flatMap from "lodash/flatMap";
@@ -90,6 +94,45 @@ function getDrillDownDefinitionsWithPredicates(
     });
 }
 
+function getDrillToUrlDefinitionsWithPredicates(
+    availableDrillAttributes: IAvailableDrillTargetAttribute[],
+    attributesWithDisplayFormLink: Array<ICatalogAttribute>,
+): IImplicitDrillWithPredicates[] {
+    const matchingAvailableDrillAttributes = availableDrillAttributes.filter((candidate) => {
+        return attributesWithDisplayFormLink.some((attr) =>
+            areObjRefsEqual(attr.attribute.ref, candidate.attribute.attributeHeader.formOf.ref),
+        );
+    });
+
+    return matchingAvailableDrillAttributes.map((targetAttribute): IImplicitDrillWithPredicates => {
+        const matchingCatalogAttribute = attributesWithDisplayFormLink.find((attr) =>
+            areObjRefsEqual(attr.attribute.ref, targetAttribute.attribute.attributeHeader.formOf.ref),
+        );
+
+        const drillDefinition: IDrillToAttributeUrl = {
+            type: "drillToAttributeUrl",
+            transition: "new-window",
+            origin: {
+                type: "drillFromAttribute",
+                attribute: localIdRef(targetAttribute.attribute.attributeHeader.localIdentifier),
+            },
+            target: {
+                displayForm: targetAttribute.attribute.attributeHeader.ref,
+                hyperlinkDisplayForm: matchingCatalogAttribute!.attribute.drillToAttributeLink!,
+            },
+        };
+
+        return {
+            drillDefinition,
+            predicates: [
+                // add drillable items for both types of objRefs that the header can be
+                HeaderPredicates.identifierMatch(targetAttribute.attribute.attributeHeader.identifier),
+                HeaderPredicates.uriMatch(targetAttribute.attribute.attributeHeader.uri),
+            ],
+        };
+    });
+}
+
 function getDrillDefinitionsWithPredicates(
     insightWidgetDrills: DrillDefinition[],
 ): IImplicitDrillWithPredicates[] {
@@ -122,6 +165,20 @@ export const selectInsightWidgetImplicitDrillDownsByRef = createMemoizedSelector
 /**
  * @internal
  */
+export const selectInsightWidgetImplicitDrillToUrlByRef = createMemoizedSelector((ref: ObjRef) =>
+    createSelector(
+        selectDrillTargetsByWidgetRef(ref),
+        selectAttributesWithDisplayFormLink,
+        (availableDrillTargets, attributesWithLink) => {
+            const availableDrillAttributes = availableDrillTargets?.availableDrillTargets?.attributes ?? [];
+            return getDrillToUrlDefinitionsWithPredicates(availableDrillAttributes, attributesWithLink);
+        },
+    ),
+);
+
+/**
+ * @internal
+ */
 export const selectInsightWidgetImplicitDrillsByRef = createMemoizedSelector((ref: ObjRef) =>
     createSelector(selectWidgetDrills(ref), (drills = []) => {
         return getDrillDefinitionsWithPredicates(drills);
@@ -135,10 +192,21 @@ export const selectInsightWidgetImplicitDrillsAndDrillDownsByRef = createMemoize
     createSelector(
         selectInsightWidgetImplicitDrillsByRef(ref),
         selectInsightWidgetImplicitDrillDownsByRef(ref),
-        (widgetImplicitDrills, widgetImplicitDrillDownDrills) => {
-            return [...widgetImplicitDrills, ...widgetImplicitDrillDownDrills];
+        selectInsightWidgetImplicitDrillToUrlByRef(ref),
+        (widgetImplicitDrills, widgetImplicitDrillDownDrills, widgetImplicitDrillToUrlDrills) => {
+            return [
+                ...widgetImplicitDrills,
+                ...widgetImplicitDrillDownDrills,
+                ...widgetImplicitDrillToUrlDrills,
+            ];
         },
     ),
+);
+
+const selectInsightWidgetDrilImplicitDrillToUrlPredicates = createMemoizedSelector((ref: ObjRef) =>
+    createSelector(selectInsightWidgetImplicitDrillToUrlByRef(ref), (widgetDrillDownImplicitDrills) => {
+        return flatMap(widgetDrillDownImplicitDrills, (implicitDrill) => implicitDrill.predicates);
+    }),
 );
 
 const selectInsightWidgetDrillDownImplicitDrillPredicates = createMemoizedSelector((ref: ObjRef) =>
@@ -162,11 +230,22 @@ export const selectInsightWidgetDrillableItems = createMemoizedSelector((ref: Ob
         selectDrillableItems,
         selectInsightWidgetImplicitDrillPredicates(ref),
         selectInsightWidgetDrillDownImplicitDrillPredicates(ref),
-        (disableDefaultDrills, drillableItems, widgetImplicitDrills, widgetImplicitDrillDownDrills) => {
+        selectInsightWidgetDrilImplicitDrillToUrlPredicates(ref),
+        (
+            disableDefaultDrills,
+            drillableItems,
+            widgetImplicitDrills,
+            widgetImplicitDrillDownDrills,
+            widgetDrilImplicitDrillToUrl,
+        ) => {
             const resolvedDrillableItems = [...drillableItems];
 
             if (!disableDefaultDrills) {
-                resolvedDrillableItems.push(...widgetImplicitDrills, ...widgetImplicitDrillDownDrills);
+                resolvedDrillableItems.push(
+                    ...widgetImplicitDrills,
+                    ...widgetImplicitDrillDownDrills,
+                    ...widgetDrilImplicitDrillToUrl,
+                );
             }
 
             return resolvedDrillableItems;
@@ -178,15 +257,29 @@ export const selectInsightWidgetDrillableItems = createMemoizedSelector((ref: Ob
 // Following selectors are for insight widget in drill dialog
 //
 
+//TODO rename
 /**
  * @internal
  */
 export const selectImplicitDrillDownsByAvailableDrillTargets = createMemoizedSelector(
     (availableDrillTargets: IAvailableDrillTargets | undefined) =>
-        createSelector(selectAttributesWithDrillDown, (attributesWithDrillDown) => {
-            const availableDrillAttributes = availableDrillTargets?.attributes ?? [];
-            return getDrillDownDefinitionsWithPredicates(availableDrillAttributes, attributesWithDrillDown);
-        }),
+        createSelector(
+            selectAttributesWithDrillDown,
+            selectAttributesWithDisplayFormLink,
+            (attributesWithDrillDown, attributesWithLink) => {
+                const availableDrillAttributes = availableDrillTargets?.attributes ?? [];
+                const drillDownDrills = getDrillDownDefinitionsWithPredicates(
+                    availableDrillAttributes,
+                    attributesWithDrillDown,
+                );
+                const drillToUrlDrills = getDrillToUrlDefinitionsWithPredicates(
+                    availableDrillAttributes,
+                    attributesWithLink,
+                );
+
+                return [...drillDownDrills, ...drillToUrlDrills];
+            },
+        ),
 );
 
 /**

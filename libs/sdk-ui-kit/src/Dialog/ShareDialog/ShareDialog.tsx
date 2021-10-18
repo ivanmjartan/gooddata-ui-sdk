@@ -2,41 +2,32 @@
 import React from "react";
 import { Overlay } from "../../Overlay";
 import { IAlignPoint } from "../../typings/positioning";
-import { IShareDialogBaseProps } from "../typings";
+import { ShareDialogBase } from "./ShareDialogBase";
 
 const alignPoints: IAlignPoint[] = [{ align: "cc cc" }];
 
 /**
  * @internal
  */
-export const ShareDialog = (props: IShareDialogBaseProps): JSX.Element => {
-    const { containerClassName } = props;
+export interface IShareDialogProps {
+    onCancel?: () => void;
+    onSubmit?: (data?: any) => void; // Add typings of data
+}
+
+/**
+ * @internal
+ */
+export const ShareDialog = (props: IShareDialogProps): JSX.Element => {
+    const { onCancel, onSubmit } = props;
+
     return (
         <Overlay
             alignPoints={alignPoints}
             isModal
             positionType="fixed"
-            containerClassName={containerClassName}
+            //containerClassName={containerClassName}
         >
-            {/* <ExportDialogBase
-                displayCloseButton={displayCloseButton}
-                isPositive={isPositive}
-                isSubmitDisabled={isSubmitDisabled}
-                headline={headline}
-                cancelButtonText={cancelButtonText}
-                submitButtonText={submitButtonText}
-                filterContextText={filterContextText}
-                filterContextTitle={filterContextTitle}
-                filterContextVisible={filterContextVisible}
-                includeFilterContext={includeFilterContext}
-                mergeHeaders={mergeHeaders}
-                mergeHeadersDisabled={mergeHeadersDisabled}
-                mergeHeadersText={mergeHeadersText}
-                mergeHeadersTitle={mergeHeadersTitle}
-                onCancel={onCancel}
-                onSubmit={onSubmit}
-            /> */}
-            content
+            <ShareDialogBase onCancel={onCancel} onSubmit={onSubmit} />
         </Overlay>
     );
 };

@@ -74,7 +74,3 @@ export interface IExportDialogData {
     includeFilterContext: boolean;
     mergeHeaders: boolean;
 }
-
-export interface IShareDialogBaseProps {
-    containerClassName?: string;
-}

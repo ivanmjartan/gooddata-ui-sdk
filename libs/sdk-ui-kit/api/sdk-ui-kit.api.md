@@ -2395,6 +2395,14 @@ export const isDateDatasetHeader: (obj: unknown) => obj is IDateDatasetHeader;
 export function isFreemiumEdition(platformEdition: string | undefined): boolean;
 
 // @internal (undocumented)
+export interface IShareDialogProps {
+    // (undocumented)
+    onCancel?: () => void;
+    // (undocumented)
+    onSubmit?: (data?: any) => void;
+}
+
+// @internal (undocumented)
 export interface IShortenedTextProps {
     // (undocumented)
     children: string;
@@ -2826,6 +2834,9 @@ export type Separators = {
     thousand: string;
     decimal: string;
 };
+
+// @internal (undocumented)
+export const ShareDialog: (props: IShareDialogProps) => JSX.Element;
 
 // @internal (undocumented)
 export class ShortenedText extends PureComponent<IShortenedTextProps, IShortenedTextState> {

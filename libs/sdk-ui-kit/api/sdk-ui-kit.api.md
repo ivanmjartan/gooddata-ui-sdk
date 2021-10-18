@@ -11,20 +11,27 @@ import { ColorFormats } from 'tinycolor2';
 import { Component } from 'react';
 import { CSSProperties } from 'react';
 import { FC } from 'react';
+import { IAccessControlAware } from '@gooddata/sdk-backend-spi';
+import { IAuditableUsers } from '@gooddata/sdk-model';
 import { IntlShape } from 'react-intl';
 import { ISeparators } from '@gooddata/sdk-ui';
 import { ISettings } from '@gooddata/sdk-backend-spi';
 import { ITheme } from '@gooddata/sdk-backend-spi';
 import { IWorkspacePermissions } from '@gooddata/sdk-backend-spi';
 import { MessageDescriptor } from 'react-intl';
+import { ObjRef } from '@gooddata/sdk-model';
 import { PureComponent } from 'react';
 import { default as React_2 } from 'react';
 import { ReactNode } from 'react';
+import { ShareStatus } from '@gooddata/sdk-backend-spi';
 import { WithIntlProps } from 'react-intl';
 import { WrappedComponentProps } from 'react-intl';
 
 // @internal (undocumented)
 export function activateHeaderMenuItems(items: IHeaderMenuItem[][], ids: Array<string>): IHeaderMenuItem[][];
+
+// @internal (undocumented)
+export const AddGranteeBase: (props: IAddGranteeBaseProps) => JSX.Element;
 
 // @internal (undocumented)
 export type AddMessageType = (message: MessageDescriptor, options?: Pick<IMessageDefinition, "duration" | "intensive">) => string;
@@ -265,6 +272,9 @@ export class DialogBase<P extends IDialogBaseProps> extends PureComponent<P> {
 }
 
 // @internal (undocumented)
+export type DialogModeType = "ShareGrantee" | "AddGrantee";
+
+// @internal (undocumented)
 export const DocumentHeader: React_2.FC<IDocumentHeaderProps>;
 
 // @internal (undocumented)
@@ -463,6 +473,15 @@ export type GetPositionedSelfRegion = {
 // @internal (undocumented)
 export function getRecommendedDateDataset<T extends IDateDataset>(items: T[]): T;
 
+// @internal (undocumented)
+export type GranteeItem = IGranteeUser | IGranteeGroup | IGranteeGroupAll;
+
+// @internal (undocumented)
+export const GranteeItemComponent: (props: IGranteeItemProps) => JSX.Element;
+
+// @internal (undocumented)
+export type GranteeType = "user" | "group" | "groupAll";
+
 // @internal
 export function guidFor(obj: any): string;
 
@@ -518,6 +537,26 @@ export const HeaderWorkspacePicker: React_2.ForwardRefExoticComponent<Pick<IHead
 
 // @public (undocumented)
 export const HubspotConversionTouchPointDialog: React_2.FC<IHubspotConversionTouchPointDialogBaseProps>;
+
+// @internal (undocumented)
+export interface IAddGranteeBaseProps {
+    // (undocumented)
+    addedGrantees: GranteeItem[];
+    // (undocumented)
+    availableGrantees: GranteeItem[];
+    // (undocumented)
+    isDirty: boolean;
+    // (undocumented)
+    onAddUserOrGroups?: (grantee: GranteeItem) => void;
+    // (undocumented)
+    onBackClick?: () => void;
+    // (undocumented)
+    onCancel: () => void;
+    // (undocumented)
+    onDelete: (grantee: GranteeItem) => void;
+    // (undocumented)
+    onSubmit: () => void;
+}
 
 // @internal (undocumented)
 export interface IAlignPoint {
@@ -587,6 +626,12 @@ export interface IAppHeaderState {
     isOverlayMenuOpen: boolean;
     // (undocumented)
     responsiveMode: boolean;
+}
+
+// @internal (undocumented)
+export interface IApplyPayload {
+    // (undocumented)
+    shareStatus: ShareStatus;
 }
 
 // @internal (undocumented)
@@ -762,6 +807,8 @@ export const Icon: {
 export interface IConfirmDialogBaseProps extends IDialogBaseProps {
     // (undocumented)
     cancelButtonText?: string;
+    // (undocumented)
+    headerLeftButtonRenderer?: () => JSX.Element;
     // (undocumented)
     headline?: string;
     // (undocumented)
@@ -1184,6 +1231,56 @@ export interface IFormatTemplate {
     localIdentifier: string;
     // (undocumented)
     name: string;
+}
+
+// @internal (undocumented)
+export interface IGranteeBase {
+    // (undocumented)
+    granteeType: GranteeType;
+    // (undocumented)
+    id: ObjRef;
+}
+
+// @internal (undocumented)
+export interface IGranteeGroup extends IGranteeBase {
+    // (undocumented)
+    granteeCount?: number;
+    // (undocumented)
+    granteeType: "group";
+    // (undocumented)
+    groupName: string;
+}
+
+// @internal (undocumented)
+export interface IGranteeGroupAll extends IGranteeBase {
+    // (undocumented)
+    granteeCount?: number;
+    // (undocumented)
+    granteeType: "groupAll";
+}
+
+// @internal (undocumented)
+export interface IGranteeItemProps {
+    // (undocumented)
+    grantee: GranteeItem;
+    // (undocumented)
+    mode: DialogModeType;
+    // (undocumented)
+    onDelete: (grantee: GranteeItem) => void;
+}
+
+// @internal (undocumented)
+export interface IGranteeUser extends IGranteeBase {
+    // (undocumented)
+    granteeEmail: string;
+    // (undocumented)
+    granteeName: string;
+    // (undocumented)
+    granteeType: "user";
+    // (undocumented)
+    isCurrentUser: boolean;
+    // (undocumented)
+    isOwner: boolean;
 }
 
 // @internal (undocumented)
@@ -2395,6 +2492,66 @@ export const isDateDatasetHeader: (obj: unknown) => obj is IDateDatasetHeader;
 export function isFreemiumEdition(platformEdition: string | undefined): boolean;
 
 // @internal (undocumented)
+export const isGranteeGroup: (obj: unknown) => obj is IGranteeGroup;
+
+// @internal (undocumented)
+export const isGranteeUser: (obj: unknown) => obj is IGranteeUser;
+
+// @internal (undocumented)
+export interface IShareDialogBaseProps {
+    // (undocumented)
+    grantees: GranteeItem[];
+    // (undocumented)
+    onCancel?: () => void;
+    // (undocumented)
+    onSubmit?: (granteesToAdd: GranteeItem[], granteesToDelete: GranteeItem[]) => void;
+    // (undocumented)
+    owner: IGranteeUser;
+}
+
+// @internal (undocumented)
+export interface IShareDialogProps {
+    // (undocumented)
+    currentUserRef: ObjRef;
+    // (undocumented)
+    locale?: string;
+    // (undocumented)
+    onApply: (payload: IApplyPayload) => void;
+    // (undocumented)
+    onCancel: () => void;
+    // (undocumented)
+    sharedObject: IAccessControlAware & IAuditableUsers;
+}
+
+// @internal (undocumented)
+export interface IShareGranteeBaseProps {
+    // (undocumented)
+    grantees: GranteeItem[];
+    // (undocumented)
+    isDirty: boolean;
+    // (undocumented)
+    onAddGranteeButtonClick: () => void;
+    // (undocumented)
+    onCancel: () => void;
+    // (undocumented)
+    onGranteeDelete: (grantee: GranteeItem) => void;
+    // (undocumented)
+    onSubmit: () => void;
+    // (undocumented)
+    owner: IGranteeUser;
+}
+
+// @internal (undocumented)
+export interface IShareGranteeContentProps {
+    // (undocumented)
+    grantees: GranteeItem[];
+    // (undocumented)
+    onAddGrantee: () => void;
+    // (undocumented)
+    onDelete: (grantee: GranteeItem) => void;
+}
+
+// @internal (undocumented)
 export interface IShortenedTextProps {
     // (undocumented)
     children: string;
@@ -2826,6 +2983,15 @@ export type Separators = {
     thousand: string;
     decimal: string;
 };
+
+// @internal (undocumented)
+export const ShareDialog: (props: IShareDialogProps) => JSX.Element;
+
+// @internal (undocumented)
+export const ShareDialogBase: (props: IShareDialogBaseProps) => JSX.Element;
+
+// @internal (undocumented)
+export const ShareGranteeBase: (props: IShareGranteeBaseProps) => JSX.Element;
 
 // @internal (undocumented)
 export class ShortenedText extends PureComponent<IShortenedTextProps, IShortenedTextState> {

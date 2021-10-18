@@ -8,7 +8,6 @@ import {
     IKpiWidget,
     ILegacyKpi,
     isProtectedDataError,
-    ShareStatus,
 } from "@gooddata/sdk-backend-spi";
 import { ToastMessageContextProvider, ToastMessages, useToastMessage } from "@gooddata/sdk-ui-kit";
 import { ErrorComponent as DefaultError, LoadingComponent as DefaultLoading } from "@gooddata/sdk-ui";
@@ -48,7 +47,6 @@ import {
     changeAttributeFilterSelection,
     changeDateFilterSelection,
     changeFilterContextSelection,
-    changeSharing,
     clearDateFilterSelection,
     DashboardStoreProvider,
     exportDashboardToPdf,
@@ -93,6 +91,7 @@ import { downloadFile } from "../../_staging/fileUtils/downloadFile";
 import { DefaultSaveAsDialogInner, SaveAsDialog, SaveAsDialogPropsProvider } from "../saveAs";
 import { IInsight } from "@gooddata/sdk-model";
 import { DEFAULT_FILTER_BAR_HEIGHT } from "../constants";
+import { DefaultShareDialogInner, ShareDialogDashboardWrapper } from "../shareDialog";
 
 const useFilterBar = (): {
     filters: FilterContextItem[];
@@ -134,8 +133,6 @@ const useFilterBar = (): {
 const useTopBar = () => {
     const dispatch = useDashboardDispatch();
     const title = useDashboardSelector(selectDashboardTitle);
-    const { addSuccess, addError, removeMessage } = useToastMessage();
-    const lastSharingChangeMessageId = useRef("");
 
     const onTitleChanged = useCallback(
         (title: string) => {
@@ -144,30 +141,7 @@ const useTopBar = () => {
         [dispatch],
     );
 
-    const { run: runChangeSharing } = useDashboardCommandProcessing({
-        commandCreator: changeSharing,
-        successEvent: "GDC.DASH/EVT.SHARING.CHANGED",
-        errorEvent: "GDC.DASH/EVT.COMMAND.FAILED",
-        onSuccess: () => {
-            if (lastSharingChangeMessageId.current) {
-                removeMessage(lastSharingChangeMessageId.current);
-            }
-            addSuccess({ id: "messages.sharingChangedSuccess" });
-        },
-        onError: () => {
-            if (lastSharingChangeMessageId.current) {
-                removeMessage(lastSharingChangeMessageId.current);
-            }
-            addError({ id: "messages.sharingChangedError.general" });
-        },
-    });
-
-    const onShareButtonClick = useCallback(
-        (newShareStatus: ShareStatus) => {
-            runChangeSharing(newShareStatus);
-        },
-        [runChangeSharing],
-    );
+    const onShareButtonClick = useCallback(() => dispatch(uiActions.openShareDialog()), [dispatch]);
 
     return {
         title,
@@ -331,6 +305,7 @@ const DashboardHeader = (): JSX.Element => {
                     <ScheduledEmailDialog />
                 </ScheduledEmailDialogPropsProvider>
             )}
+            <ShareDialogDashboardWrapper />
             {isSaveAsDialogOpen && (
                 <SaveAsDialogPropsProvider
                     isVisible={isSaveAsDialogOpen}
@@ -519,6 +494,7 @@ export const Dashboard: React.FC<IDashboardProps> = (props: IDashboardProps) => 
                             ScheduledEmailDialogComponent={
                                 props.ScheduledEmailDialogComponent ?? DefaultScheduledEmailDialogInner
                             }
+                            ShareDialogComponent={props.ShareDialogComponent ?? DefaultShareDialogInner}
                             SaveAsDialogComponent={props.SaveAsDialogComponent ?? DefaultSaveAsDialogInner}
                             DashboardAttributeFilterComponentProvider={attributeFilterProvider}
                             DashboardDateFilterComponent={

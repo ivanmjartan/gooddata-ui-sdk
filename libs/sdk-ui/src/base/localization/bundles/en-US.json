@@ -431,6 +431,11 @@
         "comment": "",
         "limit": 0
     },
+    "save": {
+        "value": "Save",
+        "comment": "",
+        "limit": 0
+    },
     "loading": {
         "value": "Loading…",
         "comment": "Use '…' as one character, not 3 dots ('...').",
@@ -1153,6 +1158,81 @@
     "attributesDropdown.noData": {
         "value": "This attribute does not have any value.",
         "comment": "",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.title": {
+        "value": "Share with users and groups",
+        "comment": "Title of share dialog list of shared grantee",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.share": {
+        "value": "Share",
+        "comment": "Title of confirm button of share dialog",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.list.title": {
+        "value": "Shared with",
+        "comment": "Title of shared list of grantees",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.add": {
+        "value": "Add",
+        "comment": "Title of add grantee button",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.add.empty.selection": {
+        "value": "No user or group selected.",
+        "comment": "Info that no user or group selected in grantee list",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.add.info": {
+        "value": "Add users and groups",
+        "comment": "Description of add grantee button or dialog",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.add.search.placeholder": {
+        "value": "Search users and groups",
+        "comment": "Information in search user and groups filed",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.add.search.no.matching.items": {
+        "value": "No matching users or groups.",
+        "comment": "Information that search query in input no match user and groups",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.item.you": {
+        "value": "You",
+        "comment": "Description that grantee is current user",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.item.users": {
+        "value": "users",
+        "comment": "Description how many grantee group contains users",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.item.creator": {
+        "value": "Creator",
+        "comment": "Description that grantee is creator of item",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.item.user.all": {
+        "value": "All users",
+        "comment": "Title of users group",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.item.remove.access": {
+        "value": "Remove access to this dashboard.",
+        "comment": "Hint on remove grantee button",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.item.owner.remove.access": {
+        "value": "Users who created this dashboard. Creator cannot be removed.",
+        "comment": "Hint on remove grantee button owner",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.item.remove.selection": {
+        "value": "Remove from selection.",
+        "comment": "Hint on remove grantee from current selection",
         "limit": 0
     }
 }

@@ -1,8 +1,9 @@
 // (C) 2021 GoodData Corporation
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { Overlay } from "../../Overlay";
 import { IAlignPoint } from "../../typings/positioning";
-import { ShareDialogBase } from "./ShareDialogBase";
+import { ShareGranteeBase } from "./ShareGranteeBase";
+import { AddGranteeBase } from "./AddGranteeBase";
 
 const alignPoints: IAlignPoint[] = [{ align: "cc cc" }];
 
@@ -17,8 +18,21 @@ export interface IShareDialogProps {
 /**
  * @internal
  */
+enum DialogMode {
+    ShareGrantee,
+    AddGrantee,
+}
+
+/**
+ * @internal
+ */
 export const ShareDialog = (props: IShareDialogProps): JSX.Element => {
     const { onCancel, onSubmit } = props;
+    const [dialogMode, setDialogMode] = useState(DialogMode.ShareGrantee);
+
+    const onAddGrantee = useCallback(() => {
+        setDialogMode(DialogMode.ShareGrantee);
+    }, [setDialogMode]);
 
     return (
         <Overlay
@@ -27,7 +41,11 @@ export const ShareDialog = (props: IShareDialogProps): JSX.Element => {
             positionType="fixed"
             //containerClassName={containerClassName}
         >
-            <ShareDialogBase onCancel={onCancel} onSubmit={onSubmit} />
+            {dialogMode === DialogMode.ShareGrantee ? (
+                <ShareGranteeBase onCancel={onCancel} onSubmit={onSubmit} onAddGrantee={onAddGrantee} />
+            ) : (
+                <AddGranteeBase onCancel={onCancel} onSubmit={onSubmit} onBackClick={onAddGrantee} />
+            )}
         </Overlay>
     );
 };

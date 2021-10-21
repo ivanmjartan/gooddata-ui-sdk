@@ -7,13 +7,13 @@ import { withMultipleScreenshots } from "../../../_infra/backstopWrapper";
 import { wrapWithTheme } from "../../themeWrapper";
 
 import "@gooddata/sdk-ui-kit/styles/css/main.css";
-import "../styles/goodstrap.scss";
+// import "../styles/goodstrap.scss";
 import { action } from "@storybook/addon-actions";
 import { ShareGranteeBase } from "@gooddata/sdk-ui-kit/src/Dialog/ShareDialog/ShareGranteeBase";
 
-const ShareGranteeBaseBasicExample = (): JSX.Element => {
+const BasicExample = (): JSX.Element => {
     return (
-        <div id="Share-Grantee-basic-example">
+        <div id="Share-Grantee-base-basic-example">
             <ShareGranteeBase
                 onCancel={action("onCancel")}
                 onSubmit={action("onSubmit")}
@@ -31,7 +31,7 @@ export const ShareGranteeBaseExamples = (): JSX.Element => {
         <InternalIntlWrapper>
             <div className="library-component screenshot-target">
                 <h4>ShareGranteeBase basic example</h4>
-                <ShareGranteeBaseBasicExample />
+                <BasicExample />
             </div>
         </InternalIntlWrapper>
     );

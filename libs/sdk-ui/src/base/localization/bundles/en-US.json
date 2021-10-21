@@ -431,6 +431,11 @@
         "comment": "",
         "limit": 0
     },
+    "save": {
+        "value": "Save",
+        "comment": "",
+        "limit": 0
+    },
     "loading": {
         "value": "Loading…",
         "comment": "Use '…' as one character, not 3 dots ('...').",
@@ -1153,6 +1158,36 @@
     "attributesDropdown.noData": {
         "value": "This attribute does not have any value.",
         "comment": "",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.title": {
+        "value": "Share with users and groups",
+        "comment": "Title of share dialog list of shared grantee",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.list.title": {
+        "value": "Shared with",
+        "comment": "Title of shared list of grantees",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.add": {
+        "value": "Add",
+        "comment": "Title of add grantee button",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.add.info": {
+        "value": "Add users or groups",
+        "comment": "Description of add grantee button or dialog",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.item.you": {
+        "value": "You",
+        "comment": "Description that grantee is owner of dashboard",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.item.users": {
+        "value": "users",
+        "comment": "Description how many grantee group contains users",
         "limit": 0
     }
 }

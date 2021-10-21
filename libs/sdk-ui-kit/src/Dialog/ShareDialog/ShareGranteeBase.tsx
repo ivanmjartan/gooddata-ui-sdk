@@ -26,9 +26,9 @@ export const ShareGranteeBase = (props: IShareGranteeBaseProps): JSX.Element => 
             displayCloseButton={true}
             isPositive={true}
             isSubmitDisabled={false}
-            headline={intl.formatMessage({ id: "Share with users and groups" })}
-            cancelButtonText={intl.formatMessage({ id: "Cancel" })}
-            submitButtonText={intl.formatMessage({ id: "Save" })}
+            headline={intl.formatMessage({ id: "shareDialog.share.grantee.title" })}
+            cancelButtonText={intl.formatMessage({ id: "cancel" })}
+            submitButtonText={intl.formatMessage({ id: "save" })}
             onCancel={onCancel}
             onSubmit={onSubmit}
         >

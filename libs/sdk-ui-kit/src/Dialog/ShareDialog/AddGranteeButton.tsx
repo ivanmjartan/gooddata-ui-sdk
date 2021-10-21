@@ -32,7 +32,6 @@ export const AddUserOrGroupButton = (props: IAddUserOrGroupButton): JSX.Element 
 
     return (
         <div className="create-measure-link-section">
-            {" "}
             {/* TODO fix style */}
             <BubbleHoverTrigger showDelay={0} hideDelay={0}>
                 <a
@@ -41,13 +40,10 @@ export const AddUserOrGroupButton = (props: IAddUserOrGroupButton): JSX.Element 
                     rel="noopener noreferrer"
                     onClick={handleClick}
                 >
-                    <FormattedMessage id="Add" /* TODO Add translation */ />
+                    <FormattedMessage id="shareDialog.share.grantee.add" />
                 </a>
                 <Bubble className="bubble-primary" alignPoints={[{ align: "cr cl" }]}>
-                    <FormattedMessage
-                        id={"Add users or groups"}
-                        /* TODO Add translation */
-                    />
+                    <FormattedMessage id={"shareDialog.share.grantee.add.info"} />
                 </Bubble>
             </BubbleHoverTrigger>
         </div>

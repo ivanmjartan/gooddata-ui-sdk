@@ -1,5 +1,7 @@
 // (C) 2021 GoodData Corporation
 import React from "react";
+import { FormattedMessage } from "react-intl";
+import { Typography } from "../../Typography/Typography";
 import { AddUserOrGroupButton } from "./AddGranteeButton";
 
 /**
@@ -15,5 +17,12 @@ export interface IShareGranteeContentProps {
 export const ShareGranteeContent = (props: IShareGranteeContentProps): JSX.Element => {
     const { onAddGrantee } = props;
 
-    return <AddUserOrGroupButton onClick={onAddGrantee} />;
+    return (
+        <div className="gd-share-dialog-grantee-content-header">
+            <Typography tagName="h3">
+                <FormattedMessage id="shareDialog.share.grantee.list.title" />
+            </Typography>
+            <AddUserOrGroupButton onClick={onAddGrantee} />
+        </div>
+    );
 };

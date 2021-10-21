@@ -11,9 +11,9 @@ import "../styles/goodstrap.scss";
 import { action } from "@storybook/addon-actions";
 import { AddGranteeBase } from "@gooddata/sdk-ui-kit/src/Dialog/ShareDialog/AddGranteeBase";
 
-const AddGranteeBaseBasicExample = (): JSX.Element => {
+const BasicExample = (): JSX.Element => {
     return (
-        <div id="Share-Grantee-basic-example">
+        <div id="Share-Grantee-base-basic-example">
             <AddGranteeBase
                 onCancel={action("onCancel")}
                 onSubmit={action("onSubmit")}
@@ -31,7 +31,7 @@ export const AddGranteeBaseExamples = (): JSX.Element => {
         <InternalIntlWrapper>
             <div className="library-component screenshot-target">
                 <h4>AddGranteeBase basic example</h4>
-                <AddGranteeBaseBasicExample />
+                <BasicExample />
             </div>
         </InternalIntlWrapper>
     );

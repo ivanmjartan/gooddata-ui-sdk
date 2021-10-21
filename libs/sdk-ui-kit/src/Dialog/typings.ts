@@ -38,7 +38,7 @@ export interface IConfirmDialogBaseProps extends IDialogBaseProps {
     submitButtonTooltipArrowOffsets?: ArrowOffsets;
     warning?: string | React.ReactElement;
     showProgressIndicator?: boolean;
-    headerLeftButtonRenderer: () => JSX.Element;
+    headerLeftButtonRenderer?: () => JSX.Element;
 }
 
 /**

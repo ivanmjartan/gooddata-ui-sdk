@@ -1,15 +1,15 @@
 // (C) 2021 GoodData Corporation
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import { InternalIntlWrapper } from "@gooddata/sdk-ui-ext/dist/internal/utils/internalIntlProvider";
 import { UiKit } from "../../../_infra/storyGroups";
 import { withMultipleScreenshots } from "../../../_infra/backstopWrapper";
 import { wrapWithTheme } from "../../themeWrapper";
+import { AddGranteeBase } from "@gooddata/sdk-ui-kit/src/Dialog/";
 
 import "@gooddata/sdk-ui-kit/styles/css/main.css";
 import "../styles/goodstrap.scss";
-import { action } from "@storybook/addon-actions";
-import { AddGranteeBase } from "@gooddata/sdk-ui-kit/src/Dialog/ShareDialog/AddGranteeBase";
 
 const BasicExample = (): JSX.Element => {
     return (

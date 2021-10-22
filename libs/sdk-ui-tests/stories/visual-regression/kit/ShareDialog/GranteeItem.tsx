@@ -10,21 +10,10 @@ import "@gooddata/sdk-ui-kit/styles/css/main.css";
 import "../styles/goodstrap.scss";
 
 import { action } from "@storybook/addon-actions";
-import {
-    GranteeItem,
-    IGranteeGroup,
-    IGranteeUser,
-} from "@gooddata/sdk-ui-kit/src/Dialog/ShareDialog/GranteeItem";
+import { GranteeItem } from "@gooddata/sdk-ui-kit/src/Dialog/";
+import { group, owner, user } from "./GranteeMock";
 
 const UserItemBasicExample = (): JSX.Element => {
-    const user: IGranteeUser = {
-        granteeType: "user",
-        id: "userId",
-        granteeName: "User Name",
-        granteeEmail: "user.name@gooddata.com",
-        isOwner: false,
-    };
-
     const border = { border: "1px solid black", width: 300 };
 
     return (
@@ -46,7 +35,7 @@ const UserItemBasicExample = (): JSX.Element => {
             </div>
             <span> Grantee owner</span>
             <div id="Grantee-item-basic-example" style={border}>
-                <GranteeItem grantee={{ ...user, isOwner: true }} onDelete={action("onDelete")} />
+                <GranteeItem grantee={owner} onDelete={action("onDelete")} />
             </div>
             <span> Grantee owner long name and email</span>
             <div id="Grantee-item-basic-example" style={border}>
@@ -65,13 +54,6 @@ const UserItemBasicExample = (): JSX.Element => {
 };
 
 const GroupItemBasicExample = (): JSX.Element => {
-    const group: IGranteeGroup = {
-        granteeType: "group",
-        id: "groupId",
-        granteeCount: 11,
-        groupName: "TNT team",
-    };
-
     const border = { border: "1px solid black", width: 300 };
 
     return (

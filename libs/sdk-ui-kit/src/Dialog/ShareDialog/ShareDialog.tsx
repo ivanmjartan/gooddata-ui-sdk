@@ -4,16 +4,9 @@ import { Overlay } from "../../Overlay";
 import { IAlignPoint } from "../../typings/positioning";
 import { ShareGranteeBase } from "./ShareGranteeBase";
 import { AddGranteeBase } from "./AddGranteeBase";
+import { IShareDialogProps } from "./types";
 
 const alignPoints: IAlignPoint[] = [{ align: "cc cc" }];
-
-/**
- * @internal
- */
-export interface IShareDialogProps {
-    onCancel?: () => void;
-    onSubmit?: (data?: any) => void; // Add typings of data
-}
 
 /**
  * @internal
@@ -27,10 +20,14 @@ enum DialogMode {
  * @internal
  */
 export const ShareDialog = (props: IShareDialogProps): JSX.Element => {
-    const { onCancel, onSubmit } = props;
+    const { onCancel, onSubmit, owner, grantees } = props;
     const [dialogMode, setDialogMode] = useState(DialogMode.ShareGrantee);
 
     const onAddGrantee = useCallback(() => {
+        setDialogMode(DialogMode.AddGrantee);
+    }, [setDialogMode]);
+
+    const onShareGrantee = useCallback(() => {
         setDialogMode(DialogMode.ShareGrantee);
     }, [setDialogMode]);
 
@@ -42,9 +39,15 @@ export const ShareDialog = (props: IShareDialogProps): JSX.Element => {
             //containerClassName={containerClassName}
         >
             {dialogMode === DialogMode.ShareGrantee ? (
-                <ShareGranteeBase onCancel={onCancel} onSubmit={onSubmit} onAddGrantee={onAddGrantee} />
+                <ShareGranteeBase
+                    owner={owner}
+                    grantees={grantees}
+                    onCancel={onCancel}
+                    onSubmit={onSubmit}
+                    onAddGrantee={onAddGrantee}
+                />
             ) : (
-                <AddGranteeBase onCancel={onCancel} onSubmit={onSubmit} onBackClick={onAddGrantee} />
+                <AddGranteeBase onCancel={onCancel} onSubmit={onSubmit} onBackClick={onShareGrantee} />
             )}
         </Overlay>
     );

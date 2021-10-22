@@ -1,24 +1,21 @@
 // (C) 2021 GoodData Corporation
-import React from "react";
+import React, { useMemo } from "react";
 import { useIntl } from "react-intl";
 import { ConfirmDialogBase } from "../ConfirmDialogBase";
 import { ShareGranteeContent } from "./ShareGranteeContent";
-
-/**
- * @internal
- */
-export interface IShareGranteeBaseProps {
-    onAddGrantee?: () => void;
-    onCancel?: () => void;
-    onSubmit?: (data?: any) => void; // Add typings of data
-}
+import { IShareGranteeBaseProps } from "./types";
+import { sortGranteesByName } from "./utils";
 
 /**
  * @internal
  */
 export const ShareGranteeBase = (props: IShareGranteeBaseProps): JSX.Element => {
-    const { onCancel, onSubmit, onAddGrantee } = props;
+    const { onCancel, onSubmit, onAddGrantee, grantees, owner } = props;
     const intl = useIntl();
+
+    const granteeList = useMemo(() => {
+        return [owner, ...grantees].sort(sortGranteesByName);
+    }, [grantees, owner]);
 
     return (
         <ConfirmDialogBase
@@ -32,7 +29,14 @@ export const ShareGranteeBase = (props: IShareGranteeBaseProps): JSX.Element => 
             onCancel={onCancel}
             onSubmit={onSubmit}
         >
-            <ShareGranteeContent onAddGrantee={onAddGrantee} />
+            <ShareGranteeContent
+                grantees={granteeList}
+                onAddGrantee={onAddGrantee}
+                onDelete={(grantee) => {
+                    // eslint-disable-next-line no-console
+                    console.log("Delete", grantee);
+                }}
+            />
         </ConfirmDialogBase>
     );
 };

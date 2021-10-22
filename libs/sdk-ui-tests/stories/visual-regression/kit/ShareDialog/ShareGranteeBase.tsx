@@ -7,14 +7,17 @@ import { withMultipleScreenshots } from "../../../_infra/backstopWrapper";
 import { wrapWithTheme } from "../../themeWrapper";
 
 import "@gooddata/sdk-ui-kit/styles/css/main.css";
-// import "../styles/goodstrap.scss";
 import { action } from "@storybook/addon-actions";
+
 import { ShareGranteeBase } from "@gooddata/sdk-ui-kit/src/Dialog/ShareDialog/ShareGranteeBase";
+import { grantees, owner } from "./GranteeMock";
 
 const BasicExample = (): JSX.Element => {
     return (
         <div id="Share-Grantee-base-basic-example">
             <ShareGranteeBase
+                owner={owner}
+                grantees={grantees}
                 onCancel={action("onCancel")}
                 onSubmit={action("onSubmit")}
                 onAddGrantee={action("onAddGrantee")}

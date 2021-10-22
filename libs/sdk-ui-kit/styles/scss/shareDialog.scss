@@ -3,6 +3,10 @@
 @import "./variables";
 @import "./mixins.scss";
 
+.gd-share-dialog {
+    width: 420px;
+}
+
 .gd-share-dialog-header-back-button {
     margin-right: 15px;
 }

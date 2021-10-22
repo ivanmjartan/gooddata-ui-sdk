@@ -5,8 +5,6 @@ export { ConfirmDialogBase } from "./ConfirmDialogBase";
 export { Dialog } from "./Dialog";
 export { DialogBase } from "./DialogBase";
 export { ExportDialog } from "./ExportDialog";
-export { ShareDialog } from "./ShareDialog/ShareDialog";
-export type { IShareDialogProps } from "./ShareDialog/ShareDialog";
 export { ExportDialogBase } from "./ExportDialogBase";
 export { CommunityEditionDialog, ICommunityEditionDialogProps } from "./CommunityEditionDialog";
 export { HubspotConversionTouchPointDialog } from "./HubspotConversionTouchPointDialog";
@@ -14,3 +12,5 @@ export {
     IHubspotConversionTouchPointDialogBaseProps,
     IHubspotFormValue,
 } from "./HubspotConversionTouchPointDialogBase";
+
+export * from "./ShareDialog/";

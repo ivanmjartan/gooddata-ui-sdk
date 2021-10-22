@@ -27,6 +27,9 @@ import { WrappedComponentProps } from 'react-intl';
 export function activateHeaderMenuItems(items: IHeaderMenuItem[][], ids: Array<string>): IHeaderMenuItem[][];
 
 // @internal (undocumented)
+export const AddGranteeBase: (props: IAddGranteeBaseProps) => JSX.Element;
+
+// @internal (undocumented)
 export type AddMessageType = (message: MessageDescriptor, options?: Pick<IMessageDefinition, "duration" | "intensive">) => string;
 
 // @internal (undocumented)
@@ -463,6 +466,12 @@ export type GetPositionedSelfRegion = {
 // @internal (undocumented)
 export function getRecommendedDateDataset<T extends IDateDataset>(items: T[]): T;
 
+// @internal (undocumented)
+export const GranteeItem: (props: IGranteeItemProps) => JSX.Element;
+
+// @internal (undocumented)
+export type GranteeType = IGranteeUser | IGranteeGroup;
+
 // @internal
 export function guidFor(obj: any): string;
 
@@ -518,6 +527,18 @@ export const HeaderWorkspacePicker: React_2.ForwardRefExoticComponent<Pick<IHead
 
 // @public (undocumented)
 export const HubspotConversionTouchPointDialog: React_2.FC<IHubspotConversionTouchPointDialogBaseProps>;
+
+// @internal (undocumented)
+export interface IAddGranteeBaseProps {
+    // (undocumented)
+    onAddUserOrGroups?: () => void;
+    // (undocumented)
+    onBackClick?: () => void;
+    // (undocumented)
+    onCancel?: () => void;
+    // (undocumented)
+    onSubmit?: (data?: any) => void;
+}
 
 // @internal (undocumented)
 export interface IAlignPoint {
@@ -1186,6 +1207,40 @@ export interface IFormatTemplate {
     localIdentifier: string;
     // (undocumented)
     name: string;
+}
+
+// @internal (undocumented)
+export interface IGranteeGroup {
+    // (undocumented)
+    granteeCount: number;
+    // (undocumented)
+    granteeType: "group";
+    // (undocumented)
+    groupName: string;
+    // (undocumented)
+    id: string;
+}
+
+// @internal (undocumented)
+export interface IGranteeItemProps {
+    // (undocumented)
+    grantee: GranteeType;
+    // (undocumented)
+    onDelete: (grantee: GranteeType) => void;
+}
+
+// @internal (undocumented)
+export interface IGranteeUser {
+    // (undocumented)
+    granteeEmail: string;
+    // (undocumented)
+    granteeName: string;
+    // (undocumented)
+    granteeType: "user";
+    // (undocumented)
+    id: string;
+    // (undocumented)
+    isOwner: boolean;
 }
 
 // @internal (undocumented)
@@ -2397,11 +2452,45 @@ export const isDateDatasetHeader: (obj: unknown) => obj is IDateDatasetHeader;
 export function isFreemiumEdition(platformEdition: string | undefined): boolean;
 
 // @internal (undocumented)
+export const isGranteeGroup: (obj: unknown) => obj is IGranteeGroup;
+
+// @internal (undocumented)
+export const isGranteeUser: (obj: unknown) => obj is IGranteeUser;
+
+// @internal (undocumented)
 export interface IShareDialogProps {
+    // (undocumented)
+    grantees: GranteeType[];
     // (undocumented)
     onCancel?: () => void;
     // (undocumented)
     onSubmit?: (data?: any) => void;
+    // (undocumented)
+    owner: IGranteeUser;
+}
+
+// @internal (undocumented)
+export interface IShareGranteeBaseProps {
+    // (undocumented)
+    grantees: GranteeType[];
+    // (undocumented)
+    onAddGrantee?: () => void;
+    // (undocumented)
+    onCancel?: () => void;
+    // (undocumented)
+    onSubmit?: (data?: any) => void;
+    // (undocumented)
+    owner: IGranteeUser;
+}
+
+// @internal (undocumented)
+export interface IShareGranteeContentProps {
+    // (undocumented)
+    grantees: GranteeType[];
+    // (undocumented)
+    onAddGrantee: () => void;
+    // (undocumented)
+    onDelete: (grantee: GranteeType) => void;
 }
 
 // @internal (undocumented)
@@ -2839,6 +2928,9 @@ export type Separators = {
 
 // @internal (undocumented)
 export const ShareDialog: (props: IShareDialogProps) => JSX.Element;
+
+// @internal (undocumented)
+export const ShareGranteeBase: (props: IShareGranteeBaseProps) => JSX.Element;
 
 // @internal (undocumented)
 export class ShortenedText extends PureComponent<IShortenedTextProps, IShortenedTextState> {

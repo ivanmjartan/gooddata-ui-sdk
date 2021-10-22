@@ -1,0 +1,5 @@
+2) add separate types for user owner and separate type for group all
+3) fix style of add button
+4) fix sizing of dialog
+5) fix marign of text in grantee item
+7) Fix back button console logs in story book

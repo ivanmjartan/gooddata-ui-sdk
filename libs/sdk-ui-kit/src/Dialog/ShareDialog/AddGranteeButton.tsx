@@ -1,5 +1,5 @@
 // (C) 2021 GoodData Corporation
-import React from "react";
+import React, { useCallback } from "react";
 import classNames from "classnames";
 import { BubbleHoverTrigger } from "../../Bubble/BubbleHoverTrigger";
 import { Bubble } from "../../Bubble";
@@ -25,10 +25,13 @@ export const AddUserOrGroupButton = (props: IAddUserOrGroupButton): JSX.Element 
         "s-add-users-or-groups",
     );
 
-    const handleClick = (e: React.MouseEvent) => {
-        e.preventDefault();
-        onClick();
-    };
+    const handleClick = useCallback(
+        (e: React.MouseEvent) => {
+            e.preventDefault();
+            onClick();
+        },
+        [onClick],
+    );
 
     return (
         <div className="create-measure-link-section">

@@ -1165,6 +1165,11 @@
         "comment": "Title of share dialog list of shared grantee",
         "limit": 0
     },
+    "shareDialog.share.grantee.share": {
+        "value": "Share",
+        "comment": "Title of confirm button of share dialog",
+        "limit": 0
+    },
     "shareDialog.share.grantee.list.title": {
         "value": "Shared with",
         "comment": "Title of shared list of grantees",

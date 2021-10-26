@@ -24,7 +24,7 @@ export const GranteeRemoveIcon = (props: IGranteeRemoveIconProps): JSX.Element =
     const { onClick, mode } = props;
 
     return (
-        <BubbleHoverTrigger showDelay={0} hideDelay={0}>
+        <BubbleHoverTrigger showDelay={0} hideDelay={0} className="gd-grantee-item-delete">
             <span
                 className="gd-grantee-item-icon gd-grantee-icon-trash gd-grantee-item-icon-right"
                 onClick={onClick}
@@ -42,7 +42,7 @@ export const GranteeRemoveIcon = (props: IGranteeRemoveIconProps): JSX.Element =
 
 export const GranteeOwnerRemoveIcon = (): JSX.Element => {
     return (
-        <BubbleHoverTrigger showDelay={0} hideDelay={0}>
+        <BubbleHoverTrigger showDelay={0} hideDelay={0} className="gd-grantee-item-delete-owner">
             <span className="gd-grantee-item-icon gd-grantee-item-icon-owner gd-grantee-item-icon-right">
                 <FormattedMessage id={"shareDialog.share.grantee.item.creator"} />
             </span>

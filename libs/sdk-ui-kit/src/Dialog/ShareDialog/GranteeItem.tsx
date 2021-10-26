@@ -76,12 +76,12 @@ const GranteeGroupItem = (props: IGranteeGroupItemProps): JSX.Element => {
 
     return (
         <div className="gd-share-dialog-grantee-item">
-            <GranteeGroupIcon />
+            <GranteeRemoveIcon mode={mode} onClick={onClick} />
             <div className="gd-grantee-content">
                 <div className="gd-grantee-content-label">{groupName}</div>
                 <div className="gd-grantee-content-label gd-grantee-content-user-count">{numOfUsers}</div>
             </div>
-            <GranteeRemoveIcon mode={mode} onClick={onClick} />
+            <GranteeGroupIcon />
         </div>
     );
 };

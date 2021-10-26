@@ -2,8 +2,11 @@
 
 export type {
     GranteeType,
+    GranteeItem,
+    IGranteeBase,
     IGranteeUser,
     IGranteeGroup,
+    IGranteeGroupAll,
     IShareDialogProps,
     IGranteeItemProps,
     IShareGranteeBaseProps,
@@ -19,4 +22,4 @@ export { ShareGranteeBase } from "./ShareGranteeBase";
 
 export { AddGranteeBase } from "./AddGranteeBase";
 
-export { GranteeItem } from "./GranteeItem";
+export { GranteeItemComponent } from "./GranteeItem";

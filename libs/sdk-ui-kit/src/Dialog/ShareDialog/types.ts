@@ -6,17 +6,29 @@ import isEmpty from "lodash/isEmpty";
 /**
  * @internal
  */
-export type GranteeType = IGranteeUser | IGranteeGroup;
+export type GranteeItem = IGranteeUser | IGranteeGroup | IGranteeGroupAll;
 
 /**
  * @internal
  */
-export interface IGranteeUser {
-    granteeType: "user";
+export type GranteeType = "user" | "group" | "groupAll";
+
+/**
+ * @internal
+ */
+export interface IGranteeBase {
+    granteeType: GranteeType;
     id: string;
+}
+
+/**
+ * @internal
+ */
+export interface IGranteeUser extends IGranteeBase {
+    granteeType: "user";
     granteeName: string;
     granteeEmail: string;
-    isOwner: boolean;
+    isOwner: boolean; // tohle neni (you)
 }
 
 /**
@@ -29,18 +41,31 @@ export const isGranteeUser = (obj: unknown): obj is IGranteeUser => {
 /**
  * @internal
  */
-export interface IGranteeGroup {
+export interface IGranteeGroup extends IGranteeBase {
     granteeType: "group";
-    id: string;
     groupName: string;
+    granteeCount: number;
+}
+/**
+ * @internal
+ */
+export const isGranteeGroup = (obj: unknown): obj is IGranteeGroup => {
+    return !isEmpty(obj) && (obj as IGranteeGroup).granteeType === "group";
+};
+
+/**
+ * @internal
+ */
+export interface IGranteeGroupAll extends IGranteeBase {
+    granteeType: "groupAll";
     granteeCount: number;
 }
 
 /**
  * @internal
  */
-export const isGranteeGroup = (obj: unknown): obj is IGranteeGroup => {
-    return !isEmpty(obj) && (obj as IGranteeGroup).granteeType === "group";
+export const isGranteeGroupAll = (obj: unknown): obj is IGranteeGroup => {
+    return !isEmpty(obj) && (obj as IGranteeGroupAll).granteeType === "groupAll";
 };
 
 // Components types
@@ -50,45 +75,61 @@ export const isGranteeGroup = (obj: unknown): obj is IGranteeGroup => {
  */
 export interface IShareDialogProps {
     owner: IGranteeUser;
-    grantees: GranteeType[];
+    grantees: GranteeItem[];
     onCancel?: () => void;
-    onSubmit?: (data?: any) => void; // Add typings of data
+    onSubmit?: (granteesToAdd: GranteeItem[], granteesToDelete: GranteeItem[]) => void;
 }
 
 /**
  * @internal
  */
 export interface IGranteeItemProps {
-    grantee: GranteeType;
-    onDelete: (grantee: GranteeType) => void;
+    grantee: GranteeItem;
+    onDelete: (grantee: GranteeItem) => void;
 }
 
 /**
  * @internal
  */
 export interface IShareGranteeBaseProps {
+    isDirty: boolean;
     owner: IGranteeUser;
-    grantees: GranteeType[];
-    onAddGrantee?: () => void;
-    onCancel?: () => void;
-    onSubmit?: (data?: any) => void; // Add typings of data
+    grantees: GranteeItem[];
+    onAddGranteeButtonClick: () => void;
+    onGranteeDelete: (grantee: GranteeItem) => void;
+    onCancel: () => void;
+    onSubmit: () => void;
 }
 
 /**
  * @internal
  */
 export interface IShareGranteeContentProps {
-    grantees: GranteeType[];
+    grantees: GranteeItem[];
     onAddGrantee: () => void;
-    onDelete: (grantee: GranteeType) => void;
+    onDelete: (grantee: GranteeItem) => void;
 }
 
 /**
  * @internal
  */
 export interface IAddGranteeBaseProps {
+    isDirty: boolean;
+    availableGrantees: GranteeItem[];
+    addedGrantees: GranteeItem[];
     onBackClick?: () => void;
-    onAddUserOrGroups?: () => void;
-    onCancel?: () => void;
-    onSubmit?: (data?: any) => void; // Add typings of data
+    onDelete: (grantee: GranteeItem) => void;
+    onAddUserOrGroups?: (grantee: GranteeItem) => void; // rename
+    onCancel: () => void;
+    onSubmit: () => void;
+}
+
+/**
+ * @internal
+ */
+export interface IAddGranteeContentProps {
+    availableGrantees: GranteeItem[];
+    addedGrantees: GranteeItem[];
+    onDelete: (grantee: GranteeItem) => void;
+    onAddUserOrGroups: (grantee: GranteeItem) => void;
 }

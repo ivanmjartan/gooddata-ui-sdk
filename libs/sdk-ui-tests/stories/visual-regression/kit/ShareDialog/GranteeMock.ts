@@ -1,6 +1,6 @@
 // (C) 2021 GoodData Corporation
 
-import { GranteeType, IGranteeGroup, IGranteeUser } from "@gooddata/sdk-ui-kit/src/Dialog/";
+import { GranteeItemType, IGranteeGroup, IGranteeUser } from "@gooddata/sdk-ui-kit/src/Dialog/";
 
 export const user: IGranteeUser = {
     granteeType: "user",
@@ -25,4 +25,4 @@ export const group: IGranteeGroup = {
     groupName: "TNT team",
 };
 
-export const grantees: GranteeType[] = [user, group];
+export const grantees: GranteeItemType[] = [user, group];

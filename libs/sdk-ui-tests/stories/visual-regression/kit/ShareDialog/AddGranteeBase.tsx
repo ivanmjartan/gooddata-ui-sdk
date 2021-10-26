@@ -15,6 +15,11 @@ const BasicExample = (): JSX.Element => {
     return (
         <div id="Share-Grantee-base-basic-example">
             <AddGranteeBase
+                isDirty={false}
+                addedGrantees={[]}
+                availableGrantees={[]}
+                onAddUserOrGroups={action("onAddUserOrGroups")}
+                onDelete={action("onDelete")}
                 onCancel={action("onCancel")}
                 onSubmit={action("onSubmit")}
                 onBackClick={action("onBackClick")}

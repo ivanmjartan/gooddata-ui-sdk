@@ -10,19 +10,20 @@ import { sortGranteesByName } from "./utils";
  * @internal
  */
 export const ShareGranteeBase = (props: IShareGranteeBaseProps): JSX.Element => {
-    const { onCancel, onSubmit, onAddGrantee, grantees, owner } = props;
+    const { grantees, owner, isDirty, onCancel, onSubmit, onGranteeDelete, onAddGranteeButtonClick } = props;
     const intl = useIntl();
 
     const granteeList = useMemo(() => {
-        return [owner, ...grantees].sort(sortGranteesByName);
-    }, [grantees, owner]);
+        const granteeSorterByName = sortGranteesByName(intl);
+        return [owner, ...grantees].sort(granteeSorterByName);
+    }, [grantees, owner, intl]);
 
     return (
         <ConfirmDialogBase
             className="gd-share-dialog"
             displayCloseButton={true}
             isPositive={true}
-            isSubmitDisabled={false}
+            isSubmitDisabled={!isDirty}
             headline={intl.formatMessage({ id: "shareDialog.share.grantee.title" })}
             cancelButtonText={intl.formatMessage({ id: "cancel" })}
             submitButtonText={intl.formatMessage({ id: "save" })}
@@ -31,11 +32,8 @@ export const ShareGranteeBase = (props: IShareGranteeBaseProps): JSX.Element => 
         >
             <ShareGranteeContent
                 grantees={granteeList}
-                onAddGrantee={onAddGrantee}
-                onDelete={(grantee) => {
-                    // eslint-disable-next-line no-console
-                    console.log("Delete", grantee);
-                }}
+                onAddGrantee={onAddGranteeButtonClick}
+                onDelete={onGranteeDelete}
             />
         </ConfirmDialogBase>
     );

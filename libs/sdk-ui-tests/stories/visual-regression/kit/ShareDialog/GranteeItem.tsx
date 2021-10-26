@@ -10,7 +10,7 @@ import "@gooddata/sdk-ui-kit/styles/css/main.css";
 import "../styles/goodstrap.scss";
 
 import { action } from "@storybook/addon-actions";
-import { GranteeItem } from "@gooddata/sdk-ui-kit/src/Dialog/";
+import { GranteeItemComponent } from "@gooddata/sdk-ui-kit/src/Dialog/";
 import { group, owner, user } from "./GranteeMock";
 
 const UserItemBasicExample = (): JSX.Element => {
@@ -20,11 +20,11 @@ const UserItemBasicExample = (): JSX.Element => {
         <>
             <span> Grantee user</span>
             <div id="Grantee-item-basic-example" style={border}>
-                <GranteeItem grantee={user} onDelete={action("onDelete")} />
+                <GranteeItemComponent grantee={user} onDelete={action("onDelete")} />
             </div>
             <span> Grantee long name and email</span>
             <div id="Grantee-item-basic-example" style={border}>
-                <GranteeItem
+                <GranteeItemComponent
                     grantee={{
                         ...user,
                         granteeName: "Very very very very very very very long name of user",
@@ -35,11 +35,11 @@ const UserItemBasicExample = (): JSX.Element => {
             </div>
             <span> Grantee owner</span>
             <div id="Grantee-item-basic-example" style={border}>
-                <GranteeItem grantee={owner} onDelete={action("onDelete")} />
+                <GranteeItemComponent grantee={owner} onDelete={action("onDelete")} />
             </div>
             <span> Grantee owner long name and email</span>
             <div id="Grantee-item-basic-example" style={border}>
-                <GranteeItem
+                <GranteeItemComponent
                     grantee={{
                         ...user,
                         isOwner: true,
@@ -60,11 +60,11 @@ const GroupItemBasicExample = (): JSX.Element => {
         <>
             <span> Grantee group</span>
             <div id="Grantee-item-basic-example" style={border}>
-                <GranteeItem grantee={group} onDelete={action("onDelete")} />
+                <GranteeItemComponent grantee={group} onDelete={action("onDelete")} />
             </div>
             <span> Grantee long name</span>
             <div id="Grantee-item-basic-example" style={border}>
-                <GranteeItem
+                <GranteeItemComponent
                     grantee={{ ...group, groupName: "Very very very very very very very long name of user" }}
                     onDelete={action("onDelete")}
                 />

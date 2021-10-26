@@ -467,10 +467,13 @@ export type GetPositionedSelfRegion = {
 export function getRecommendedDateDataset<T extends IDateDataset>(items: T[]): T;
 
 // @internal (undocumented)
-export const GranteeItem: (props: IGranteeItemProps) => JSX.Element;
+export type GranteeItem = IGranteeUser | IGranteeGroup | IGranteeGroupAll;
 
 // @internal (undocumented)
-export type GranteeType = IGranteeUser | IGranteeGroup;
+export const GranteeItemComponent: (props: IGranteeItemProps) => JSX.Element;
+
+// @internal (undocumented)
+export type GranteeType = "user" | "group" | "groupAll";
 
 // @internal
 export function guidFor(obj: any): string;
@@ -531,13 +534,21 @@ export const HubspotConversionTouchPointDialog: React_2.FC<IHubspotConversionTou
 // @internal (undocumented)
 export interface IAddGranteeBaseProps {
     // (undocumented)
-    onAddUserOrGroups?: () => void;
+    addedGrantees: GranteeItem[];
+    // (undocumented)
+    availableGrantees: GranteeItem[];
+    // (undocumented)
+    isDirty: boolean;
+    // (undocumented)
+    onAddUserOrGroups?: (grantee: GranteeItem) => void;
     // (undocumented)
     onBackClick?: () => void;
     // (undocumented)
-    onCancel?: () => void;
+    onCancel: () => void;
     // (undocumented)
-    onSubmit?: (data?: any) => void;
+    onDelete: (grantee: GranteeItem) => void;
+    // (undocumented)
+    onSubmit: () => void;
 }
 
 // @internal (undocumented)
@@ -1210,35 +1221,47 @@ export interface IFormatTemplate {
 }
 
 // @internal (undocumented)
-export interface IGranteeGroup {
+export interface IGranteeBase {
+    // (undocumented)
+    granteeType: GranteeType;
+    // (undocumented)
+    id: string;
+}
+
+// @internal (undocumented)
+export interface IGranteeGroup extends IGranteeBase {
     // (undocumented)
     granteeCount: number;
     // (undocumented)
     granteeType: "group";
     // (undocumented)
     groupName: string;
+}
+
+// @internal (undocumented)
+export interface IGranteeGroupAll extends IGranteeBase {
     // (undocumented)
-    id: string;
+    granteeCount: number;
+    // (undocumented)
+    granteeType: "groupAll";
 }
 
 // @internal (undocumented)
 export interface IGranteeItemProps {
     // (undocumented)
-    grantee: GranteeType;
+    grantee: GranteeItem;
     // (undocumented)
-    onDelete: (grantee: GranteeType) => void;
+    onDelete: (grantee: GranteeItem) => void;
 }
 
 // @internal (undocumented)
-export interface IGranteeUser {
+export interface IGranteeUser extends IGranteeBase {
     // (undocumented)
     granteeEmail: string;
     // (undocumented)
     granteeName: string;
     // (undocumented)
     granteeType: "user";
-    // (undocumented)
-    id: string;
     // (undocumented)
     isOwner: boolean;
 }
@@ -2460,11 +2483,11 @@ export const isGranteeUser: (obj: unknown) => obj is IGranteeUser;
 // @internal (undocumented)
 export interface IShareDialogProps {
     // (undocumented)
-    grantees: GranteeType[];
+    grantees: GranteeItem[];
     // (undocumented)
     onCancel?: () => void;
     // (undocumented)
-    onSubmit?: (data?: any) => void;
+    onSubmit?: (granteesToAdd: GranteeItem[], granteesToDelete: GranteeItem[]) => void;
     // (undocumented)
     owner: IGranteeUser;
 }
@@ -2472,13 +2495,17 @@ export interface IShareDialogProps {
 // @internal (undocumented)
 export interface IShareGranteeBaseProps {
     // (undocumented)
-    grantees: GranteeType[];
+    grantees: GranteeItem[];
     // (undocumented)
-    onAddGrantee?: () => void;
+    isDirty: boolean;
     // (undocumented)
-    onCancel?: () => void;
+    onAddGranteeButtonClick: () => void;
     // (undocumented)
-    onSubmit?: (data?: any) => void;
+    onCancel: () => void;
+    // (undocumented)
+    onGranteeDelete: (grantee: GranteeItem) => void;
+    // (undocumented)
+    onSubmit: () => void;
     // (undocumented)
     owner: IGranteeUser;
 }
@@ -2486,11 +2513,11 @@ export interface IShareGranteeBaseProps {
 // @internal (undocumented)
 export interface IShareGranteeContentProps {
     // (undocumented)
-    grantees: GranteeType[];
+    grantees: GranteeItem[];
     // (undocumented)
     onAddGrantee: () => void;
     // (undocumented)
-    onDelete: (grantee: GranteeType) => void;
+    onDelete: (grantee: GranteeItem) => void;
 }
 
 // @internal (undocumented)

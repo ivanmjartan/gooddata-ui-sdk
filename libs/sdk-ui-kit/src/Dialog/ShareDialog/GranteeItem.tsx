@@ -1,25 +1,29 @@
 // (C) 2021 GoodData Corporation
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useIntl } from "react-intl";
-import { GranteeType, IGranteeGroup, IGranteeItemProps, IGranteeUser } from "./types";
+import { GranteeItem, IGranteeGroup, IGranteeGroupAll, IGranteeItemProps, IGranteeUser } from "./types";
+import { getGranteeLabel } from "./utils";
 
 interface IGranteeUserItemProps {
     grantee: IGranteeUser;
-    onDelete: (igrantee: GranteeType) => void;
+    onDelete: (grantee: GranteeItem) => void;
 }
 
 interface IGranteeGroupItemProps {
-    grantee: IGranteeGroup;
-    onDelete: (grantee: GranteeType) => void;
+    grantee: IGranteeGroup | IGranteeGroupAll;
+    onDelete: (grantee: GranteeItem) => void;
 }
 
 const GranteeUserItem = (props: IGranteeUserItemProps): JSX.Element => {
     const { grantee, onDelete } = props;
     const intl = useIntl();
 
-    const granteeLabel = grantee.isOwner
-        ? `${grantee.granteeName} (${intl.formatMessage({ id: "shareDialog.share.grantee.item.you" })})`
-        : grantee.granteeName;
+    const granteeLabel = useMemo(() => {
+        const name = getGranteeLabel(grantee, intl);
+        const you = intl.formatMessage({ id: "shareDialog.share.grantee.item.you" });
+
+        return grantee.isOwner ? `${name} (${you})` : name;
+    }, [grantee, intl]);
 
     const onClick = useCallback(() => {
         onDelete(grantee);
@@ -53,15 +57,19 @@ const GranteeGroupItem = (props: IGranteeGroupItemProps): JSX.Element => {
         onDelete(grantee);
     }, [grantee, onDelete]);
 
-    const numOfUsers = `${grantee.granteeCount} ${intl.formatMessage({
-        id: "shareDialog.share.grantee.item.users",
-    })}`;
+    const groupName = useMemo(() => getGranteeLabel(grantee, intl), [grantee, intl]);
+
+    const numOfUsers = useMemo(() => {
+        return `${grantee.granteeCount} ${intl.formatMessage({
+            id: "shareDialog.share.grantee.item.users",
+        })}`;
+    }, [grantee, intl]);
 
     return (
         <div className="gd-share-dialog-grantee-item">
             <span className="gd-grantee-item-icon gd-grantee-icon-group gd-grantee-item-icon-left" />
             <div className="gd-grantee-content">
-                <div className="gd-grantee-content-label">{grantee.groupName}</div>
+                <div className="gd-grantee-content-label">{groupName}</div>
                 <div className="gd-grantee-content-label gd-grantee-content-user-count">{numOfUsers}</div>
             </div>
             <span
@@ -75,7 +83,7 @@ const GranteeGroupItem = (props: IGranteeGroupItemProps): JSX.Element => {
 /**
  * @internal
  */
-export const GranteeItem = (props: IGranteeItemProps): JSX.Element => {
+export const GranteeItemComponent = (props: IGranteeItemProps): JSX.Element => {
     const { grantee, onDelete } = props;
 
     if (grantee.granteeType === "user") {

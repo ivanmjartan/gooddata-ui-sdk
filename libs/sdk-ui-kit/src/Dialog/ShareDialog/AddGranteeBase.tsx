@@ -28,7 +28,16 @@ const BackButton = (props: IBackButtonProps) => {
  * @internal
  */
 export const AddGranteeBase = (props: IAddGranteeBaseProps): JSX.Element => {
-    const { onCancel, onSubmit, onBackClick, onAddUserOrGroups } = props;
+    const {
+        availableGrantees,
+        addedGrantees,
+        isDirty,
+        onCancel,
+        onSubmit,
+        onBackClick,
+        onAddUserOrGroups,
+        onDelete,
+    } = props;
     const intl = useIntl();
 
     const backButtonRenderer = useCallback(() => {
@@ -40,7 +49,7 @@ export const AddGranteeBase = (props: IAddGranteeBaseProps): JSX.Element => {
             className="gd-share-dialog"
             displayCloseButton={true}
             isPositive={true}
-            isSubmitDisabled={false}
+            isSubmitDisabled={!isDirty}
             headline={intl.formatMessage({ id: "shareDialog.share.grantee.add.info" })}
             cancelButtonText={intl.formatMessage({ id: "cancel" })}
             submitButtonText={intl.formatMessage({ id: "shareDialog.share.grantee.share" })}
@@ -49,7 +58,12 @@ export const AddGranteeBase = (props: IAddGranteeBaseProps): JSX.Element => {
             onClose={onCancel}
             headerLeftButtonRenderer={backButtonRenderer}
         >
-            <AddGranteeContent onAddUserOrGroups={onAddUserOrGroups} />
+            <AddGranteeContent
+                addedGrantees={addedGrantees}
+                availableGrantees={availableGrantees}
+                onAddUserOrGroups={onAddUserOrGroups}
+                onDelete={onDelete}
+            />
         </ConfirmDialogBase>
     );
 };

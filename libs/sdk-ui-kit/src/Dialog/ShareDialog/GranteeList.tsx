@@ -1,15 +1,15 @@
 // (C) 2021 GoodData Corporation
 import React from "react";
-import { GranteeItem } from "./GranteeItem";
+import { GranteeItemComponent } from "./GranteeItem";
 
-import { GranteeType } from "./types";
+import { GranteeItem } from "./types";
 
 /**
  * @internal
  */
 export interface IGranteesListProps {
-    grantees: GranteeType[];
-    onDelete: (grantee: GranteeType) => void;
+    grantees: GranteeItem[];
+    onDelete: (grantee: GranteeItem) => void;
 }
 
 /**
@@ -20,7 +20,7 @@ export const GranteeList = (props: IGranteesListProps): JSX.Element => {
     return (
         <div>
             {grantees.map((grantee) => {
-                return <GranteeItem key={grantee.id} grantee={grantee} onDelete={onDelete} />;
+                return <GranteeItemComponent key={grantee.id} grantee={grantee} onDelete={onDelete} />;
             })}
         </div>
     );

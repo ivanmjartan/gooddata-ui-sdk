@@ -1185,6 +1185,11 @@
         "comment": "Description of add grantee button or dialog",
         "limit": 0
     },
+    "shareDialog.share.grantee.add.search.placeholder": {
+        "value": "Search users and groups",
+        "comment": "Information in search user and groups filed",
+        "limit": 0
+    },
     "shareDialog.share.grantee.item.you": {
         "value": "You",
         "comment": "Description that grantee is owner of dashboard",
@@ -1193,6 +1198,11 @@
     "shareDialog.share.grantee.item.users": {
         "value": "users",
         "comment": "Description how many grantee group contains users",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.item.user.all": {
+        "value": "All users",
+        "comment": "Title of users group",
         "limit": 0
     }
 }

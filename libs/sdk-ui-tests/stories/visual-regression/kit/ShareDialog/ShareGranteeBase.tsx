@@ -16,11 +16,13 @@ const BasicExample = (): JSX.Element => {
     return (
         <div id="Share-Grantee-base-basic-example">
             <ShareGranteeBase
+                isDirty={false}
                 owner={owner}
                 grantees={grantees}
+                onGranteeDelete={action("onGranteeDelete")}
                 onCancel={action("onCancel")}
                 onSubmit={action("onSubmit")}
-                onAddGrantee={action("onAddGrantee")}
+                onAddGranteeButtonClick={action("onAddGrantee")}
             />
         </div>
     );

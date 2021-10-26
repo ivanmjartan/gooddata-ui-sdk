@@ -24,6 +24,14 @@ const BasicExample = (): JSX.Element => {
         setOpen((open) => !open);
     }, [setOpen]);
 
+    const onSubmit = useCallback(
+        (...args) => {
+            setOpen((open) => !open);
+            action("onSubmit")(args);
+        },
+        [setOpen],
+    );
+
     return (
         <div id="Share-Grantee-base-basic-example">
             <Button
@@ -32,12 +40,7 @@ const BasicExample = (): JSX.Element => {
                 onClick={onOpen}
             />
             {open && (
-                <ShareDialog
-                    owner={owner}
-                    grantees={grantees}
-                    onCancel={onCancel}
-                    onSubmit={action("onSubmit")}
-                />
+                <ShareDialog owner={owner} grantees={grantees} onCancel={onCancel} onSubmit={onSubmit} />
             )}
         </div>
     );

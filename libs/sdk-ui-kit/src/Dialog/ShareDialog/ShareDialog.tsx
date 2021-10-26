@@ -5,6 +5,7 @@ import { IAlignPoint } from "../../typings/positioning";
 import { ShareGranteeBase } from "./ShareGranteeBase";
 import { AddGranteeBase } from "./AddGranteeBase";
 import { DialogModeType, GranteeItem, IShareDialogProps } from "./types";
+import { filterNotInArray } from "./utils";
 
 const alignPoints: IAlignPoint[] = [{ align: "cc cc" }];
 
@@ -60,8 +61,8 @@ export const ShareDialog = (props: IShareDialogProps): JSX.Element => {
     }, [granteesToAdd, granteesToDelete, onSubmit]);
 
     const filteredGrantees = useMemo(() => {
-        return grantees.filter((g) => !granteesToDelete.includes(g));
-    }, [grantees, granteesToDelete, granteesToAdd]);
+        return filterNotInArray(grantees, granteesToDelete);
+    }, [grantees, granteesToDelete]);
 
     const isShareDialogDirty = useMemo(() => {
         return granteesToDelete.length !== 0;

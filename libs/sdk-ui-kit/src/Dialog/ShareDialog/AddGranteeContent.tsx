@@ -4,7 +4,7 @@ import { useIntl } from "react-intl";
 import Select, { ValueType } from "react-select";
 import { GranteeList } from "./GranteeList";
 import { GranteeItem, IAddGranteeContentProps } from "./types";
-import { getGranteeLabel } from "./utils";
+import { filterNotInArray, getGranteeLabel } from "./utils";
 
 interface ISelectOption {
     label: string;
@@ -19,16 +19,14 @@ export const AddGranteeContent = (props: IAddGranteeContentProps): JSX.Element =
     const intl = useIntl();
 
     const granteesOption = useMemo(() => {
-        return availableGrantees
-            .filter((grantee: GranteeItem) => {
-                return !addedGrantees.some((g) => g.id === grantee.id);
-            })
-            .map((grantee: GranteeItem): ISelectOption => {
+        return filterNotInArray(availableGrantees, addedGrantees).map(
+            (grantee: GranteeItem): ISelectOption => {
                 return {
                     label: getGranteeLabel(grantee, intl),
                     value: grantee,
                 };
-            });
+            },
+        );
     }, [availableGrantees, addedGrantees, intl]);
 
     const onSelect = useCallback(

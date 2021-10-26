@@ -2,25 +2,24 @@
 import React from "react";
 import { GranteeItemComponent } from "./GranteeItem";
 
-import { GranteeItem } from "./types";
-
-/**
- * @internal
- */
-export interface IGranteesListProps {
-    grantees: GranteeItem[];
-    onDelete: (grantee: GranteeItem) => void;
-}
+import { IGranteesListProps } from "./types";
 
 /**
  * @internal
  */
 export const GranteeList = (props: IGranteesListProps): JSX.Element => {
-    const { grantees, onDelete } = props;
+    const { grantees, mode, onDelete } = props;
     return (
         <div>
             {grantees.map((grantee) => {
-                return <GranteeItemComponent key={grantee.id} grantee={grantee} onDelete={onDelete} />;
+                return (
+                    <GranteeItemComponent
+                        key={grantee.id}
+                        grantee={grantee}
+                        mode={mode}
+                        onDelete={onDelete}
+                    />
+                );
             })}
         </div>
     );

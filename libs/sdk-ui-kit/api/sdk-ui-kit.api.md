@@ -268,6 +268,9 @@ export class DialogBase<P extends IDialogBaseProps> extends PureComponent<P> {
 }
 
 // @internal (undocumented)
+export type DialogModeType = "ShareGrantee" | "AddGrantee";
+
+// @internal (undocumented)
 export const DocumentHeader: React_2.FC<IDocumentHeaderProps>;
 
 // @internal (undocumented)
@@ -1251,6 +1254,8 @@ export interface IGranteeItemProps {
     // (undocumented)
     grantee: GranteeItem;
     // (undocumented)
+    mode: DialogModeType;
+    // (undocumented)
     onDelete: (grantee: GranteeItem) => void;
 }
 
@@ -1262,6 +1267,8 @@ export interface IGranteeUser extends IGranteeBase {
     granteeName: string;
     // (undocumented)
     granteeType: "user";
+    // (undocumented)
+    isCurrentUser: boolean;
     // (undocumented)
     isOwner: boolean;
 }

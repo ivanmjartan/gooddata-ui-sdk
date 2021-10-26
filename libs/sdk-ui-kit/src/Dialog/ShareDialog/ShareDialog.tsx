@@ -4,17 +4,9 @@ import { Overlay } from "../../Overlay";
 import { IAlignPoint } from "../../typings/positioning";
 import { ShareGranteeBase } from "./ShareGranteeBase";
 import { AddGranteeBase } from "./AddGranteeBase";
-import { GranteeItem, IShareDialogProps } from "./types";
+import { DialogModeType, GranteeItem, IShareDialogProps } from "./types";
 
 const alignPoints: IAlignPoint[] = [{ align: "cc cc" }];
-
-/**
- * @internal
- */
-enum DialogMode {
-    ShareGrantee,
-    AddGrantee,
-}
 
 const availableGranteesConst: GranteeItem[] = [
     {
@@ -29,27 +21,31 @@ const availableGranteesConst: GranteeItem[] = [
  */
 export const ShareDialog = (props: IShareDialogProps): JSX.Element => {
     const { onCancel, onSubmit, owner, grantees } = props;
-    const [dialogMode, setDialogMode] = useState(DialogMode.ShareGrantee);
+    const [dialogMode, setDialogMode] = useState<DialogModeType>("ShareGrantee");
     const [granteesToAdd, setGranteesToAdd] = useState<GranteeItem[]>([]);
     const [granteesToDelete, setGranteesToDelete] = useState<GranteeItem[]>([]);
 
     const onAddGranteeButtonClick = useCallback(() => {
-        setDialogMode(DialogMode.AddGrantee);
+        setDialogMode("AddGrantee");
     }, [setDialogMode]);
 
-    const onShareGrantee = useCallback(() => {
-        setDialogMode(DialogMode.ShareGrantee);
-    }, [setDialogMode]);
+    const onAddGranteeBackClick = useCallback(() => {
+        setDialogMode("ShareGrantee");
+        setGranteesToAdd([]);
+    }, [setDialogMode, setGranteesToAdd]);
 
-    const onGranteeDelete = useCallback(
+    const onSharedGranteeDelete = useCallback(
         (grantee: GranteeItem) => {
-            if (granteesToAdd.includes(grantee)) {
-                setGranteesToAdd((state) => state.filter((g) => g !== grantee));
-            } else {
-                setGranteesToDelete((state) => [...state, grantee]);
-            }
+            setGranteesToDelete((state) => [...state, grantee]);
         },
-        [granteesToAdd, setGranteesToAdd, setGranteesToDelete],
+        [setGranteesToDelete],
+    );
+
+    const onAddedGranteeDelete = useCallback(
+        (grantee: GranteeItem) => {
+            setGranteesToAdd((state) => state.filter((g) => g.id !== grantee.id));
+        },
+        [setGranteesToAdd],
     );
 
     const onGranteeAdd = useCallback(
@@ -64,37 +60,39 @@ export const ShareDialog = (props: IShareDialogProps): JSX.Element => {
     }, [granteesToAdd, granteesToDelete, onSubmit]);
 
     const filteredGrantees = useMemo(() => {
-        const deleteFiltered = grantees.filter((g) => !granteesToDelete.includes(g));
-
-        return [...deleteFiltered, ...granteesToAdd];
+        return grantees.filter((g) => !granteesToDelete.includes(g));
     }, [grantees, granteesToDelete, granteesToAdd]);
 
-    const isDirty = useMemo(() => {
-        return granteesToDelete.length !== 0 || granteesToAdd.length !== 0;
+    const isShareDialogDirty = useMemo(() => {
+        return granteesToDelete.length !== 0;
+    }, [granteesToDelete]);
+
+    const isAddDialogDirty = useMemo(() => {
+        return granteesToAdd.length !== 0;
     }, [granteesToDelete, granteesToAdd]);
 
     return (
         <Overlay alignPoints={alignPoints} isModal positionType="fixed">
-            {dialogMode === DialogMode.ShareGrantee ? (
+            {dialogMode === "ShareGrantee" ? (
                 <ShareGranteeBase
-                    isDirty={isDirty}
+                    isDirty={isShareDialogDirty}
                     owner={owner}
                     grantees={filteredGrantees}
                     onCancel={onCancel}
                     onSubmit={onSubmitCallback}
                     onAddGranteeButtonClick={onAddGranteeButtonClick}
-                    onGranteeDelete={onGranteeDelete}
+                    onGranteeDelete={onSharedGranteeDelete}
                 />
             ) : (
                 <AddGranteeBase
-                    isDirty={isDirty}
+                    isDirty={isAddDialogDirty}
                     availableGrantees={availableGranteesConst}
                     addedGrantees={granteesToAdd}
                     onAddUserOrGroups={onGranteeAdd}
-                    onDelete={onGranteeDelete}
+                    onDelete={onAddedGranteeDelete}
                     onCancel={onCancel}
                     onSubmit={onSubmitCallback}
-                    onBackClick={onShareGrantee}
+                    onBackClick={onAddGranteeBackClick}
                 />
             )}
         </Overlay>

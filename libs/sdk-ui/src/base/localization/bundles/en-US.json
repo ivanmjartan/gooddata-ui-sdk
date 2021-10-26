@@ -1192,7 +1192,7 @@
     },
     "shareDialog.share.grantee.item.you": {
         "value": "You",
-        "comment": "Description that grantee is owner of dashboard",
+        "comment": "Description that grantee is current user",
         "limit": 0
     },
     "shareDialog.share.grantee.item.users": {
@@ -1200,9 +1200,29 @@
         "comment": "Description how many grantee group contains users",
         "limit": 0
     },
+    "shareDialog.share.grantee.item.creator": {
+        "value": "Creator",
+        "comment": "Description that grantee is creator of item",
+        "limit": 0
+    },
     "shareDialog.share.grantee.item.user.all": {
         "value": "All users",
         "comment": "Title of users group",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.item.remove.access": {
+        "value": "Remove access to this dashboard.",
+        "comment": "Hint on remove grantee button",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.item.owner.remove.access": {
+        "value": "User who created this dashboard. Access of this user cannot be removed.",
+        "comment": "Hint on remove grantee button owner",
+        "limit": 0
+    },
+    "shareDialog.share.grantee.item.remove.selection": {
+        "value": "Remove from selection.",
+        "comment": "Hint on remove grantee from current selection",
         "limit": 0
     }
 }

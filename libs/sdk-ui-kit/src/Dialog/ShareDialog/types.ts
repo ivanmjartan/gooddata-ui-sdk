@@ -28,7 +28,8 @@ export interface IGranteeUser extends IGranteeBase {
     granteeType: "user";
     granteeName: string;
     granteeEmail: string;
-    isOwner: boolean; // tohle neni (you)
+    isOwner: boolean;
+    isCurrentUser: boolean;
 }
 
 /**
@@ -73,6 +74,11 @@ export const isGranteeGroupAll = (obj: unknown): obj is IGranteeGroup => {
 /**
  * @internal
  */
+export type DialogModeType = "ShareGrantee" | "AddGrantee";
+
+/**
+ * @internal
+ */
 export interface IShareDialogProps {
     owner: IGranteeUser;
     grantees: GranteeItem[];
@@ -84,6 +90,7 @@ export interface IShareDialogProps {
  * @internal
  */
 export interface IGranteeItemProps {
+    mode: DialogModeType;
     grantee: GranteeItem;
     onDelete: (grantee: GranteeItem) => void;
 }
@@ -132,4 +139,13 @@ export interface IAddGranteeContentProps {
     addedGrantees: GranteeItem[];
     onDelete: (grantee: GranteeItem) => void;
     onAddUserOrGroups: (grantee: GranteeItem) => void;
+}
+
+/**
+ * @internal
+ */
+export interface IGranteesListProps {
+    mode: DialogModeType;
+    grantees: GranteeItem[];
+    onDelete: (grantee: GranteeItem) => void;
 }

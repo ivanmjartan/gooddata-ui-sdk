@@ -1,6 +1,6 @@
 // (C) 2021 GoodData Corporation
 
-import { GranteeItemType, IGranteeGroup, IGranteeUser } from "@gooddata/sdk-ui-kit/src/Dialog/";
+import { GranteeItem, IGranteeGroup, IGranteeGroupAll, IGranteeUser } from "@gooddata/sdk-ui-kit/src/Dialog/";
 
 export const user: IGranteeUser = {
     granteeType: "user",
@@ -8,14 +8,34 @@ export const user: IGranteeUser = {
     granteeName: "User Name",
     granteeEmail: "user.name@gooddata.com",
     isOwner: false,
+    isCurrentUser: false,
 };
 
 export const owner: IGranteeUser = {
     granteeType: "user",
-    id: "ownerID1",
+    id: "userID2",
     granteeName: "Owner Name",
     granteeEmail: "owner.name@gooddata.com",
     isOwner: true,
+    isCurrentUser: false,
+};
+
+export const current: IGranteeUser = {
+    granteeType: "user",
+    id: "userID3",
+    granteeName: "Current Name",
+    granteeEmail: "current.name@gooddata.com",
+    isOwner: false,
+    isCurrentUser: true,
+};
+
+export const currentAndOwen: IGranteeUser = {
+    granteeType: "user",
+    id: "userID4",
+    granteeName: "Owner Current Name",
+    granteeEmail: "owner.current.name@gooddata.com",
+    isOwner: true,
+    isCurrentUser: true,
 };
 
 export const group: IGranteeGroup = {
@@ -25,4 +45,10 @@ export const group: IGranteeGroup = {
     groupName: "TNT team",
 };
 
-export const grantees: GranteeItemType[] = [user, group];
+export const groupAll: IGranteeGroupAll = {
+    granteeType: "groupAll",
+    id: "groupAll",
+    granteeCount: 11,
+};
+
+export const grantees: GranteeItem[] = [user, group];

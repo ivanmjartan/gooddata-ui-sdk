@@ -20,7 +20,7 @@ export const ShareGranteeContent = (props: IShareGranteeContentProps): JSX.Eleme
                 </Typography>
                 <AddUserOrGroupButton onClick={onAddGrantee} />
             </div>
-            <GranteeList grantees={grantees} onDelete={onDelete} />
+            <GranteeList grantees={grantees} mode="ShareGrantee" onDelete={onDelete} />
         </>
     );
 };

@@ -20,11 +20,12 @@ const UserItemBasicExample = (): JSX.Element => {
         <>
             <span> Grantee user</span>
             <div id="Grantee-item-basic-example" style={border}>
-                <GranteeItemComponent grantee={user} onDelete={action("onDelete")} />
+                <GranteeItemComponent mode={"ShareGrantee"} grantee={user} onDelete={action("onDelete")} />
             </div>
             <span> Grantee long name and email</span>
             <div id="Grantee-item-basic-example" style={border}>
                 <GranteeItemComponent
+                    mode={"ShareGrantee"}
                     grantee={{
                         ...user,
                         granteeName: "Very very very very very very very long name of user",
@@ -33,13 +34,14 @@ const UserItemBasicExample = (): JSX.Element => {
                     onDelete={action("onDelete")}
                 />
             </div>
-            <span> Grantee owner</span>
+            <span> Grantee current user</span>
             <div id="Grantee-item-basic-example" style={border}>
-                <GranteeItemComponent grantee={owner} onDelete={action("onDelete")} />
+                <GranteeItemComponent mode={"ShareGrantee"} grantee={owner} onDelete={action("onDelete")} />
             </div>
-            <span> Grantee owner long name and email</span>
+            <span> Grantee current user long name and email</span>
             <div id="Grantee-item-basic-example" style={border}>
                 <GranteeItemComponent
+                    mode={"ShareGrantee"}
                     grantee={{
                         ...user,
                         isOwner: true,
@@ -60,11 +62,12 @@ const GroupItemBasicExample = (): JSX.Element => {
         <>
             <span> Grantee group</span>
             <div id="Grantee-item-basic-example" style={border}>
-                <GranteeItemComponent grantee={group} onDelete={action("onDelete")} />
+                <GranteeItemComponent mode={"ShareGrantee"} grantee={group} onDelete={action("onDelete")} />
             </div>
             <span> Grantee long name</span>
             <div id="Grantee-item-basic-example" style={border}>
                 <GranteeItemComponent
+                    mode={"ShareGrantee"}
                     grantee={{ ...group, groupName: "Very very very very very very very long name of user" }}
                     onDelete={action("onDelete")}
                 />

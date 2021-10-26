@@ -12,6 +12,7 @@ export type {
     IShareGranteeBaseProps,
     IShareGranteeContentProps,
     IAddGranteeBaseProps,
+    DialogModeType,
 } from "./types";
 
 export { isGranteeUser, isGranteeGroup } from "./types";

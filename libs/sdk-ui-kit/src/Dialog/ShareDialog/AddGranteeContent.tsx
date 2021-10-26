@@ -59,7 +59,7 @@ export const AddGranteeContent = (props: IAddGranteeContentProps): JSX.Element =
                 />
             </div>
             <br />
-            <GranteeList grantees={addedGrantees} onDelete={onDelete} />
+            <GranteeList grantees={addedGrantees} mode={"AddGrantee"} onDelete={onDelete} />
         </>
     );
 };

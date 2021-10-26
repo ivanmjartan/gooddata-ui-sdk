@@ -45,6 +45,7 @@
 .gd-share-dialog-grantee-item {
     display: flex;
     align-items: center;
+    flex-direction: row-reverse;
 
     .gd-grantee-content {
         display: flex;
@@ -93,6 +94,18 @@
         cursor: pointer;
     }
 
+    .gd-grantee-item-icon-owner {
+        font-size: 12px;
+        line-height: 20px;
+        padding-left: 8px;
+        padding-right: 8px;
+        font-weight: bold;
+        display: block;
+        width: auto;
+        height: auto;
+        cursor: default;
+    }
+
     .gd-grantee-icon-user {
         &::after {
             content: "\e602";
@@ -129,8 +142,17 @@
         }
     }
 
+    .gd-bubble-trigger:hover {
+        ~ .gd-grantee-content {
+            .gd-grantee-content-label {
+                color: red;
+            }
+        }
+    }
+
     &:hover {
         background: $is-focused-background;
+
         .gd-grantee-item-icon-right {
             display: block;
         }

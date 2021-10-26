@@ -1,28 +1,38 @@
 // (C) 2021 GoodData Corporation
 import React, { useCallback, useMemo } from "react";
 import { useIntl } from "react-intl";
-import { GranteeItem, IGranteeGroup, IGranteeGroupAll, IGranteeItemProps, IGranteeUser } from "./types";
+
+import {
+    DialogModeType,
+    GranteeItem,
+    IGranteeGroup,
+    IGranteeGroupAll,
+    IGranteeItemProps,
+    IGranteeUser,
+} from "./types";
 import { getGranteeLabel } from "./utils";
+import { GranteeGroupIcon, GranteeOwnerRemoveIcon, GranteeRemoveIcon, GranteeUserIcon } from "./GranteeIcons";
 
 interface IGranteeUserItemProps {
     grantee: IGranteeUser;
+    mode: DialogModeType;
     onDelete: (grantee: GranteeItem) => void;
 }
 
 interface IGranteeGroupItemProps {
     grantee: IGranteeGroup | IGranteeGroupAll;
+    mode: DialogModeType;
     onDelete: (grantee: GranteeItem) => void;
 }
 
 const GranteeUserItem = (props: IGranteeUserItemProps): JSX.Element => {
-    const { grantee, onDelete } = props;
+    const { grantee, mode, onDelete } = props;
     const intl = useIntl();
 
     const granteeLabel = useMemo(() => {
         const name = getGranteeLabel(grantee, intl);
         const you = intl.formatMessage({ id: "shareDialog.share.grantee.item.you" });
-
-        return grantee.isOwner ? `${name} (${you})` : name;
+        return grantee.isCurrentUser ? `${name} (${you})` : name;
     }, [grantee, intl]);
 
     const onClick = useCallback(() => {
@@ -31,25 +41,24 @@ const GranteeUserItem = (props: IGranteeUserItemProps): JSX.Element => {
 
     return (
         <div className="gd-share-dialog-grantee-item">
-            <span className="gd-grantee-item-icon gd-grantee-icon-user gd-grantee-item-icon-left" />
+            {grantee.isOwner ? (
+                <GranteeOwnerRemoveIcon />
+            ) : (
+                <GranteeRemoveIcon mode={mode} onClick={onClick} />
+            )}
             <div className="gd-grantee-content">
                 <div className="gd-grantee-content-label">{granteeLabel}</div>
                 <div className="gd-grantee-content-label gd-grantee-content-email">
                     {grantee.granteeEmail}
                 </div>
             </div>
-            {!grantee.isOwner && (
-                <span
-                    className="gd-grantee-item-icon gd-grantee-icon-trash gd-grantee-item-icon-right"
-                    onClick={onClick}
-                />
-            )}
+            <GranteeUserIcon />
         </div>
     );
 };
 
 const GranteeGroupItem = (props: IGranteeGroupItemProps): JSX.Element => {
-    const { grantee, onDelete } = props;
+    const { grantee, onDelete, mode } = props;
 
     const intl = useIntl();
 
@@ -67,15 +76,12 @@ const GranteeGroupItem = (props: IGranteeGroupItemProps): JSX.Element => {
 
     return (
         <div className="gd-share-dialog-grantee-item">
-            <span className="gd-grantee-item-icon gd-grantee-icon-group gd-grantee-item-icon-left" />
+            <GranteeGroupIcon />
             <div className="gd-grantee-content">
                 <div className="gd-grantee-content-label">{groupName}</div>
                 <div className="gd-grantee-content-label gd-grantee-content-user-count">{numOfUsers}</div>
             </div>
-            <span
-                className="gd-grantee-item-icon gd-grantee-icon-trash gd-grantee-item-icon-right"
-                onClick={onClick}
-            />
+            <GranteeRemoveIcon mode={mode} onClick={onClick} />
         </div>
     );
 };
@@ -84,11 +90,11 @@ const GranteeGroupItem = (props: IGranteeGroupItemProps): JSX.Element => {
  * @internal
  */
 export const GranteeItemComponent = (props: IGranteeItemProps): JSX.Element => {
-    const { grantee, onDelete } = props;
+    const { grantee, mode, onDelete } = props;
 
     if (grantee.granteeType === "user") {
-        return <GranteeUserItem grantee={grantee} onDelete={onDelete} />;
+        return <GranteeUserItem grantee={grantee} mode={mode} onDelete={onDelete} />;
     } else {
-        return <GranteeGroupItem grantee={grantee} onDelete={onDelete} />;
+        return <GranteeGroupItem grantee={grantee} mode={mode} onDelete={onDelete} />;
     }
 };

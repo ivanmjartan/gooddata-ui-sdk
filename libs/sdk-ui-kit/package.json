@@ -62,6 +62,7 @@
     },
     "dependencies": {
         "@aaronhayes/react-use-hubspot-form": "^2.0.1",
+        "@gooddata/sdk-model": "^8.7.0-alpha.38",
         "@gooddata/numberjs": "^3.2.5",
         "@gooddata/sdk-backend-spi": "^8.7.0-alpha.38",
         "@gooddata/sdk-ui": "^8.7.0-alpha.38",

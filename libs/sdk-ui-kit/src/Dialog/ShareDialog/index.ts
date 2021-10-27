@@ -13,14 +13,14 @@ export type {
     IShareGranteeContentProps,
     IAddGranteeBaseProps,
     DialogModeType,
-} from "./types";
+} from "./ShareDialogBase/types";
 
-export { isGranteeUser, isGranteeGroup } from "./types";
+export { isGranteeUser, isGranteeGroup } from "./ShareDialogBase/types";
 
-export { ShareDialogBase } from "./ShareDialog";
+export { ShareDialogBase } from "./ShareDialogBase/ShareDialogBase";
 
-export { ShareGranteeBase } from "./ShareGranteeBase";
+export { ShareGranteeBase } from "./ShareDialogBase/ShareGranteeBase";
 
-export { AddGranteeBase } from "./AddGranteeBase";
+export { AddGranteeBase } from "./ShareDialogBase/AddGranteeBase";
 
-export { GranteeItemComponent } from "./GranteeItem";
+export { GranteeItemComponent } from "./ShareDialogBase/GranteeItem";

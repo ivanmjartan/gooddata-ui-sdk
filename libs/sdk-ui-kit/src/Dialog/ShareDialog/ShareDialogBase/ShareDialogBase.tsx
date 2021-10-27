@@ -1,7 +1,7 @@
 // (C) 2021 GoodData Corporation
 import React, { useCallback, useMemo, useState } from "react";
-import { Overlay } from "../../Overlay";
-import { IAlignPoint } from "../../typings/positioning";
+import { Overlay } from "../../../Overlay";
+import { IAlignPoint } from "../../../typings/positioning";
 import { ShareGranteeBase } from "./ShareGranteeBase";
 import { AddGranteeBase } from "./AddGranteeBase";
 import { DialogModeType, GranteeItem, IShareDialogBaseProps } from "./types";

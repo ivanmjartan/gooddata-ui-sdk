@@ -1,7 +1,7 @@
 // (C) 2021 GoodData Corporation
 import React, { useMemo } from "react";
 import { useIntl } from "react-intl";
-import { ConfirmDialogBase } from "../ConfirmDialogBase";
+import { ConfirmDialogBase } from "../../ConfirmDialogBase";
 import { ShareGranteeContent } from "./ShareGranteeContent";
 import { IShareGranteeBaseProps } from "./types";
 import { sortGranteesByName } from "./utils";

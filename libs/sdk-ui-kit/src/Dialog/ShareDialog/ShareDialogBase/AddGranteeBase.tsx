@@ -1,8 +1,8 @@
 // (C) 2021 GoodData Corporation
 import React, { useCallback } from "react";
 import { useIntl } from "react-intl";
-import { Button } from "../../Button/Button";
-import { ConfirmDialogBase } from "../ConfirmDialogBase";
+import { Button } from "../../../Button";
+import { ConfirmDialogBase } from "../../ConfirmDialogBase";
 import { AddGranteeContent } from "./AddGranteeContent";
 import { IAddGranteeBaseProps } from "./types";
 

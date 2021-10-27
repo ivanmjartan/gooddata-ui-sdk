@@ -9,7 +9,7 @@ import { wrapWithTheme } from "../../themeWrapper";
 import "@gooddata/sdk-ui-kit/styles/css/main.css";
 import { action } from "@storybook/addon-actions";
 
-import { ShareGranteeBase } from "@gooddata/sdk-ui-kit/src/Dialog/ShareDialog/ShareGranteeBase";
+import { ShareGranteeBase } from "@gooddata/sdk-ui-kit/src/Dialog/";
 import { grantees, owner } from "./GranteeMock";
 
 const BasicExample = (): JSX.Element => {

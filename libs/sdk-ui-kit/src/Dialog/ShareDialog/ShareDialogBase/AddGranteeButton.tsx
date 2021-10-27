@@ -1,8 +1,7 @@
 // (C) 2021 GoodData Corporation
 import React, { useCallback } from "react";
 import classNames from "classnames";
-import { BubbleHoverTrigger } from "../../Bubble/BubbleHoverTrigger";
-import { Bubble } from "../../Bubble";
+import { BubbleHoverTrigger, Bubble } from "../../../Bubble";
 import { FormattedMessage } from "react-intl";
 
 /**

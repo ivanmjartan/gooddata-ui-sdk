@@ -1,7 +1,7 @@
 // (C) 2021 GoodData Corporation
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import { Typography } from "../../Typography/Typography";
+import { Typography } from "../../../Typography";
 import { AddUserOrGroupButton } from "./AddGranteeButton";
 import { GranteeList } from "./GranteeList";
 import { IShareGranteeContentProps } from "./types";

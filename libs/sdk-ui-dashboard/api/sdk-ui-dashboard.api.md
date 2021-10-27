@@ -528,6 +528,9 @@ export type CustomScheduledEmailDialogComponent = ComponentType;
 export type CustomShareButtonComponent = ComponentType;
 
 // @alpha (undocumented)
+export type CustomShareDialogComponent = ComponentType;
+
+// @alpha (undocumented)
 export type CustomTitleComponent = ComponentType;
 
 // @alpha (undocumented)
@@ -1707,6 +1710,12 @@ export const DefaultShareButtonInner: React_2.FC<WithIntlProps<WrappedComponentP
 };
 
 // @alpha (undocumented)
+export const DefaultShareDialog: (props: IShareDialogProps) => JSX.Element;
+
+// @internal (undocumented)
+export const DefaultShareDialogInner: () => JSX.Element | null;
+
+// @alpha (undocumented)
 export const DefaultTitle: (props: ITitleProps) => JSX.Element;
 
 // @internal (undocumented)
@@ -2125,6 +2134,7 @@ export interface IDashboardCustomComponentProps {
     MenuButtonComponent?: CustomMenuButtonComponent;
     SaveAsDialogComponent?: CustomSaveAsDialogComponent;
     ScheduledEmailDialogComponent?: CustomScheduledEmailDialogComponent;
+    ShareDialogComponent?: CustomShareDialogComponent;
     TitleComponent?: CustomTitleComponent;
     TopBarComponent?: CustomTopBarComponent;
     WidgetComponentProvider?: WidgetComponentProvider;
@@ -2865,6 +2875,11 @@ export const isDrillTargetsAdded: (obj: unknown) => obj is DrillTargetsAdded;
 export interface IShareButtonProps {
     // (undocumented)
     onShareButtonClick: (newShareStatus: ShareStatus) => void;
+}
+
+// @alpha (undocumented)
+export interface IShareDialogProps {
+    isVisible?: boolean;
 }
 
 // @alpha (undocumented)
@@ -3740,6 +3755,9 @@ export const selectIsSaveAsDialogOpen: OutputSelector<DashboardState, boolean, (
 // @alpha (undocumented)
 export const selectIsScheduleEmailDialogOpen: OutputSelector<DashboardState, boolean, (res: UiState) => boolean>;
 
+// @alpha (undocumented)
+export const selectIsShareDialogOpen: OutputSelector<DashboardState, boolean, (res: UiState) => boolean>;
+
 // @alpha
 export const selectLayout: OutputSelector<DashboardState, IDashboardLayout<ExtendedDashboardWidget>, (res: LayoutState) => IDashboardLayout<ExtendedDashboardWidget>>;
 
@@ -3814,6 +3832,9 @@ export const ShareButton: () => JSX.Element;
 // @internal (undocumented)
 export const ShareButtonPropsProvider: React_2.FC<IShareButtonProps>;
 
+// @internal (undocumented)
+export const ShareDialogPropsProvider: React_2.FC<IShareDialogProps>;
+
 // @alpha
 export function singleEventTypeHandler(type: (DashboardEvents | ICustomDashboardEvent)["type"], handler: DashboardEventHandler["handler"]): DashboardEventHandler;
 
@@ -3868,6 +3889,8 @@ highlightKpiAlert: CaseReducer<UiState, {
 payload: ObjRef;
 type: string;
 }>;
+openShareDialog: CaseReducer<UiState, AnyAction>;
+closeShareDialog: CaseReducer<UiState, AnyAction>;
 }>;
 
 // @alpha (undocumented)
@@ -3876,6 +3899,9 @@ export type UiState = {
         open: boolean;
     };
     saveAsDialog: {
+        open: boolean;
+    };
+    shareDialog: {
         open: boolean;
     };
     filterBar: {
@@ -4475,6 +4501,9 @@ export const useScheduledEmailDialogProps: () => IScheduledEmailDialogProps;
 
 // @alpha (undocumented)
 export const useShareButtonProps: () => IShareButtonProps;
+
+// @alpha (undocumented)
+export const useShareDialogProps: () => IShareDialogProps;
 
 // @alpha (undocumented)
 export const useTitleProps: () => ITitleProps;

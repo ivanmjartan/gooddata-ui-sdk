@@ -12,7 +12,7 @@ import { GoodDataSdkError } from "@gooddata/sdk-ui";
  */
 export interface IScheduledEmailDialogProps {
     /**
-     * Is scheduled e-mail dialog visible?
+     * Is Shared dialog visible?
      */
     isVisible?: boolean;
 

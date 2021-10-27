@@ -24,9 +24,8 @@ const DefaultShareButtonCore: React.FC<WrappedComponentProps> = ({ intl }): JSX.
         return (
             <>
                 <Button
-                    onClick={
-                        () => onShareButtonClick(currentShareStatus === "private" ? "public" : "private")
-                        // show dialog dispatch open
+                    onClick={() =>
+                        onShareButtonClick(currentShareStatus === "private" ? "public" : "private")
                     }
                     value={
                         currentShareStatus === "private"

@@ -147,6 +147,7 @@ export { UiState } from "./ui/uiState";
 export {
     selectIsScheduleEmailDialogOpen,
     selectIsSaveAsDialogOpen,
+    selectIsShareDialogOpen,
     selectFilterBarExpanded,
     selectFilterBarHeight,
     selectIsKpiAlertOpenedByAlertRef,

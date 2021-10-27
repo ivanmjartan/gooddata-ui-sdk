@@ -55,6 +55,8 @@ function loadDashboardFromBackend(
             });
     }
 
+    // TODO: TNT-257
+    /// misto undefined {loadUserInfo=true}
     return backend
         .workspace(workspace)
         .dashboards()

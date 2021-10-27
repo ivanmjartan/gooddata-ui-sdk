@@ -8,7 +8,7 @@ import {
     IKpiWidget,
     ILegacyKpi,
     isProtectedDataError,
-    ShareStatus,
+    // ShareStatus,
 } from "@gooddata/sdk-backend-spi";
 import { ToastMessageContextProvider, ToastMessages, useToastMessage } from "@gooddata/sdk-ui-kit";
 import { ErrorComponent as DefaultError, LoadingComponent as DefaultLoading } from "@gooddata/sdk-ui";
@@ -48,7 +48,7 @@ import {
     changeAttributeFilterSelection,
     changeDateFilterSelection,
     changeFilterContextSelection,
-    changeSharing,
+    //   changeSharing,
     clearDateFilterSelection,
     DashboardStoreProvider,
     exportDashboardToPdf,
@@ -64,6 +64,7 @@ import {
     selectIsLayoutEmpty,
     selectIsSaveAsDialogOpen,
     selectIsScheduleEmailDialogOpen,
+    selectIsShareDialogOpen,
     selectLocale,
     uiActions,
     useDashboardCommandProcessing,
@@ -93,6 +94,8 @@ import { downloadFile } from "../../_staging/fileUtils/downloadFile";
 import { DefaultSaveAsDialogInner, SaveAsDialog, SaveAsDialogPropsProvider } from "../saveAs";
 import { IInsight } from "@gooddata/sdk-model";
 import { DEFAULT_FILTER_BAR_HEIGHT } from "../constants";
+import { DefaultShareDialogInner, ShareDialogPropsProvider } from "../shareDialog";
+import { ShareDialog } from "../shareDialog/ShareDialog";
 
 const useFilterBar = (): {
     filters: FilterContextItem[];
@@ -134,8 +137,8 @@ const useFilterBar = (): {
 const useTopBar = () => {
     const dispatch = useDashboardDispatch();
     const title = useDashboardSelector(selectDashboardTitle);
-    const { addSuccess, addError, removeMessage } = useToastMessage();
-    const lastSharingChangeMessageId = useRef("");
+    // const { addSuccess, addError, removeMessage } = useToastMessage();
+    // const lastSharingChangeMessageId = useRef("");
 
     const onTitleChanged = useCallback(
         (title: string) => {
@@ -143,7 +146,7 @@ const useTopBar = () => {
         },
         [dispatch],
     );
-
+    /*
     const { run: runChangeSharing } = useDashboardCommandProcessing({
         commandCreator: changeSharing,
         successEvent: "GDC.DASH/EVT.SHARING.CHANGED",
@@ -161,13 +164,15 @@ const useTopBar = () => {
             addError({ id: "messages.sharingChangedError.general" });
         },
     });
-
+/*
     const onShareButtonClick = useCallback(
         (newShareStatus: ShareStatus) => {
             runChangeSharing(newShareStatus);
         },
         [runChangeSharing],
-    );
+    );*/
+
+    const onShareButtonClick = useCallback(() => dispatch(uiActions.openShareDialog()), [dispatch]);
 
     return {
         title,
@@ -193,6 +198,7 @@ const DashboardHeader = (): JSX.Element => {
     const isSaveAsDialogOpen = useDashboardSelector(selectIsSaveAsDialogOpen);
     const openSaveAsDialog = () => dispatch(uiActions.openSaveAsDialog());
     const closeSaveAsDialog = () => dispatch(uiActions.closeSaveAsDialog());
+    const isShareDialogOpen = useDashboardSelector(selectIsShareDialogOpen);
 
     const lastExportMessageId = useRef("");
     const { run: exportDashboard } = useDashboardCommandProcessing({
@@ -321,7 +327,6 @@ const DashboardHeader = (): JSX.Element => {
         <>
             <ToastMessages />
             <ExportDialogProvider />
-            {/* tady bude dialog a callback */}
             {isScheduleEmailingDialogOpen && (
                 <ScheduledEmailDialogPropsProvider
                     isVisible={isScheduleEmailingDialogOpen}
@@ -331,6 +336,11 @@ const DashboardHeader = (): JSX.Element => {
                 >
                     <ScheduledEmailDialog />
                 </ScheduledEmailDialogPropsProvider>
+            )}
+            {isShareDialogOpen && (
+                <ShareDialogPropsProvider isVisible={isShareDialogOpen}>
+                    <ShareDialog />
+                </ShareDialogPropsProvider>
             )}
             {isSaveAsDialogOpen && (
                 <SaveAsDialogPropsProvider
@@ -520,6 +530,7 @@ export const Dashboard: React.FC<IDashboardProps> = (props: IDashboardProps) => 
                             ScheduledEmailDialogComponent={
                                 props.ScheduledEmailDialogComponent ?? DefaultScheduledEmailDialogInner
                             }
+                            ShareDialogComponent={props.ShareDialogComponent ?? DefaultShareDialogInner}
                             SaveAsDialogComponent={props.SaveAsDialogComponent ?? DefaultSaveAsDialogInner}
                             DashboardAttributeFilterComponentProvider={attributeFilterProvider}
                             DashboardDateFilterComponent={

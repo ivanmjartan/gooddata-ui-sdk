@@ -1,5 +1,11 @@
 // (C) 2021 GoodData Corporation
 
+//share dialog
+export type { IShareDialogProps } from "./types";
+
+export { ShareDialog } from "./ShareDialog";
+
+// export of internal base dialogs
 export type {
     GranteeType,
     GranteeItem,
@@ -7,7 +13,7 @@ export type {
     IGranteeUser,
     IGranteeGroup,
     IGranteeGroupAll,
-    IShareDialogBaseProps as IShareDialogProps,
+    IShareDialogBaseProps,
     IGranteeItemProps,
     IShareGranteeBaseProps,
     IShareGranteeContentProps,

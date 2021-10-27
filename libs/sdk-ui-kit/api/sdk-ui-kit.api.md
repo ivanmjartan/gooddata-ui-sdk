@@ -17,6 +17,7 @@ import { ISettings } from '@gooddata/sdk-backend-spi';
 import { ITheme } from '@gooddata/sdk-backend-spi';
 import { IWorkspacePermissions } from '@gooddata/sdk-backend-spi';
 import { MessageDescriptor } from 'react-intl';
+import { ObjRef } from '@gooddata/sdk-model';
 import { PureComponent } from 'react';
 import { default as React_2 } from 'react';
 import { ReactNode } from 'react';
@@ -2488,7 +2489,7 @@ export const isGranteeGroup: (obj: unknown) => obj is IGranteeGroup;
 export const isGranteeUser: (obj: unknown) => obj is IGranteeUser;
 
 // @internal (undocumented)
-export interface IShareDialogProps {
+export interface IShareDialogBaseProps {
     // (undocumented)
     grantees: GranteeItem[];
     // (undocumented)
@@ -2497,6 +2498,14 @@ export interface IShareDialogProps {
     onSubmit?: (granteesToAdd: GranteeItem[], granteesToDelete: GranteeItem[]) => void;
     // (undocumented)
     owner: IGranteeUser;
+}
+
+// @public (undocumented)
+export interface IShareDialogProps {
+    // (undocumented)
+    currentUserRef: ObjRef;
+    // (undocumented)
+    locale?: string;
 }
 
 // @internal (undocumented)
@@ -2960,8 +2969,11 @@ export type Separators = {
     decimal: string;
 };
 
+// @public (undocumented)
+export const ShareDialog: (_props: IShareDialogProps) => JSX.Element;
+
 // @internal (undocumented)
-export const ShareDialogBase: (props: IShareDialogProps) => JSX.Element;
+export const ShareDialogBase: (props: IShareDialogBaseProps) => JSX.Element;
 
 // @internal (undocumented)
 export const ShareGranteeBase: (props: IShareGranteeBaseProps) => JSX.Element;

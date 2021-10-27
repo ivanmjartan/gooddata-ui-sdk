@@ -13,11 +13,19 @@ export interface IGranteeRemoveIconProps {
 }
 
 export const GranteeUserIcon = (): JSX.Element => {
-    return <span className="gd-grantee-item-icon gd-grantee-icon-user gd-grantee-item-icon-left" />;
+    return (
+        <div className="gd-grantee-item-icon-left-background">
+            <span className="gd-grantee-item-icon gd-grantee-icon-user gd-grantee-item-icon-left" />
+        </div>
+    );
 };
 
 export const GranteeGroupIcon = (): JSX.Element => {
-    return <span className="gd-grantee-item-icon gd-grantee-icon-user gd-grantee-item-icon-left" />;
+    return (
+        <div className="gd-grantee-item-icon-left-background">
+            <span className="gd-grantee-item-icon gd-grantee-icon-group gd-grantee-item-icon-left" />
+        </div>
+    );
 };
 
 export const GranteeRemoveIcon = (props: IGranteeRemoveIconProps): JSX.Element => {

@@ -6,6 +6,14 @@
 
 .gd-share-dialog {
     width: 420px;
+
+    .gd-dialog-header {
+        margin-bottom: 16px;
+
+        h3 {
+            margin-top: 4px;
+        }
+    }
 }
 
 .gd-share-dialog-header-back-button {
@@ -44,7 +52,7 @@
 
 .gd-share-dialog-grantee-item {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     flex-direction: row-reverse;
 
     .gd-grantee-content {
@@ -67,6 +75,7 @@
 
     .gd-grantee-content-email {
         font-weight: normal;
+        color: var(--gd-palette-complementary-6, #94a1ad);
     }
 
     .gd-grantee-content-user-count {
@@ -86,6 +95,9 @@
 
     .gd-grantee-item-icon-left {
         margin-right: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-left: 5px;
     }
 
     .gd-grantee-item-icon-right {
@@ -99,11 +111,11 @@
         line-height: 20px;
         padding-left: 8px;
         padding-right: 8px;
-        font-weight: bold;
         display: block;
         width: auto;
         height: auto;
         cursor: default;
+        color: var(--gd-palette-complementary-6, #94a1ad);
     }
 
     .gd-grantee-icon-user {
@@ -142,10 +154,47 @@
         }
     }
 
+    .gd-grantee-item-delete-owner {
+        display: flex;
+        align-items: center;
+    }
+
+    .gd-grantee-item-delete {
+        display: flex;
+        align-items: center;
+    }
+
+    .gd-grantee-item-icon-left-background {
+        display: flex;
+        align-items: center;
+    }
+
     .gd-grantee-item-delete:hover {
+        background: var(--gd-palette-error-lightest, #fff2f1);
+
         ~ .gd-grantee-content {
-            .gd-grantee-content-label {
-                color: red;
+            background: var(--gd-palette-error-lightest, #fff2f1);
+        }
+
+        .gd-grantee-item-delete-background {
+            background: var(--gd-palette-error-lightest, #fff2f1);
+        }
+
+        .gd-grantee-item-icon {
+            background: var(--gd-palette-error-lightest, #fff2f1);
+        }
+
+        .gd-grantee-icon-trash {
+            &::after {
+                color: var(--gd-palette-error-base, #e54d42);
+            }
+        }
+
+        ~ .gd-grantee-item-icon-left-background {
+            background: var(--gd-palette-error-lightest, #fff2f1);
+
+            .gd-grantee-item-icon {
+                background: var(--gd-palette-error-lightest, #fff2f1);
             }
         }
     }

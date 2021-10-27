@@ -1234,7 +1234,7 @@ export interface IGranteeBase {
 // @internal (undocumented)
 export interface IGranteeGroup extends IGranteeBase {
     // (undocumented)
-    granteeCount: number;
+    granteeCount?: number;
     // (undocumented)
     granteeType: "group";
     // (undocumented)
@@ -1244,7 +1244,7 @@ export interface IGranteeGroup extends IGranteeBase {
 // @internal (undocumented)
 export interface IGranteeGroupAll extends IGranteeBase {
     // (undocumented)
-    granteeCount: number;
+    granteeCount?: number;
     // (undocumented)
     granteeType: "groupAll";
 }

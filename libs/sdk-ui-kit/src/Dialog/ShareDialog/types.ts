@@ -45,7 +45,7 @@ export const isGranteeUser = (obj: unknown): obj is IGranteeUser => {
 export interface IGranteeGroup extends IGranteeBase {
     granteeType: "group";
     groupName: string;
-    granteeCount: number;
+    granteeCount?: number;
 }
 /**
  * @internal
@@ -59,7 +59,7 @@ export const isGranteeGroup = (obj: unknown): obj is IGranteeGroup => {
  */
 export interface IGranteeGroupAll extends IGranteeBase {
     granteeType: "groupAll";
-    granteeCount: number;
+    granteeCount?: number;
 }
 
 /**

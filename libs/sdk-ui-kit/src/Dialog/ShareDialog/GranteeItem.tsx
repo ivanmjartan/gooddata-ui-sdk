@@ -69,9 +69,11 @@ const GranteeGroupItem = (props: IGranteeGroupItemProps): JSX.Element => {
     const groupName = useMemo(() => getGranteeLabel(grantee, intl), [grantee, intl]);
 
     const numOfUsers = useMemo(() => {
-        return `${grantee.granteeCount} ${intl.formatMessage({
-            id: "shareDialog.share.grantee.item.users",
-        })}`;
+        if (grantee.granteeCount) {
+            return `${grantee.granteeCount} ${intl.formatMessage({
+                id: "shareDialog.share.grantee.item.users",
+            })}`;
+        }
     }, [grantee, intl]);
 
     return (
@@ -79,7 +81,9 @@ const GranteeGroupItem = (props: IGranteeGroupItemProps): JSX.Element => {
             <GranteeRemoveIcon mode={mode} onClick={onClick} />
             <div className="gd-grantee-content">
                 <div className="gd-grantee-content-label">{groupName}</div>
-                <div className="gd-grantee-content-label gd-grantee-content-user-count">{numOfUsers}</div>
+                {numOfUsers && (
+                    <div className="gd-grantee-content-label gd-grantee-content-user-count">{numOfUsers}</div>
+                )}
             </div>
             <GranteeGroupIcon />
         </div>

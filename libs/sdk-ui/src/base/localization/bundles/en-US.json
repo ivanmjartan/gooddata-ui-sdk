@@ -1181,7 +1181,7 @@
         "limit": 0
     },
     "shareDialog.share.grantee.add.info": {
-        "value": "Add users or groups",
+        "value": "Add users and groups",
         "comment": "Description of add grantee button or dialog",
         "limit": 0
     },
@@ -1216,7 +1216,7 @@
         "limit": 0
     },
     "shareDialog.share.grantee.item.owner.remove.access": {
-        "value": "User who created this dashboard. Access of this user cannot be removed.",
+        "value": "Users who created this dashboard. Creator cannot be removed.",
         "comment": "Hint on remove grantee button owner",
         "limit": 0
     },

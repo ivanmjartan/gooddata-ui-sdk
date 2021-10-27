@@ -45,8 +45,8 @@ export const AddGranteeBase = (props: IAddGranteeBaseProps): JSX.Element => {
     }, [onBackClick]);
 
     return (
-        <ConfirmDialogBase // extract to separate component
-            className="gd-share-dialog"
+        <ConfirmDialogBase
+            className="gd-share-dialog gd-share-dialog-add-users"
             displayCloseButton={true}
             isPositive={true}
             isSubmitDisabled={!isDirty}

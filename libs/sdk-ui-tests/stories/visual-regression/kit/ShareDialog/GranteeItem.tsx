@@ -11,7 +11,7 @@ import "../styles/goodstrap.scss";
 
 import { action } from "@storybook/addon-actions";
 import { GranteeItemComponent } from "@gooddata/sdk-ui-kit/src/Dialog/";
-import { group, owner, user } from "./GranteeMock";
+import { current, currentAndOwen, group, groupNoCount, owner, user } from "./GranteeMock";
 
 const UserItemBasicExample = (): JSX.Element => {
     const border = { border: "1px solid black", width: 300 };
@@ -36,18 +36,17 @@ const UserItemBasicExample = (): JSX.Element => {
             </div>
             <span> Grantee current user</span>
             <div id="Grantee-item-basic-example" style={border}>
+                <GranteeItemComponent mode={"ShareGrantee"} grantee={current} onDelete={action("onDelete")} />
+            </div>
+            <span> Grantee owner user</span>
+            <div id="Grantee-item-basic-example" style={border}>
                 <GranteeItemComponent mode={"ShareGrantee"} grantee={owner} onDelete={action("onDelete")} />
             </div>
-            <span> Grantee current user long name and email</span>
+            <span> Grantee owner and current user</span>
             <div id="Grantee-item-basic-example" style={border}>
                 <GranteeItemComponent
                     mode={"ShareGrantee"}
-                    grantee={{
-                        ...user,
-                        isOwner: true,
-                        granteeName: "Very very very very very very very long name of user",
-                        granteeEmail: "Very_very_very_very_very_very_very@long_email.com",
-                    }}
+                    grantee={currentAndOwen}
                     onDelete={action("onDelete")}
                 />
             </div>
@@ -69,6 +68,14 @@ const GroupItemBasicExample = (): JSX.Element => {
                 <GranteeItemComponent
                     mode={"ShareGrantee"}
                     grantee={{ ...group, groupName: "Very very very very very very very long name of user" }}
+                    onDelete={action("onDelete")}
+                />
+            </div>
+            <span> Grantee no group count items</span>
+            <div id="Grantee-item-basic-example" style={border}>
+                <GranteeItemComponent
+                    mode={"ShareGrantee"}
+                    grantee={groupNoCount}
                     onDelete={action("onDelete")}
                 />
             </div>

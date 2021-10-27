@@ -45,6 +45,12 @@ export const group: IGranteeGroup = {
     groupName: "TNT team",
 };
 
+export const groupNoCount: IGranteeGroup = {
+    granteeType: "group",
+    id: "groupId",
+    groupName: "TNT team",
+};
+
 export const groupAll: IGranteeGroupAll = {
     granteeType: "groupAll",
     id: "groupAll",

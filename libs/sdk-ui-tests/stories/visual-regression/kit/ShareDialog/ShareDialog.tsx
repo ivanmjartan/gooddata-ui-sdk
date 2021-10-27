@@ -9,7 +9,7 @@ import { wrapWithTheme } from "../../themeWrapper";
 import "@gooddata/sdk-ui-kit/styles/css/main.css";
 import "../styles/goodstrap.scss";
 import { action } from "@storybook/addon-actions";
-import { ShareDialog } from "@gooddata/sdk-ui-kit/src/Dialog/";
+import { ShareDialogBase } from "@gooddata/sdk-ui-kit/src/Dialog/";
 import { Button } from "@gooddata/sdk-ui-kit/src/Button/";
 import { grantees, owner } from "./GranteeMock";
 
@@ -40,7 +40,7 @@ const BasicExample = (): JSX.Element => {
                 onClick={onOpen}
             />
             {open && (
-                <ShareDialog owner={owner} grantees={grantees} onCancel={onCancel} onSubmit={onSubmit} />
+                <ShareDialogBase owner={owner} grantees={grantees} onCancel={onCancel} onSubmit={onSubmit} />
             )}
         </div>
     );

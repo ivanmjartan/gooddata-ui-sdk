@@ -79,7 +79,7 @@ export type DialogModeType = "ShareGrantee" | "AddGrantee";
 /**
  * @internal
  */
-export interface IShareDialogProps {
+export interface IShareDialogBaseProps {
     owner: IGranteeUser;
     grantees: GranteeItem[];
     onCancel?: () => void;

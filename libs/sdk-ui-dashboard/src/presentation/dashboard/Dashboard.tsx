@@ -321,6 +321,7 @@ const DashboardHeader = (): JSX.Element => {
         <>
             <ToastMessages />
             <ExportDialogProvider />
+            {/* tady bude dialog a callback */}
             {isScheduleEmailingDialogOpen && (
                 <ScheduledEmailDialogPropsProvider
                     isVisible={isScheduleEmailingDialogOpen}

@@ -7,7 +7,7 @@ export type {
     IGranteeUser,
     IGranteeGroup,
     IGranteeGroupAll,
-    IShareDialogProps,
+    IShareDialogBaseProps as IShareDialogProps,
     IGranteeItemProps,
     IShareGranteeBaseProps,
     IShareGranteeContentProps,
@@ -17,7 +17,7 @@ export type {
 
 export { isGranteeUser, isGranteeGroup } from "./types";
 
-export { ShareDialog } from "./ShareDialog";
+export { ShareDialogBase } from "./ShareDialog";
 
 export { ShareGranteeBase } from "./ShareGranteeBase";
 

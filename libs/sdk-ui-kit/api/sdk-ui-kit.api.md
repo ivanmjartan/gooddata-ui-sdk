@@ -2961,7 +2961,7 @@ export type Separators = {
 };
 
 // @internal (undocumented)
-export const ShareDialog: (props: IShareDialogProps) => JSX.Element;
+export const ShareDialogBase: (props: IShareDialogProps) => JSX.Element;
 
 // @internal (undocumented)
 export const ShareGranteeBase: (props: IShareGranteeBaseProps) => JSX.Element;

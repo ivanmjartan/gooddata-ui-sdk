@@ -4,7 +4,7 @@ import { Overlay } from "../../Overlay";
 import { IAlignPoint } from "../../typings/positioning";
 import { ShareGranteeBase } from "./ShareGranteeBase";
 import { AddGranteeBase } from "./AddGranteeBase";
-import { DialogModeType, GranteeItem, IShareDialogProps } from "./types";
+import { DialogModeType, GranteeItem, IShareDialogBaseProps } from "./types";
 import { filterNotInArray } from "./utils";
 
 const alignPoints: IAlignPoint[] = [{ align: "cc cc" }];
@@ -20,7 +20,7 @@ const availableGranteesConst: GranteeItem[] = [
 /**
  * @internal
  */
-export const ShareDialog = (props: IShareDialogProps): JSX.Element => {
+export const ShareDialogBase = (props: IShareDialogBaseProps): JSX.Element => {
     const { onCancel, onSubmit, owner, grantees } = props;
     const [dialogMode, setDialogMode] = useState<DialogModeType>("ShareGrantee");
     const [granteesToAdd, setGranteesToAdd] = useState<GranteeItem[]>([]);

@@ -1,13 +1,6 @@
 // (C) 2007-2020 GoodData Corporation
 import React, { PureComponent } from "react";
-import {
-    Button,
-    Dialog,
-    ConfirmDialog,
-    ExportDialog,
-    CommunityEditionDialog,
-    ShareDialog,
-} from "@gooddata/sdk-ui-kit";
+import { Button, Dialog, ConfirmDialog, ExportDialog, CommunityEditionDialog } from "@gooddata/sdk-ui-kit";
 import { storiesOf } from "@storybook/react";
 import { UiKit } from "../../../_infra/storyGroups";
 import { withMultipleScreenshots } from "../../../_infra/backstopWrapper";
@@ -23,7 +16,6 @@ class DialogExamples extends PureComponent {
         confirmDialogWithWarningOpen: false,
         confirmDialogWithProgress: false,
         exportDialogOpen: false,
-        shareDialogOpen: false,
         communityDialogOpen: false,
     };
 
@@ -192,20 +184,6 @@ class DialogExamples extends PureComponent {
         );
     }
 
-    public renderShareDialogContent(): JSX.Element {
-        return (
-            <ShareDialog
-                onCancel={() => {
-                    this.setState({ shareDialogOpen: false });
-                }}
-                onSubmit={(values: any) => {
-                    console.log("values: ", values); // eslint-disable-line no-console
-                    this.setState({ shareDialogOpen: false });
-                }}
-            />
-        );
-    }
-
     public renderConfirmDialogWithWithProgressExample(): JSX.Element {
         return (
             <div id="confirm-dialog-with-progress-example">
@@ -270,21 +248,6 @@ class DialogExamples extends PureComponent {
         );
     }
 
-    public renderShareDialogExample(): JSX.Element {
-        return (
-            <div id="Share-dialog-example">
-                <Button
-                    value="Open share dialog"
-                    className="gd-button-positive s-export-dialog-button"
-                    onClick={() => {
-                        this.setState({ shareDialogOpen: !this.state.shareDialogOpen });
-                    }}
-                />
-                {this.state.shareDialogOpen && this.renderShareDialogContent()}
-            </div>
-        );
-    }
-
     public render(): JSX.Element {
         return (
             <div className="library-component screenshot-target">
@@ -305,9 +268,6 @@ class DialogExamples extends PureComponent {
 
                 <h4>Community edition dialog</h4>
                 {this.renderCommunityEditionDialogExample()}
-
-                <h4>Share dialog</h4>
-                {this.renderShareDialogExample()}
             </div>
         );
     }

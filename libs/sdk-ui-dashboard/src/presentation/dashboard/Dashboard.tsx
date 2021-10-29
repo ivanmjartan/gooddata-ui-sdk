@@ -64,7 +64,6 @@ import {
     selectIsLayoutEmpty,
     selectIsSaveAsDialogOpen,
     selectIsScheduleEmailDialogOpen,
-    selectIsShareDialogOpen,
     selectLocale,
     uiActions,
     useDashboardCommandProcessing,
@@ -94,8 +93,7 @@ import { downloadFile } from "../../_staging/fileUtils/downloadFile";
 import { DefaultSaveAsDialogInner, SaveAsDialog, SaveAsDialogPropsProvider } from "../saveAs";
 import { IInsight } from "@gooddata/sdk-model";
 import { DEFAULT_FILTER_BAR_HEIGHT } from "../constants";
-import { DefaultShareDialogInner, ShareDialogPropsProvider } from "../shareDialog";
-import { ShareDialog } from "../shareDialog/ShareDialog";
+import { DefaultShareDialogInner, ShareDialogDashboardWrapper } from "../shareDialog";
 
 const useFilterBar = (): {
     filters: FilterContextItem[];
@@ -164,7 +162,7 @@ const useTopBar = () => {
             addError({ id: "messages.sharingChangedError.general" });
         },
     });
-/*
+
     const onShareButtonClick = useCallback(
         (newShareStatus: ShareStatus) => {
             runChangeSharing(newShareStatus);
@@ -198,7 +196,6 @@ const DashboardHeader = (): JSX.Element => {
     const isSaveAsDialogOpen = useDashboardSelector(selectIsSaveAsDialogOpen);
     const openSaveAsDialog = () => dispatch(uiActions.openSaveAsDialog());
     const closeSaveAsDialog = () => dispatch(uiActions.closeSaveAsDialog());
-    const isShareDialogOpen = useDashboardSelector(selectIsShareDialogOpen);
 
     const lastExportMessageId = useRef("");
     const { run: exportDashboard } = useDashboardCommandProcessing({
@@ -337,11 +334,7 @@ const DashboardHeader = (): JSX.Element => {
                     <ScheduledEmailDialog />
                 </ScheduledEmailDialogPropsProvider>
             )}
-            {isShareDialogOpen && (
-                <ShareDialogPropsProvider isVisible={isShareDialogOpen}>
-                    <ShareDialog />
-                </ShareDialogPropsProvider>
-            )}
+            <ShareDialogDashboardWrapper />
             {isSaveAsDialogOpen && (
                 <SaveAsDialogPropsProvider
                     isVisible={isSaveAsDialogOpen}

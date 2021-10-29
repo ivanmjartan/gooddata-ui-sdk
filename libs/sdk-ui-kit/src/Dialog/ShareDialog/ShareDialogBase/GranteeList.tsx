@@ -1,7 +1,7 @@
 // (C) 2021 GoodData Corporation
 import React from "react";
+import { serializeObjRef } from "@gooddata/sdk-model";
 import { GranteeItemComponent } from "./GranteeItem";
-
 import { IGranteesListProps } from "./types";
 
 /**
@@ -14,7 +14,7 @@ export const GranteeList = (props: IGranteesListProps): JSX.Element => {
             {grantees.map((grantee) => {
                 return (
                     <GranteeItemComponent
-                        key={grantee.id}
+                        key={serializeObjRef(grantee.id)}
                         grantee={grantee}
                         mode={mode}
                         onDelete={onDelete}

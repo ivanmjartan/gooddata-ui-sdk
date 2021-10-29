@@ -11,6 +11,8 @@ import { ColorFormats } from 'tinycolor2';
 import { Component } from 'react';
 import { CSSProperties } from 'react';
 import { FC } from 'react';
+import { IAccessControlAware } from '@gooddata/sdk-backend-spi';
+import { IAuditableUsers } from '@gooddata/sdk-model';
 import { IntlShape } from 'react-intl';
 import { ISeparators } from '@gooddata/sdk-ui';
 import { ISettings } from '@gooddata/sdk-backend-spi';
@@ -21,6 +23,7 @@ import { ObjRef } from '@gooddata/sdk-model';
 import { PureComponent } from 'react';
 import { default as React_2 } from 'react';
 import { ReactNode } from 'react';
+import { ShareStatus } from '@gooddata/sdk-backend-spi';
 import { WithIntlProps } from 'react-intl';
 import { WrappedComponentProps } from 'react-intl';
 
@@ -623,6 +626,12 @@ export interface IAppHeaderState {
     isOverlayMenuOpen: boolean;
     // (undocumented)
     responsiveMode: boolean;
+}
+
+// @internal (undocumented)
+export interface IApplyPayload {
+    // (undocumented)
+    shareStatus: ShareStatus;
 }
 
 // @internal (undocumented)
@@ -1229,7 +1238,7 @@ export interface IGranteeBase {
     // (undocumented)
     granteeType: GranteeType;
     // (undocumented)
-    id: string;
+    id: ObjRef;
 }
 
 // @internal (undocumented)
@@ -2500,12 +2509,18 @@ export interface IShareDialogBaseProps {
     owner: IGranteeUser;
 }
 
-// @public (undocumented)
+// @internal (undocumented)
 export interface IShareDialogProps {
     // (undocumented)
     currentUserRef: ObjRef;
     // (undocumented)
     locale?: string;
+    // (undocumented)
+    onApply: (payload: IApplyPayload) => void;
+    // (undocumented)
+    onCancel: () => void;
+    // (undocumented)
+    sharedObject: IAccessControlAware & IAuditableUsers;
 }
 
 // @internal (undocumented)
@@ -2969,8 +2984,8 @@ export type Separators = {
     decimal: string;
 };
 
-// @public (undocumented)
-export const ShareDialog: (_props: IShareDialogProps) => JSX.Element;
+// @internal (undocumented)
+export const ShareDialog: (props: IShareDialogProps) => JSX.Element;
 
 // @internal (undocumented)
 export const ShareDialogBase: (props: IShareDialogBaseProps) => JSX.Element;

@@ -1,4 +1,5 @@
 // (C) 2021 GoodData Corporation
+import { ObjRef } from "@gooddata/sdk-model";
 import isEmpty from "lodash/isEmpty";
 
 // Grantee types
@@ -18,7 +19,7 @@ export type GranteeType = "user" | "group" | "groupAll";
  */
 export interface IGranteeBase {
     granteeType: GranteeType;
-    id: string;
+    id: ObjRef;
 }
 
 /**

@@ -2,9 +2,10 @@
 import React, { useCallback, useMemo } from "react";
 import { useIntl } from "react-intl";
 import Select, { ValueType } from "react-select";
+import { areObjRefsEqual } from "@gooddata/sdk-model";
 import { GranteeList } from "./GranteeList";
 import { GranteeItem, IAddGranteeContentProps } from "./types";
-import { filterNotInArray, getGranteeLabel } from "./utils";
+import { getGranteeLabel } from "./utils";
 
 interface ISelectOption {
     label: string;
@@ -19,24 +20,31 @@ export const AddGranteeContent = (props: IAddGranteeContentProps): JSX.Element =
     const intl = useIntl();
 
     const granteesOption = useMemo(() => {
-        return filterNotInArray(availableGrantees, addedGrantees).map(
-            (grantee: GranteeItem): ISelectOption => {
-                return {
-                    label: getGranteeLabel(grantee, intl),
-                    value: grantee,
-                };
-            },
-        );
-    }, [availableGrantees, addedGrantees, intl]);
+        return availableGrantees.map((grantee: GranteeItem): ISelectOption => {
+            return {
+                label: getGranteeLabel(grantee, intl),
+                value: grantee,
+            };
+        });
+    }, [availableGrantees, intl]);
 
     const onSelect = useCallback(
         (value: ValueType<ISelectOption, boolean>) => {
             const grantee = (value as ISelectOption).value; //TODO fix typings
-            if (addedGrantees.findIndex((g) => g === grantee) === -1) {
+            if (addedGrantees.findIndex((g) => areObjRefsEqual(g.id, grantee.id)) === -1) {
                 onAddUserOrGroups(grantee);
             }
         },
-        [onAddUserOrGroups],
+        [addedGrantees, onAddUserOrGroups],
+    );
+
+    const noOptionsMessage = useMemo(
+        () => (_obj: { inputValue: string }) => {
+            return intl.formatMessage({
+                id: "shareDialog.share.grantee.add.search.no.matching.items",
+            });
+        },
+        [],
     );
 
     //TODO fix and rename and clean styles
@@ -52,6 +60,7 @@ export const AddGranteeContent = (props: IAddGranteeContentProps): JSX.Element =
                     placeholder={intl.formatMessage({
                         id: "shareDialog.share.grantee.add.search.placeholder",
                     })}
+                    noOptionsMessage={noOptionsMessage}
                     onChange={onSelect}
                     value={null}
                 />
@@ -61,3 +70,5 @@ export const AddGranteeContent = (props: IAddGranteeContentProps): JSX.Element =
         </>
     );
 };
+
+// shareDialog.share.grantee.add.search.no.matching.items

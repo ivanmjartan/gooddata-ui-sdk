@@ -1,19 +1,19 @@
 // (C) 2021 GoodData Corporation
 import React, { useCallback, useMemo, useState } from "react";
+import { areObjRefsEqual, uriRef } from "@gooddata/sdk-model";
 import { Overlay } from "../../../Overlay";
 import { IAlignPoint } from "../../../typings/positioning";
 import { ShareGranteeBase } from "./ShareGranteeBase";
 import { AddGranteeBase } from "./AddGranteeBase";
 import { DialogModeType, GranteeItem, IShareDialogBaseProps } from "./types";
-import { filterNotInArray } from "./utils";
+import { filterNotInArray, GROUP_ALL_ID } from "./utils";
 
 const alignPoints: IAlignPoint[] = [{ align: "cc cc" }];
 
 const availableGranteesConst: GranteeItem[] = [
     {
-        id: "groupAll",
+        id: uriRef(GROUP_ALL_ID),
         granteeType: "groupAll",
-        granteeCount: 11,
     },
 ];
 
@@ -44,7 +44,7 @@ export const ShareDialogBase = (props: IShareDialogBaseProps): JSX.Element => {
 
     const onAddedGranteeDelete = useCallback(
         (grantee: GranteeItem) => {
-            setGranteesToAdd((state) => state.filter((g) => g.id !== grantee.id));
+            setGranteesToAdd((state) => state.filter((g) => !areObjRefsEqual(g.id, grantee.id)));
         },
         [setGranteesToAdd],
     );
@@ -72,6 +72,20 @@ export const ShareDialogBase = (props: IShareDialogBaseProps): JSX.Element => {
         return granteesToAdd.length !== 0;
     }, [granteesToDelete, granteesToAdd]);
 
+    const availableGrantees = useMemo(() => {
+        return filterNotInArray(availableGranteesConst, granteesToAdd).filter((grantee) => {
+            const isInGrantees = grantees.some((g) => {
+                return areObjRefsEqual(g.id, grantee.id);
+            });
+
+            if (isInGrantees) {
+                return granteesToDelete.some((gd) => areObjRefsEqual(gd.id, grantee.id));
+            }
+
+            return true;
+        });
+    }, [grantees, granteesToDelete, granteesToAdd]);
+
     return (
         <Overlay alignPoints={alignPoints} isModal positionType="fixed">
             {dialogMode === "ShareGrantee" ? (
@@ -87,7 +101,7 @@ export const ShareDialogBase = (props: IShareDialogBaseProps): JSX.Element => {
             ) : (
                 <AddGranteeBase
                     isDirty={isAddDialogDirty}
-                    availableGrantees={availableGranteesConst}
+                    availableGrantees={availableGrantees}
                     addedGrantees={granteesToAdd}
                     onAddUserOrGroups={onGranteeAdd}
                     onDelete={onAddedGranteeDelete}

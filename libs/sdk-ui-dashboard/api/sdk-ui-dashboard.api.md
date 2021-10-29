@@ -29,6 +29,7 @@ import { IAnalyticalBackend } from '@gooddata/sdk-backend-spi';
 import { IAttributeDisplayFormMetadataObject } from '@gooddata/sdk-backend-spi';
 import { IAttributeElements } from '@gooddata/sdk-model';
 import { IAttributeMetadataObject } from '@gooddata/sdk-backend-spi';
+import { IAuditableUsers } from '@gooddata/sdk-model';
 import { IAvailableDrillTargets } from '@gooddata/sdk-ui';
 import { IBackendCapabilities } from '@gooddata/sdk-backend-spi';
 import { IBaseWidget } from '@gooddata/sdk-backend-spi';
@@ -2048,6 +2049,12 @@ export const HiddenTitle: () => JSX.Element | null;
 // @alpha
 export const HiddenTopBar: () => JSX.Element | null;
 
+// @alpha (undocumented)
+export interface IApplyPayload {
+    // (undocumented)
+    shareStatus: ShareStatus;
+}
+
 // @alpha
 export interface IBrokenAlertFilterBasicInfo<TFilter extends FilterContextItem = FilterContextItem> {
     // (undocumented)
@@ -2879,7 +2886,11 @@ export interface IShareButtonProps {
 
 // @alpha (undocumented)
 export interface IShareDialogProps {
+    currentUserRef: ObjRef;
     isVisible?: boolean;
+    onApply: (payload: IApplyPayload) => void;
+    onCancel: () => void;
+    sharedObject: IAccessControlAware & IAuditableUsers;
 }
 
 // @alpha (undocumented)
@@ -3779,6 +3790,9 @@ export const selectObjectAvailabilityConfig: OutputSelector<DashboardState, Obje
 // @alpha
 export const selectPermissions: OutputSelector<DashboardState, IWorkspacePermissions, (res: PermissionsState) => IWorkspacePermissions>;
 
+// @internal
+export const selectPersistedDashboard: OutputSelector<DashboardState, IDashboard<IDashboardWidget> | undefined, (res: DashboardMetaState) => IDashboard<IDashboardWidget> | undefined>;
+
 // @alpha
 export const selectPlatformEdition: OutputSelector<DashboardState, PlatformEdition, (res: ResolvedDashboardConfig) => PlatformEdition>;
 
@@ -3793,6 +3807,9 @@ export const selectStash: OutputSelector<DashboardState, Record<string, Extended
 
 // @alpha
 export const selectUser: OutputSelector<DashboardState, IUser, (res: UserState) => IUser>;
+
+// @alpha
+export const selectUserRef: OutputSelector<DashboardState, ObjRef, (res: IUser) => ObjRef>;
 
 // @alpha
 export const selectWidgetByRef: (ref: ObjRef | undefined) => OutputSelector<DashboardState, IKpiWidget | IInsightWidget | undefined, (res: ObjRefMap<IWidget>) => IKpiWidget | IInsightWidget | undefined>;
@@ -3831,6 +3848,9 @@ export const ShareButton: () => JSX.Element;
 
 // @internal (undocumented)
 export const ShareButtonPropsProvider: React_2.FC<IShareButtonProps>;
+
+// @internal (undocumented)
+export const ShareDialogDashboardWrapper: () => JSX.Element | null;
 
 // @internal (undocumented)
 export const ShareDialogPropsProvider: React_2.FC<IShareDialogProps>;

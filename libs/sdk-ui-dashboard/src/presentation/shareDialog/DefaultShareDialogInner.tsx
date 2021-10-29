@@ -2,17 +2,23 @@
 import React from "react";
 import { useShareDialogProps } from "./ShareDialogPropsContext";
 import { ShareDialog } from "@gooddata/sdk-ui-kit";
-import { uriRef } from "@gooddata/sdk-model";
 
 /**
  * @internal
  */
 export const DefaultShareDialogInner = (): JSX.Element | null => {
-    const { isVisible } = useShareDialogProps();
+    const { isVisible, sharedObject, currentUserRef, onApply, onCancel } = useShareDialogProps();
 
     if (!isVisible) {
         return null;
     }
 
-    return <ShareDialog currentUserRef={uriRef("aaaa")} />;
+    return (
+        <ShareDialog
+            sharedObject={sharedObject}
+            currentUserRef={currentUserRef}
+            onApply={onApply}
+            onCancel={onCancel}
+        />
+    );
 };

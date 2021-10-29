@@ -1,6 +1,14 @@
 // (C) 2021 GoodData Corporation
 import { IntlShape } from "react-intl";
-import { GranteeItem } from "./types";
+import { areObjRefsEqual, uriRef } from "@gooddata/sdk-model";
+import { GranteeItem, IGranteeGroupAll } from "./types";
+
+export const GROUP_ALL_ID = "groupAll";
+
+export const GranteeGroupAll: IGranteeGroupAll = {
+    id: uriRef(GROUP_ALL_ID),
+    granteeType: "groupAll",
+};
 
 const exhaustiveCheck = (_param: never): never => {
     throw new Error("unknown grantee type");
@@ -29,6 +37,6 @@ export const sortGranteesByName =
 
 export const filterNotInArray = (array: GranteeItem[], notInArray: GranteeItem[]): GranteeItem[] => {
     return array.filter((grantee: GranteeItem) => {
-        return !notInArray.some((g) => g.id === grantee.id);
+        return !notInArray.some((g) => areObjRefsEqual(g.id, grantee.id));
     });
 };

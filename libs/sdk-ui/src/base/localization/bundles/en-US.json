@@ -1190,6 +1190,11 @@
         "comment": "Information in search user and groups filed",
         "limit": 0
     },
+    "shareDialog.share.grantee.add.search.no.matching.items": {
+        "value": "No matching users or groups.",
+        "comment": "Information that search query in input no match user and groups",
+        "limit": 0
+    },
     "shareDialog.share.grantee.item.you": {
         "value": "You",
         "comment": "Description that grantee is current user",

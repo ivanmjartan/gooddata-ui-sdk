@@ -2,6 +2,7 @@
 import React, { useMemo } from "react";
 import { useIntl } from "react-intl";
 import { ConfirmDialogBase } from "../../ConfirmDialogBase";
+import { ContentDivider } from "./ContentDivider";
 import { ShareGranteeContent } from "./ShareGranteeContent";
 import { IShareGranteeBaseProps } from "./types";
 import { sortGranteesByName } from "./utils";
@@ -35,6 +36,7 @@ export const ShareGranteeBase = (props: IShareGranteeBaseProps): JSX.Element => 
                 onAddGrantee={onAddGranteeButtonClick}
                 onDelete={onGranteeDelete}
             />
+            <ContentDivider />
         </ConfirmDialogBase>
     );
 };

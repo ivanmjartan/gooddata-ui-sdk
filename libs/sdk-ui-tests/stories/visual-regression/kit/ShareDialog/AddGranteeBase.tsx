@@ -10,14 +10,49 @@ import { AddGranteeBase } from "@gooddata/sdk-ui-kit/src/Dialog/";
 
 import "@gooddata/sdk-ui-kit/styles/css/main.css";
 import "../styles/goodstrap.scss";
+import { current, group, groupAll, user } from "./GranteeMock";
 
-const BasicExample = (): JSX.Element => {
+const EmptySelectionExample = (): JSX.Element => {
     return (
         <div id="Share-Grantee-base-basic-example">
             <AddGranteeBase
                 isDirty={false}
                 addedGrantees={[]}
+                availableGrantees={[groupAll]}
+                onAddUserOrGroups={action("onAddUserOrGroups")}
+                onDelete={action("onDelete")}
+                onCancel={action("onCancel")}
+                onSubmit={action("onSubmit")}
+                onBackClick={action("onBackClick")}
+            />
+        </div>
+    );
+};
+
+const EmptyAvailableItemsExample = (): JSX.Element => {
+    return (
+        <div id="Share-Grantee-base-basic-example">
+            <AddGranteeBase
+                isDirty={false}
+                addedGrantees={[user]}
                 availableGrantees={[]}
+                onAddUserOrGroups={action("onAddUserOrGroups")}
+                onDelete={action("onDelete")}
+                onCancel={action("onCancel")}
+                onSubmit={action("onSubmit")}
+                onBackClick={action("onBackClick")}
+            />
+        </div>
+    );
+};
+
+const SelectedItemsExample = (): JSX.Element => {
+    return (
+        <div id="Share-Grantee-base-basic-example">
+            <AddGranteeBase
+                isDirty={false}
+                addedGrantees={[user, current, group]}
+                availableGrantees={[groupAll]}
                 onAddUserOrGroups={action("onAddUserOrGroups")}
                 onDelete={action("onDelete")}
                 onCancel={action("onCancel")}
@@ -31,12 +66,20 @@ const BasicExample = (): JSX.Element => {
 /**
  * @internal
  */
-export const AddGranteeBaseExamples = (): JSX.Element => {
+export const AddGranteeExamples = (): JSX.Element => {
     return (
         <InternalIntlWrapper>
             <div className="library-component screenshot-target">
-                <h4>AddGranteeBase basic example</h4>
-                <BasicExample />
+                <h4>AddGranteeBase example</h4>
+                <SelectedItemsExample />
+            </div>
+            <div className="library-component screenshot-target">
+                <h4>AddGranteeBase empty selection example</h4>
+                <EmptySelectionExample />
+            </div>
+            <div className="library-component screenshot-target">
+                <h4>AddGranteeBase empty available items example</h4>
+                <EmptyAvailableItemsExample />
             </div>
         </InternalIntlWrapper>
     );
@@ -44,9 +87,9 @@ export const AddGranteeBaseExamples = (): JSX.Element => {
 
 storiesOf(`${UiKit}/ShareDialog/AddGranteeBase`, module).add(
     "full-featured",
-    () => withMultipleScreenshots(<AddGranteeBaseExamples />, {}), // Props TBD
+    () => withMultipleScreenshots(<AddGranteeExamples />, {}), // Props TBD
 );
 storiesOf(`${UiKit}/ShareDialog/AddGranteeBase`, module).add(
     "themed",
-    () => withMultipleScreenshots(wrapWithTheme(<AddGranteeBaseExamples />), {}), // Props TBD
+    () => withMultipleScreenshots(wrapWithTheme(<AddGranteeExamples />), {}), // Props TBD
 );

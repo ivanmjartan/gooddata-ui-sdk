@@ -1,11 +1,12 @@
 // (C) 2021 GoodData Corporation
 import React, { useCallback, useMemo } from "react";
 import { useIntl } from "react-intl";
-import Select, { ValueType } from "react-select";
+import Select, { ValueType, components, DropdownIndicatorProps } from "react-select";
 import { areObjRefsEqual } from "@gooddata/sdk-model";
 import { GranteeList } from "./GranteeList";
 import { GranteeItem, IAddGranteeContentProps } from "./types";
 import { getGranteeLabel } from "./utils";
+import { Input as InputGD } from "../../../Form";
 
 interface ISelectOption {
     label: string;
@@ -47,14 +48,26 @@ export const AddGranteeContent = (props: IAddGranteeContentProps): JSX.Element =
         [],
     );
 
+    const DropdownIndicator = (): JSX.Element => {
+        return null;
+    };
+
+    const IndicatorSeparator = (): JSX.Element => {
+        return null;
+    };
+
+    const Input = (props: any): JSX.Element => {
+        return <InputGD {...props} />;
+    };
     //TODO fix and rename and clean styles
 
     return (
         <>
-            <div className="gd-input gd-recipients-field">
+            <div className="gd-share-dialog-content-select">
                 <Select
-                    className="gd-recipients-container"
-                    classNamePrefix="gd-recipients"
+                    // className="gd-input"
+                    classNamePrefix="gd-share-dialog"
+                    components={{ DropdownIndicator, IndicatorSeparator }}
                     options={granteesOption}
                     defaultValue={undefined}
                     placeholder={intl.formatMessage({
@@ -65,10 +78,7 @@ export const AddGranteeContent = (props: IAddGranteeContentProps): JSX.Element =
                     value={null}
                 />
             </div>
-            <br />
             <GranteeList grantees={addedGrantees} mode={"AddGrantee"} onDelete={onDelete} />
         </>
     );
 };
-
-// shareDialog.share.grantee.add.search.no.matching.items

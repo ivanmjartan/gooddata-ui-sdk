@@ -35,7 +35,7 @@ export const sortGranteesByName =
         return textA < textB ? -1 : textA > textB ? 1 : 0;
     };
 
-export const filterNotInArray = (array: GranteeItem[], notInArray: GranteeItem[]): GranteeItem[] => {
+export const notInArrayFilter = (array: GranteeItem[], notInArray: GranteeItem[]): GranteeItem[] => {
     return array.filter((grantee: GranteeItem) => {
         return !notInArray.some((g) => areObjRefsEqual(g.id, grantee.id));
     });

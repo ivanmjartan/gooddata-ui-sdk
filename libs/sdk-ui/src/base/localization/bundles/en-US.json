@@ -1180,6 +1180,11 @@
         "comment": "Title of add grantee button",
         "limit": 0
     },
+    "shareDialog.share.grantee.add.empty.selection": {
+        "value": "No user or group selected.",
+        "comment": "Info that no user or group selected in grantee list",
+        "limit": 0
+    },
     "shareDialog.share.grantee.add.info": {
         "value": "Add users and groups",
         "comment": "Description of add grantee button or dialog",

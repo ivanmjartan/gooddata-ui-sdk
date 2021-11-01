@@ -6,7 +6,7 @@ import { IAlignPoint } from "../../../typings/positioning";
 import { ShareGranteeBase } from "./ShareGranteeBase";
 import { AddGranteeBase } from "./AddGranteeBase";
 import { DialogModeType, GranteeItem, IShareDialogBaseProps } from "./types";
-import { filterNotInArray, GROUP_ALL_ID } from "./utils";
+import { notInArrayFilter, GROUP_ALL_ID } from "./utils";
 
 const alignPoints: IAlignPoint[] = [{ align: "cc cc" }];
 
@@ -61,7 +61,7 @@ export const ShareDialogBase = (props: IShareDialogBaseProps): JSX.Element => {
     }, [granteesToAdd, granteesToDelete, onSubmit]);
 
     const filteredGrantees = useMemo(() => {
-        return filterNotInArray(grantees, granteesToDelete);
+        return notInArrayFilter(grantees, granteesToDelete);
     }, [grantees, granteesToDelete]);
 
     const isShareDialogDirty = useMemo(() => {
@@ -73,7 +73,7 @@ export const ShareDialogBase = (props: IShareDialogBaseProps): JSX.Element => {
     }, [granteesToDelete, granteesToAdd]);
 
     const availableGrantees = useMemo(() => {
-        return filterNotInArray(availableGranteesConst, granteesToAdd).filter((grantee) => {
+        return notInArrayFilter(availableGranteesConst, granteesToAdd).filter((grantee) => {
             const isInGrantees = grantees.some((g) => {
                 return areObjRefsEqual(g.id, grantee.id);
             });

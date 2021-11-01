@@ -4,6 +4,7 @@ import { useIntl } from "react-intl";
 import { Button } from "../../../Button";
 import { ConfirmDialogBase } from "../../ConfirmDialogBase";
 import { AddGranteeContent } from "./AddGranteeContent";
+import { ContentDivider } from "./ContentDivider";
 import { IAddGranteeBaseProps } from "./types";
 
 interface IBackButtonProps {
@@ -64,6 +65,7 @@ export const AddGranteeBase = (props: IAddGranteeBaseProps): JSX.Element => {
                 onAddUserOrGroups={onAddUserOrGroups}
                 onDelete={onDelete}
             />
+            <ContentDivider />
         </ConfirmDialogBase>
     );
 };

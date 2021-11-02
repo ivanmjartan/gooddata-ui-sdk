@@ -33,8 +33,7 @@ export const AddUserOrGroupButton = (props: IAddUserOrGroupButton): JSX.Element 
     );
 
     return (
-        <div className="create-measure-link-section">
-            {/* TODO fix style */}
+        <div>
             <BubbleHoverTrigger showDelay={0} hideDelay={0}>
                 <a
                     className={buttonClassNames}

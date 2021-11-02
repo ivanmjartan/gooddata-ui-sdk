@@ -8,7 +8,6 @@ import {
     IKpiWidget,
     ILegacyKpi,
     isProtectedDataError,
-    // ShareStatus,
 } from "@gooddata/sdk-backend-spi";
 import { ToastMessageContextProvider, ToastMessages, useToastMessage } from "@gooddata/sdk-ui-kit";
 import { ErrorComponent as DefaultError, LoadingComponent as DefaultLoading } from "@gooddata/sdk-ui";
@@ -48,7 +47,6 @@ import {
     changeAttributeFilterSelection,
     changeDateFilterSelection,
     changeFilterContextSelection,
-    //   changeSharing,
     clearDateFilterSelection,
     DashboardStoreProvider,
     exportDashboardToPdf,
@@ -135,8 +133,6 @@ const useFilterBar = (): {
 const useTopBar = () => {
     const dispatch = useDashboardDispatch();
     const title = useDashboardSelector(selectDashboardTitle);
-    // const { addSuccess, addError, removeMessage } = useToastMessage();
-    // const lastSharingChangeMessageId = useRef("");
 
     const onTitleChanged = useCallback(
         (title: string) => {
@@ -144,31 +140,6 @@ const useTopBar = () => {
         },
         [dispatch],
     );
-    /*
-    const { run: runChangeSharing } = useDashboardCommandProcessing({
-        commandCreator: changeSharing,
-        successEvent: "GDC.DASH/EVT.SHARING.CHANGED",
-        errorEvent: "GDC.DASH/EVT.COMMAND.FAILED",
-        onSuccess: () => {
-            if (lastSharingChangeMessageId.current) {
-                removeMessage(lastSharingChangeMessageId.current);
-            }
-            addSuccess({ id: "messages.sharingChangedSuccess" });
-        },
-        onError: () => {
-            if (lastSharingChangeMessageId.current) {
-                removeMessage(lastSharingChangeMessageId.current);
-            }
-            addError({ id: "messages.sharingChangedError.general" });
-        },
-    });
-
-    const onShareButtonClick = useCallback(
-        (newShareStatus: ShareStatus) => {
-            runChangeSharing(newShareStatus);
-        },
-        [runChangeSharing],
-    );*/
 
     const onShareButtonClick = useCallback(() => dispatch(uiActions.openShareDialog()), [dispatch]);
 

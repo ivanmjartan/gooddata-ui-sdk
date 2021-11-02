@@ -18,7 +18,7 @@ const EmptySelectionExample = (): JSX.Element => {
             <AddGranteeBase
                 isDirty={false}
                 addedGrantees={[]}
-                availableGrantees={[groupAll]}
+                availableGrantees={[groupAll, user]}
                 onAddUserOrGroups={action("onAddUserOrGroups")}
                 onDelete={action("onDelete")}
                 onCancel={action("onCancel")}

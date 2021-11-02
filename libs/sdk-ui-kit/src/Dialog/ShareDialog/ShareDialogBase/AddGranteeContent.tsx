@@ -1,17 +1,11 @@
 // (C) 2021 GoodData Corporation
 import React, { useCallback, useMemo } from "react";
 import { useIntl } from "react-intl";
-import Select, { ValueType, components, DropdownIndicatorProps } from "react-select";
 import { areObjRefsEqual } from "@gooddata/sdk-model";
 import { GranteeList } from "./GranteeList";
-import { GranteeItem, IAddGranteeContentProps } from "./types";
+import { GranteeItem, IAddGranteeContentProps, ISelectOption } from "./types";
 import { getGranteeLabel } from "./utils";
-import { Input as InputGD } from "../../../Form";
-
-interface ISelectOption {
-    label: string;
-    value: GranteeItem;
-}
+import { AddGranteeSelect } from "./AddGranteeSelect";
 
 /**
  * @internal
@@ -29,9 +23,8 @@ export const AddGranteeContent = (props: IAddGranteeContentProps): JSX.Element =
         });
     }, [availableGrantees, intl]);
 
-    const onSelect = useCallback(
-        (value: ValueType<ISelectOption, boolean>) => {
-            const grantee = (value as ISelectOption).value; //TODO fix typings
+    const onSelectGrantee = useCallback(
+        (grantee: GranteeItem) => {
             if (addedGrantees.findIndex((g) => areObjRefsEqual(g.id, grantee.id)) === -1) {
                 onAddUserOrGroups(grantee);
             }
@@ -39,45 +32,9 @@ export const AddGranteeContent = (props: IAddGranteeContentProps): JSX.Element =
         [addedGrantees, onAddUserOrGroups],
     );
 
-    const noOptionsMessage = useMemo(
-        () => (_obj: { inputValue: string }) => {
-            return intl.formatMessage({
-                id: "shareDialog.share.grantee.add.search.no.matching.items",
-            });
-        },
-        [],
-    );
-
-    const DropdownIndicator = (): JSX.Element => {
-        return null;
-    };
-
-    const IndicatorSeparator = (): JSX.Element => {
-        return null;
-    };
-
-    const Input = (props: any): JSX.Element => {
-        return <InputGD {...props} />;
-    };
-    //TODO fix and rename and clean styles
-
     return (
         <>
-            <div className="gd-share-dialog-content-select">
-                <Select
-                    // className="gd-input"
-                    classNamePrefix="gd-share-dialog"
-                    components={{ DropdownIndicator, IndicatorSeparator }}
-                    options={granteesOption}
-                    defaultValue={undefined}
-                    placeholder={intl.formatMessage({
-                        id: "shareDialog.share.grantee.add.search.placeholder",
-                    })}
-                    noOptionsMessage={noOptionsMessage}
-                    onChange={onSelect}
-                    value={null}
-                />
-            </div>
+            <AddGranteeSelect granteesOption={granteesOption} onSelectGrantee={onSelectGrantee} />
             <GranteeList grantees={addedGrantees} mode={"AddGrantee"} onDelete={onDelete} />
         </>
     );

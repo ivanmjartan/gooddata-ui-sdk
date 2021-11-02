@@ -150,3 +150,19 @@ export interface IGranteesListProps {
     grantees: GranteeItem[];
     onDelete: (grantee: GranteeItem) => void;
 }
+
+/**
+ * @internal
+ */
+export interface ISelectOption {
+    label: string;
+    value: GranteeItem;
+}
+
+/**
+ * @internal
+ */
+export interface IAddGranteeSelectProps {
+    onSelectGrantee: (grantee: GranteeItem) => void;
+    granteesOption: ISelectOption[];
+}

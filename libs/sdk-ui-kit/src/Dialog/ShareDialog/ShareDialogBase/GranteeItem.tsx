@@ -83,8 +83,7 @@ const GranteeGroupItem = (props: IGranteeGroupItemProps): JSX.Element => {
             <div className="gd-grantee-content">
                 <div className="gd-grantee-content-label">{groupName}</div>
                 {numOfUsers && (
-                    // <div className="gd-grantee-content-label gd-grantee-content-user-count">{numOfUsers}</div>
-                    <div>
+                    <div className="gd-grantee-count-button">
                         <Button
                             className="gd-button-link-dimmed s-edit gd-button gd-grantee-content-user-count"
                             value={numOfUsers}

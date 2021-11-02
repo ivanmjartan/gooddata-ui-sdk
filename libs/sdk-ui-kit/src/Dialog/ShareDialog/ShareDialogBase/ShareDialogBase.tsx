@@ -87,7 +87,12 @@ export const ShareDialogBase = (props: IShareDialogBaseProps): JSX.Element => {
     }, [grantees, granteesToDelete, granteesToAdd]);
 
     return (
-        <Overlay alignPoints={alignPoints} isModal positionType="fixed">
+        <Overlay
+            alignPoints={alignPoints}
+            isModal={true}
+            positionType="fixed"
+            className="gd-share-dialog-overlay"
+        >
             {dialogMode === "ShareGrantee" ? (
                 <ShareGranteeBase
                     isDirty={isShareDialogDirty}

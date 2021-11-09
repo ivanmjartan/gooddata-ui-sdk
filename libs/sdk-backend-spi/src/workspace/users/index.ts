@@ -1,6 +1,6 @@
 // (C) 2019-2021 GoodData Corporation
 import { ObjRef } from "@gooddata/sdk-model";
-
+import { IPagedResource } from "../../common/paging";
 /**
  * User
  * @public
@@ -58,6 +58,16 @@ export interface IWorkspaceUsersQueryOptions {
      * - basic form match, if it matches as prefix to any of firstName, lastName and email
      */
     search?: string;
+
+    /**
+     * Optionally specify (zero-based) starting offset for the paged results.
+     */
+    offset?: number;
+
+    /**
+     * Optionally specify number of items per page.
+     */
+    limit?: number;
 }
 
 /**
@@ -80,4 +90,11 @@ export interface IWorkspaceUsersQuery {
      * @returns promise with a list of all users matching the specified options
      */
     queryAll(): Promise<IWorkspaceUser[]>;
+
+    /**
+     * Starts the users query.
+     *
+     * @returns promise of first page of the results
+     */
+    query(): IPagedResource<IWorkspaceUser>;
 }

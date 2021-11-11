@@ -1,6 +1,7 @@
 // (C) 2019-2021 GoodData Corporation
 import { ObjRef } from "@gooddata/sdk-model";
 import { IPagedResource } from "../../common/paging";
+
 /**
  * User
  * @public
@@ -96,5 +97,12 @@ export interface IWorkspaceUsersQuery {
      *
      * @returns promise of first page of the results
      */
-    query(): IPagedResource<IWorkspaceUser>;
+    query(): Promise<IWorkspaceUsersQueryResult>;
 }
+
+/**
+ * Paged result of users query. Last page of data returns empty items.
+ *
+ * @public
+ */
+export type IWorkspaceUsersQueryResult = IPagedResource<IWorkspaceUser>;

@@ -13,6 +13,39 @@ export type DateString = string;
 // @public (undocumented)
 export type Email = string;
 
+// @alpha (undocumented)
+export namespace GdcAccessControl {
+    export interface IGetGranteesParams {
+        // (undocumented)
+        permission?: Permission;
+    }
+    export interface IGetGranteesResponse {
+        // (undocumented)
+        grantees: {
+            items: IGranteeEntry[];
+        };
+    }
+    // (undocumented)
+    export interface IGranteeEntry {
+        // (undocumented)
+        grantee: IGranteeUserInfo | IGranteeUserGroupInfo;
+        // (undocumented)
+        permission: Permission;
+    }
+    // (undocumented)
+    export interface IGranteeUserGroupInfo {
+        // (undocumented)
+        userGroup: GdcUserGroup.IUserGroupItem;
+    }
+    // (undocumented)
+    export interface IGranteeUserInfo {
+        // (undocumented)
+        user: GdcUser.IUsersItem;
+    }
+    // (undocumented)
+    export type Permission = "read";
+}
+
 // @public (undocumented)
 export namespace GdcCatalog {
     // (undocumented)
@@ -2481,6 +2514,25 @@ export namespace GdcUser {
         uri: Uri;
     }
     // (undocumented)
+    export interface IUsersItem {
+        // (undocumented)
+        content: {
+            status?: UserListItemState;
+            firstname?: string;
+            lastname?: string;
+            email?: Email;
+            login?: Email;
+            phonenumber?: string;
+        };
+        // (undocumented)
+        links?: {
+            self: Uri;
+            roles?: Uri;
+            permissions?: Uri;
+            projectRelUri?: Uri;
+        };
+    }
+    // (undocumented)
     export interface IWrappedAccountSetting {
         // (undocumented)
         accountSetting: IAccountSetting;
@@ -2510,6 +2562,47 @@ export namespace GdcUser {
     export type ProjectPermission = "canAccessIntegration" | "canAccessWorkbench" | "canAssignUserWithRole" | "canCreateAnalyticalDashboard" | "canCreateAttribute" | "canCreateAttributeGroup" | "canCreateAttributeLabel" | "canCreateColumn" | "canCreateComment" | "canCreateDataSet" | "canCreateDomain" | "canCreateETLFile" | "canCreateExecutionContext" | "canCreateFact" | "canCreateFilterSettings" | "canCreateFolder" | "canCreateHelp" | "canCreateMetric" | "canCreateProjectDashboard" | "canCreateProjectTemplates" | "canCreatePrompt" | "canCreateReport" | "canCreateReportDefinition" | "canCreateRole" | "canCreateScheduledMail" | "canCreateTable" | "canCreateTableDataLoad" | "canCreateVisualization" | "canCreateVisualizationClass" | "canEnrichData" | "canExecute" | "canExecuteRaw" | "canExportDashboard" | "canExportReport" | "canInitData" | "canInviteUserToProject" | "canListInvitationsInProject" | "canListUsersInProject" | "canMaintainProject" | "canMaintainUserFilter" | "canMaintainUserFilterRelation" | "canManageACL" | "canManageAnalyticalDashboard" | "canManageAttribute" | "canManageAttributeGroup" | "canManageAttributeLabel" | "canManageColumn" | "canManageComment" | "canManageDataSet" | "canManageDomain" | "canManageETLFile" | "canManageExecutionContext" | "canManageFact" | "canManageFilterSettings" | "canManageFolder" | "canManageHelp" | "canManageIntegration" | "canManageIsProduction" | "canManageMetric" | "canManageProject" | "canManageProjectDashboard" | "canManagePrompt" | "canManagePublicAccessCode" | "canManageReport" | "canManageReportDefinition" | "canManageScheduledMail" | "canManageTable" | "canManageTableDataLoad" | "canManageTranslations" | "canManageVisualization" | "canRefreshData" | "canSeeOtherUserDetails" | "canSeePublicAccessCode" | "canSetLocale" | "canSetProjectVariables" | "canSetStyle" | "canSetUserVariables" | "canSuspendUserFromProject" | "canUploadNonProductionCSV" | "canValidateProject";
     // (undocumented)
     export type UserListItemState = "ACTIVE" | "INACTIVE" | "PENDING";
+}
+
+// @alpha (undocumented)
+export namespace GdcUserGroup {
+    export interface IGetUserGroupsParams {
+        limit?: number;
+        offset?: string;
+    }
+    export interface IGetUserGroupsResponse {
+        // (undocumented)
+        userGroups: {
+            paging: {
+                offset?: number | null;
+                limit: number;
+                next?: Uri | null;
+            };
+            items: IUserGroupItem[];
+        };
+    }
+    // (undocumented)
+    export interface IUserGroupItem {
+        // (undocumented)
+        content: {
+            name: string;
+            id?: string | null;
+            description?: string | null;
+            domain?: Uri | null;
+            project?: Uri | null;
+        };
+        // (undocumented)
+        links?: {
+            self: Uri;
+            members: Uri;
+            modifyMembers: Uri;
+        };
+        // (undocumented)
+        meta: {
+            created?: Timestamp;
+            updated?: Timestamp;
+        };
+    }
 }
 
 // @public (undocumented)

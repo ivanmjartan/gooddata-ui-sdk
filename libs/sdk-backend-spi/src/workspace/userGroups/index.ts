@@ -1,26 +1,34 @@
 // (C) 2019-2021 GoodData Corporation
 import { ObjRef } from "@gooddata/sdk-model";
 import { IPagedResource } from "../../common/paging";
-import { IWorkspaceUser } from "../users";
 
 /**
- * User
- * @public
+ * User Group
+ * @alpha
  */
 export interface IWorkspaceUserGroup {
     /**
      * Stored user group reference
      */
     ref: ObjRef;
-
-    name: string;
-    description: string;
+    /**
+     * Stored user group id (unfortunately some of bear API need group URI and some its id, so we need to keep both of them)
+     */
+    id?: string;
+    /**
+     * Group name
+     */
+    name?: string;
+    /**
+     * Group description
+     */
+    description?: string;
 }
 
 /**
  * Configuration options for querying user groups
  *
- * @public
+ * @alpha
  */
 export interface IWorkspaceUserGroupsQueryOptions {
     /**
@@ -45,7 +53,7 @@ export interface IWorkspaceUserGroupsQueryOptions {
 /**
  * Service to query user groups for current workspace
  *
- * @public
+ * @alpha
  */
 export interface IWorkspaceUserGroupsQuery {
     /**
@@ -53,11 +61,12 @@ export interface IWorkspaceUserGroupsQuery {
      *
      * @returns promise with a list of all user groups matching the specified options
      */
-    query(options: IWorkspaceUserGroupsQueryOptions): IPagedResource<IWorkspaceUserGroup>;
-    /**
-     * Starts the user groups query.
-     *
-     * @returns promise with a list of all user groups matching the specified options
-     */
-    queryMembers(groupRef: ObjRef): IPagedResource<IWorkspaceUser>;
+    query(options: IWorkspaceUserGroupsQueryOptions): Promise<IWorkspaceUserGroupsQueryResult>;
 }
+
+/**
+ * Paged result of user groups query. Last page of data returns empty items.
+ *
+ * @alpha
+ */
+export type IWorkspaceUserGroupsQueryResult = IPagedResource<IWorkspaceUserGroup>;

@@ -461,4 +461,21 @@ export namespace GdcUser {
             };
         };
     }
+
+    export interface IUsersItem {
+        content: {
+            status?: UserListItemState;
+            firstname?: string;
+            lastname?: string;
+            email?: Email;
+            login?: Email;
+            phonenumber?: string;
+        };
+        links?: {
+            self: Uri;
+            roles?: Uri;
+            permissions?: Uri;
+            projectRelUri?: Uri;
+        };
+    }
 }

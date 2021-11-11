@@ -42,6 +42,9 @@ export type AbsolutePresetType = "absolutePreset";
 export type AbsoluteType = "absolute";
 
 // @alpha
+export type AccessGranteeDetail = IUserAccess | IUserGroupAccess;
+
+// @alpha
 export type AllTimeType = "allTime";
 
 // @public
@@ -176,6 +179,12 @@ export interface IAccessControlAware {
 }
 
 // @alpha
+export interface IAccessGrantee {
+    // (undocumented)
+    granteeRef: ObjRef;
+}
+
+// @alpha
 export interface IAllTimeDateFilterOption extends IDateFilterOption {
     type: AllTimeType;
 }
@@ -210,6 +219,7 @@ export interface IAnalyticalWidget extends IBaseWidget, IWidgetDescription, IFil
 
 // @public
 export interface IAnalyticalWorkspace {
+    accessControl(): IWorkspaceAccessControlService;
     attributes(): IWorkspaceAttributesService;
     catalog(): IWorkspaceCatalogFactory;
     dashboards(): IWorkspaceDashboardsService;
@@ -224,6 +234,7 @@ export interface IAnalyticalWorkspace {
     permissions(): IWorkspacePermissionsService;
     settings(): IWorkspaceSettingsService;
     styling(): IWorkspaceStylingService;
+    userGroups(): IWorkspaceUserGroupsQuery;
     users(): IWorkspaceUsersQuery;
     // (undocumented)
     readonly workspace: string;
@@ -1701,6 +1712,18 @@ export interface ITotalDescriptor {
 export interface IUser extends IUser_2 {
 }
 
+// @alpha
+export interface IUserAccess {
+    // (undocumented)
+    user: IWorkspaceUser;
+}
+
+// @alpha
+export interface IUserGroupAccess {
+    // (undocumented)
+    userGroup: IWorkspaceUserGroup;
+}
+
 // @public
 export interface IUserService {
     getUser(): Promise<IUser>;
@@ -1779,6 +1802,16 @@ export interface IWidgetWithLayoutPath<TWidget = IDashboardWidget> {
     path: LayoutPath;
     // (undocumented)
     widget: TWidget;
+}
+
+// @alpha
+export interface IWorkspaceAccessControlService {
+    // (undocumented)
+    getAccessList(sharedObject: ObjRef): Promise<AccessGranteeDetail[]>;
+    // (undocumented)
+    grantAccess(sharedObject: ObjRef, grantees: IAccessGrantee[]): Promise<void>;
+    // (undocumented)
+    revokeAccess(sharedObject: ObjRef, grantess: IAccessGrantee[]): Promise<void>;
 }
 
 // @public
@@ -1990,16 +2023,45 @@ export interface IWorkspaceUser {
     uri: string;
 }
 
+// @alpha
+export interface IWorkspaceUserGroup {
+    description?: string;
+    id?: string;
+    name?: string;
+    ref: ObjRef;
+}
+
+// @alpha
+export interface IWorkspaceUserGroupsQuery {
+    query(options: IWorkspaceUserGroupsQueryOptions): Promise<IWorkspaceUserGroupsQueryResult>;
+}
+
+// @alpha
+export interface IWorkspaceUserGroupsQueryOptions {
+    limit?: number;
+    offset?: number;
+    search?: string;
+}
+
+// @alpha
+export type IWorkspaceUserGroupsQueryResult = IPagedResource<IWorkspaceUserGroup>;
+
 // @public
 export interface IWorkspaceUsersQuery {
+    query(): Promise<IWorkspaceUsersQueryResult>;
     queryAll(): Promise<IWorkspaceUser[]>;
     withOptions(options: IWorkspaceUsersQueryOptions): IWorkspaceUsersQuery;
 }
 
 // @public
 export interface IWorkspaceUsersQueryOptions {
+    limit?: number;
+    offset?: number;
     search?: string;
 }
+
+// @public
+export type IWorkspaceUsersQueryResult = IPagedResource<IWorkspaceUser>;
 
 // @alpha
 export type KpiDrillDefinition = IDrillToLegacyDashboard;

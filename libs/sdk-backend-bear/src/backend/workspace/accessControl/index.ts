@@ -12,6 +12,7 @@ import { convertWorkspaceUserGroup } from "../../../convertors/fromBackend/UserG
 import { convertUsersItem } from "../../../convertors/fromBackend/UsersConverter";
 import isGranteeUserInfo = GdcAccessControl.isGranteeUserInfo;
 
+// TODO INE move to fromBackend convertors
 const convertGranteeItem = (item: GdcAccessControl.IGranteeEntry): AccessGranteeDetail => {
     if (isGranteeUserInfo(item.grantee)) {
         return {
@@ -24,7 +25,7 @@ const convertGranteeItem = (item: GdcAccessControl.IGranteeEntry): AccessGrantee
     }
 };
 
-export class BearWorkspaceAccessControlQuery implements IWorkspaceAccessControlService {
+export class BearWorkspaceAccessControlService implements IWorkspaceAccessControlService {
     constructor(private readonly authCall: BearAuthenticatedCallGuard, private readonly workspace: string) {}
 
     public async getAccessList(sharedObject: ObjRef): Promise<AccessGranteeDetail[]> {

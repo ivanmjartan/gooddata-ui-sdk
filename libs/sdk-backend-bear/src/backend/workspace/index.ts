@@ -35,7 +35,7 @@ import { BearWorkspaceAttributes } from "./attributes/index";
 import { BearWorkspaceFacts } from "./facts";
 import { userLoginMd5FromAuthenticatedPrincipal } from "../../utils/api";
 import { BearWorkspaceUserGroupsQuery } from "./userGroups";
-import { BearWorkspaceAccessControlQuery } from "./accessControl";
+import { BearWorkspaceAccessControlService } from "./accessControl";
 
 export class BearWorkspace implements IAnalyticalWorkspace {
     constructor(
@@ -127,6 +127,6 @@ export class BearWorkspace implements IAnalyticalWorkspace {
     }
 
     public accessControl(): IWorkspaceAccessControlService {
-        return new BearWorkspaceAccessControlQuery(this.authCall, this.workspace);
+        return new BearWorkspaceAccessControlService(this.authCall, this.workspace);
     }
 }

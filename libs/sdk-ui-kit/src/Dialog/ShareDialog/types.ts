@@ -1,5 +1,5 @@
 // (C) 2021 GoodData Corporation
-import { IAccessControlAware } from "@gooddata/sdk-backend-spi";
+import { IAccessControlAware, IAnalyticalBackend } from "@gooddata/sdk-backend-spi";
 import { ShareStatus } from "@gooddata/sdk-backend-spi";
 import { IAuditableUsers, ObjRef } from "@gooddata/sdk-model";
 
@@ -15,6 +15,8 @@ export interface ISharingApplyPayload {
  * @internal
  */
 export interface IShareDialogProps {
+    backend: IAnalyticalBackend;
+    workspace: string;
     sharedObject: IAccessControlAware & IAuditableUsers;
     currentUserRef: ObjRef;
     locale?: string;

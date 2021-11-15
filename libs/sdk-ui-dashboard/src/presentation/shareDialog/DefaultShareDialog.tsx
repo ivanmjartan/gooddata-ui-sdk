@@ -7,7 +7,7 @@ import { IShareDialogProps } from "./types";
  * @alpha
  */
 export const DefaultShareDialog = (props: IShareDialogProps): JSX.Element | null => {
-    const { isVisible, sharedObject, currentUserRef, onApply, onCancel } = props;
+    const { workspace, backend, isVisible, sharedObject, currentUserRef, onApply, onCancel } = props;
 
     if (!isVisible) {
         return null;
@@ -15,6 +15,8 @@ export const DefaultShareDialog = (props: IShareDialogProps): JSX.Element | null
 
     return (
         <ShareDialog
+            backend={backend}
+            workspace={workspace}
             sharedObject={sharedObject}
             currentUserRef={currentUserRef}
             onApply={onApply}

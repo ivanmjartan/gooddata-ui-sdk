@@ -12,6 +12,7 @@ import { Component } from 'react';
 import { CSSProperties } from 'react';
 import { FC } from 'react';
 import { IAccessControlAware } from '@gooddata/sdk-backend-spi';
+import { IAnalyticalBackend } from '@gooddata/sdk-backend-spi';
 import { IAuditableUsers } from '@gooddata/sdk-model';
 import { IntlShape } from 'react-intl';
 import { ISeparators } from '@gooddata/sdk-ui';
@@ -2535,6 +2536,8 @@ export interface IShareDialogBaseProps {
 // @internal (undocumented)
 export interface IShareDialogProps {
     // (undocumented)
+    backend: IAnalyticalBackend;
+    // (undocumented)
     currentUserRef: ObjRef;
     // (undocumented)
     locale?: string;
@@ -2544,6 +2547,8 @@ export interface IShareDialogProps {
     onCancel: () => void;
     // (undocumented)
     sharedObject: IAccessControlAware & IAuditableUsers;
+    // (undocumented)
+    workspace: string;
 }
 
 // @internal (undocumented)

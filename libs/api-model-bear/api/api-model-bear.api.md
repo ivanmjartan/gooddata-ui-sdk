@@ -43,6 +43,8 @@ export namespace GdcAccessControl {
         user: GdcUser.IUsersItem;
     }
     // (undocumented)
+    export function isGranteeUserInfo(grantee: IGranteeUserInfo | IGranteeUserGroupInfo): grantee is IGranteeUserInfo;
+    // (undocumented)
     export type Permission = "read";
 }
 

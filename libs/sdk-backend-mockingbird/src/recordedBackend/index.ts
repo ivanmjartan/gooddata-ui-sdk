@@ -36,6 +36,8 @@ import {
     IOrganizations,
     IDateFilterConfigsQueryResult,
     IUser,
+    IWorkspaceUserGroupsQuery,
+    IWorkspaceAccessControlService,
 } from "@gooddata/sdk-backend-spi";
 import { IColorPalette, idRef } from "@gooddata/sdk-model";
 import { RecordedExecutionFactory } from "./execution";
@@ -207,6 +209,12 @@ function recordedWorkspace(
             return recordedPermissionsFactory();
         },
         users(): IWorkspaceUsersQuery {
+            throw new NotSupported("not supported");
+        },
+        userGroups(): IWorkspaceUserGroupsQuery {
+            throw new NotSupported("not supported");
+        },
+        accessControl(): IWorkspaceAccessControlService {
             throw new NotSupported("not supported");
         },
     };

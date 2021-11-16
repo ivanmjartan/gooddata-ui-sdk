@@ -9,14 +9,15 @@ import { IAddGranteeSelectProps, ISelectOption } from "./types";
 import { mapWorkspaceUserToGrantee } from "../shareDialogMappers";
 import { areObjRefsEqual } from "@gooddata/sdk-model";
 import { getGranteeLabel } from "./utils";
+import debounce from "debounce-promise";
 //import { getGranteeLabel, notInArrayFilter } from './utils';
 // import { areObjRefsEqual } from '@gooddata/sdk-model';
 
 /* import throttle from "lodash/throttle";
 
 // import { getGranteeItemTestId } from "./utils";
-
-const SEARCH_INTERVAL = 400; */
+*/
+const SEARCH_INTERVAL = 400;
 
 /**
  * @internal
@@ -28,10 +29,10 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
     const workspace = useWorkspaceStrict();
 
     const intl = useIntl();
-    const selectRef = useRef(null);
+    const selectRef = useRef<AsyncSelect<ISelectOption, false>>(null);
 
     useEffect(() => {
-        selectRef.current.focus();
+        selectRef?.current.focus();
     }, []);
 
     const onSelect = useCallback(
@@ -41,10 +42,6 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
         },
         [onSelectGrantee],
     );
-
-    const onInputChange = useCallback(() => {
-        selectRef.current.select.getNextFocusedOption = () => false;
-    }, []);
 
     const noOptionsMessage = useMemo(
         () => () => {
@@ -84,22 +81,26 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
 
     const loadOptions = useMemo(
         () =>
-            async (inputValue: string): Promise<ISelectOption[]> => {
-                let loader = backend.workspace(workspace).users();
-                if (inputValue) {
-                    loader = loader.withOptions({ search: `%${inputValue}` });
-                }
-                const workspaceUsers = await loader.queryAll();
+            debounce(
+                async (inputValue: string): Promise<ISelectOption[]> => {
+                    let loader = backend.workspace(workspace).users();
+                    if (inputValue) {
+                        loader = loader.withOptions({ search: `%${inputValue}` });
+                    }
+                    const workspaceUsers = await loader.queryAll();
 
-                return workspaceUsers.map((user) => {
-                    const grantee = mapWorkspaceUserToGrantee(user);
+                    return workspaceUsers.map((user) => {
+                        const grantee = mapWorkspaceUserToGrantee(user);
 
-                    return {
-                        label: getGranteeLabel(grantee, intl),
-                        value: mapWorkspaceUserToGrantee(user),
-                    };
-                });
-            },
+                        return {
+                            label: getGranteeLabel(grantee, intl),
+                            value: mapWorkspaceUserToGrantee(user),
+                        };
+                    });
+                },
+                SEARCH_INTERVAL,
+                { leading: true },
+            ),
         [backend, workspace, intl],
     );
 
@@ -114,7 +115,6 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
         <div className="gd-share-dialog-content-select">
             <AsyncSelect
                 ref={selectRef}
-                onInputChange={onInputChange}
                 defaultMenuIsOpen={true}
                 classNamePrefix="gd-share-dialog"
                 components={{ DropdownIndicator, IndicatorSeparator, Input: InputRendered, Option }}

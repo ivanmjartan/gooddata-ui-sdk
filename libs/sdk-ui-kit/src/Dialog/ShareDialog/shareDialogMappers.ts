@@ -1,13 +1,27 @@
 // (C) 2021 GoodData Corporation
 import { areObjRefsEqual, IUser, ObjRef } from "@gooddata/sdk-model";
 import { GranteeItem, IGranteeGroupAll, IGranteeUser, IGranteeUserInactive } from "./ShareDialogBase/types";
-import { ShareStatus } from "@gooddata/sdk-backend-spi";
+import { IWorkspaceUser, ShareStatus } from "@gooddata/sdk-backend-spi";
 import { notInArrayFilter, GranteeGroupAll, InactiveOwner } from "./ShareDialogBase/utils";
 
 /**
  * @internal
  */
-export const mapUserFullName = (user: IUser): string => {
+export const mapWorkspaceUserToGrantee = (user: IWorkspaceUser): IGranteeUser => {
+    return {
+        type: "user",
+        id: user.ref,
+        name: mapUserFullName(user),
+        email: user.email,
+        isOwner: false,
+        isCurrentUser: false, //areObjRefsEqual(user.ref, currentUserRef),
+    };
+};
+
+/**
+ * @internal
+ */
+export const mapUserFullName = (user: IUser | IWorkspaceUser): string => {
     if (user.fullName) {
         return user.fullName;
     }

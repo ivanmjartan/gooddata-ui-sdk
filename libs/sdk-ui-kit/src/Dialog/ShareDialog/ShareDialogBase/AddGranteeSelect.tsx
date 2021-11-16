@@ -1,15 +1,31 @@
 // (C) 2021 GoodData Corporation
 import React, { useCallback, useEffect, useMemo, useRef } from "react";
+import { useBackendStrict, useWorkspaceStrict } from "@gooddata/sdk-ui";
+
 import { useIntl } from "react-intl";
-import Select, { ValueType, components as ReactSelectComponents, InputProps } from "react-select";
+import { ValueType, components as ReactSelectComponents, InputProps } from "react-select";
+import AsyncSelect from "react-select/async";
 import { IAddGranteeSelectProps, ISelectOption } from "./types";
-import { getGranteeItemTestId } from "./utils";
+import { mapWorkspaceUserToGrantee } from "../shareDialogMappers";
+import { areObjRefsEqual } from "@gooddata/sdk-model";
+import { getGranteeLabel } from "./utils";
+//import { getGranteeLabel, notInArrayFilter } from './utils';
+// import { areObjRefsEqual } from '@gooddata/sdk-model';
+
+/* import throttle from "lodash/throttle";
+
+// import { getGranteeItemTestId } from "./utils";
+
+const SEARCH_INTERVAL = 400; */
 
 /**
  * @internal
  */
 export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
-    const { granteesOption, onSelectGrantee } = props;
+    const { addedGrantees, onSelectGrantee } = props;
+
+    const backend = useBackendStrict();
+    const workspace = useWorkspaceStrict();
 
     const intl = useIntl();
     const selectRef = useRef(null);
@@ -56,9 +72,9 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
     };
 
     const Option = (props: any): JSX.Element => {
-        const { value } = props;
-        const idStyle = getGranteeItemTestId(value, "option");
-
+        // const { value } = props;
+        // const idStyle = getGranteeItemTestId(value, "option");
+        const idStyle = "aa";
         return (
             <div className={idStyle}>
                 <ReactSelectComponents.Option {...props} />
@@ -66,22 +82,51 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
         );
     };
 
+    const loadOptions = useMemo(
+        () =>
+            async (inputValue: string): Promise<ISelectOption[]> => {
+                let loader = backend.workspace(workspace).users();
+                if (inputValue) {
+                    loader = loader.withOptions({ search: `%${inputValue}` });
+                }
+                const workspaceUsers = await loader.queryAll();
+
+                return workspaceUsers.map((user) => {
+                    const grantee = mapWorkspaceUserToGrantee(user);
+
+                    return {
+                        label: getGranteeLabel(grantee, intl),
+                        value: mapWorkspaceUserToGrantee(user),
+                    };
+                });
+            },
+        [backend, workspace, intl],
+    );
+
+    const filterOption = (option: any) => {
+        const grantee = option.value;
+        return !addedGrantees.some((g) => {
+            return areObjRefsEqual(g.id, grantee.id);
+        });
+    };
+
     return (
         <div className="gd-share-dialog-content-select">
-            <Select
+            <AsyncSelect
                 ref={selectRef}
                 onInputChange={onInputChange}
                 defaultMenuIsOpen={true}
                 classNamePrefix="gd-share-dialog"
                 components={{ DropdownIndicator, IndicatorSeparator, Input: InputRendered, Option }}
-                options={granteesOption}
-                defaultValue={undefined}
+                loadOptions={loadOptions}
+                defaultOptions={true}
                 placeholder={intl.formatMessage({
                     id: "shareDialog.share.grantee.add.search.placeholder",
                 })}
                 noOptionsMessage={noOptionsMessage}
                 onChange={onSelect}
                 value={null}
+                filterOption={filterOption}
             />
         </div>
     );

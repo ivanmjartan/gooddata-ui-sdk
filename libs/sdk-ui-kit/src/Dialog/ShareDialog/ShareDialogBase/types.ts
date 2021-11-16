@@ -171,5 +171,5 @@ export interface ISelectOption {
  */
 export interface IAddGranteeSelectProps {
     onSelectGrantee: (grantee: GranteeItem) => void;
-    granteesOption: ISelectOption[];
+    addedGrantees: GranteeItem[];
 }

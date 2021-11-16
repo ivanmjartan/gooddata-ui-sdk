@@ -9,13 +9,23 @@ import {
     mapShareStatusToGroupAll,
     mapUserToInactiveGrantee,
 } from "./shareDialogMappers";
+import {
+    BackendProvider,
+    IntlWrapper,
+    useBackendStrict,
+    useWorkspaceStrict,
+    WorkspaceProvider,
+} from "@gooddata/sdk-ui";
 
 /**
  * @internal
  */
 export const ShareDialog: React.FC<IShareDialogProps> = (props) => {
-    const { sharedObject, currentUserRef, onApply, onCancel } = props;
+    const { backend, workspace, locale, sharedObject, currentUserRef, onApply, onCancel } = props;
     const { createdBy, shareStatus } = sharedObject;
+
+    const effectiveBackend = useBackendStrict(backend);
+    const effectiveWorkspace = useWorkspaceStrict(workspace);
 
     const owner = useMemo(() => {
         if (sharedObject.createdBy) {
@@ -41,5 +51,18 @@ export const ShareDialog: React.FC<IShareDialogProps> = (props) => {
         [grantees, onApply],
     );
 
-    return <ShareDialogBase owner={owner} grantees={grantees} onCancel={onCancel} onSubmit={onSubmit} />;
+    return (
+        <IntlWrapper locale={locale}>
+            <BackendProvider backend={effectiveBackend}>
+                <WorkspaceProvider workspace={effectiveWorkspace}>
+                    <ShareDialogBase
+                        owner={owner}
+                        grantees={grantees}
+                        onCancel={onCancel}
+                        onSubmit={onSubmit}
+                    />
+                </WorkspaceProvider>
+            </BackendProvider>
+        </IntlWrapper>
+    );
 };

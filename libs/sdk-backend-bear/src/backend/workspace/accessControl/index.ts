@@ -14,13 +14,13 @@ import isGranteeUserInfo = GdcAccessControl.isGranteeUserInfo;
 
 // TODO INE move to fromBackend convertors
 const convertGranteeItem = (item: GdcAccessControl.IGranteeEntry): AccessGranteeDetail => {
-    if (isGranteeUserInfo(item.grantee)) {
+    if (isGranteeUserInfo(item.aclEntry.grantee)) {
         return {
-            user: convertUsersItem(item.grantee.user),
+            user: convertUsersItem(item.aclEntry.grantee.user),
         };
     } else {
         return {
-            userGroup: convertWorkspaceUserGroup(item.grantee.userGroup),
+            userGroup: convertWorkspaceUserGroup(item.aclEntry.grantee.userGroup),
         };
     }
 };

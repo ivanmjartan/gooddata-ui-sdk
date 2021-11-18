@@ -28,9 +28,10 @@ export namespace GdcAccessControl {
     // (undocumented)
     export interface IGranteeEntry {
         // (undocumented)
-        grantee: IGranteeUserInfo | IGranteeUserGroupInfo;
-        // (undocumented)
-        permission: Permission;
+        aclEntry: {
+            permission: Permission;
+            grantee: IGranteeUserInfo | IGranteeUserGroupInfo;
+        };
     }
     // (undocumented)
     export interface IGranteeUserGroupInfo {

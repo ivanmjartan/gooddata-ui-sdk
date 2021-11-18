@@ -495,8 +495,9 @@ export class ProjectModule {
         options: GdcAccessControl.IGetGranteesParams,
     ): Promise<GdcAccessControl.IGetGranteesResponse> {
         const { permission = "read" } = options;
+        const apiUri = objectUri.replace("/md/", "/projects/");
         return this.xhr.getParsed<GdcAccessControl.IGetGranteesResponse>(
-            `${objectUri}/grantees?permission=${permission}`,
+            `${apiUri}/grantees?permission=${permission}`,
         );
     }
 
@@ -515,7 +516,7 @@ export class ProjectModule {
         }
     }
 
-    public addGrantees(objectUri: string, granteeUris: string[]): Promise<void> {
+    public addGrantees(objectUri: string, granteeUris: string[]): Promise<any> {
         const addGranteesRequest = {
             granteeURIs: {
                 items: this.convertGrantees(granteeUris),
@@ -523,13 +524,10 @@ export class ProjectModule {
         };
         return this.xhr
             .post(`${objectUri}/grantees/add`, { body: { ...addGranteesRequest } })
-            .then((apiResponse: ApiResponse) => {
-                return apiResponse.getData();
-            })
             .catch(this.handleGranteesChangeError);
     }
 
-    public removeGrantees(objectUri: string, granteeUris: string[] = []): Promise<void> {
+    public removeGrantees(objectUri: string, granteeUris: string[] = []): Promise<any> {
         const removeGranteesRequest = {
             granteeURIs: {
                 items: this.convertGrantees(granteeUris),
@@ -538,9 +536,6 @@ export class ProjectModule {
 
         return this.xhr
             .post(`${objectUri}/grantees/remove`, { body: { ...removeGranteesRequest } })
-            .then((apiResponse: ApiResponse) => {
-                return apiResponse.getData();
-            })
             .catch(this.handleGranteesChangeError);
     }
 }

@@ -23,8 +23,10 @@ export namespace GdcAccessControl {
         userGroup: GdcUserGroup.IUserGroupItem;
     }
     export interface IGranteeEntry {
-        permission: Permission;
-        grantee: IGranteeUserInfo | IGranteeUserGroupInfo;
+        aclEntry: {
+            permission: Permission;
+            grantee: IGranteeUserInfo | IGranteeUserGroupInfo;
+        };
     }
     /**
      * Request params for GET /gdc/userGroups?project=\{projectId\} /gdc/projects/\{projectId\}/obj/\{objectId\}/grantees

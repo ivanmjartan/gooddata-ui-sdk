@@ -32,10 +32,7 @@ export interface IWorkspaceUserGroup {
  */
 export interface IWorkspaceUserGroupsQueryOptions {
     /**
-     * Structured prefix filter
-     * - disjunctions are separated by colon (',')
-     * - conjunctions are separated by space (' ')
-     * - basic form match, if it matches as prefix to any of firstName, lastName and email
+     * String prefix filter
      */
     search?: string;
 

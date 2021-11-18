@@ -40,8 +40,7 @@ export class BearWorkspaceUserGroupsQuery implements IWorkspaceUserGroupsQuery {
     }
 
     public async query(options: IWorkspaceUserGroupsQueryOptions): Promise<IWorkspaceUserGroupsQueryResult> {
-        // TODO INE increase limit to 100 once tested
-        const { offset = 0, limit = 1, search } = options;
+        const { offset = 0, limit = 100, search } = options;
         let userGroups: GdcUserGroup.IUserGroupItem[] = await this.queryAllPages(limit);
         if (search) {
             const lowercaseSearch = search.toLocaleLowerCase();

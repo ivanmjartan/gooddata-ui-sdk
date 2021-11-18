@@ -37,11 +37,19 @@ export class BearWorkspaceAccessControlService implements IWorkspaceAccessContro
         return items.map(convertGranteeItem);
     }
 
-    public grantAccess(_sharedObject: ObjRef, _grantees: IAccessGrantee[]): Promise<void> {
-        return new Promise((resolve) => resolve());
+    public async grantAccess(sharedObject: ObjRef, grantees: IAccessGrantee[]): Promise<void> {
+        const objectUri = await objRefToUri(sharedObject, this.workspace, this.authCall);
+        const granteeUris = await Promise.all(
+            grantees.map((grantee) => objRefToUri(grantee.granteeRef, this.workspace, this.authCall)),
+        );
+        return this.authCall((sdk) => sdk.project.addGrantees(objectUri, granteeUris));
     }
 
-    public revokeAccess(_sharedObject: ObjRef, _grantess: IAccessGrantee[]): Promise<void> {
-        return new Promise((resolve) => resolve());
+    public async revokeAccess(sharedObject: ObjRef, grantees: IAccessGrantee[]): Promise<void> {
+        const objectUri = await objRefToUri(sharedObject, this.workspace, this.authCall);
+        const granteeUris = await Promise.all(
+            grantees.map((grantee) => objRefToUri(grantee.granteeRef, this.workspace, this.authCall)),
+        );
+        return this.authCall((sdk) => sdk.project.removeGrantees(objectUri, granteeUris));
     }
 }

@@ -499,4 +499,48 @@ export class ProjectModule {
             `${objectUri}/grantees?permission=${permission}`,
         );
     }
+
+    private convertGrantees(granteeUris: string[] = []) {
+        return granteeUris.map((granteeUri) => ({
+            aclEntryURI: {
+                permission: "read",
+                grantee: granteeUri,
+            },
+        }));
+    }
+
+    private handleGranteesChangeError(error: any) {
+        if (error?.response?.status !== 200) {
+            throw error;
+        }
+    }
+
+    public addGrantees(objectUri: string, granteeUris: string[]): Promise<void> {
+        const addGranteesRequest = {
+            granteeURIs: {
+                items: this.convertGrantees(granteeUris),
+            },
+        };
+        return this.xhr
+            .post(`${objectUri}/grantees/add`, { body: { ...addGranteesRequest } })
+            .then((apiResponse: ApiResponse) => {
+                return apiResponse.getData();
+            })
+            .catch(this.handleGranteesChangeError);
+    }
+
+    public removeGrantees(objectUri: string, granteeUris: string[] = []): Promise<void> {
+        const removeGranteesRequest = {
+            granteeURIs: {
+                items: this.convertGrantees(granteeUris),
+            },
+        };
+
+        return this.xhr
+            .post(`${objectUri}/grantees/remove`, { body: { ...removeGranteesRequest } })
+            .then((apiResponse: ApiResponse) => {
+                return apiResponse.getData();
+            })
+            .catch(this.handleGranteesChangeError);
+    }
 }

@@ -3,20 +3,25 @@ import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import { useBackendStrict, useWorkspaceStrict } from "@gooddata/sdk-ui";
 
 import { useIntl } from "react-intl";
-import { ValueType, components as ReactSelectComponents, InputProps, OptionProps } from "react-select";
+import { ValueType } from "react-select";
 import AsyncSelect from "react-select/async";
-import { IAddGranteeSelectProps, IGroupedOption, ISelectOption, isGranteeItem, isGranteeUser } from "./types";
+import { IAddGranteeSelectProps, IGroupedOption, ISelectOption } from "./types";
 import { mapWorkspaceUserGroupToGrantee, mapWorkspaceUserToGrantee } from "../shareDialogMappers";
 import { areObjRefsEqual } from "@gooddata/sdk-model";
-import { getGranteeItemTestId, getGranteeLabel } from "./utils";
+import { getGranteeLabel } from "./utils";
 import debounce from "debounce-promise";
 import {
     IAnalyticalBackend,
     IWorkspaceUserGroupsQueryOptions,
     IWorkspaceUsersQueryOptions,
 } from "@gooddata/sdk-backend-spi";
-import { Typography } from "../../../Typography";
-import { LoadingMask } from "../../../LoadingMask";
+import {
+    EmptyRenderer,
+    GroupHeadingRenderer,
+    InputRendered,
+    LoadingMessageRenderer,
+    OptionRenderer,
+} from "./AsyncSelectComponents";
 
 const SEARCH_INTERVAL = 400;
 
@@ -52,80 +57,6 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
         },
         [],
     );
-
-    const DropdownIndicator = (): JSX.Element => {
-        return null;
-    };
-
-    const IndicatorSeparator = (): JSX.Element => {
-        return null;
-    };
-
-    const InputRendered = (props: InputProps): JSX.Element => {
-        return (
-            <div className="gd-share-dialog-input s-gd-share-dialog-input">
-                <ReactSelectComponents.Input {...props} />
-            </div>
-        );
-    };
-
-    const LoadingMessage = () => {
-        return (
-            <div className="gd-share-dialog-loading-mask-container">
-                <LoadingMask size="small" />
-            </div>
-        );
-    };
-
-    const LoadingIndicator = (): JSX.Element => {
-        return null;
-    };
-
-    const Option = (props: OptionProps<ISelectOption, false>): JSX.Element => {
-        const { className, cx, isFocused, innerRef, innerProps, data } = props;
-
-        let sTestStyle = "";
-
-        if (isGranteeItem(data.value)) {
-            sTestStyle = getGranteeItemTestId(data.value, "option");
-        }
-
-        const componentStyle = cx(
-            {
-                option: true,
-                "option--is-focused": isFocused,
-            },
-            className,
-        );
-
-        const optionRenderer = (item: ISelectOption): JSX.Element => {
-            if (isGranteeUser(item.value)) {
-                return (
-                    <>
-                        {" "}
-                        {item.value.name} <span className={"option-email"}>{item.value.email}</span>{" "}
-                    </>
-                );
-            }
-
-            return <> {item.label} </>;
-        };
-
-        return (
-            <div ref={innerRef} className={`${componentStyle} ${sTestStyle}`} {...innerProps}>
-                <div className={"option-content"}>{optionRenderer(data)}</div>
-            </div>
-        );
-    };
-
-    const GroupHeading = (props: any): JSX.Element => {
-        const { label } = props.data;
-        return (
-            <div className={"gd-share-dialog-select-group-heading"}>
-                <Typography tagName="h3">{label}</Typography>
-            </div>
-        );
-    };
 
     const loadOptions = useMemo(
         () =>
@@ -209,13 +140,13 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
                 defaultMenuIsOpen={true}
                 classNamePrefix="gd-share-dialog"
                 components={{
-                    DropdownIndicator,
-                    IndicatorSeparator,
+                    DropdownIndicator: EmptyRenderer,
+                    IndicatorSeparator: EmptyRenderer,
                     Input: InputRendered,
-                    Option,
-                    GroupHeading,
-                    LoadingMessage,
-                    LoadingIndicator,
+                    Option: OptionRenderer,
+                    GroupHeading: GroupHeadingRenderer,
+                    LoadingMessage: LoadingMessageRenderer,
+                    LoadingIndicator: EmptyRenderer,
                 }}
                 loadOptions={loadOptions}
                 defaultOptions={true}

@@ -6,21 +6,23 @@ import { Timestamp, Uri } from "../aliases";
  */
 export namespace GdcUserGroup {
     export interface IUserGroupItem {
-        content: {
-            name: string;
-            id?: string | null;
-            description?: string | null;
-            domain?: Uri | null;
-            project?: Uri | null;
-        };
-        links?: {
-            self: Uri;
-            members: Uri;
-            modifyMembers: Uri;
-        };
-        meta: {
-            created?: Timestamp;
-            updated?: Timestamp;
+        userGroup: {
+            content: {
+                name: string;
+                id?: string | null;
+                description?: string | null;
+                domain?: Uri | null;
+                project?: Uri | null;
+            };
+            links?: {
+                self: Uri;
+                members: Uri;
+                modifyMembers: Uri;
+            };
+            meta: {
+                created?: Timestamp;
+                updated?: Timestamp;
+            };
         };
     }
     /**

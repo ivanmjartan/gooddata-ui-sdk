@@ -46,7 +46,7 @@ export class BearWorkspaceUserGroupsQuery implements IWorkspaceUserGroupsQuery {
         if (search) {
             const lowercaseSearch = search.toLocaleLowerCase();
             userGroups = userGroups.filter((userGroup) => {
-                const { name } = userGroup.content;
+                const { name } = userGroup.userGroup.content;
                 return name && name.toLowerCase().indexOf(lowercaseSearch) > -1;
             });
         }

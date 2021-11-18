@@ -2586,23 +2586,23 @@ export namespace GdcUserGroup {
     // (undocumented)
     export interface IUserGroupItem {
         // (undocumented)
-        content: {
-            name: string;
-            id?: string | null;
-            description?: string | null;
-            domain?: Uri | null;
-            project?: Uri | null;
-        };
-        // (undocumented)
-        links?: {
-            self: Uri;
-            members: Uri;
-            modifyMembers: Uri;
-        };
-        // (undocumented)
-        meta: {
-            created?: Timestamp;
-            updated?: Timestamp;
+        userGroup: {
+            content: {
+                name: string;
+                id?: string | null;
+                description?: string | null;
+                domain?: Uri | null;
+                project?: Uri | null;
+            };
+            links?: {
+                self: Uri;
+                members: Uri;
+                modifyMembers: Uri;
+            };
+            meta: {
+                created?: Timestamp;
+                updated?: Timestamp;
+            };
         };
     }
 }

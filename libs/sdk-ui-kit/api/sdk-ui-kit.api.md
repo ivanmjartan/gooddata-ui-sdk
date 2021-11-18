@@ -1906,6 +1906,8 @@ export interface ILoadingMaskProps {
     // (undocumented)
     height?: CSSProperties["height"];
     // (undocumented)
+    size?: SpinnerSize;
+    // (undocumented)
     width?: CSSProperties["width"];
 }
 
@@ -3110,6 +3112,9 @@ export class Spinner extends PureComponent<ISpinnerProps> {
     // (undocumented)
     render(): ReactNode;
 }
+
+// @internal (undocumented)
+export type SpinnerSize = "large" | "small";
 
 // @internal (undocumented)
 export const SubMenu: React_2.FC<ISubMenuProps>;

@@ -3,20 +3,21 @@ import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import { useBackendStrict, useWorkspaceStrict } from "@gooddata/sdk-ui";
 
 import { useIntl } from "react-intl";
-import { ValueType, components as ReactSelectComponents, InputProps } from "react-select";
+import { ValueType, components as ReactSelectComponents, InputProps, OptionProps } from "react-select";
 import AsyncSelect from "react-select/async";
-import { IAddGranteeSelectProps, ISelectOption } from "./types";
-import { mapWorkspaceUserToGrantee } from "../shareDialogMappers";
+import { IAddGranteeSelectProps, IGroupedOption, ISelectOption, isGranteeItem, isGranteeUser } from "./types";
+import { mapWorkspaceUserGroupToGrantee, mapWorkspaceUserToGrantee } from "../shareDialogMappers";
 import { areObjRefsEqual } from "@gooddata/sdk-model";
-import { getGranteeLabel } from "./utils";
+import { getGranteeItemTestId, getGranteeLabel } from "./utils";
 import debounce from "debounce-promise";
-//import { getGranteeLabel, notInArrayFilter } from './utils';
-// import { areObjRefsEqual } from '@gooddata/sdk-model';
+import {
+    IAnalyticalBackend,
+    IWorkspaceUserGroupsQueryOptions,
+    IWorkspaceUsersQueryOptions,
+} from "@gooddata/sdk-backend-spi";
+import { Typography } from "../../../Typography";
+import { LoadingMask } from "../../../LoadingMask";
 
-/* import throttle from "lodash/throttle";
-
-// import { getGranteeItemTestId } from "./utils";
-*/
 const SEARCH_INTERVAL = 400;
 
 /**
@@ -25,8 +26,8 @@ const SEARCH_INTERVAL = 400;
 export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
     const { addedGrantees, onSelectGrantee } = props;
 
-    const backend = useBackendStrict();
-    const workspace = useWorkspaceStrict();
+    const backend: IAnalyticalBackend = useBackendStrict();
+    const workspace: string = useWorkspaceStrict();
 
     const intl = useIntl();
     const selectRef = useRef<AsyncSelect<ISelectOption, false>>(null);
@@ -68,13 +69,60 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
         );
     };
 
-    const Option = (props: any): JSX.Element => {
-        // const { value } = props;
-        // const idStyle = getGranteeItemTestId(value, "option");
-        const idStyle = "aa";
+    const LoadingMessage = () => {
         return (
-            <div className={idStyle}>
-                <ReactSelectComponents.Option {...props} />
+            <div className="gd-share-dialog-loading-mask-container">
+                <LoadingMask size="small" />
+            </div>
+        );
+    };
+
+    const LoadingIndicator = (): JSX.Element => {
+        return null;
+    };
+
+    const Option = (props: OptionProps<ISelectOption, false>): JSX.Element => {
+        const { className, cx, isFocused, innerRef, innerProps, data } = props;
+
+        let sTestStyle = "";
+
+        if (isGranteeItem(data.value)) {
+            sTestStyle = getGranteeItemTestId(data.value, "option");
+        }
+
+        const componentStyle = cx(
+            {
+                option: true,
+                "option--is-focused": isFocused,
+            },
+            className,
+        );
+
+        const optionRenderer = (item: ISelectOption): JSX.Element => {
+            if (isGranteeUser(item.value)) {
+                return (
+                    <>
+                        {" "}
+                        {item.value.name} <span className={"option-email"}>{item.value.email}</span>{" "}
+                    </>
+                );
+            }
+
+            return <> {item.label} </>;
+        };
+
+        return (
+            <div ref={innerRef} className={`${componentStyle} ${sTestStyle}`} {...innerProps}>
+                <div className={"option-content"}>{optionRenderer(data)}</div>
+            </div>
+        );
+    };
+
+    const GroupHeading = (props: any): JSX.Element => {
+        const { label } = props.data;
+        return (
+            <div className={"gd-share-dialog-select-group-heading"}>
+                <Typography tagName="h3">{label}</Typography>
             </div>
         );
     };
@@ -82,21 +130,64 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
     const loadOptions = useMemo(
         () =>
             debounce(
-                async (inputValue: string): Promise<ISelectOption[]> => {
-                    let loader = backend.workspace(workspace).users();
+                async (inputValue: string): Promise<IGroupedOption[]> => {
+                    let usersOption: IWorkspaceUsersQueryOptions = {};
+                    let groupsOption: IWorkspaceUserGroupsQueryOptions = {};
+
                     if (inputValue) {
-                        loader = loader.withOptions({ search: `%${inputValue}` });
+                        usersOption = { ...usersOption, search: `%${inputValue}` };
+                        groupsOption = { ...groupsOption, search: `${inputValue}` };
                     }
-                    const workspaceUsers = await loader.queryAll();
 
-                    return workspaceUsers.map((user) => {
-                        const grantee = mapWorkspaceUserToGrantee(user);
+                    try {
+                        const workspaceUsersQuery = backend
+                            .workspace(workspace)
+                            .users()
+                            .withOptions(usersOption)
+                            .query();
+                        const workspaceGroupsQuery = backend
+                            .workspace(workspace)
+                            .userGroups()
+                            .query(groupsOption);
 
-                        return {
-                            label: getGranteeLabel(grantee, intl),
-                            value: mapWorkspaceUserToGrantee(user),
-                        };
-                    });
+                        const [workspaceUsers, workspaceGroups] = await Promise.all([
+                            workspaceUsersQuery,
+                            workspaceGroupsQuery,
+                        ]);
+
+                        const mappedUsers: ISelectOption[] = workspaceUsers.items.map((user) => {
+                            const granteeUser = mapWorkspaceUserToGrantee(user);
+
+                            return {
+                                label: getGranteeLabel(granteeUser, intl),
+                                value: granteeUser,
+                            };
+                        });
+
+                        const mappedGroups: ISelectOption[] = workspaceGroups.items.map((userGroup) => {
+                            const granteeGroup = mapWorkspaceUserGroupToGrantee(userGroup);
+
+                            return {
+                                label: getGranteeLabel(granteeGroup, intl),
+                                value: granteeGroup,
+                            };
+                        });
+
+                        return [
+                            {
+                                label: "Groups",
+                                options: mappedGroups,
+                            },
+                            {
+                                label: "Users",
+                                options: mappedUsers,
+                            },
+                        ];
+                    } catch (ex) {
+                        // eslint-disable-next-line no-console
+                        console.log(ex);
+                        return [];
+                    }
                 },
                 SEARCH_INTERVAL,
                 { leading: true },
@@ -117,7 +208,15 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
                 ref={selectRef}
                 defaultMenuIsOpen={true}
                 classNamePrefix="gd-share-dialog"
-                components={{ DropdownIndicator, IndicatorSeparator, Input: InputRendered, Option }}
+                components={{
+                    DropdownIndicator,
+                    IndicatorSeparator,
+                    Input: InputRendered,
+                    Option,
+                    GroupHeading,
+                    LoadingMessage,
+                    LoadingIndicator,
+                }}
                 loadOptions={loadOptions}
                 defaultOptions={true}
                 placeholder={intl.formatMessage({

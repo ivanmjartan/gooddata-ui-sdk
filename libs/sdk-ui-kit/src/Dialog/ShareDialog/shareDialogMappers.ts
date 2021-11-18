@@ -1,7 +1,13 @@
 // (C) 2021 GoodData Corporation
 import { areObjRefsEqual, IUser, ObjRef } from "@gooddata/sdk-model";
-import { GranteeItem, IGranteeGroupAll, IGranteeUser, IGranteeUserInactive } from "./ShareDialogBase/types";
-import { IWorkspaceUser, ShareStatus } from "@gooddata/sdk-backend-spi";
+import {
+    GranteeItem,
+    IGranteeGroup,
+    IGranteeGroupAll,
+    IGranteeUser,
+    IGranteeUserInactive,
+} from "./ShareDialogBase/types";
+import { IWorkspaceUser, IWorkspaceUserGroup, ShareStatus } from "@gooddata/sdk-backend-spi";
 import { notInArrayFilter, GranteeGroupAll, InactiveOwner } from "./ShareDialogBase/utils";
 
 /**
@@ -15,6 +21,14 @@ export const mapWorkspaceUserToGrantee = (user: IWorkspaceUser): IGranteeUser =>
         email: user.email,
         isOwner: false,
         isCurrentUser: false, //areObjRefsEqual(user.ref, currentUserRef),
+    };
+};
+
+export const mapWorkspaceUserGroupToGrantee = (userGroup: IWorkspaceUserGroup): IGranteeGroup => {
+    return {
+        id: userGroup.ref,
+        type: "group",
+        name: userGroup.name,
     };
 };
 
@@ -70,6 +84,8 @@ export const mapGranteesToShareStatus = (
     if (withAdded.some((g) => areObjRefsEqual(g.id, GranteeGroupAll.id))) {
         return "public";
     }
+
+    // check na delku >0 return shared
 
     return "private";
 };

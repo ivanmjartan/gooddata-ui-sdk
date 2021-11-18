@@ -84,12 +84,62 @@
         padding-bottom: 0;
 
         .gd-share-dialog__option {
-            padding-top: 7px;
-            padding-bottom: 7px;
+            padding: 7px 12px;
         }
 
         .gd-share-dialog__option--is-focused {
             background: $is-focused-background;
+        }
+
+        .option-content {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            padding-left: 5px;
+            cursor: default;
+        }
+
+        .option-email {
+            cursor: default;
+            color: var(--gd-palette-complementary-6, #94a1ad);
+        }
+    }
+
+    .gd-share-dialog__group {
+        padding-bottom: 0px;
+    }
+
+    .gd-share-dialog-loading-mask-container {
+        display: flex;
+        height: 38px;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.gd-share-dialog-select-group-heading {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 12px;
+    margin-right: 12px;
+
+    h3 {
+        flex-grow: 2;
+        position: relative;
+        overflow: hidden;
+        font-size: 11px;
+        text-transform: uppercase;
+        color: $gd-color-state-blank;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            display: inline-block;
+            width: 100%;
+            height: 0;
+            margin-left: 10px;
+            border-top: 1px solid $gd-border-color;
         }
     }
 }

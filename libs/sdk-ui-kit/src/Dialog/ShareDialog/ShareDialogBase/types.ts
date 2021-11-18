@@ -50,6 +50,13 @@ export interface IGranteeUserInactive extends IGranteeBase {
 /**
  * @internal
  */
+export const isGranteeUserInactive = (obj: unknown): obj is IGranteeUserInactive => {
+    return !isEmpty(obj) && (obj as IGranteeUserInactive).type === "inactive_user";
+};
+
+/**
+ * @internal
+ */
 export interface IGranteeGroup extends IGranteeBase {
     type: "group";
     name: string;
@@ -75,6 +82,16 @@ export interface IGranteeGroupAll extends IGranteeBase {
  */
 export const isGranteeGroupAll = (obj: unknown): obj is IGranteeGroup => {
     return !isEmpty(obj) && (obj as IGranteeGroupAll).type === "groupAll";
+};
+
+/**
+ * @internal
+ */
+export const isGranteeItem = (obj: unknown): obj is GranteeItem => {
+    return (
+        !isEmpty(obj) &&
+        (isGranteeGroupAll(obj) || isGranteeGroup(obj) || isGranteeUserInactive(obj) || isGranteeUser(obj))
+    );
 };
 
 // Components types
@@ -156,6 +173,14 @@ export interface IGranteesListProps {
     mode: DialogModeType;
     grantees: GranteeItem[];
     onDelete: (grantee: GranteeItem) => void;
+}
+
+/**
+ * @internal
+ */
+export interface IGroupedOption {
+    label: string;
+    options: ISelectOption[];
 }
 
 /**

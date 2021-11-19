@@ -4,7 +4,7 @@ import { ObjRef } from "@gooddata/sdk-model";
 
 import { IWorkspaceUser } from "../users";
 import { IWorkspaceUserGroup } from "../userGroups";
-import { isEmpty } from "lodash";
+import isEmpty from "lodash/isEmpty";
 
 /**
  * User having access to the object.

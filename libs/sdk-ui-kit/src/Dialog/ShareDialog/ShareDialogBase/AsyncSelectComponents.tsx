@@ -1,6 +1,5 @@
 // (C) 2021 GoodData Corporation
-
-import React from "react-intl";
+import React from "react";
 import { components as ReactSelectComponents, InputProps, OptionProps } from "react-select";
 import { Typography } from "../../../Typography";
 import { LoadingMask } from "../../../LoadingMask";

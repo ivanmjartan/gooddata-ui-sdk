@@ -1,20 +1,21 @@
 // (C) 2021 GoodData Corporation
 import React, { useCallback, useEffect, useMemo, useRef } from "react";
-import { useBackendStrict, useWorkspaceStrict } from "@gooddata/sdk-ui";
-
+import debounce from "debounce-promise";
 import { useIntl } from "react-intl";
 import { ValueType } from "react-select";
 import AsyncSelect from "react-select/async";
-import { IAddGranteeSelectProps, IGroupedOption, ISelectOption } from "./types";
-import { mapWorkspaceUserGroupToGrantee, mapWorkspaceUserToGrantee } from "../shareDialogMappers";
-import { areObjRefsEqual } from "@gooddata/sdk-model";
-import { getGranteeLabel } from "./utils";
-import debounce from "debounce-promise";
+import { useBackendStrict, useWorkspaceStrict } from "@gooddata/sdk-ui";
 import {
     IAnalyticalBackend,
     IWorkspaceUserGroupsQueryOptions,
     IWorkspaceUsersQueryOptions,
 } from "@gooddata/sdk-backend-spi";
+import { areObjRefsEqual } from "@gooddata/sdk-model";
+
+import { IAddGranteeSelectProps, IGroupedOption, ISelectOption } from "./types";
+import { mapWorkspaceUserGroupToGrantee, mapWorkspaceUserToGrantee } from "../shareDialogMappers";
+import { getGranteeLabel } from "./utils";
+
 import {
     EmptyRenderer,
     GroupHeadingRenderer,

@@ -24,7 +24,7 @@
         transition-duration: 0.25s;
         transition-timing-function: ease-in-out;
         border-radius: 3px;
-
+        min-height: 32px;
         &:hover {
             border-color: var(--gd-palette-complementary-5, #b3b3b3);
         }

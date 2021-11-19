@@ -125,6 +125,7 @@ export interface IGranteeItemProps {
  */
 export interface IShareGranteeBaseProps {
     isDirty: boolean;
+    isLoading: boolean;
     owner: IGranteeUser | IGranteeUserInactive;
     grantees: GranteeItem[];
     onAddGranteeButtonClick: () => void;
@@ -137,6 +138,7 @@ export interface IShareGranteeBaseProps {
  * @internal
  */
 export interface IShareGranteeContentProps {
+    isLoading: boolean;
     grantees: GranteeItem[];
     onAddGrantee: () => void;
     onDelete: (grantee: GranteeItem) => void;
@@ -173,6 +175,14 @@ export interface IGranteesListProps {
     mode: DialogModeType;
     grantees: GranteeItem[];
     onDelete: (grantee: GranteeItem) => void;
+}
+
+/**
+ * @internal
+ */
+export interface IAddUserOrGroupButton {
+    isDisabled: boolean;
+    onClick: () => void;
 }
 
 /**

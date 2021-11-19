@@ -2561,6 +2561,8 @@ export interface IShareGranteeBaseProps {
     // (undocumented)
     isDirty: boolean;
     // (undocumented)
+    isLoading: boolean;
+    // (undocumented)
     onAddGranteeButtonClick: () => void;
     // (undocumented)
     onCancel: () => void;
@@ -2576,6 +2578,8 @@ export interface IShareGranteeBaseProps {
 export interface IShareGranteeContentProps {
     // (undocumented)
     grantees: GranteeItem[];
+    // (undocumented)
+    isLoading: boolean;
     // (undocumented)
     onAddGrantee: () => void;
     // (undocumented)

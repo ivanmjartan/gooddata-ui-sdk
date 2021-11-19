@@ -16,7 +16,7 @@ import {
     IWorkspaceUserGroup,
     ShareStatus,
 } from "@gooddata/sdk-backend-spi";
-import { notInArrayFilter, GranteeGroupAll, InactiveOwner } from "./ShareDialogBase/utils";
+import { GranteeGroupAll, InactiveOwner, getAppliedGrantees, hasGroupAll } from "./ShareDialogBase/utils";
 import { typesUtils } from "@gooddata/util";
 import { isUserAccess, isUserGroupAccess } from "@gooddata/sdk-backend-spi";
 
@@ -116,14 +116,13 @@ export const mapGranteesToShareStatus = (
     granteesToAdd: GranteeItem[],
     granteesToDelete: GranteeItem[],
 ): ShareStatus => {
-    const omitDeleted = notInArrayFilter(grantees, granteesToDelete);
-    const withAdded = [...omitDeleted, ...granteesToAdd];
+    const appliedGrantees = getAppliedGrantees(grantees, granteesToAdd, granteesToDelete);
 
-    if (withAdded.some((g) => areObjRefsEqual(g.id, GranteeGroupAll.id))) {
+    if (hasGroupAll(appliedGrantees)) {
         return "public";
     }
 
-    if (withAdded.length > 0) {
+    if (appliedGrantees.length > 0) {
         return "shared";
     }
 

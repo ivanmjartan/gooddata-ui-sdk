@@ -10,21 +10,21 @@ import { GranteeItem } from "./types";
  * @internal
  */
 interface IUseGetAccessListProps {
-    sharedObject: ObjRef;
+    sharedObjectRef: ObjRef;
     onSuccess: (result: GranteeItem[]) => void;
-    onError: (err: any) => void;
+    onError?: (err: any) => void;
 }
 
 /**
  * @internal
  */
 export const useGetAccessList = (props: IUseGetAccessListProps) => {
-    const { sharedObject, onSuccess, onError } = props;
+    const { sharedObjectRef, onSuccess, onError } = props;
     const effectiveBackend = useBackendStrict();
     const effectiveWorkspace = useWorkspaceStrict();
 
     const promise = () =>
-        effectiveBackend.workspace(effectiveWorkspace).accessControl().getAccessList(sharedObject);
+        effectiveBackend.workspace(effectiveWorkspace).accessControl().getAccessList(sharedObjectRef);
 
     const onSuccessCallBack = useCallback(
         (result: AccessGranteeDetail[]) => {
@@ -37,7 +37,7 @@ export const useGetAccessList = (props: IUseGetAccessListProps) => {
     return useCancelablePromise({ promise, onError, onSuccess: onSuccessCallBack }, [
         effectiveBackend,
         effectiveWorkspace,
-        sharedObject,
+        sharedObjectRef,
         onSuccessCallBack,
     ]);
 };

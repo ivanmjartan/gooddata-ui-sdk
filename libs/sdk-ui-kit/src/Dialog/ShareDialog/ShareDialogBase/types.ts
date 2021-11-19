@@ -105,6 +105,7 @@ export type DialogModeType = "ShareGrantee" | "AddGrantee";
  * @internal
  */
 export interface IShareDialogBaseProps {
+    isGranteesLoading: boolean;
     owner: IGranteeUser | IGranteeUserInactive;
     grantees: GranteeItem[];
     onCancel: () => void;
@@ -149,8 +150,8 @@ export interface IShareGranteeContentProps {
  */
 export interface IAddGranteeBaseProps {
     isDirty: boolean;
-    availableGrantees: GranteeItem[];
     addedGrantees: GranteeItem[];
+    appliedGrantees: GranteeItem[];
     onBackClick?: () => void;
     onDelete: (grantee: GranteeItem) => void;
     onAddUserOrGroups?: (grantee: GranteeItem) => void; // rename
@@ -162,8 +163,8 @@ export interface IAddGranteeBaseProps {
  * @internal
  */
 export interface IAddGranteeContentProps {
-    availableGrantees: GranteeItem[];
     addedGrantees: GranteeItem[];
+    appliedGrantees: GranteeItem[];
     onDelete: (grantee: GranteeItem) => void;
     onAddUserOrGroups: (grantee: GranteeItem) => void;
 }
@@ -206,5 +207,5 @@ export interface ISelectOption {
  */
 export interface IAddGranteeSelectProps {
     onSelectGrantee: (grantee: GranteeItem) => void;
-    addedGrantees: GranteeItem[];
+    appliedGrantees: GranteeItem[];
 }

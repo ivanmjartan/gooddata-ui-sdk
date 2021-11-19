@@ -1,7 +1,7 @@
 // (C) 2021 GoodData Corporation
 
 //share dialog
-export type { IShareDialogProps, ISharingApplyPayload } from "./types";
+export type { ISharedObject, IShareDialogProps, ISharingApplyPayload } from "./types";
 
 export { ShareDialog } from "./ShareDialog";
 

@@ -1,21 +1,14 @@
 // (C) 2021 GoodData Corporation
 import React, { useCallback, useMemo, useState } from "react";
-import { areObjRefsEqual, uriRef } from "@gooddata/sdk-model";
+import { areObjRefsEqual } from "@gooddata/sdk-model";
 import { Overlay } from "../../../Overlay";
 import { IAlignPoint } from "../../../typings/positioning";
 import { ShareGranteeBase } from "./ShareGranteeBase";
 import { AddGranteeBase } from "./AddGranteeBase";
 import { DialogModeType, GranteeItem, IShareDialogBaseProps } from "./types";
-import { notInArrayFilter, GROUP_ALL_ID } from "./utils";
+import { notInArrayFilter, getAppliedGrantees } from "./utils";
 
 const alignPoints: IAlignPoint[] = [{ align: "cc cc" }];
-
-const availableGranteesConst: GranteeItem[] = [
-    {
-        id: uriRef(GROUP_ALL_ID),
-        type: "groupAll",
-    },
-];
 
 const useShareDialogBase = (props: IShareDialogBaseProps) => {
     const { onSubmit, grantees } = props;
@@ -79,18 +72,8 @@ const useShareDialogBase = (props: IShareDialogBaseProps) => {
         return notInArrayFilter(grantees, granteesToDelete);
     }, [grantees, granteesToDelete]);
 
-    const availableGrantees = useMemo(() => {
-        return notInArrayFilter(availableGranteesConst, granteesToAdd).filter((grantee) => {
-            const isInGrantees = grantees.some((g) => {
-                return areObjRefsEqual(g.id, grantee.id);
-            });
-
-            if (isInGrantees) {
-                return granteesToDelete.some((gd) => areObjRefsEqual(gd.id, grantee.id));
-            }
-
-            return true;
-        });
+    const appliedGrantees = useMemo(() => {
+        return getAppliedGrantees(grantees, granteesToAdd, granteesToDelete);
     }, [grantees, granteesToDelete, granteesToAdd]);
 
     return {
@@ -106,7 +89,7 @@ const useShareDialogBase = (props: IShareDialogBaseProps) => {
         isShareDialogDirty,
         isAddDialogDirty,
         filteredGrantees,
-        availableGrantees,
+        appliedGrantees,
     };
 };
 
@@ -114,7 +97,7 @@ const useShareDialogBase = (props: IShareDialogBaseProps) => {
  * @internal
  */
 export const ShareDialogBase: React.FC<IShareDialogBaseProps> = (props) => {
-    const { onCancel, owner } = props;
+    const { onCancel, owner, isGranteesLoading } = props;
 
     const {
         onAddedGranteeDelete,
@@ -129,7 +112,7 @@ export const ShareDialogBase: React.FC<IShareDialogBaseProps> = (props) => {
         isShareDialogDirty,
         isAddDialogDirty,
         filteredGrantees,
-        availableGrantees,
+        appliedGrantees,
     } = useShareDialogBase(props);
 
     return (
@@ -142,7 +125,7 @@ export const ShareDialogBase: React.FC<IShareDialogBaseProps> = (props) => {
             <div className="s-gd-share-dialog">
                 {dialogMode === "ShareGrantee" ? (
                     <ShareGranteeBase
-                        isLoading={false}
+                        isLoading={isGranteesLoading}
                         isDirty={isShareDialogDirty}
                         owner={owner}
                         grantees={filteredGrantees}
@@ -154,9 +137,8 @@ export const ShareDialogBase: React.FC<IShareDialogBaseProps> = (props) => {
                 ) : (
                     <AddGranteeBase
                         isDirty={isAddDialogDirty}
-                        availableGrantees={availableGrantees} //TODO rename to filter grantees
-                        addedGrantees={granteesToAdd} // TODO remove it
-                        //TODO add if group all should be added
+                        appliedGrantees={appliedGrantees}
+                        addedGrantees={granteesToAdd}
                         onAddUserOrGroups={onGranteeAdd}
                         onDelete={onAddedGranteeDelete}
                         onCancel={onCancel}

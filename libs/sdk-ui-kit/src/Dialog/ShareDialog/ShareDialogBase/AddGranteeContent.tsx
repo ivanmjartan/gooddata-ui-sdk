@@ -11,30 +11,21 @@ import { AddGranteeSelect } from "./AddGranteeSelect";
  * @internal
  */
 export const AddGranteeContent: React.FC<IAddGranteeContentProps> = (props) => {
-    const { addedGrantees, onDelete, onAddUserOrGroups } = props;
-    // const intl = useIntl();
+    const { appliedGrantees, addedGrantees, onDelete, onAddUserOrGroups } = props;
 
-    /*const granteesOption = useMemo(() => {
-        return availableGrantees.map((grantee: GranteeItem): ISelectOption => {
-            return {
-                label: getGranteeLabel(grantee, intl),
-                value: grantee,
-            };
-        });
-    }, [availableGrantees, intl]);*/
-
+    //TODO tenhle chack asi jinam
     const onSelectGrantee = useCallback(
         (grantee: GranteeItem) => {
-            if (!addedGrantees.some((g) => areObjRefsEqual(g.id, grantee.id))) {
+            if (!appliedGrantees.some((g) => areObjRefsEqual(g.id, grantee.id))) {
                 onAddUserOrGroups(grantee);
             }
         },
-        [addedGrantees, onAddUserOrGroups],
+        [appliedGrantees, onAddUserOrGroups],
     );
 
     return (
         <>
-            <AddGranteeSelect addedGrantees={addedGrantees} onSelectGrantee={onSelectGrantee} />
+            <AddGranteeSelect appliedGrantees={appliedGrantees} onSelectGrantee={onSelectGrantee} />
             <GranteeList grantees={addedGrantees} mode={"AddGrantee"} onDelete={onDelete} />
         </>
     );

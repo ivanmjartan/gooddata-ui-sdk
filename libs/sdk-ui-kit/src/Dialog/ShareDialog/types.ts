@@ -16,10 +16,17 @@ export interface ISharingApplyPayload {
 /**
  * @internal
  */
+export interface ISharedObject extends IAccessControlAware, IAuditableUsers {
+    ref: ObjRef;
+}
+
+/**
+ * @internal
+ */
 export interface IShareDialogProps {
     backend: IAnalyticalBackend;
     workspace: string;
-    sharedObject: IAccessControlAware & IAuditableUsers;
+    sharedObject: ISharedObject;
     currentUserRef: ObjRef;
     locale?: string;
     onApply: (payload: ISharingApplyPayload) => void;

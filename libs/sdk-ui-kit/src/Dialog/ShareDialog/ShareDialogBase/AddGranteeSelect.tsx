@@ -14,7 +14,7 @@ import { areObjRefsEqual } from "@gooddata/sdk-model";
 
 import { IAddGranteeSelectProps, IGroupedOption, ISelectOption } from "./types";
 import { mapWorkspaceUserGroupToGrantee, mapWorkspaceUserToGrantee } from "../shareDialogMappers";
-import { getGranteeLabel } from "./utils";
+import { getGranteeLabel, GranteeGroupAll, hasGroupAll } from "./utils";
 
 import {
     EmptyRenderer,
@@ -30,7 +30,7 @@ const SEARCH_INTERVAL = 400;
  * @internal
  */
 export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
-    const { addedGrantees, onSelectGrantee } = props;
+    const { appliedGrantees, onSelectGrantee } = props;
 
     const backend: IAnalyticalBackend = useBackendStrict();
     const workspace: string = useWorkspaceStrict();
@@ -96,7 +96,7 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
                             };
                         });
 
-                        const mappedGroups: ISelectOption[] = workspaceGroups.items.map((userGroup) => {
+                        let mappedGroups: ISelectOption[] = workspaceGroups.items.map((userGroup) => {
                             const granteeGroup = mapWorkspaceUserGroupToGrantee(userGroup);
 
                             return {
@@ -104,6 +104,14 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
                                 value: granteeGroup,
                             };
                         });
+
+                        if (!hasGroupAll(appliedGrantees)) {
+                            const groupAllOption: ISelectOption = {
+                                label: getGranteeLabel(GranteeGroupAll, intl),
+                                value: GranteeGroupAll,
+                            };
+                            mappedGroups = [groupAllOption, ...mappedGroups];
+                        }
 
                         return [
                             {
@@ -124,12 +132,12 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
                 SEARCH_INTERVAL,
                 { leading: true },
             ),
-        [backend, workspace, intl],
+        [backend, workspace, intl, appliedGrantees],
     );
 
     const filterOption = (option: any) => {
         const grantee = option.value;
-        return !addedGrantees.some((g) => {
+        return !appliedGrantees.some((g) => {
             return areObjRefsEqual(g.id, grantee.id);
         });
     };

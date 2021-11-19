@@ -49,6 +49,19 @@ export const notInArrayFilter = (array: GranteeItem[], notInArray: GranteeItem[]
     return differenceWith(array, notInArray, (g, g1) => areObjRefsEqual(g.id, g1.id));
 };
 
+export const hasGroupAll = (array: GranteeItem[]): boolean => {
+    return array.some((g) => areObjRefsEqual(g.id, GranteeGroupAll.id));
+};
+
+export const getAppliedGrantees = (
+    grantees: GranteeItem[],
+    granteesToAdd: GranteeItem[],
+    granteesToDelete: GranteeItem[],
+): GranteeItem[] => {
+    const omitDeleted = notInArrayFilter(grantees, granteesToDelete);
+    return [...omitDeleted, ...granteesToAdd];
+};
+
 /**
  * @internal
  */

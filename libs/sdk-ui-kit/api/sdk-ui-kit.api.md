@@ -548,7 +548,7 @@ export interface IAddGranteeBaseProps {
     // (undocumented)
     addedGrantees: GranteeItem[];
     // (undocumented)
-    availableGrantees: GranteeItem[];
+    appliedGrantees: GranteeItem[];
     // (undocumented)
     isDirty: boolean;
     // (undocumented)
@@ -2529,6 +2529,8 @@ export interface IShareDialogBaseProps {
     // (undocumented)
     grantees: GranteeItem[];
     // (undocumented)
+    isGranteesLoading: boolean;
+    // (undocumented)
     onCancel: () => void;
     // (undocumented)
     onSubmit: (granteesToAdd: GranteeItem[], granteesToDelete: GranteeItem[]) => void;
@@ -2549,9 +2551,15 @@ export interface IShareDialogProps {
     // (undocumented)
     onCancel: () => void;
     // (undocumented)
-    sharedObject: IAccessControlAware & IAuditableUsers;
+    sharedObject: ISharedObject;
     // (undocumented)
     workspace: string;
+}
+
+// @internal (undocumented)
+export interface ISharedObject extends IAccessControlAware, IAuditableUsers {
+    // (undocumented)
+    ref: ObjRef;
 }
 
 // @internal (undocumented)

@@ -1,14 +1,14 @@
 // (C) 2019-2021 GoodData Corporation
 import { ComponentType } from "react";
-import { IAccessControlAware, IAnalyticalBackend } from "@gooddata/sdk-backend-spi";
-import { IAuditableUsers, ObjRef } from "@gooddata/sdk-model";
-import { IShareProps } from "../../types";
+import { IAnalyticalBackend } from "@gooddata/sdk-backend-spi";
+import { ObjRef } from "@gooddata/sdk-model";
+import { ISharedObject, ISharingApplyPayload as Payload } from "@gooddata/sdk-ui-kit";
 
 /**
  * @alpha
  */
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface ISharingApplyPayload extends IShareProps {
+export interface ISharingApplyPayload extends Payload {
     // this payload will have more items,
 }
 
@@ -34,7 +34,7 @@ export interface IShareDialogProps {
     /**
      * Object to share
      */
-    sharedObject: IAccessControlAware & IAuditableUsers;
+    sharedObject: ISharedObject;
 
     /**
      * Current user reference

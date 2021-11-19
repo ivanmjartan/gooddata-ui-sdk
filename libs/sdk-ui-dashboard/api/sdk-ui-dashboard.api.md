@@ -31,7 +31,6 @@ import { IAttributeDisplayFormMetadataObject } from '@gooddata/sdk-backend-spi';
 import { IAttributeElements } from '@gooddata/sdk-model';
 import { IAttributeFilter } from '@gooddata/sdk-model';
 import { IAttributeMetadataObject } from '@gooddata/sdk-backend-spi';
-import { IAuditableUsers } from '@gooddata/sdk-model';
 import { IAvailableDrillTargets } from '@gooddata/sdk-ui';
 import { IBackendCapabilities } from '@gooddata/sdk-backend-spi';
 import { IBaseWidget } from '@gooddata/sdk-backend-spi';
@@ -94,6 +93,8 @@ import { IScheduledMail } from '@gooddata/sdk-backend-spi';
 import { IScheduledMailDefinition } from '@gooddata/sdk-backend-spi';
 import { ISeparators } from '@gooddata/sdk-backend-spi';
 import { ISettings } from '@gooddata/sdk-backend-spi';
+import { ISharedObject } from '@gooddata/sdk-ui-kit';
+import { ISharingApplyPayload as ISharingApplyPayload_2 } from '@gooddata/sdk-ui-kit';
 import { ITempFilterContext } from '@gooddata/sdk-backend-spi';
 import { ITheme } from '@gooddata/sdk-backend-spi';
 import { IUser } from '@gooddata/sdk-model';
@@ -427,14 +428,14 @@ export function changeLayoutSectionHeader(index: number, header: IDashboardLayou
 export interface ChangeSharing extends IDashboardCommand {
     // (undocumented)
     readonly payload: {
-        readonly newShareProps: IShareProps;
+        readonly newShareProps: ISharingApplyPayload_2;
     };
     // (undocumented)
     readonly type: "GDC.DASH/CMD.SHARING.CHANGE";
 }
 
 // @alpha
-export function changeSharing(newShareProps: IShareProps, correlationId?: string): ChangeSharing;
+export function changeSharing(newShareProps: ISharingApplyPayload_2, correlationId?: string): ChangeSharing;
 
 // @alpha
 export function clearDateFilterSelection(correlationId?: string): ChangeDateFilterSelection;
@@ -2827,7 +2828,7 @@ export interface IShareDialogProps {
     isVisible?: boolean;
     onApply: (payload: ISharingApplyPayload) => void;
     onCancel: () => void;
-    sharedObject: IAccessControlAware & IAuditableUsers;
+    sharedObject: ISharedObject;
     workspace: string;
 }
 
@@ -2840,7 +2841,7 @@ export interface IShareProps {
 }
 
 // @alpha (undocumented)
-export interface ISharingApplyPayload extends IShareProps {
+export interface ISharingApplyPayload extends ISharingApplyPayload_2 {
 }
 
 // @alpha (undocumented)

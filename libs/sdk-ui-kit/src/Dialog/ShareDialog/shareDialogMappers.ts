@@ -6,9 +6,12 @@ import {
     IGranteeGroupAll,
     IGranteeUser,
     IGranteeUserInactive,
+    isGranteeGroupAll,
+    isGranteeUserInactive,
 } from "./ShareDialogBase/types";
-import { IWorkspaceUser, IWorkspaceUserGroup, ShareStatus } from "@gooddata/sdk-backend-spi";
+import { IAccessGrantee, IWorkspaceUser, IWorkspaceUserGroup, ShareStatus } from "@gooddata/sdk-backend-spi";
 import { notInArrayFilter, GranteeGroupAll, InactiveOwner } from "./ShareDialogBase/utils";
+import { typesUtils } from "@gooddata/util";
 
 /**
  * @internal
@@ -24,6 +27,9 @@ export const mapWorkspaceUserToGrantee = (user: IWorkspaceUser): IGranteeUser =>
     };
 };
 
+/**
+ * @internal
+ */
 export const mapWorkspaceUserGroupToGrantee = (userGroup: IWorkspaceUserGroup): IGranteeGroup => {
     return {
         id: userGroup.ref,
@@ -57,6 +63,9 @@ export const mapOwnerToGrantee = (user: IUser, currentUserRef: ObjRef): IGrantee
     };
 };
 
+/**
+ * @internal
+ */
 export const mapUserToInactiveGrantee = (): IGranteeUserInactive => {
     return InactiveOwner;
 };
@@ -68,6 +77,20 @@ export const mapShareStatusToGroupAll = (shareStatus: ShareStatus): IGranteeGrou
     if (shareStatus === "public") {
         return GranteeGroupAll;
     }
+};
+
+/**
+ * @internal
+ */
+export const mapGranteesToAccessGrantees = (grantees: GranteeItem[]): IAccessGrantee[] => {
+    const guard = typesUtils.combineGuards(isGranteeGroupAll, isGranteeUserInactive);
+    return grantees
+        .filter((g) => !guard(g))
+        .map((g) => {
+            return {
+                granteeRef: g.id,
+            };
+        });
 };
 
 /**
@@ -85,7 +108,9 @@ export const mapGranteesToShareStatus = (
         return "public";
     }
 
-    // check na delku >0 return shared
+    if (withAdded.length > 0) {
+        return "shared";
+    }
 
     return "private";
 };

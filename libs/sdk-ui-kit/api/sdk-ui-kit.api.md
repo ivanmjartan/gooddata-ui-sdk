@@ -12,6 +12,7 @@ import { Component } from 'react';
 import { CSSProperties } from 'react';
 import { FC } from 'react';
 import { IAccessControlAware } from '@gooddata/sdk-backend-spi';
+import { IAccessGrantee } from '@gooddata/sdk-backend-spi';
 import { IAnalyticalBackend } from '@gooddata/sdk-backend-spi';
 import { IAuditableUsers } from '@gooddata/sdk-model';
 import { IntlShape } from 'react-intl';
@@ -2583,6 +2584,10 @@ export interface IShareGranteeContentProps {
 
 // @internal (undocumented)
 export interface ISharingApplyPayload {
+    // (undocumented)
+    granteesToAdd: IAccessGrantee[];
+    // (undocumented)
+    granteesToDelete: IAccessGrantee[];
     // (undocumented)
     isUnderStrictControl: boolean;
     // (undocumented)

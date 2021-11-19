@@ -4,6 +4,7 @@ import { ShareDialogBase } from "./ShareDialogBase/ShareDialogBase";
 import { GranteeItem } from "./ShareDialogBase/types";
 import { IShareDialogProps } from "./types";
 import {
+    mapGranteesToAccessGrantees,
     mapGranteesToShareStatus,
     mapOwnerToGrantee,
     mapShareStatusToGroupAll,
@@ -46,7 +47,9 @@ export const ShareDialog: React.FC<IShareDialogProps> = (props) => {
         (granteesToAdd: GranteeItem[], granteesToDelete: GranteeItem[]) => {
             const shareStatus = mapGranteesToShareStatus(grantees, granteesToAdd, granteesToDelete);
             const isUnderStrictControl = shareStatus !== "public";
-            onApply({ shareStatus, isUnderStrictControl });
+            const add = mapGranteesToAccessGrantees(granteesToAdd);
+            const del = mapGranteesToAccessGrantees(granteesToDelete);
+            onApply({ shareStatus, isUnderStrictControl, granteesToAdd: add, granteesToDelete: del });
         },
         [grantees, onApply],
     );

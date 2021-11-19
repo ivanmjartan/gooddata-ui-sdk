@@ -1,5 +1,5 @@
 // (C) 2021 GoodData Corporation
-import { IAccessControlAware, IAnalyticalBackend } from "@gooddata/sdk-backend-spi";
+import { IAccessControlAware, IAccessGrantee, IAnalyticalBackend } from "@gooddata/sdk-backend-spi";
 import { ShareStatus } from "@gooddata/sdk-backend-spi";
 import { IAuditableUsers, ObjRef } from "@gooddata/sdk-model";
 
@@ -9,6 +9,8 @@ import { IAuditableUsers, ObjRef } from "@gooddata/sdk-model";
 export interface ISharingApplyPayload {
     shareStatus: ShareStatus;
     isUnderStrictControl: boolean;
+    granteesToAdd: IAccessGrantee[];
+    granteesToDelete: IAccessGrantee[];
 }
 
 /**

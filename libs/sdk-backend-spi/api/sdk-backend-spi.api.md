@@ -1484,6 +1484,12 @@ export function isUnexpectedError(obj: unknown): obj is UnexpectedError;
 // @public
 export function isUnexpectedResponseError(obj: unknown): obj is UnexpectedResponseError;
 
+// @alpha
+export const isUserAccess: (obj: unknown) => obj is IUserAccess;
+
+// @alpha
+export const isUserGroupAccess: (obj: unknown) => obj is IUserGroupAccess;
+
 // @public
 export function isVariableMetadataObject(obj: unknown): obj is IVariableMetadataObject;
 
@@ -1715,11 +1721,15 @@ export interface IUser extends IUser_2 {
 // @alpha
 export interface IUserAccess {
     // (undocumented)
+    type: "user";
+    // (undocumented)
     user: IWorkspaceUser;
 }
 
 // @alpha
 export interface IUserGroupAccess {
+    // (undocumented)
+    type: "group";
     // (undocumented)
     userGroup: IWorkspaceUserGroup;
 }

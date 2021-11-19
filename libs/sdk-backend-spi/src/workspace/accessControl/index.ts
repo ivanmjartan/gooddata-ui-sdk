@@ -4,6 +4,7 @@ import { ObjRef } from "@gooddata/sdk-model";
 
 import { IWorkspaceUser } from "../users";
 import { IWorkspaceUserGroup } from "../userGroups";
+import { isEmpty } from "lodash";
 
 /**
  * User having access to the object.
@@ -11,8 +12,19 @@ import { IWorkspaceUserGroup } from "../userGroups";
  * @alpha
  */
 export interface IUserAccess {
+    type: "user";
     user: IWorkspaceUser;
 }
+
+/**
+ * Tests whether the provided object is an instance of {@link IUserAccess}.
+ *
+ * @param obj - object to test
+ * @alpha
+ */
+export const isUserAccess = (obj: unknown): obj is IUserAccess => {
+    return !isEmpty(obj) && (obj as IUserAccess).type === "user";
+};
 
 /**
  * User group having access to the object.
@@ -20,8 +32,19 @@ export interface IUserAccess {
  * @alpha
  */
 export interface IUserGroupAccess {
+    type: "group";
     userGroup: IWorkspaceUserGroup;
 }
+
+/**
+ * Tests whether the provided object is an instance of {@link IUserGroupAccess}.
+ *
+ * @param obj - object to test
+ * @alpha
+ */
+export const isUserGroupAccess = (obj: unknown): obj is IUserGroupAccess => {
+    return !isEmpty(obj) && (obj as IUserGroupAccess).type === "group";
+};
 
 /**
  * Entity having access to the object.

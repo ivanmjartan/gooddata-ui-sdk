@@ -16,10 +16,12 @@ import isGranteeUserInfo = GdcAccessControl.isGranteeUserInfo;
 const convertGranteeItem = (item: GdcAccessControl.IGranteeEntry): AccessGranteeDetail => {
     if (isGranteeUserInfo(item.aclEntry.grantee)) {
         return {
+            type: "user",
             user: convertUsersItem(item.aclEntry.grantee.user),
         };
     } else {
         return {
+            type: "group",
             userGroup: convertWorkspaceUserGroup(item.aclEntry.grantee.userGroup),
         };
     }

@@ -449,4 +449,6 @@ export {
     IAccessGrantee,
     IUserAccess,
     IUserGroupAccess,
+    isUserAccess,
+    isUserGroupAccess,
 } from "./workspace/accessControl";

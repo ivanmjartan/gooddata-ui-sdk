@@ -9,9 +9,16 @@ import {
     isGranteeGroupAll,
     isGranteeUserInactive,
 } from "./ShareDialogBase/types";
-import { IAccessGrantee, IWorkspaceUser, IWorkspaceUserGroup, ShareStatus } from "@gooddata/sdk-backend-spi";
+import {
+    AccessGranteeDetail,
+    IAccessGrantee,
+    IWorkspaceUser,
+    IWorkspaceUserGroup,
+    ShareStatus,
+} from "@gooddata/sdk-backend-spi";
 import { notInArrayFilter, GranteeGroupAll, InactiveOwner } from "./ShareDialogBase/utils";
 import { typesUtils } from "@gooddata/util";
+import { isUserAccess, isUserGroupAccess } from "@gooddata/sdk-backend-spi/src";
 
 /**
  * @internal
@@ -91,6 +98,14 @@ export const mapGranteesToAccessGrantees = (grantees: GranteeItem[]): IAccessGra
                 granteeRef: g.id,
             };
         });
+};
+
+export const mapAccessGranteeDetailToGrantee = (accessGranteeDetail: AccessGranteeDetail): GranteeItem => {
+    if (isUserAccess(accessGranteeDetail)) {
+        return mapWorkspaceUserToGrantee(accessGranteeDetail.user);
+    } else if (isUserGroupAccess(accessGranteeDetail)) {
+        return mapWorkspaceUserGroupToGrantee(accessGranteeDetail.userGroup);
+    }
 };
 
 /**

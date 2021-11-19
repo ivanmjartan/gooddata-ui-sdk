@@ -7,7 +7,6 @@ import { ShareGranteeBase } from "./ShareGranteeBase";
 import { AddGranteeBase } from "./AddGranteeBase";
 import { DialogModeType, GranteeItem, IShareDialogBaseProps } from "./types";
 import { notInArrayFilter, GROUP_ALL_ID } from "./utils";
-// import { useBackendStrict, useWorkspaceStrict } from '@gooddata/sdk-ui';
 
 const alignPoints: IAlignPoint[] = [{ align: "cc cc" }];
 
@@ -17,27 +16,6 @@ const availableGranteesConst: GranteeItem[] = [
         type: "groupAll",
     },
 ];
-
-/*
-const useGranteesLoad = () =>{
-    const effectiveBackend = useBackendStrict();
-    const effectiveWorkspace = useWorkspaceStrict();
-
-    const promise = dashboard
-        ? () =>
-              effectiveBackend
-                  .workspace(effectiveWorkspace)
-                  .dashboards()
-                  .exportDashboardToPdf(dashboard, filters ?? undefined)
-        : null;
-
-    return useCancelablePromise({ promise, onCancel, onError, onLoading, onPending, onSuccess }, [
-            effectiveBackend,
-            effectiveWorkspace,
-            dashboard,
-            filters,
-    ]);
-}*/
 
 const useShareDialogBase = (props: IShareDialogBaseProps) => {
     const { onSubmit, grantees } = props;

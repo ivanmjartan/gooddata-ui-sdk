@@ -18,7 +18,7 @@ import {
 } from "@gooddata/sdk-backend-spi";
 import { notInArrayFilter, GranteeGroupAll, InactiveOwner } from "./ShareDialogBase/utils";
 import { typesUtils } from "@gooddata/util";
-import { isUserAccess, isUserGroupAccess } from "@gooddata/sdk-backend-spi/src";
+import { isUserAccess, isUserGroupAccess } from "@gooddata/sdk-backend-spi";
 
 /**
  * @internal

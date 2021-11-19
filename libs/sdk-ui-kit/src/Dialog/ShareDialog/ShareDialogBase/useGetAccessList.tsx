@@ -18,7 +18,7 @@ interface IUseGetAccessListProps {
 /**
  * @internal
  */
-export const useGetAccessList = (props: IUseGetAccessListProps) => {
+export const useGetAccessList = (props: IUseGetAccessListProps): void => {
     const { sharedObjectRef, onSuccess, onError } = props;
     const effectiveBackend = useBackendStrict();
     const effectiveWorkspace = useWorkspaceStrict();
@@ -34,7 +34,7 @@ export const useGetAccessList = (props: IUseGetAccessListProps) => {
         [onSuccess],
     );
 
-    return useCancelablePromise({ promise, onError, onSuccess: onSuccessCallBack }, [
+    useCancelablePromise({ promise, onError, onSuccess: onSuccessCallBack }, [
         effectiveBackend,
         effectiveWorkspace,
         sharedObjectRef,

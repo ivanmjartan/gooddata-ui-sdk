@@ -46,7 +46,12 @@ export const ShareDialog: React.FC<IShareDialogProps> = (props) => {
         [setGrantees, shareStatus],
     );
 
-    useGetAccessList({ sharedObjectRef, onSuccess: onLoadGranteesSuccess });
+    const onLoadGranteesError = useCallback(() => {
+        // eslint-disable-next-line no-console
+        console.error("Load grantees error");
+    }, []);
+
+    useGetAccessList({ sharedObjectRef, onSuccess: onLoadGranteesSuccess, onError: onLoadGranteesError });
 
     const owner = useMemo(() => {
         if (sharedObject.createdBy) {

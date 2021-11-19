@@ -14,7 +14,7 @@ import { areObjRefsEqual } from "@gooddata/sdk-model";
 
 import { IAddGranteeSelectProps, IGroupedOption, ISelectOption } from "./types";
 import { mapWorkspaceUserGroupToGrantee, mapWorkspaceUserToGrantee } from "../shareDialogMappers";
-import { getGranteeLabel, GranteeGroupAll, hasGroupAll } from "./utils";
+import { getGranteeLabel, GranteeGroupAll, hasGroupAll, sortGranteesByName } from "./utils";
 
 import {
     EmptyRenderer,
@@ -87,23 +87,25 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
                             workspaceGroupsQuery,
                         ]);
 
-                        const mappedUsers: ISelectOption[] = workspaceUsers.items.map((user) => {
-                            const granteeUser = mapWorkspaceUserToGrantee(user);
+                        const mappedUsers: ISelectOption[] = workspaceUsers.items
+                            .map(mapWorkspaceUserToGrantee)
+                            .sort(sortGranteesByName(intl))
+                            .map((user) => {
+                                return {
+                                    label: getGranteeLabel(user, intl),
+                                    value: user,
+                                };
+                            });
 
-                            return {
-                                label: getGranteeLabel(granteeUser, intl),
-                                value: granteeUser,
-                            };
-                        });
-
-                        let mappedGroups: ISelectOption[] = workspaceGroups.items.map((userGroup) => {
-                            const granteeGroup = mapWorkspaceUserGroupToGrantee(userGroup);
-
-                            return {
-                                label: getGranteeLabel(granteeGroup, intl),
-                                value: granteeGroup,
-                            };
-                        });
+                        let mappedGroups: ISelectOption[] = workspaceGroups.items
+                            .map(mapWorkspaceUserGroupToGrantee)
+                            .sort(sortGranteesByName(intl))
+                            .map((group) => {
+                                return {
+                                    label: getGranteeLabel(group, intl),
+                                    value: group,
+                                };
+                            });
 
                         if (!hasGroupAll(appliedGrantees)) {
                             const groupAllOption: ISelectOption = {

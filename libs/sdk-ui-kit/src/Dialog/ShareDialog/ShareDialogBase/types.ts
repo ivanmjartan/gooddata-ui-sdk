@@ -202,6 +202,12 @@ export interface ISelectOption {
     value: GranteeItem;
 }
 
+export interface ISelectErrorOption {
+    label: string;
+    value: string;
+    disabled: true;
+}
+
 /**
  * @internal
  */

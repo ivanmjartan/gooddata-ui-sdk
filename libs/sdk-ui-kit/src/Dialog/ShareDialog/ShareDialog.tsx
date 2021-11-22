@@ -17,7 +17,7 @@ import {
     useWorkspaceStrict,
     WorkspaceProvider,
 } from "@gooddata/sdk-ui";
-import { useGetAccessList } from "./ShareDialogBase/useGetAccessList";
+import { useGetAccessList } from "./ShareDialogBase/backend/useGetAccessList";
 
 /**
  * @internal
@@ -46,7 +46,7 @@ export const ShareDialog: React.FC<IShareDialogProps> = (props) => {
         [setGrantees, shareStatus],
     );
 
-    const onLoadGranteesError = useCallback(() => {
+    const onLoadGranteesError = useCallback((_er: Error) => {
         // eslint-disable-next-line no-console
         console.error("Load grantees error");
     }, []);

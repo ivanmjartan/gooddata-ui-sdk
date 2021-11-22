@@ -2,9 +2,9 @@
 import { useCallback } from "react";
 import { useBackendStrict, useCancelablePromise, useWorkspaceStrict } from "@gooddata/sdk-ui";
 import { AccessGranteeDetail } from "@gooddata/sdk-backend-spi";
-import { mapAccessGranteeDetailToGrantee } from "../shareDialogMappers";
+import { mapAccessGranteeDetailToGrantee } from "../../shareDialogMappers";
 import { ObjRef } from "@gooddata/sdk-model";
-import { GranteeItem } from "./types";
+import { GranteeItem } from "../types";
 
 /**
  * @internal

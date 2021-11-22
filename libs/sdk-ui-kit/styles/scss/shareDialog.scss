@@ -30,6 +30,12 @@
     margin-right: 15px;
 }
 
+.gd-share-dialog-grantee-list {
+    max-height: 375px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 .gd-share-dialog-grantee-list-empty-selection {
     display: flex;
     justify-content: center;

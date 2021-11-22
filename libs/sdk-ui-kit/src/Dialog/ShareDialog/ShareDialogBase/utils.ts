@@ -4,24 +4,42 @@ import { areObjRefsEqual, objRefToString, uriRef } from "@gooddata/sdk-model";
 import { GranteeItem, IGranteeGroupAll, IGranteeUserInactive } from "./types";
 import differenceWith from "lodash/differenceWith";
 
+/**
+ * @internal
+ */
 export const GROUP_ALL_ID = "groupAll";
 
+/**
+ * @internal
+ */
 export const GranteeGroupAll: IGranteeGroupAll = {
     id: uriRef(GROUP_ALL_ID),
     type: "groupAll",
 };
 
+/**
+ * @internal
+ */
 export const INACTIVE_OWNER_ID = "inactive_owner";
 
+/**
+ * @internal
+ */
 export const InactiveOwner: IGranteeUserInactive = {
     id: uriRef(INACTIVE_OWNER_ID),
     type: "inactive_user",
 };
 
+/**
+ * @internal
+ */
 const exhaustiveCheck = (_param: never): never => {
     throw new Error("unknown grantee type");
 };
 
+/**
+ * @internal
+ */
 export const getGranteeLabel = (grantee: GranteeItem, intl: IntlShape): string => {
     if (grantee.type === "user") {
         return grantee.name;
@@ -36,6 +54,9 @@ export const getGranteeLabel = (grantee: GranteeItem, intl: IntlShape): string =
     }
 };
 
+/**
+ * @internal
+ */
 export const sortGranteesByName =
     (intl: IntlShape) =>
     (granteeA: GranteeItem, granteeB: GranteeItem): number => {
@@ -45,14 +66,23 @@ export const sortGranteesByName =
         return textA < textB ? -1 : textA > textB ? 1 : 0;
     };
 
+/**
+ * @internal
+ */
 export const notInArrayFilter = (array: GranteeItem[], notInArray: GranteeItem[]): GranteeItem[] => {
     return differenceWith(array, notInArray, (g, g1) => areObjRefsEqual(g.id, g1.id));
 };
 
+/**
+ * @internal
+ */
 export const hasGroupAll = (array: GranteeItem[]): boolean => {
     return array.some((g) => areObjRefsEqual(g.id, GranteeGroupAll.id));
 };
 
+/**
+ * @internal
+ */
 export const getAppliedGrantees = (
     grantees: GranteeItem[],
     granteesToAdd: GranteeItem[],

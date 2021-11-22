@@ -5,16 +5,10 @@ import { useIntl } from "react-intl";
 import { ValueType } from "react-select";
 import AsyncSelect from "react-select/async";
 import { useBackendStrict, useWorkspaceStrict } from "@gooddata/sdk-ui";
-import {
-    IAnalyticalBackend,
-    IWorkspaceUserGroupsQueryOptions,
-    IWorkspaceUsersQueryOptions,
-} from "@gooddata/sdk-backend-spi";
+import { IAnalyticalBackend } from "@gooddata/sdk-backend-spi";
 import { areObjRefsEqual } from "@gooddata/sdk-model";
 
-import { IAddGranteeSelectProps, IGroupedOption, ISelectOption } from "./types";
-import { mapWorkspaceUserGroupToGrantee, mapWorkspaceUserToGrantee } from "../shareDialogMappers";
-import { getGranteeLabel, GranteeGroupAll, hasGroupAll, sortGranteesByName } from "./utils";
+import { IAddGranteeSelectProps, ISelectOption } from "./types";
 
 import {
     EmptyRenderer,
@@ -23,6 +17,7 @@ import {
     LoadingMessageRenderer,
     OptionRenderer,
 } from "./AsyncSelectComponents";
+import { loadGranteeOptionsPromiseError } from "./backend/loadGranteeOptionsPromise";
 
 const SEARCH_INTERVAL = 400;
 
@@ -62,75 +57,8 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
     const loadOptions = useMemo(
         () =>
             debounce(
-                async (inputValue: string): Promise<IGroupedOption[]> => {
-                    let usersOption: IWorkspaceUsersQueryOptions = {};
-                    let groupsOption: IWorkspaceUserGroupsQueryOptions = {};
-
-                    if (inputValue) {
-                        usersOption = { ...usersOption, search: `%${inputValue}` };
-                        groupsOption = { ...groupsOption, search: `${inputValue}` };
-                    }
-
-                    try {
-                        const workspaceUsersQuery = backend
-                            .workspace(workspace)
-                            .users()
-                            .withOptions(usersOption)
-                            .query();
-                        const workspaceGroupsQuery = backend
-                            .workspace(workspace)
-                            .userGroups()
-                            .query(groupsOption);
-
-                        const [workspaceUsers, workspaceGroups] = await Promise.all([
-                            workspaceUsersQuery,
-                            workspaceGroupsQuery,
-                        ]);
-
-                        const mappedUsers: ISelectOption[] = workspaceUsers.items
-                            .map(mapWorkspaceUserToGrantee)
-                            .sort(sortGranteesByName(intl))
-                            .map((user) => {
-                                return {
-                                    label: getGranteeLabel(user, intl),
-                                    value: user,
-                                };
-                            });
-
-                        let mappedGroups: ISelectOption[] = workspaceGroups.items
-                            .map(mapWorkspaceUserGroupToGrantee)
-                            .sort(sortGranteesByName(intl))
-                            .map((group) => {
-                                return {
-                                    label: getGranteeLabel(group, intl),
-                                    value: group,
-                                };
-                            });
-
-                        if (!hasGroupAll(appliedGrantees)) {
-                            const groupAllOption: ISelectOption = {
-                                label: getGranteeLabel(GranteeGroupAll, intl),
-                                value: GranteeGroupAll,
-                            };
-                            mappedGroups = [groupAllOption, ...mappedGroups];
-                        }
-
-                        return [
-                            {
-                                label: "Groups",
-                                options: mappedGroups,
-                            },
-                            {
-                                label: "Users",
-                                options: mappedUsers,
-                            },
-                        ];
-                    } catch (ex) {
-                        // eslint-disable-next-line no-console
-                        console.log(ex);
-                        return [];
-                    }
-                },
+                //loadGranteeOptionsPromise(appliedGrantees,backend, workspace, intl)
+                loadGranteeOptionsPromiseError(appliedGrantees, backend, workspace, intl),
                 SEARCH_INTERVAL,
                 { leading: true },
             ),

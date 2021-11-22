@@ -14,14 +14,14 @@ import { GdcUserGroup } from "@gooddata/api-model-bear";
 export class BearWorkspaceUserGroupsQuery implements IWorkspaceUserGroupsQuery {
     constructor(private readonly authCall: BearAuthenticatedCallGuard, private readonly workspace: string) {}
 
-    private async queryAllPages(limit: number): Promise<GdcUserGroup.IUserGroupItem[]> {
+    private async queryAllPages(limit: number): Promise<GdcUserGroup.IWrappedUserGroupItem[]> {
         const data = await this.authCall((sdk) => sdk.project.getUserGroups(this.workspace, { limit }));
         const { items, paging } = data.userGroups;
 
         const getNextPage = async (
             nextUri: string | null | undefined,
-            result: GdcUserGroup.IUserGroupItem[] = [],
-        ): Promise<GdcUserGroup.IUserGroupItem[]> => {
+            result: GdcUserGroup.IWrappedUserGroupItem[] = [],
+        ): Promise<GdcUserGroup.IWrappedUserGroupItem[]> => {
             if (!nextUri) {
                 return result;
             }
@@ -41,7 +41,7 @@ export class BearWorkspaceUserGroupsQuery implements IWorkspaceUserGroupsQuery {
 
     public async query(options: IWorkspaceUserGroupsQueryOptions): Promise<IWorkspaceUserGroupsQueryResult> {
         const { offset = 0, limit = 100, search } = options;
-        let userGroups: GdcUserGroup.IUserGroupItem[] = await this.queryAllPages(limit);
+        let userGroups: GdcUserGroup.IWrappedUserGroupItem[] = await this.queryAllPages(limit);
         if (search) {
             const lowercaseSearch = search.toLocaleLowerCase();
             userGroups = userGroups.filter((userGroup) => {
@@ -49,7 +49,9 @@ export class BearWorkspaceUserGroupsQuery implements IWorkspaceUserGroupsQuery {
                 return name && name.toLowerCase().indexOf(lowercaseSearch) > -1;
             });
         }
-        const convertedUserGroups: IWorkspaceUserGroup[] = userGroups.map(convertWorkspaceUserGroup);
+        const convertedUserGroups: IWorkspaceUserGroup[] = userGroups.map((userGroup) =>
+            convertWorkspaceUserGroup(userGroup.userGroup),
+        );
         return new InMemoryPaging<IWorkspaceUserGroup>(convertedUserGroups, limit, offset);
     }
 }

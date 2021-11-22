@@ -6,24 +6,26 @@ import { Timestamp, Uri } from "../aliases";
  */
 export namespace GdcUserGroup {
     export interface IUserGroupItem {
-        userGroup: {
-            content: {
-                name: string;
-                id?: string | null;
-                description?: string | null;
-                domain?: Uri | null;
-                project?: Uri | null;
-            };
-            links?: {
-                self: Uri;
-                members: Uri;
-                modifyMembers: Uri;
-            };
-            meta: {
-                created?: Timestamp;
-                updated?: Timestamp;
-            };
+        content: {
+            name: string;
+            id?: string | null;
+            description?: string | null;
+            domain?: Uri | null;
+            project?: Uri | null;
         };
+        links?: {
+            self: Uri;
+            members: Uri;
+            modifyMembers: Uri;
+        };
+        meta: {
+            created?: Timestamp;
+            updated?: Timestamp;
+        };
+    }
+
+    export interface IWrappedUserGroupItem {
+        userGroup: IUserGroupItem;
     }
     /**
      * Request params for GET /gdc/userGroups?project=\{projectId\}
@@ -50,7 +52,7 @@ export namespace GdcUserGroup {
                 limit: number;
                 next?: Uri | null;
             };
-            items: IUserGroupItem[];
+            items: IWrappedUserGroupItem[];
         };
     }
 }

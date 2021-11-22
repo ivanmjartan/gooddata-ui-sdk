@@ -2579,30 +2579,35 @@ export namespace GdcUserGroup {
                 limit: number;
                 next?: Uri | null;
             };
-            items: IUserGroupItem[];
+            items: IWrappedUserGroupItem[];
         };
     }
     // (undocumented)
     export interface IUserGroupItem {
         // (undocumented)
-        userGroup: {
-            content: {
-                name: string;
-                id?: string | null;
-                description?: string | null;
-                domain?: Uri | null;
-                project?: Uri | null;
-            };
-            links?: {
-                self: Uri;
-                members: Uri;
-                modifyMembers: Uri;
-            };
-            meta: {
-                created?: Timestamp;
-                updated?: Timestamp;
-            };
+        content: {
+            name: string;
+            id?: string | null;
+            description?: string | null;
+            domain?: Uri | null;
+            project?: Uri | null;
         };
+        // (undocumented)
+        links?: {
+            self: Uri;
+            members: Uri;
+            modifyMembers: Uri;
+        };
+        // (undocumented)
+        meta: {
+            created?: Timestamp;
+            updated?: Timestamp;
+        };
+    }
+    // (undocumented)
+    export interface IWrappedUserGroupItem {
+        // (undocumented)
+        userGroup: IUserGroupItem;
     }
 }
 

@@ -7,7 +7,7 @@ export const convertWorkspaceUserGroup = (group: GdcUserGroup.IUserGroupItem): I
     const {
         content: { name, description, id },
         links,
-    } = group.userGroup;
+    } = group;
 
     return {
         ref: uriRef(links!.self!),

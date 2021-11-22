@@ -109,6 +109,26 @@
         padding-bottom: 0px;
     }
 
+    .gd-share-dialog-option-error {
+        display: flex;
+        min-height: 38px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .gd-share-dialog-option-error-content {
+        flex-grow: 2;
+        font-size: 14px;
+        font-family: $gd-font-primary;
+        font-weight: 200;
+        line-height: normal;
+        vertical-align: middle;
+        color: var(--gd-palette-error-base, #e54d42);
+        margin: 4px;
+        padding: 4px;
+        background: var(--gd-palette-error-lightest, #fff2f1);
+    }
+
     .gd-share-dialog-loading-mask-container {
         display: flex;
         height: 38px;

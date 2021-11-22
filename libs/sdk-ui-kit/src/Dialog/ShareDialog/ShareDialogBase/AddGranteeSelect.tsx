@@ -8,7 +8,7 @@ import { useBackendStrict, useWorkspaceStrict } from "@gooddata/sdk-ui";
 import { IAnalyticalBackend } from "@gooddata/sdk-backend-spi";
 import { areObjRefsEqual } from "@gooddata/sdk-model";
 
-import { IAddGranteeSelectProps, ISelectOption } from "./types";
+import { IAddGranteeSelectProps, ISelectOption, isGranteeItem } from "./types";
 
 import {
     EmptyRenderer,
@@ -17,7 +17,7 @@ import {
     LoadingMessageRenderer,
     OptionRenderer,
 } from "./AsyncSelectComponents";
-import { loadGranteeOptionsPromiseError } from "./backend/loadGranteeOptionsPromise";
+import { loadGranteeOptionsPromise } from "./backend/loadGranteeOptionsPromise";
 
 const SEARCH_INTERVAL = 400;
 
@@ -40,7 +40,10 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
     const onSelect = useCallback(
         (value: ValueType<ISelectOption, boolean>) => {
             const grantee = (value as ISelectOption).value;
-            onSelectGrantee(grantee);
+
+            if (isGranteeItem(grantee)) {
+                onSelectGrantee(grantee);
+            }
         },
         [onSelectGrantee],
     );
@@ -56,20 +59,22 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
 
     const loadOptions = useMemo(
         () =>
-            debounce(
-                //loadGranteeOptionsPromise(appliedGrantees,backend, workspace, intl)
-                loadGranteeOptionsPromiseError(appliedGrantees, backend, workspace, intl),
-                SEARCH_INTERVAL,
-                { leading: true },
-            ),
+            debounce(loadGranteeOptionsPromise(appliedGrantees, backend, workspace, intl), SEARCH_INTERVAL, {
+                leading: true,
+            }),
         [backend, workspace, intl, appliedGrantees],
     );
 
     const filterOption = (option: any) => {
         const grantee = option.value;
-        return !appliedGrantees.some((g) => {
-            return areObjRefsEqual(g.id, grantee.id);
-        });
+
+        if (isGranteeItem(grantee)) {
+            return !appliedGrantees.some((g) => {
+                return areObjRefsEqual(g.id, grantee.id);
+            });
+        }
+
+        return true;
     };
 
     return (

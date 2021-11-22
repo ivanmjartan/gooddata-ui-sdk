@@ -3,7 +3,13 @@ import React from "react";
 import { components as ReactSelectComponents, InputProps, OptionProps } from "react-select";
 import { Typography } from "../../../Typography";
 import { LoadingMask } from "../../../LoadingMask";
-import { ISelectOption, isGranteeItem, isGranteeUser } from "./types";
+import {
+    ISelectErrorOption,
+    ISelectOption,
+    isGranteeItem,
+    isGranteeUser,
+    isSelectErrorOption,
+} from "./types";
 import { getGranteeItemTestId } from "./utils";
 
 export const EmptyRenderer = (): JSX.Element => {
@@ -38,8 +44,20 @@ const OptionContentRenderer = (item: ISelectOption): JSX.Element => {
     return <> {item.label} </>;
 };
 
+export const ErrorOptionRenderer = (errorOption: ISelectErrorOption): JSX.Element => {
+    return (
+        <div className={`gd-share-dialog-option-error s-gd-share-dialog-option-error`}>
+            <span className="gd-share-dialog-option-error-content">{errorOption.label}</span>
+        </div>
+    );
+};
+
 export const OptionRenderer = (props: OptionProps<ISelectOption, false>): JSX.Element => {
     const { className, cx, isFocused, innerRef, innerProps, data } = props;
+
+    if (isSelectErrorOption(data)) {
+        return ErrorOptionRenderer(data);
+    }
 
     let sTestStyle = "";
 

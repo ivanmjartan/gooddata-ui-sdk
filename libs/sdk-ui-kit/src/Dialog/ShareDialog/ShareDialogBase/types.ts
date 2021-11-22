@@ -202,11 +202,21 @@ export interface ISelectOption {
     value: GranteeItem;
 }
 
+/**
+ * @internal
+ */
 export interface ISelectErrorOption {
+    isDisabled: boolean;
+    type: "error";
     label: string;
-    value: string;
-    disabled: true;
 }
+
+/**
+ * @internal
+ */
+export const isSelectErrorOption = (obj: unknown): obj is ISelectErrorOption => {
+    return !isEmpty(obj) && (obj as ISelectErrorOption).type === "error";
+};
 
 /**
  * @internal

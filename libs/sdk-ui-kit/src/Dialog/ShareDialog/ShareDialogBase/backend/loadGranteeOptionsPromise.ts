@@ -6,16 +6,28 @@ import {
 } from "@gooddata/sdk-backend-spi";
 import { IntlShape } from "react-intl";
 
-import { GranteeItem, IGroupedOption, ISelectOption } from "../types";
+import { GranteeItem, IGroupedOption, ISelectErrorOption, ISelectOption } from "../types";
 import { getGranteeLabel, GranteeGroupAll, hasGroupAll, sortGranteesByName } from "../utils";
 import { mapWorkspaceUserGroupToGrantee, mapWorkspaceUserToGrantee } from "../../shareDialogMappers";
+
+const createErrorOption = (intl: IntlShape): ISelectErrorOption[] => {
+    return [
+        {
+            isDisabled: true,
+            type: "error",
+            label: intl.formatMessage({
+                id: "shareDialog.share.grantee.add.search.error.message",
+            }),
+        },
+    ];
+};
 
 /**
  * @internal
  */
 export const loadGranteeOptionsPromise =
     (appliedGrantees: GranteeItem[], backend: IAnalyticalBackend, workspace: string, intl: IntlShape) =>
-    async (inputValue: string): Promise<IGroupedOption[]> => {
+    async (inputValue: string): Promise<IGroupedOption[] | ISelectErrorOption[]> => {
         let usersOption: IWorkspaceUsersQueryOptions = {};
         let groupsOption: IWorkspaceUserGroupsQueryOptions = {};
 
@@ -71,18 +83,30 @@ export const loadGranteeOptionsPromise =
                     options: mappedUsers,
                 },
             ];
-        } catch (ex) {
-            // eslint-disable-next-line no-console
-            console.error(ex);
-            throw ex;
+        } catch {
+            return createErrorOption(intl);
         }
     };
 
-/**
- * @internal
- */
 export const loadGranteeOptionsPromiseError =
-    (_appliedGrantees: GranteeItem[], _backend: IAnalyticalBackend, _workspace: string, _intl: IntlShape) =>
-    async (_inputValue: string): Promise<IGroupedOption[]> => {
-        throw "errr";
+    (_appliedGrantees: GranteeItem[], _backend: IAnalyticalBackend, _workspace: string, intl: IntlShape) =>
+    async (_inputValue: string): Promise<IGroupedOption[] | ISelectErrorOption[]> => {
+        try {
+            // eslint-disable-next-line no-console
+            console.log("Err");
+            throw "errr";
+            return [];
+        } catch (ex) {
+            // eslint-disable-next-line no-console
+            console.log("ex");
+            return [
+                {
+                    isDisabled: true,
+                    type: "error",
+                    label: intl.formatMessage({
+                        id: "shareDialog.share.grantee.add.search.error.message",
+                    }),
+                },
+            ];
+        }
     };

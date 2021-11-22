@@ -12,7 +12,7 @@ import { GranteeItem } from "../types";
 interface IUseGetAccessListProps {
     sharedObjectRef: ObjRef;
     onSuccess: (result: GranteeItem[]) => void;
-    onError?: (err: any) => void;
+    onError: (err: Error) => void;
 }
 
 /**

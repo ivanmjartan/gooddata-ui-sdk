@@ -2828,6 +2828,7 @@ export interface IShareDialogProps {
     isVisible?: boolean;
     onApply: (payload: ISharingApplyPayload) => void;
     onCancel: () => void;
+    onError?: (error: GoodDataSdkError) => void;
     sharedObject: ISharedObject;
     workspace: string;
 }

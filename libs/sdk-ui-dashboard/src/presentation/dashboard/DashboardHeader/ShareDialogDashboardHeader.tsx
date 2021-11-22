@@ -51,6 +51,11 @@ const useShareDialogDashboardHeader = () => {
         [closeShareDialog, runChangeSharing],
     );
 
+    const onErrorShareDialog = useCallback(() => {
+        dispatch(uiActions.closeShareDialog());
+        addError({ id: "messages.sharingDialogError.general" });
+    }, [dispatch, addError, uiActions]);
+
     return {
         backend,
         workspace,
@@ -59,6 +64,7 @@ const useShareDialogDashboardHeader = () => {
         currentUserRef,
         onCloseShareDialog,
         onApplyShareDialog,
+        onErrorShareDialog,
     };
 };
 
@@ -74,6 +80,7 @@ export const ShareDialogDashboardHeader = (): JSX.Element | null => {
         currentUserRef,
         onCloseShareDialog,
         onApplyShareDialog,
+        onErrorShareDialog,
     } = useShareDialogDashboardHeader();
 
     if (!isShareDialogOpen) {
@@ -89,6 +96,7 @@ export const ShareDialogDashboardHeader = (): JSX.Element | null => {
             sharedObject={persistedDashboard!}
             onCancel={onCloseShareDialog}
             onApply={onApplyShareDialog}
+            onError={onErrorShareDialog}
         />
     );
 };

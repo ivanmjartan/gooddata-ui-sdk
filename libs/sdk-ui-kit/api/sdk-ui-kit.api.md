@@ -11,6 +11,7 @@ import { ColorFormats } from 'tinycolor2';
 import { Component } from 'react';
 import { CSSProperties } from 'react';
 import { FC } from 'react';
+import { GoodDataSdkError } from '@gooddata/sdk-ui';
 import { IAccessControlAware } from '@gooddata/sdk-backend-spi';
 import { IAccessGrantee } from '@gooddata/sdk-backend-spi';
 import { IAnalyticalBackend } from '@gooddata/sdk-backend-spi';
@@ -2550,6 +2551,8 @@ export interface IShareDialogProps {
     onApply: (payload: ISharingApplyPayload) => void;
     // (undocumented)
     onCancel: () => void;
+    // (undocumented)
+    onError?: (error: GoodDataSdkError) => void;
     // (undocumented)
     sharedObject: ISharedObject;
     // (undocumented)

@@ -2,6 +2,7 @@
 import { IAccessControlAware, IAccessGrantee, IAnalyticalBackend } from "@gooddata/sdk-backend-spi";
 import { ShareStatus } from "@gooddata/sdk-backend-spi";
 import { IAuditableUsers, ObjRef } from "@gooddata/sdk-model";
+import { GoodDataSdkError } from "@gooddata/sdk-ui";
 
 /**
  * @internal
@@ -31,4 +32,5 @@ export interface IShareDialogProps {
     locale?: string;
     onApply: (payload: ISharingApplyPayload) => void;
     onCancel: () => void;
+    onError?: (error: GoodDataSdkError) => void;
 }

@@ -13,6 +13,7 @@ import {
 import {
     BackendProvider,
     IntlWrapper,
+    UnexpectedSdkError,
     useBackendStrict,
     useWorkspaceStrict,
     WorkspaceProvider,
@@ -23,7 +24,7 @@ import { useGetAccessList } from "./ShareDialogBase/backend/useGetAccessList";
  * @internal
  */
 export const ShareDialog: React.FC<IShareDialogProps> = (props) => {
-    const { backend, workspace, locale, sharedObject, currentUserRef, onApply, onCancel } = props;
+    const { backend, workspace, locale, sharedObject, currentUserRef, onApply, onCancel, onError } = props;
     const { createdBy, shareStatus, ref: sharedObjectRef } = sharedObject;
 
     const effectiveBackend = useBackendStrict(backend);
@@ -46,9 +47,8 @@ export const ShareDialog: React.FC<IShareDialogProps> = (props) => {
         [setGrantees, shareStatus],
     );
 
-    const onLoadGranteesError = useCallback((_er: Error) => {
-        // eslint-disable-next-line no-console
-        console.error("Load grantees error");
+    const onLoadGranteesError = useCallback((err: Error) => {
+        onError && onError(new UnexpectedSdkError(err.message, err));
     }, []);
 
     useGetAccessList({ sharedObjectRef, onSuccess: onLoadGranteesSuccess, onError: onLoadGranteesError });

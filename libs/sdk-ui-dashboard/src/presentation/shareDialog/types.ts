@@ -3,6 +3,7 @@ import { ComponentType } from "react";
 import { IAnalyticalBackend } from "@gooddata/sdk-backend-spi";
 import { ObjRef } from "@gooddata/sdk-model";
 import { ISharedObject, ISharingApplyPayload as Payload } from "@gooddata/sdk-ui-kit";
+import { GoodDataSdkError } from "@gooddata/sdk-ui";
 
 /**
  * @alpha
@@ -45,6 +46,11 @@ export interface IShareDialogProps {
      * Callback to be called when user apply share dialog
      */
     onApply: (payload: ISharingApplyPayload) => void;
+
+    /**
+     * Callback to be called, when error occurs.
+     */
+    onError?: (error: GoodDataSdkError) => void;
 
     /**
      * Callback to be called when user closes the share dialog.

@@ -27,7 +27,7 @@ export const ShareDialogBase: React.FC<IShareDialogBaseProps> = (props) => {
         dialogMode,
         isShareDialogDirty,
         isAddDialogDirty,
-        filteredGrantees,
+        sharedGrantees,
         appliedGranteesWithOwner,
         isGranteesLoading,
     } = useShareDialogBase(props);
@@ -45,7 +45,7 @@ export const ShareDialogBase: React.FC<IShareDialogBaseProps> = (props) => {
                         isLoading={isGranteesLoading}
                         isDirty={isShareDialogDirty}
                         owner={owner}
-                        grantees={filteredGrantees}
+                        grantees={sharedGrantees}
                         onCancel={onCancel}
                         onSubmit={onSubmitShareGrantee}
                         onAddGranteeButtonClick={onAddGranteeButtonClick}

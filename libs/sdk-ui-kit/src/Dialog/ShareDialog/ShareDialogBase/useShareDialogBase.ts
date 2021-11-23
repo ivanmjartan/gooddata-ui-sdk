@@ -15,7 +15,24 @@ import { mapShareStatusToGroupAll } from "../shareDialogMappers";
 /**
  * @internal
  */
-const useShareDialogState = () => {
+export interface IUseShareDialogStateReturnType {
+    dialogMode: DialogModeType;
+    isGranteesLoading: boolean;
+    grantees: GranteeItem[];
+    granteesToAdd: GranteeItem[];
+    granteesToDelete: GranteeItem[];
+    onLoadGrantees: (grantees: GranteeItem[], groupAll: IGranteeGroupAll) => void;
+    onSharedGranteeDelete: (grantee: GranteeItem) => void;
+    onAddedGranteeDelete: (grantee: GranteeItem) => void;
+    onGranteeAdd: (grantee: GranteeItem) => void;
+    onAddGranteeButtonClick: () => void;
+    onAddGranteeBackClick: () => void;
+}
+
+/**
+ * @internal
+ */
+const useShareDialogState = (): IUseShareDialogStateReturnType => {
     const [dialogMode, setDialogMode] = useState<DialogModeType>("ShareGrantee");
     const [isGranteesLoading, setIsGranteesLoading] = useState(true);
     const [grantees, setGrantees] = useState<GranteeItem[]>([]);
@@ -83,7 +100,27 @@ const useShareDialogState = () => {
 /**
  * @internal
  */
-export const useShareDialogBase = (props: IShareDialogBaseProps) => {
+export interface IUseShareDialogBaseReturnType {
+    onAddedGranteeDelete: (grantee: GranteeItem) => void;
+    onSharedGranteeDelete: (grantee: GranteeItem) => void;
+    onAddGranteeBackClick: () => void;
+    onAddGranteeButtonClick: () => void;
+    onGranteeAdd: (grantee: GranteeItem) => void;
+    onSubmitShareGrantee: () => void;
+    onSubmitAddGrantee: () => void;
+    isGranteesLoading: boolean;
+    granteesToAdd: GranteeItem[];
+    dialogMode: DialogModeType;
+    isShareDialogDirty: boolean;
+    isAddDialogDirty: boolean;
+    sharedGrantees: GranteeItem[];
+    appliedGranteesWithOwner: GranteeItem[];
+}
+
+/**
+ * @internal
+ */
+export const useShareDialogBase = (props: IShareDialogBaseProps): IUseShareDialogBaseReturnType => {
     const { shareStatus, sharedObjectRef, owner, onSubmit, onError } = props;
     const {
         dialogMode,
@@ -131,7 +168,7 @@ export const useShareDialogBase = (props: IShareDialogBaseProps) => {
         onSubmit(grantees, granteesToAdd, granteesToDelete);
     }, [grantees, granteesToAdd, granteesToDelete, isAddDialogDirty, onSubmit]);
 
-    const filteredGrantees = useMemo(() => {
+    const sharedGrantees = useMemo(() => {
         return notInArrayFilter(grantees, granteesToDelete);
     }, [grantees, granteesToDelete]);
 
@@ -156,7 +193,7 @@ export const useShareDialogBase = (props: IShareDialogBaseProps) => {
         dialogMode,
         isShareDialogDirty,
         isAddDialogDirty,
-        filteredGrantees,
+        sharedGrantees,
         appliedGranteesWithOwner,
     };
 };

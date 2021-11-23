@@ -4,6 +4,7 @@
 
 ```ts
 
+import { AccessGranteeDetail } from '@gooddata/sdk-backend-spi';
 import { CatalogItem } from '@gooddata/sdk-backend-spi';
 import { dummyBackend } from '@gooddata/sdk-backend-base';
 import { dummyBackendEmptyData } from '@gooddata/sdk-backend-base';
@@ -30,6 +31,8 @@ import { IUser } from '@gooddata/sdk-model';
 import { IVisualizationClass } from '@gooddata/sdk-model';
 import { IWidgetAlert } from '@gooddata/sdk-backend-spi';
 import { IWorkspaceDescriptor } from '@gooddata/sdk-backend-spi';
+import { IWorkspaceUser } from '@gooddata/sdk-backend-spi';
+import { IWorkspaceUserGroup } from '@gooddata/sdk-backend-spi';
 import { ObjRef } from '@gooddata/sdk-model';
 import { ValidationContext } from '@gooddata/sdk-backend-spi';
 
@@ -154,6 +157,15 @@ export type RecordedBackendConfig = IAnalyticalBackendConfig & {
         availableMeasures?: (measures: ICatalogMeasure[]) => ICatalogMeasure[];
         availableFacts?: (facts: ICatalogFact[]) => ICatalogFact[];
         availableDateDatasets?: (datasets: ICatalogDateDataset[]) => ICatalogDateDataset[];
+    };
+    accessControl?: {
+        accessList?: AccessGranteeDetail[];
+    };
+    userGroup?: {
+        userGroups?: IWorkspaceUserGroup[];
+    };
+    users?: {
+        users?: IWorkspaceUser[];
     };
 };
 

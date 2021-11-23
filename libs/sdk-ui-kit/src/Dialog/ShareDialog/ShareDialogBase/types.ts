@@ -1,4 +1,5 @@
 // (C) 2021 GoodData Corporation
+import { ShareStatus } from "@gooddata/sdk-backend-spi";
 import { ObjRef } from "@gooddata/sdk-model";
 import isEmpty from "lodash/isEmpty";
 
@@ -105,11 +106,16 @@ export type DialogModeType = "ShareGrantee" | "AddGrantee";
  * @internal
  */
 export interface IShareDialogBaseProps {
-    isGranteesLoading: boolean;
+    sharedObjectRef: ObjRef;
+    shareStatus: ShareStatus;
     owner: IGranteeUser | IGranteeUserInactive;
-    grantees: GranteeItem[];
     onCancel: () => void;
-    onSubmit: (granteesToAdd: GranteeItem[], granteesToDelete: GranteeItem[]) => void;
+    onSubmit: (
+        grantees: GranteeItem[],
+        granteesToAdd: GranteeItem[],
+        granteesToDelete: GranteeItem[],
+    ) => void;
+    onError: (err: Error) => void;
 }
 
 /**

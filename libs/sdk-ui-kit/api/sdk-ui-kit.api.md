@@ -2528,15 +2528,17 @@ export const isGranteeUser: (obj: unknown) => obj is IGranteeUser;
 // @internal (undocumented)
 export interface IShareDialogBaseProps {
     // (undocumented)
-    grantees: GranteeItem[];
-    // (undocumented)
-    isGranteesLoading: boolean;
-    // (undocumented)
     onCancel: () => void;
     // (undocumented)
-    onSubmit: (granteesToAdd: GranteeItem[], granteesToDelete: GranteeItem[]) => void;
+    onError: (err: Error) => void;
+    // (undocumented)
+    onSubmit: (grantees: GranteeItem[], granteesToAdd: GranteeItem[], granteesToDelete: GranteeItem[]) => void;
     // (undocumented)
     owner: IGranteeUser | IGranteeUserInactive;
+    // (undocumented)
+    sharedObjectRef: ObjRef;
+    // (undocumented)
+    shareStatus: ShareStatus;
 }
 
 // @internal (undocumented)

@@ -1,5 +1,5 @@
 // (C) 2021 GoodData Corporation
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo } from "react";
 import { ShareDialogBase } from "./ShareDialogBase/ShareDialogBase";
 import { GranteeItem } from "./ShareDialogBase/types";
 import { IShareDialogProps } from "./types";
@@ -7,7 +7,6 @@ import {
     mapGranteesToAccessGrantees,
     mapGranteesToShareStatus,
     mapOwnerToGrantee,
-    mapShareStatusToGroupAll,
     mapUserToInactiveGrantee,
 } from "./shareDialogMappers";
 import {
@@ -18,7 +17,6 @@ import {
     useWorkspaceStrict,
     WorkspaceProvider,
 } from "@gooddata/sdk-ui";
-import { useGetAccessList } from "./ShareDialogBase/backend/useGetAccessList";
 
 /**
  * @internal
@@ -30,28 +28,12 @@ export const ShareDialog: React.FC<IShareDialogProps> = (props) => {
     const effectiveBackend = useBackendStrict(backend);
     const effectiveWorkspace = useWorkspaceStrict(workspace);
 
-    const [grantees, setGrantees] = useState<GranteeItem[]>([]);
-    const [isGranteesLoading, setIsGranteesLoading] = useState(true);
-
-    const onLoadGranteesSuccess = useCallback(
-        (result: GranteeItem[]) => {
-            const groupAll = mapShareStatusToGroupAll(shareStatus);
-            if (groupAll) {
-                setGrantees([...result, groupAll]);
-            } else {
-                setGrantees(result);
-            }
-
-            setIsGranteesLoading(false);
+    const onShareDialogBaseError = useCallback(
+        (err: Error) => {
+            onError && onError(new UnexpectedSdkError(err.message, err));
         },
-        [setGrantees, shareStatus],
+        [onError],
     );
-
-    const onLoadGranteesError = useCallback((err: Error) => {
-        onError && onError(new UnexpectedSdkError(err.message, err));
-    }, []);
-
-    useGetAccessList({ sharedObjectRef, onSuccess: onLoadGranteesSuccess, onError: onLoadGranteesError });
 
     const owner = useMemo(() => {
         if (sharedObject.createdBy) {
@@ -61,14 +43,14 @@ export const ShareDialog: React.FC<IShareDialogProps> = (props) => {
     }, [createdBy, currentUserRef]);
 
     const onSubmit = useCallback(
-        (granteesToAdd: GranteeItem[], granteesToDelete: GranteeItem[]) => {
+        (grantees: GranteeItem[], granteesToAdd: GranteeItem[], granteesToDelete: GranteeItem[]) => {
             const shareStatus = mapGranteesToShareStatus(grantees, granteesToAdd, granteesToDelete);
             const isUnderStrictControl = shareStatus !== "public";
             const add = mapGranteesToAccessGrantees(granteesToAdd);
             const del = mapGranteesToAccessGrantees(granteesToDelete);
             onApply({ shareStatus, isUnderStrictControl, granteesToAdd: add, granteesToDelete: del });
         },
-        [grantees, onApply],
+        [onApply],
     );
 
     return (
@@ -76,11 +58,12 @@ export const ShareDialog: React.FC<IShareDialogProps> = (props) => {
             <BackendProvider backend={effectiveBackend}>
                 <WorkspaceProvider workspace={effectiveWorkspace}>
                     <ShareDialogBase
-                        isGranteesLoading={isGranteesLoading}
+                        shareStatus={shareStatus}
+                        sharedObjectRef={sharedObjectRef}
                         owner={owner}
-                        grantees={grantees}
                         onCancel={onCancel}
                         onSubmit={onSubmit}
+                        onError={onShareDialogBaseError}
                     />
                 </WorkspaceProvider>
             </BackendProvider>

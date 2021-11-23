@@ -13,7 +13,6 @@ import { AddGranteeSelect } from "./AddGranteeSelect";
 export const AddGranteeContent: React.FC<IAddGranteeContentProps> = (props) => {
     const { appliedGrantees, addedGrantees, onDelete, onAddUserOrGroups } = props;
 
-    //TODO tenhle chack asi jinam
     const onSelectGrantee = useCallback(
         (grantee: GranteeItem) => {
             if (!appliedGrantees.some((g) => areObjRefsEqual(g.id, grantee.id))) {

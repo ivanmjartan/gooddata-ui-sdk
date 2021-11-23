@@ -17,7 +17,7 @@ import {
     LoadingMessageRenderer,
     OptionRenderer,
 } from "./AsyncSelectComponents";
-import { loadGranteeOptionsPromise } from "./backend/loadGranteeOptionsPromise";
+import { loadGranteeOptionsPromiseError } from "./backend/loadGranteeOptionsPromise";
 
 const SEARCH_INTERVAL = 400;
 
@@ -59,9 +59,13 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
 
     const loadOptions = useMemo(
         () =>
-            debounce(loadGranteeOptionsPromise(appliedGrantees, backend, workspace, intl), SEARCH_INTERVAL, {
-                leading: true,
-            }),
+            debounce(
+                loadGranteeOptionsPromiseError(appliedGrantees, backend, workspace, intl),
+                SEARCH_INTERVAL,
+                {
+                    leading: true,
+                },
+            ),
         [backend, workspace, intl, appliedGrantees],
     );
 
@@ -82,6 +86,7 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
             <AsyncSelect
                 ref={selectRef}
                 defaultMenuIsOpen={true}
+                menuIsOpen={true}
                 classNamePrefix="gd-share-dialog"
                 components={{
                     DropdownIndicator: EmptyRenderer,

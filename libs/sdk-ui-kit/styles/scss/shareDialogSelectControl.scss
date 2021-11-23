@@ -70,11 +70,10 @@
         border-style: solid;
         border-radius: 0 0 3px 3px;
         border-color: $gd-palette-primary-base;
-        border-top: 0;
-        border-top-color: $button-normal-border-color;
+        border-top: 1px $button-normal-border-color;
         margin-top: -2px;
         outline: 0;
-        box-shadow: inset 0 1px 1px 0 transparentize($gd-input-text-box-shadow-color, 0.2);
+        box-shadow: 0 0 1px 0 transparentize($gd-input-text-box-shadow-color, 0.2) inset;
         color: $gd-color-text;
         background-color: $gd-color-white;
     }
@@ -95,7 +94,6 @@
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
-            padding-left: 5px;
             cursor: default;
         }
 

@@ -127,7 +127,7 @@ describe("AddGranteeSelect", () => {
         expect(isOptionVisible(wrapper, getGroupOptionSelector(workSpaceGroup))).toBe(true);
     });
 
-    it("it should call onSelectGrantee when option is selected", async () => {
+    it("it should close options and call onSelectGrantee when option is selected", async () => {
         const onSelectGrantee = jest.fn();
 
         const wrapper = createComponent(
@@ -140,8 +140,12 @@ describe("AddGranteeSelect", () => {
 
         const userSelector = getUserOptionSelector(workspaceUser);
         const expectedPayload = mapWorkspaceUserToGrantee(workspaceUser);
+
         clickOnOption(wrapper, userSelector);
+        wrapper.update();
+
         expect(onSelectGrantee).toHaveBeenCalledTimes(1);
         expect(onSelectGrantee).toHaveBeenLastCalledWith(expectedPayload);
+        expect(isMenuIsVisible(wrapper)).toBe(false);
     });
 });

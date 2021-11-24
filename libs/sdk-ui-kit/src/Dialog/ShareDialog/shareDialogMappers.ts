@@ -8,6 +8,7 @@ import {
     IGranteeInactiveOwner,
     isGranteeGroupAll,
     isGranteeUserInactive,
+    GranteeStatus,
 } from "./ShareDialogBase/types";
 import {
     AccessGranteeDetail,
@@ -20,6 +21,14 @@ import { GranteeGroupAll, InactiveOwner, getAppliedGrantees, hasGroupAll } from 
 import { typesUtils } from "@gooddata/util";
 import { isUserAccess, isUserGroupAccess } from "@gooddata/sdk-backend-spi";
 
+const mapUserStatusToGranteeStatus = (status: "ENABLED" | "DISABLED"): GranteeStatus => {
+    if (status === "DISABLED") {
+        return "Inactive";
+    }
+
+    return "Active";
+};
+
 /**
  * @internal
  */
@@ -31,7 +40,7 @@ export const mapWorkspaceUserToGrantee = (user: IWorkspaceUser): IGranteeUser =>
         email: user.email,
         isOwner: false,
         isCurrentUser: false,
-        status: "Active",
+        status: mapUserStatusToGranteeStatus(user.status),
     };
 };
 

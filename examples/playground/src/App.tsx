@@ -5,6 +5,8 @@ import bearFactory, {
     AnonymousAuthProvider,
     FixedLoginAndPasswordAuthProvider,
 } from "@gooddata/sdk-backend-bear";
+import { Dashboard } from "@gooddata/sdk-ui-dashboard";
+import { idRef } from "@gooddata/sdk-model";
 
 function hasCredentialsSetup(): boolean {
     return BUILD_TYPE === "public" || (process.env.GDC_USERNAME && process.env.GDC_PASSWORD);
@@ -38,7 +40,7 @@ export const App: React.FC = () => {
     return (
         <BackendProvider backend={backend}>
             <WorkspaceProvider workspace={WORKSPACE}>
-                {/* Build your playground components under the playground directory.*/}
+                <Dashboard dashboard={idRef("aabtVa55WKnB")} />
             </WorkspaceProvider>
         </BackendProvider>
     );

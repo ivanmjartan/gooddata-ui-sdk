@@ -90,8 +90,23 @@ export type ExecutionRecording = {
 };
 
 // @internal (undocumented)
+export type IAccessControl = {
+    accessList?: AccessGranteeDetail[];
+};
+
+// @internal (undocumented)
 export type InsightRecording = {
     obj: IInsight;
+};
+
+// @internal (undocumented)
+export type IUserGroup = {
+    userGroups?: IWorkspaceUserGroup[];
+};
+
+// @internal (undocumented)
+export type IUsers = {
+    users?: IWorkspaceUser[];
 };
 
 // @internal @deprecated
@@ -158,15 +173,9 @@ export type RecordedBackendConfig = IAnalyticalBackendConfig & {
         availableFacts?: (facts: ICatalogFact[]) => ICatalogFact[];
         availableDateDatasets?: (datasets: ICatalogDateDataset[]) => ICatalogDateDataset[];
     };
-    accessControl?: {
-        accessList?: AccessGranteeDetail[];
-    };
-    userGroup?: {
-        userGroups?: IWorkspaceUserGroup[];
-    };
-    users?: {
-        users?: IWorkspaceUser[];
-    };
+    accessControl?: IAccessControl;
+    userGroup?: IUserGroup;
+    users?: IUsers;
 };
 
 // @internal

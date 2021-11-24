@@ -122,23 +122,38 @@ export type RecordedBackendConfig = IAnalyticalBackendConfig & {
     /**
      * Optionally specify response for accessList
      */
-    accessControl?: {
-        accessList?: AccessGranteeDetail[];
-    };
+    accessControl?: IAccessControl;
 
     /**
      * Optionally specify response for userGroup
      */
-    userGroup?: {
-        userGroups?: IWorkspaceUserGroup[];
-    };
+    userGroup?: IUserGroup;
 
     /**
      * Optionally specify response for users
      */
-    users?: {
-        users?: IWorkspaceUser[];
-    };
+    users?: IUsers;
+};
+
+/**
+ * @internal
+ */
+export type IAccessControl = {
+    accessList?: AccessGranteeDetail[];
+};
+
+/**
+ * @internal
+ */
+export type IUserGroup = {
+    userGroups?: IWorkspaceUserGroup[];
+};
+
+/**
+ * @internal
+ */
+export type IUsers = {
+    users?: IWorkspaceUser[];
 };
 
 /**

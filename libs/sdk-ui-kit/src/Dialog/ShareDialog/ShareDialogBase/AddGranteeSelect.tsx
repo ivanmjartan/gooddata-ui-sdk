@@ -15,6 +15,8 @@ import {
     GroupHeadingRenderer,
     InputRendered,
     LoadingMessageRenderer,
+    MenuListRendered,
+    NoOptionsMessageRenderer,
     OptionRenderer,
 } from "./AsyncSelectComponents";
 import { loadGranteeOptionsPromise } from "./backend/loadGranteeOptionsPromise";
@@ -91,6 +93,8 @@ export const AddGranteeSelect: React.FC<IAddGranteeSelectProps> = (props) => {
                     GroupHeading: GroupHeadingRenderer,
                     LoadingMessage: LoadingMessageRenderer,
                     LoadingIndicator: EmptyRenderer,
+                    MenuList: MenuListRendered,
+                    NoOptionsMessage: NoOptionsMessageRenderer,
                 }}
                 loadOptions={loadOptions}
                 defaultOptions={true}

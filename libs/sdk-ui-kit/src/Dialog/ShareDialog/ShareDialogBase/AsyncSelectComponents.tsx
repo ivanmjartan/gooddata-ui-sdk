@@ -1,6 +1,11 @@
 // (C) 2021 GoodData Corporation
 import React from "react";
-import { components as ReactSelectComponents, InputProps, OptionProps } from "react-select";
+import {
+    components as ReactSelectComponents,
+    InputProps,
+    MenuListComponentProps,
+    OptionProps,
+} from "react-select";
 import { Typography } from "../../../Typography";
 import { LoadingMask } from "../../../LoadingMask";
 import {
@@ -20,6 +25,24 @@ export const LoadingMessageRenderer = (): JSX.Element => {
     return (
         <div className="gd-share-dialog-loading-mask-container">
             <LoadingMask size="small" />
+        </div>
+    );
+};
+
+// missing export type for NoOptionsMessage from react-select
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const NoOptionsMessageRenderer = (props: any): JSX.Element => {
+    return (
+        <div className="s-gd-share-dialog-no-option">
+            <ReactSelectComponents.NoOptionsMessage {...props} />
+        </div>
+    );
+};
+
+export const MenuListRendered = (props: MenuListComponentProps<ISelectOption, false>): JSX.Element => {
+    return (
+        <div className="s-gd-share-dialog-menu">
+            <ReactSelectComponents.MenuList {...props} />
         </div>
     );
 };

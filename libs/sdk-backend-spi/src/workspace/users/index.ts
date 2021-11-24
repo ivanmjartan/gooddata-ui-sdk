@@ -44,6 +44,11 @@ export interface IWorkspaceUser {
      * Last name - when backend implementations supports it.
      */
     lastName?: string;
+
+    /**
+     * User status - when backend implementations supports it.
+     */
+    status?: "ENABLED" | "DISABLED";
 }
 
 /**

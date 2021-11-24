@@ -2030,6 +2030,7 @@ export interface IWorkspaceUser {
     lastName?: string;
     login: string;
     ref: ObjRef;
+    status?: "ENABLED" | "DISABLED";
     uri: string;
 }
 

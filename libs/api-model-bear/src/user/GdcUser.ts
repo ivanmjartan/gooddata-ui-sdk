@@ -462,9 +462,11 @@ export namespace GdcUser {
         };
     }
 
+    export type UsersItemStatus = "ENABLED" | "DISABLED";
+
     export interface IUsersItem {
         content: {
-            status?: UserListItemState;
+            status?: UsersItemStatus;
             firstname?: string;
             lastname?: string;
             email?: Email;

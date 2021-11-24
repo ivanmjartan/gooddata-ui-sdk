@@ -2518,7 +2518,7 @@ export namespace GdcUser {
     export interface IUsersItem {
         // (undocumented)
         content: {
-            status?: UserListItemState;
+            status?: UsersItemStatus;
             firstname?: string;
             lastname?: string;
             email?: Email;
@@ -2563,6 +2563,8 @@ export namespace GdcUser {
     export type ProjectPermission = "canAccessIntegration" | "canAccessWorkbench" | "canAssignUserWithRole" | "canCreateAnalyticalDashboard" | "canCreateAttribute" | "canCreateAttributeGroup" | "canCreateAttributeLabel" | "canCreateColumn" | "canCreateComment" | "canCreateDataSet" | "canCreateDomain" | "canCreateETLFile" | "canCreateExecutionContext" | "canCreateFact" | "canCreateFilterSettings" | "canCreateFolder" | "canCreateHelp" | "canCreateMetric" | "canCreateProjectDashboard" | "canCreateProjectTemplates" | "canCreatePrompt" | "canCreateReport" | "canCreateReportDefinition" | "canCreateRole" | "canCreateScheduledMail" | "canCreateTable" | "canCreateTableDataLoad" | "canCreateVisualization" | "canCreateVisualizationClass" | "canEnrichData" | "canExecute" | "canExecuteRaw" | "canExportDashboard" | "canExportReport" | "canInitData" | "canInviteUserToProject" | "canListInvitationsInProject" | "canListUsersInProject" | "canMaintainProject" | "canMaintainUserFilter" | "canMaintainUserFilterRelation" | "canManageACL" | "canManageAnalyticalDashboard" | "canManageAttribute" | "canManageAttributeGroup" | "canManageAttributeLabel" | "canManageColumn" | "canManageComment" | "canManageDataSet" | "canManageDomain" | "canManageETLFile" | "canManageExecutionContext" | "canManageFact" | "canManageFilterSettings" | "canManageFolder" | "canManageHelp" | "canManageIntegration" | "canManageIsProduction" | "canManageMetric" | "canManageProject" | "canManageProjectDashboard" | "canManagePrompt" | "canManagePublicAccessCode" | "canManageReport" | "canManageReportDefinition" | "canManageScheduledMail" | "canManageTable" | "canManageTableDataLoad" | "canManageTranslations" | "canManageVisualization" | "canRefreshData" | "canSeeOtherUserDetails" | "canSeePublicAccessCode" | "canSetLocale" | "canSetProjectVariables" | "canSetStyle" | "canSetUserVariables" | "canSuspendUserFromProject" | "canUploadNonProductionCSV" | "canValidateProject";
     // (undocumented)
     export type UserListItemState = "ACTIVE" | "INACTIVE" | "PENDING";
+    // (undocumented)
+    export type UsersItemStatus = "ENABLED" | "DISABLED";
 }
 
 // @alpha (undocumented)

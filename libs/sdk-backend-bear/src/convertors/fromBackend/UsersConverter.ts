@@ -27,7 +27,22 @@ export const convertUser = (user: GdcUser.IAccountSetting): IUser => {
 };
 
 export const convertWorkspaceUser = (user: GdcUser.IUserListItem): IWorkspaceUser => {
-    const { email, login, uri, firstName, lastName } = user;
+    const getStatusFromState = (
+        state: GdcUser.IUserListItem["state"],
+    ): IWorkspaceUser["status"] | undefined => {
+        switch (state) {
+            case "ACTIVE":
+                return "ENABLED";
+            case "INACTIVE":
+                return "DISABLED";
+            default:
+                return;
+        }
+    };
+
+    const { email, login, uri, firstName, lastName, state } = user;
+    const status = getStatusFromState(state);
+    const statusProp = status ? { status } : {};
     return {
         ref: uriRef(uri),
         email,
@@ -36,14 +51,16 @@ export const convertWorkspaceUser = (user: GdcUser.IUserListItem): IWorkspaceUse
         firstName: firstName ?? undefined,
         lastName: lastName ?? undefined,
         fullName: getUserFullName(firstName, lastName),
+        ...statusProp,
     };
 };
 
 export const convertUsersItem = (user: GdcUser.IUsersItem): IWorkspaceUser => {
     const {
-        content: { email, login, firstname, lastname },
+        content: { email, login, firstname, lastname, status },
         links,
     } = user;
+    const statusProp = status ? { status } : {};
     return {
         ref: uriRef(links!.self!),
         uri: links!.self!,
@@ -52,5 +69,6 @@ export const convertUsersItem = (user: GdcUser.IUsersItem): IWorkspaceUser => {
         firstName: firstname,
         lastName: lastname,
         fullName: getUserFullName(firstname, lastname),
+        ...statusProp,
     };
 };

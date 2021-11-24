@@ -8,12 +8,13 @@ export { ShareDialog } from "./ShareDialog";
 // export of internal base dialogs
 export type {
     GranteeType,
+    GranteeStatus,
     GranteeItem,
     IGranteeBase,
     IGranteeUser,
     IGranteeGroup,
     IGranteeGroupAll,
-    IGranteeUserInactive,
+    IGranteeInactiveOwner as IGranteeUserInactive,
     IShareDialogBaseProps,
     IGranteeItemProps,
     IShareGranteeBaseProps,

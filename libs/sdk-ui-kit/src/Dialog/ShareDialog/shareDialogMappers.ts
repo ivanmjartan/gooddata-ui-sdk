@@ -5,7 +5,7 @@ import {
     IGranteeGroup,
     IGranteeGroupAll,
     IGranteeUser,
-    IGranteeUserInactive,
+    IGranteeInactiveOwner,
     isGranteeGroupAll,
     isGranteeUserInactive,
 } from "./ShareDialogBase/types";
@@ -30,7 +30,8 @@ export const mapWorkspaceUserToGrantee = (user: IWorkspaceUser): IGranteeUser =>
         name: mapUserFullName(user),
         email: user.email,
         isOwner: false,
-        isCurrentUser: false, //areObjRefsEqual(user.ref, currentUserRef),
+        isCurrentUser: false,
+        status: "Active",
     };
 };
 
@@ -67,13 +68,14 @@ export const mapOwnerToGrantee = (user: IUser, currentUserRef: ObjRef): IGrantee
         email: user.email,
         isOwner: true,
         isCurrentUser: areObjRefsEqual(user.ref, currentUserRef),
+        status: "Active",
     };
 };
 
 /**
  * @internal
  */
-export const mapUserToInactiveGrantee = (): IGranteeUserInactive => {
+export const mapUserToInactiveOwner = (): IGranteeInactiveOwner => {
     return InactiveOwner;
 };
 

@@ -8,12 +8,12 @@ import isEmpty from "lodash/isEmpty";
 /**
  * @internal
  */
-export type GranteeItem = IGranteeUser | IGranteeUserInactive | IGranteeGroup | IGranteeGroupAll;
+export type GranteeItem = IGranteeUser | IGranteeInactiveOwner | IGranteeGroup | IGranteeGroupAll;
 
 /**
  * @internal
  */
-export type GranteeType = "user" | "inactive_user" | "group" | "groupAll";
+export type GranteeType = "user" | "inactive_owner" | "group" | "groupAll";
 
 /**
  * @internal
@@ -26,12 +26,18 @@ export interface IGranteeBase {
 /**
  * @internal
  */
+export type GranteeStatus = "Inactive" | "Active";
+
+/**
+ * @internal
+ */
 export interface IGranteeUser extends IGranteeBase {
     type: "user";
     name: string;
     email: string;
     isOwner: boolean;
     isCurrentUser: boolean;
+    status: GranteeStatus;
 }
 
 /**
@@ -44,15 +50,15 @@ export const isGranteeUser = (obj: unknown): obj is IGranteeUser => {
 /**
  * @internal
  */
-export interface IGranteeUserInactive extends IGranteeBase {
-    type: "inactive_user";
+export interface IGranteeInactiveOwner extends IGranteeBase {
+    type: "inactive_owner";
 }
 
 /**
  * @internal
  */
-export const isGranteeUserInactive = (obj: unknown): obj is IGranteeUserInactive => {
-    return !isEmpty(obj) && (obj as IGranteeUserInactive).type === "inactive_user";
+export const isGranteeUserInactive = (obj: unknown): obj is IGranteeInactiveOwner => {
+    return !isEmpty(obj) && (obj as IGranteeInactiveOwner).type === "inactive_owner";
 };
 
 /**
@@ -108,7 +114,7 @@ export type DialogModeType = "ShareGrantee" | "AddGrantee";
 export interface IShareDialogBaseProps {
     sharedObjectRef: ObjRef;
     shareStatus: ShareStatus;
-    owner: IGranteeUser | IGranteeUserInactive;
+    owner: IGranteeUser | IGranteeInactiveOwner;
     onCancel: () => void;
     onSubmit: (
         grantees: GranteeItem[],
@@ -133,7 +139,7 @@ export interface IGranteeItemProps {
 export interface IShareGranteeBaseProps {
     isDirty: boolean;
     isLoading: boolean;
-    owner: IGranteeUser | IGranteeUserInactive;
+    owner: IGranteeUser | IGranteeInactiveOwner;
     grantees: GranteeItem[];
     onAddGranteeButtonClick: () => void;
     onGranteeDelete: (grantee: GranteeItem) => void;

@@ -15,13 +15,13 @@ import { mapShareStatusToGroupAll } from "../shareDialogMappers";
 /**
  * @internal
  */
-export interface IUseShareDialogStateReturnType {
+interface IUseShareDialogStateReturnType {
     dialogMode: DialogModeType;
     isGranteesLoading: boolean;
     grantees: GranteeItem[];
     granteesToAdd: GranteeItem[];
     granteesToDelete: GranteeItem[];
-    onLoadGrantees: (grantees: GranteeItem[], groupAll: IGranteeGroupAll) => void;
+    onLoadGrantees: (grantees: GranteeItem[], groupAll: IGranteeGroupAll | undefined) => void;
     onSharedGranteeDelete: (grantee: GranteeItem) => void;
     onAddedGranteeDelete: (grantee: GranteeItem) => void;
     onGranteeAdd: (grantee: GranteeItem) => void;
@@ -70,7 +70,7 @@ const useShareDialogState = (): IUseShareDialogStateReturnType => {
     }, [setDialogMode, setGranteesToAdd]);
 
     const onLoadGrantees = useCallback(
-        (grantees: GranteeItem[], groupAll: IGranteeGroupAll) => {
+        (grantees: GranteeItem[], groupAll: IGranteeGroupAll | undefined) => {
             if (groupAll) {
                 setGrantees([...grantees, groupAll]);
             } else {

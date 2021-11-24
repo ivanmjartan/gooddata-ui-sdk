@@ -47,6 +47,7 @@ const getGrantees = (): GranteeItem[] => {
             email: `name.surname-${i}@mail.com`,
             isOwner: false,
             isCurrentUser: i === 0,
+            status: "Active",
         });
     }
 

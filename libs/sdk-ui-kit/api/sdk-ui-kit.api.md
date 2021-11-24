@@ -486,7 +486,10 @@ export type GranteeItem = IGranteeUser | IGranteeUserInactive | IGranteeGroup | 
 export const GranteeItemComponent: React_2.FC<IGranteeItemProps>;
 
 // @internal (undocumented)
-export type GranteeType = "user" | "inactive_user" | "group" | "groupAll";
+export type GranteeStatus = "Inactive" | "Active";
+
+// @internal (undocumented)
+export type GranteeType = "user" | "inactive_owner" | "group" | "groupAll";
 
 // @internal
 export function guidFor(obj: any): string;
@@ -1294,13 +1297,15 @@ export interface IGranteeUser extends IGranteeBase {
     // (undocumented)
     name: string;
     // (undocumented)
+    status: GranteeStatus;
+    // (undocumented)
     type: "user";
 }
 
 // @internal (undocumented)
 export interface IGranteeUserInactive extends IGranteeBase {
     // (undocumented)
-    type: "inactive_user";
+    type: "inactive_owner";
 }
 
 // @internal (undocumented)

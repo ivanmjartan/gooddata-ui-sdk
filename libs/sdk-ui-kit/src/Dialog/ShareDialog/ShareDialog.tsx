@@ -7,7 +7,7 @@ import {
     mapGranteesToAccessGrantees,
     mapGranteesToShareStatus,
     mapOwnerToGrantee,
-    mapUserToInactiveGrantee,
+    mapUserToInactiveOwner,
 } from "./shareDialogMappers";
 import {
     BackendProvider,
@@ -39,7 +39,7 @@ export const ShareDialog: React.FC<IShareDialogProps> = (props) => {
         if (sharedObject.createdBy) {
             return mapOwnerToGrantee(createdBy, currentUserRef);
         }
-        return mapUserToInactiveGrantee();
+        return mapUserToInactiveOwner();
     }, [createdBy, currentUserRef]);
 
     const onSubmit = useCallback(

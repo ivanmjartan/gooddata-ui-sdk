@@ -1,7 +1,7 @@
 // (C) 2021 GoodData Corporation
 import { IntlShape } from "react-intl";
 import { areObjRefsEqual, objRefToString, uriRef } from "@gooddata/sdk-model";
-import { GranteeItem, IGranteeGroupAll, IGranteeUserInactive } from "./types";
+import { GranteeItem, IGranteeGroupAll, IGranteeInactiveOwner } from "./types";
 import differenceWith from "lodash/differenceWith";
 
 /**
@@ -25,9 +25,9 @@ export const INACTIVE_OWNER_ID = "inactive_owner";
 /**
  * @internal
  */
-export const InactiveOwner: IGranteeUserInactive = {
+export const InactiveOwner: IGranteeInactiveOwner = {
     id: uriRef(INACTIVE_OWNER_ID),
-    type: "inactive_user",
+    type: "inactive_owner",
 };
 
 /**
@@ -47,7 +47,7 @@ export const getGranteeLabel = (grantee: GranteeItem, intl: IntlShape): string =
         return grantee.name;
     } else if (grantee.type === "groupAll") {
         return intl.formatMessage({ id: "shareDialog.share.grantee.item.user.all" });
-    } else if (grantee.type === "inactive_user") {
+    } else if (grantee.type === "inactive_owner") {
         return intl.formatMessage({ id: "shareDialog.share.grantee.item.user.inactive" });
     } else {
         exhaustiveCheck(grantee);

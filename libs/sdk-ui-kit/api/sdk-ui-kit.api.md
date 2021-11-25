@@ -554,6 +554,8 @@ export interface IAddGranteeBaseProps {
     // (undocumented)
     appliedGrantees: GranteeItem[];
     // (undocumented)
+    currentUserRef: ObjRef;
+    // (undocumented)
     isDirty: boolean;
     // (undocumented)
     onAddUserOrGroups?: (grantee: GranteeItem) => void;
@@ -2532,6 +2534,8 @@ export const isGranteeUser: (obj: unknown) => obj is IGranteeUser;
 
 // @internal (undocumented)
 export interface IShareDialogBaseProps {
+    // (undocumented)
+    currentUserRef: ObjRef;
     // (undocumented)
     onCancel: () => void;
     // (undocumented)

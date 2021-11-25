@@ -2,14 +2,27 @@
 import { ShareStatus } from "@gooddata/sdk-backend-spi";
 
 import { IUser, uriRef } from "@gooddata/sdk-model";
-import { groupAll, owner, user } from "../ShareDialogBase/test/GranteeMock";
+import {
+    grantees,
+    groupAccessGrantee,
+    groupAll,
+    owner,
+    user,
+    userAccessGrantee,
+    workSpaceGroup,
+    workspaceUser,
+} from "../ShareDialogBase/test/GranteeMock";
 import { GranteeItem, IGranteeUser } from "../ShareDialogBase/types";
 import { GranteeGroupAll } from "../ShareDialogBase/utils";
 import {
+    mapGranteesToAccessGrantees,
     mapGranteesToShareStatus,
     mapOwnerToGrantee,
     mapShareStatusToGroupAll,
     mapUserFullName,
+    mapWorkspaceUserGroupToGrantee,
+    mapWorkspaceUserToGrantee,
+    mapAccessGranteeDetailToGrantee,
 } from "../shareDialogMappers";
 
 describe("shareDialogMappers", () => {
@@ -152,5 +165,93 @@ describe("shareDialogMappers", () => {
                 expect(mapGranteesToShareStatus(grantees, granteesToAdd, granteesToDelete)).toEqual(result);
             },
         );
+    });
+
+    describe("mapWorkspaceUserToGrantee", () => {
+        it("should return correctly map workspace user to grantee", () => {
+            const expectedGrantee: GranteeItem = {
+                email: "john.doe@d.com",
+                id: uriRef("john-id"),
+                isCurrentUser: false,
+                isOwner: false,
+                name: "John Doe ",
+                status: "Active",
+                type: "user",
+            };
+
+            expect(mapWorkspaceUserToGrantee(workspaceUser, uriRef(""))).toEqual(expectedGrantee);
+        });
+
+        it("should return correctly map current workspace user to grantee", () => {
+            const expectedGrantee: GranteeItem = {
+                email: "john.doe@d.com",
+                id: uriRef("john-id"),
+                isCurrentUser: true,
+                isOwner: false,
+                name: "John Doe ",
+                status: "Active",
+                type: "user",
+            };
+
+            expect(mapWorkspaceUserToGrantee(workspaceUser, uriRef("john-id"))).toEqual(expectedGrantee);
+        });
+    });
+
+    describe("mapWorkspaceUserGroupToGrantee", () => {
+        it("should return correctly map workspace user to grantee", () => {
+            const expectedGrantee: GranteeItem = {
+                id: uriRef("test-group-id"),
+                name: "Test group",
+                type: "group",
+            };
+            expect(mapWorkspaceUserGroupToGrantee(workSpaceGroup)).toEqual(expectedGrantee);
+        });
+    });
+
+    describe("mapGranteesToAccessGrantees", () => {
+        it("should return correctly map grantees to access grantees", () => {
+            const accessGrantee = [{ granteeRef: uriRef("userID1") }, { granteeRef: uriRef("groupId") }];
+            expect(mapGranteesToAccessGrantees(grantees)).toEqual(accessGrantee);
+        });
+    });
+
+    describe("mapAccessGranteeDetailToGrantee", () => {
+        it("should return correctly map IUserAccess to grantee", () => {
+            const expectedGrantee: GranteeItem = {
+                email: "john.doe@d.com",
+                id: uriRef("john-id"),
+                isCurrentUser: false,
+                isOwner: false,
+                name: "John Doe ",
+                status: "Active",
+                type: "user",
+            };
+            expect(mapAccessGranteeDetailToGrantee(userAccessGrantee, uriRef(""))).toEqual(expectedGrantee);
+        });
+
+        it("should return correctly map current IUserAccess to grantee", () => {
+            const expectedGrantee: GranteeItem = {
+                email: "john.doe@d.com",
+                id: uriRef("john-id"),
+                isCurrentUser: true,
+                isOwner: false,
+                name: "John Doe ",
+                status: "Active",
+                type: "user",
+            };
+            expect(mapAccessGranteeDetailToGrantee(userAccessGrantee, uriRef("john-id"))).toEqual(
+                expectedGrantee,
+            );
+        });
+
+        it("should return correctly map current IUserGroupAccess to grantee", () => {
+            const expected: GranteeItem = {
+                id: uriRef("test-group-id"),
+                name: "Test group",
+                type: "group",
+            };
+
+            expect(mapAccessGranteeDetailToGrantee(groupAccessGrantee, uriRef(""))).toEqual(expected);
+        });
     });
 });

@@ -11,10 +11,12 @@ import { IWorkspaceUser, IWorkspaceUserGroup } from "@gooddata/sdk-backend-spi";
 import { groupAll, workSpaceGroup, workspaceUser } from "./GranteeMock";
 import { mapWorkspaceUserGroupToGrantee, mapWorkspaceUserToGrantee } from "../../shareDialogMappers";
 import { getGranteeItemTestId } from "../utils";
+import { uriRef } from "@gooddata/sdk-model";
 
 const defaultProps: IAddGranteeSelectProps = {
     onSelectGrantee: noop,
     appliedGrantees: [],
+    currentUserRef: uriRef(""),
 };
 
 const createComponent = (

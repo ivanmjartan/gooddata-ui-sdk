@@ -14,6 +14,7 @@ import { current, group, groupAll, user } from "./GranteeMock";
 import { BackendProvider, WorkspaceProvider } from "@gooddata/sdk-ui";
 import { recordedBackend } from "@gooddata/sdk-backend-mockingbird";
 import { ReferenceRecordings } from "@gooddata/reference-workspace";
+import { uriRef } from "@gooddata/sdk-model";
 
 const EmptySelectionExample = (): JSX.Element => {
     const workspace = "foo";
@@ -26,6 +27,7 @@ const EmptySelectionExample = (): JSX.Element => {
                     <AddGranteeBase
                         isDirty={false}
                         addedGrantees={[]}
+                        currentUserRef={uriRef("")}
                         appliedGrantees={[groupAll, user]}
                         onAddUserOrGroups={action("onAddUserOrGroups")}
                         onDelete={action("onDelete")}
@@ -51,6 +53,7 @@ const EmptyAvailableItemsExample = (): JSX.Element => {
                         isDirty={false}
                         addedGrantees={[user]}
                         appliedGrantees={[]}
+                        currentUserRef={uriRef("")}
                         onAddUserOrGroups={action("onAddUserOrGroups")}
                         onDelete={action("onDelete")}
                         onCancel={action("onCancel")}
@@ -75,6 +78,7 @@ const SelectedItemsExample = (): JSX.Element => {
                         isDirty={true}
                         addedGrantees={[user, current, group]}
                         appliedGrantees={[groupAll]}
+                        currentUserRef={uriRef("")}
                         onAddUserOrGroups={action("onAddUserOrGroups")}
                         onDelete={action("onDelete")}
                         onCancel={action("onCancel")}

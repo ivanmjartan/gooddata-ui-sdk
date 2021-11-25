@@ -40,13 +40,9 @@ export const GranteeRemoveIcon: React.FC<IGranteeRemoveIconProps> = (props) => {
     const { onClick, mode } = props;
 
     return (
-        <BubbleHoverTrigger
-            showDelay={0}
-            hideDelay={0}
-            className="gd-grantee-item-delete s-gd-grantee-item-delete"
-        >
+        <BubbleHoverTrigger showDelay={0} hideDelay={0} className="gd-grantee-item-delete">
             <span
-                className="gd-grantee-item-icon gd-grantee-icon-trash gd-grantee-item-icon-right"
+                className="gd-grantee-item-icon gd-grantee-icon-trash gd-grantee-item-icon-right s-gd-grantee-item-delete"
                 onClick={onClick}
             />
             <Bubble className="bubble-primary" alignPoints={alignPoints}>

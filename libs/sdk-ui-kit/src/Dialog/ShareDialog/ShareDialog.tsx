@@ -58,6 +58,7 @@ export const ShareDialog: React.FC<IShareDialogProps> = (props) => {
             <BackendProvider backend={effectiveBackend}>
                 <WorkspaceProvider workspace={effectiveWorkspace}>
                     <ShareDialogBase
+                        currentUserRef={currentUserRef}
                         shareStatus={shareStatus}
                         sharedObjectRef={sharedObjectRef}
                         owner={owner}

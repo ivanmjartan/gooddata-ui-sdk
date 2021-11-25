@@ -59,7 +59,7 @@ const OptionContentRenderer = (item: ISelectOption): JSX.Element => {
     if (isGranteeUser(item.value)) {
         return (
             <>
-                {item.value.name} <span className={"option-email"}>{item.value.email}</span>
+                {item.label} <span className={"option-email"}>{item.value.email}</span>
             </>
         );
     }

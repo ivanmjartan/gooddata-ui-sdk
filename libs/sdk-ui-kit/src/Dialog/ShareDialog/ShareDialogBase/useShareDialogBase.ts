@@ -121,7 +121,7 @@ export interface IUseShareDialogBaseReturnType {
  * @internal
  */
 export const useShareDialogBase = (props: IShareDialogBaseProps): IUseShareDialogBaseReturnType => {
-    const { shareStatus, sharedObjectRef, owner, onSubmit, onError } = props;
+    const { shareStatus, currentUserRef, sharedObjectRef, owner, onSubmit, onError } = props;
     const {
         dialogMode,
         isGranteesLoading,
@@ -144,7 +144,7 @@ export const useShareDialogBase = (props: IShareDialogBaseProps): IUseShareDialo
         [onLoadGrantees, shareStatus],
     );
 
-    useGetAccessList({ sharedObjectRef, onSuccess: onLoadGranteesSuccess, onError });
+    useGetAccessList({ currentUserRef, sharedObjectRef, onSuccess: onLoadGranteesSuccess, onError });
 
     const isShareDialogDirty = useMemo(() => {
         return granteesToDelete.length !== 0;

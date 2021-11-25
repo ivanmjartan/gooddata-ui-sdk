@@ -32,14 +32,14 @@ const mapUserStatusToGranteeStatus = (status: "ENABLED" | "DISABLED"): GranteeSt
 /**
  * @internal
  */
-export const mapWorkspaceUserToGrantee = (user: IWorkspaceUser): IGranteeUser => {
+export const mapWorkspaceUserToGrantee = (user: IWorkspaceUser, currentUserRef: ObjRef): IGranteeUser => {
     return {
         type: "user",
         id: user.ref,
         name: mapUserFullName(user),
         email: user.email,
         isOwner: false,
-        isCurrentUser: false,
+        isCurrentUser: areObjRefsEqual(user.ref, currentUserRef),
         status: mapUserStatusToGranteeStatus(user.status),
     };
 };
@@ -111,9 +111,12 @@ export const mapGranteesToAccessGrantees = (grantees: GranteeItem[]): IAccessGra
         });
 };
 
-export const mapAccessGranteeDetailToGrantee = (accessGranteeDetail: AccessGranteeDetail): GranteeItem => {
+export const mapAccessGranteeDetailToGrantee = (
+    accessGranteeDetail: AccessGranteeDetail,
+    currentUserRef: ObjRef,
+): GranteeItem => {
     if (isUserAccess(accessGranteeDetail)) {
-        return mapWorkspaceUserToGrantee(accessGranteeDetail.user);
+        return mapWorkspaceUserToGrantee(accessGranteeDetail.user, currentUserRef);
     } else if (isUserGroupAccess(accessGranteeDetail)) {
         return mapWorkspaceUserGroupToGrantee(accessGranteeDetail.userGroup);
     }

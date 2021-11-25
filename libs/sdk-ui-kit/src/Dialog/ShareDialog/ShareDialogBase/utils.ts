@@ -42,6 +42,12 @@ const exhaustiveCheck = (_param: never): never => {
  */
 export const getGranteeLabel = (grantee: GranteeItem, intl: IntlShape): string => {
     if (grantee.type === "user") {
+        if (grantee.isCurrentUser) {
+            return intl.formatMessage(
+                { id: "shareDialog.share.grantee.item.you" },
+                { userName: grantee.name },
+            );
+        }
         return grantee.name;
     } else if (grantee.type === "group") {
         return grantee.name;

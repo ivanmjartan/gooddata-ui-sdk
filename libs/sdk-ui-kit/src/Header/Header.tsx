@@ -40,6 +40,8 @@ function getWidthOfChildren(element: HTMLDivElement, selector = "> *") {
         .reduce((sum, childWidth) => sum + childWidth, SAFETY_PADDING);
 }
 
+const LOGO_DEFAULT_PATH = "/images/header/logo.png";
+
 class AppHeaderCore extends Component<IAppHeaderProps & WrappedComponentProps, IAppHeaderState> {
     public static defaultProps: Pick<
         IAppHeaderProps,
@@ -67,8 +69,19 @@ class AppHeaderCore extends Component<IAppHeaderProps & WrappedComponentProps, I
         };
     }
 
+    private getLogoUrl() {
+        const logoUrl = this.props.logoUrl;
+        if (logoUrl && logoUrl.toLocaleLowerCase() === LOGO_DEFAULT_PATH.toLocaleLowerCase()) {
+            // prevent cache of default logo image
+            return `${logoUrl}?2021`;
+        }
+
+        return logoUrl;
+    }
+
     public render() {
-        const { logoUrl, logoTitle, workspacePicker } = this.props;
+        const { logoTitle, workspacePicker } = this.props;
+        const logoUrl = this.getLogoUrl();
 
         this.createStyles();
 

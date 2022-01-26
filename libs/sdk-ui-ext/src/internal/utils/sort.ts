@@ -1,4 +1,4 @@
-// (C) 2019-2020 GoodData Corporation
+// (C) 2019-2022 GoodData Corporation
 import every from "lodash/every";
 import includes from "lodash/includes";
 import isEmpty from "lodash/isEmpty";
@@ -119,6 +119,7 @@ function getDefaultHeatmapSortFromBuckets(viewBy: IBucket): ISortItem[] {
 }
 
 function getDefaultHeatmapSort(insight: IInsightDefinition): ISortItem[] {
+    debugger;
     const sorts = insightSorts(insight);
     if (sorts && sorts.length > 0) {
         return sorts;

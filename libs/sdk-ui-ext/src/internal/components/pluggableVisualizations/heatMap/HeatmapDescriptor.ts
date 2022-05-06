@@ -17,11 +17,18 @@ import {
     filtersInsightConversion,
     getInsightToPropsConverter,
     getReactEmbeddingCodeGenerator,
+    IImportInfo,
     singleAttributeBucketConversion,
     singleAttributeOrMeasureBucketConversion,
     sortsInsightConversion,
 } from "../../../utils/embeddingCodeGenerator";
 import { chartAdditionalFactories, chartConfigInsightConversion } from "../chartCodeGenUtils";
+
+const component: IImportInfo = {
+    importType: "named",
+    name: "Heatmap",
+    package: "@gooddata/sdk-ui-charts",
+};
 
 export class HeatmapDescriptor extends BigChartDescriptor implements IVisualizationDescriptor {
     public getFactory(): PluggableVisualizationFactory {
@@ -38,11 +45,7 @@ export class HeatmapDescriptor extends BigChartDescriptor implements IVisualizat
     }
 
     public getEmbeddingCode = getReactEmbeddingCodeGenerator({
-        component: {
-            importType: "named",
-            name: "Heatmap",
-            package: "@gooddata/sdk-ui-charts",
-        },
+        component: component,
         insightToProps: getInsightToPropsConverter<IHeatmapProps>({
             measure: singleAttributeOrMeasureBucketConversion("measure", BucketNames.MEASURES),
             rows: singleAttributeBucketConversion("rows", BucketNames.VIEW),
@@ -58,6 +61,10 @@ export class HeatmapDescriptor extends BigChartDescriptor implements IVisualizat
         return {
             documentationUrl: "https://sdk.gooddata.com/gooddata-ui/docs/heatmap_component.html",
             supportsExport: true,
+            componentInfo: {
+                name: component.name,
+                package: component.package,
+            },
         };
     }
 

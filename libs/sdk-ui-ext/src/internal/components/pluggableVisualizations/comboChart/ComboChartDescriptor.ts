@@ -16,20 +16,22 @@ import {
     sortsInsightConversion,
     multipleMeasuresBucketConversion,
     multipleAttributesBucketConversion,
+    IImportInfo,
 } from "../../../utils/embeddingCodeGenerator";
 import { chartAdditionalFactories, chartConfigInsightConversion } from "../chartCodeGenUtils";
 
+const component: IImportInfo = {
+    importType: "named",
+    name: "ComboChart",
+    package: "@gooddata/sdk-ui-charts",
+};
 export class ComboChartDescriptor extends BigChartDescriptor implements IVisualizationDescriptor {
     public getFactory(): PluggableVisualizationFactory {
         return (params) => new PluggableComboChart(params);
     }
 
     public getEmbeddingCode = getReactEmbeddingCodeGenerator({
-        component: {
-            importType: "named",
-            name: "ComboChart",
-            package: "@gooddata/sdk-ui-charts",
-        },
+        component: component,
         insightToProps: getInsightToPropsConverter<IComboChartProps>({
             primaryMeasures: multipleMeasuresBucketConversion("primaryMeasures", BucketNames.MEASURES),
             secondaryMeasures: multipleMeasuresBucketConversion(
@@ -48,6 +50,10 @@ export class ComboChartDescriptor extends BigChartDescriptor implements IVisuali
         return {
             documentationUrl: "https://sdk.gooddata.com/gooddata-ui/docs/combo_chart_component.html",
             supportsExport: true,
+            componentInfo: {
+                name: component.name,
+                package: component.package,
+            },
         };
     }
 }

@@ -19,10 +19,17 @@ import {
     filtersInsightConversion,
     getInsightToPropsConverter,
     getReactEmbeddingCodeGenerator,
+    IImportInfo,
     multipleAttributesOrMeasuresBucketConversion,
     singleAttributeBucketConversion,
 } from "../../../utils/embeddingCodeGenerator";
 import { chartAdditionalFactories, chartConfigInsightConversion } from "../chartCodeGenUtils";
+
+const component: IImportInfo = {
+    importType: "named",
+    name: "Treemap",
+    package: "@gooddata/sdk-ui-charts",
+};
 
 export class TreemapDescriptor extends BigChartDescriptor {
     public getFactory(): PluggableVisualizationFactory {
@@ -35,11 +42,7 @@ export class TreemapDescriptor extends BigChartDescriptor {
     }
 
     public getEmbeddingCode = getReactEmbeddingCodeGenerator({
-        component: {
-            importType: "named",
-            name: "Treemap",
-            package: "@gooddata/sdk-ui-charts",
-        },
+        component: component,
         insightToProps: getInsightToPropsConverter<ITreemapProps>({
             measures: multipleAttributesOrMeasuresBucketConversion("measures", BucketNames.MEASURES),
             viewBy: singleAttributeBucketConversion("viewBy", BucketNames.VIEW),
@@ -54,6 +57,10 @@ export class TreemapDescriptor extends BigChartDescriptor {
         return {
             documentationUrl: "https://sdk.gooddata.com/gooddata-ui/docs/treemap_component.html",
             supportsExport: true,
+            componentInfo: {
+                name: component.name,
+                package: component.package,
+            },
         };
     }
 

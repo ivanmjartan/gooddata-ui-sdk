@@ -13,23 +13,25 @@ import {
     filtersInsightConversion,
     getInsightToPropsConverter,
     getReactEmbeddingCodeGenerator,
+    IImportInfo,
     singleAttributeBucketConversion,
     singleMeasureBucketConversion,
     sortsInsightConversion,
 } from "../../../utils/embeddingCodeGenerator";
 import { chartAdditionalFactories, chartConfigInsightConversion } from "../chartCodeGenUtils";
 
+const component: IImportInfo = {
+    importType: "named",
+    name: "BubbleChart",
+    package: "@gooddata/sdk-ui-charts",
+};
 export class BubbleChartDescriptor extends BigChartDescriptor implements IVisualizationDescriptor {
     public getFactory(): PluggableVisualizationFactory {
         return (params) => new PluggableBubbleChart(params);
     }
 
     public getEmbeddingCode = getReactEmbeddingCodeGenerator({
-        component: {
-            importType: "named",
-            name: "BubbleChart",
-            package: "@gooddata/sdk-ui-charts",
-        },
+        component: component,
         insightToProps: getInsightToPropsConverter<IBubbleChartProps>({
             xAxisMeasure: singleMeasureBucketConversion("xAxisMeasure", BucketNames.MEASURES),
             yAxisMeasure: singleMeasureBucketConversion("yAxisMeasure", BucketNames.SECONDARY_MEASURES),
@@ -46,6 +48,10 @@ export class BubbleChartDescriptor extends BigChartDescriptor implements IVisual
         return {
             documentationUrl: "https://sdk.gooddata.com/gooddata-ui/docs/bubble_chart_component.html",
             supportsExport: true,
+            componentInfo: {
+                name: component.name,
+                package: component.package,
+            },
         };
     }
 }

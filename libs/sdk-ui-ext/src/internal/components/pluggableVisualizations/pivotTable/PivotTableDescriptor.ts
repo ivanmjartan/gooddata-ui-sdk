@@ -26,6 +26,7 @@ import {
     filtersInsightConversion,
     getInsightToPropsConverter,
     getReactEmbeddingCodeGenerator,
+    IImportInfo,
     insightConversion,
     multipleAttributesBucketConversion,
     multipleAttributesOrMeasuresBucketConversion,
@@ -34,6 +35,11 @@ import {
 } from "../../../utils/embeddingCodeGenerator";
 import { pivotTableConfigFromInsight } from "./pivotTableConfigFromInsight";
 
+const component: IImportInfo = {
+    importType: "named",
+    name: "PivotTable",
+    package: "@gooddata/sdk-ui-pivot",
+};
 export class PivotTableDescriptor extends BaseChartDescriptor implements IVisualizationDescriptor {
     public getFactory(): PluggableVisualizationFactory {
         return (params) => new PluggablePivotTable(params);
@@ -71,11 +77,7 @@ export class PivotTableDescriptor extends BaseChartDescriptor implements IVisual
     }
 
     public getEmbeddingCode = getReactEmbeddingCodeGenerator({
-        component: {
-            importType: "named",
-            name: "PivotTable",
-            package: "@gooddata/sdk-ui-pivot",
-        },
+        component: component,
         insightToProps: getInsightToPropsConverter<IPivotTableProps>({
             measures: multipleAttributesOrMeasuresBucketConversion("measures", BucketNames.MEASURES),
             rows: multipleAttributesBucketConversion("rows", BucketNames.ATTRIBUTE),
@@ -116,6 +118,10 @@ export class PivotTableDescriptor extends BaseChartDescriptor implements IVisual
         return {
             documentationUrl: "https://sdk.gooddata.com/gooddata-ui/docs/pivot_table_component.html",
             supportsExport: true,
+            componentInfo: {
+                name: component.name,
+                package: component.package,
+            },
         };
     }
 }

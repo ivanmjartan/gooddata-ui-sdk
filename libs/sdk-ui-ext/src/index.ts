@@ -30,6 +30,7 @@ export {
     isDrillDownDefinition,
     IVisualizationSizeInfo,
     IVisualizationMeta,
+    IComponentMeta,
     ISizeInfo,
     fluidLayoutDescriptor,
     FluidLayoutDescriptor,

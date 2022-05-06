@@ -23,12 +23,19 @@ import {
     filtersInsightConversion,
     getInsightToPropsConverter,
     getReactEmbeddingCodeGenerator,
+    IImportInfo,
     multipleAttributesBucketConversion,
     multipleAttributesOrMeasuresBucketConversion,
     singleAttributeBucketConversion,
     sortsInsightConversion,
 } from "../../../utils/embeddingCodeGenerator";
 import { chartAdditionalFactories, chartConfigInsightConversion } from "../chartCodeGenUtils";
+
+const component: IImportInfo = {
+    importType: "named",
+    name: "BarChart",
+    package: "@gooddata/sdk-ui-charts",
+};
 
 export class BarChartDescriptor extends BaseChartDescriptor implements IVisualizationDescriptor {
     public getFactory(): PluggableVisualizationFactory {
@@ -45,11 +52,7 @@ export class BarChartDescriptor extends BaseChartDescriptor implements IVisualiz
     }
 
     public getEmbeddingCode = getReactEmbeddingCodeGenerator({
-        component: {
-            importType: "named",
-            name: "BarChart",
-            package: "@gooddata/sdk-ui-charts",
-        },
+        component: component,
         insightToProps: getInsightToPropsConverter<IBarChartProps>({
             measures: multipleAttributesOrMeasuresBucketConversion("measures", BucketNames.MEASURES),
             viewBy: multipleAttributesBucketConversion("viewBy", BucketNames.VIEW),
@@ -65,6 +68,10 @@ export class BarChartDescriptor extends BaseChartDescriptor implements IVisualiz
         return {
             documentationUrl: "https://sdk.gooddata.com/gooddata-ui/docs/bar_chart_component.html",
             supportsExport: true,
+            componentInfo: {
+                name: component.name,
+                package: component.package,
+            },
         };
     }
 

@@ -12,23 +12,25 @@ import {
     filtersInsightConversion,
     getInsightToPropsConverter,
     getReactEmbeddingCodeGenerator,
+    IImportInfo,
     singleAttributeBucketConversion,
     singleMeasureBucketConversion,
     sortsInsightConversion,
 } from "../../../utils/embeddingCodeGenerator";
 import { chartAdditionalFactories, chartConfigInsightConversion } from "../chartCodeGenUtils";
 
+const component: IImportInfo = {
+    importType: "named",
+    name: "ScatterPlot",
+    package: "@gooddata/sdk-ui-charts",
+};
 export class ScatterPlotDescriptor extends BigChartDescriptor {
     public getFactory(): PluggableVisualizationFactory {
         return (params) => new PluggableScatterPlot(params);
     }
 
     public getEmbeddingCode = getReactEmbeddingCodeGenerator({
-        component: {
-            importType: "named",
-            name: "ScatterPlot",
-            package: "@gooddata/sdk-ui-charts",
-        },
+        component: component,
         insightToProps: getInsightToPropsConverter<IScatterPlotProps>({
             xAxisMeasure: singleMeasureBucketConversion("xAxisMeasure", BucketNames.MEASURES),
             yAxisMeasure: singleMeasureBucketConversion("yAxisMeasure", BucketNames.SECONDARY_MEASURES),
@@ -44,6 +46,10 @@ export class ScatterPlotDescriptor extends BigChartDescriptor {
         return {
             documentationUrl: "https://sdk.gooddata.com/gooddata-ui/docs/scatter_plot_component.html",
             supportsExport: true,
+            componentInfo: {
+                name: component.name,
+                package: component.package,
+            },
         };
     }
 }

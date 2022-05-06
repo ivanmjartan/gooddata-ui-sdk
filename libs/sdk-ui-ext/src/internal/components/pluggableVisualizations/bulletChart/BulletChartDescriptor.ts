@@ -17,11 +17,18 @@ import {
     filtersInsightConversion,
     getInsightToPropsConverter,
     getReactEmbeddingCodeGenerator,
+    IImportInfo,
     multipleAttributesBucketConversion,
     singleAttributeOrMeasureBucketConversion,
     sortsInsightConversion,
 } from "../../../utils/embeddingCodeGenerator";
 import { chartAdditionalFactories, chartConfigInsightConversion } from "../chartCodeGenUtils";
+
+const component: IImportInfo = {
+    importType: "named",
+    name: "BulletChart",
+    package: "@gooddata/sdk-ui-charts",
+};
 
 export class BulletChartDescriptor extends BaseChartDescriptor implements IVisualizationDescriptor {
     public getFactory(): PluggableVisualizationFactory {
@@ -38,11 +45,7 @@ export class BulletChartDescriptor extends BaseChartDescriptor implements IVisua
     }
 
     public getEmbeddingCode = getReactEmbeddingCodeGenerator({
-        component: {
-            importType: "named",
-            name: "BulletChart",
-            package: "@gooddata/sdk-ui-charts",
-        },
+        component: component,
         insightToProps: getInsightToPropsConverter<IBulletChartProps>({
             primaryMeasure: singleAttributeOrMeasureBucketConversion("primaryMeasure", BucketNames.MEASURES),
             targetMeasure: singleAttributeOrMeasureBucketConversion(
@@ -65,6 +68,10 @@ export class BulletChartDescriptor extends BaseChartDescriptor implements IVisua
         return {
             documentationUrl: "https://sdk.gooddata.com/gooddata-ui/docs/bullet_chart_component.html",
             supportsExport: true,
+            componentInfo: {
+                name: component.name,
+                package: component.package,
+            },
         };
     }
 

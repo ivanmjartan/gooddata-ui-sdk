@@ -20,6 +20,7 @@ import {
     filtersInsightConversion,
     getInsightToPropsConverter,
     getReactEmbeddingCodeGenerator,
+    IImportInfo,
     multipleAttributesBucketConversion,
     multipleAttributesOrMeasuresBucketConversion,
     singleAttributeBucketConversion,
@@ -27,6 +28,11 @@ import {
 } from "../../../utils/embeddingCodeGenerator";
 import { chartAdditionalFactories, chartConfigInsightConversion } from "../chartCodeGenUtils";
 
+const component: IImportInfo = {
+    importType: "named",
+    name: "AreaChart",
+    package: "@gooddata/sdk-ui-charts",
+};
 export class AreaChartDescriptor extends BigChartDescriptor implements IVisualizationDescriptor {
     public getFactory(): PluggableVisualizationFactory {
         return (params) => new PluggableAreaChart(params);
@@ -42,11 +48,7 @@ export class AreaChartDescriptor extends BigChartDescriptor implements IVisualiz
     }
 
     public getEmbeddingCode = getReactEmbeddingCodeGenerator({
-        component: {
-            importType: "named",
-            name: "AreaChart",
-            package: "@gooddata/sdk-ui-charts",
-        },
+        component: component,
         insightToProps: getInsightToPropsConverter<IAreaChartProps>({
             measures: multipleAttributesOrMeasuresBucketConversion("measures", BucketNames.MEASURES),
             viewBy: multipleAttributesBucketConversion("viewBy", BucketNames.VIEW),
@@ -62,6 +64,10 @@ export class AreaChartDescriptor extends BigChartDescriptor implements IVisualiz
         return {
             documentationUrl: "https://sdk.gooddata.com/gooddata-ui/docs/area_chart_component.html",
             supportsExport: true,
+            componentInfo: {
+                name: component.name,
+                package: component.package,
+            },
         };
     }
 

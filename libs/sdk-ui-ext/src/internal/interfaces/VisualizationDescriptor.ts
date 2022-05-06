@@ -104,6 +104,21 @@ export interface IVisualizationMeta {
      * If true, the visualization supports being exported (if the currently used backend supports exports as well).
      */
     supportsExport: boolean;
+
+    /**
+     * Basic meta information about underlying component
+     */
+    componentInfo?: IComponentMeta;
+}
+
+/**
+ * @alpha
+ * Component descriptor
+ * Provides information about underlying component
+ */
+export interface IComponentMeta {
+    name: string;
+    package: string;
 }
 
 /**

@@ -17,6 +17,7 @@ import {
     filtersInsightConversion,
     getInsightToPropsConverter,
     getReactEmbeddingCodeGenerator,
+    IImportInfo,
     insightConversion,
     singleAttributeBucketConversion,
     singleAttributeOrMeasureBucketConversion,
@@ -25,6 +26,11 @@ import {
 import { geoConfigFromInsight } from "./geoConfigFromInsight";
 import { chartAdditionalFactories } from "../chartCodeGenUtils";
 
+const component: IImportInfo = {
+    importType: "named",
+    name: "GeoPushpinChart",
+    package: "@gooddata/sdk-ui-geo",
+};
 export class GeoPushpinChartDescriptor extends BaseChartDescriptor implements IVisualizationDescriptor {
     public getFactory(): PluggableVisualizationFactory {
         return (params) => new PluggableGeoPushpinChart(params);
@@ -50,11 +56,7 @@ export class GeoPushpinChartDescriptor extends BaseChartDescriptor implements IV
     }
 
     public getEmbeddingCode = getReactEmbeddingCodeGenerator({
-        component: {
-            importType: "named",
-            name: "GeoPushpinChart",
-            package: "@gooddata/sdk-ui-geo",
-        },
+        component: component,
         insightToProps: getInsightToPropsConverter<IGeoPushpinChartProps>({
             location: singleAttributeBucketConversion("location", BucketNames.LOCATION),
             size: singleAttributeOrMeasureBucketConversion("size", BucketNames.SIZE),
@@ -84,6 +86,10 @@ export class GeoPushpinChartDescriptor extends BaseChartDescriptor implements IV
         return {
             documentationUrl: "https://sdk.gooddata.com/gooddata-ui/docs/geo_pushpin_chart_component.html",
             supportsExport: true,
+            componentInfo: {
+                name: component.name,
+                package: component.package,
+            },
         };
     }
 

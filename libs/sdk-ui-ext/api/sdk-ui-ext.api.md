@@ -80,6 +80,14 @@ export function getInsightVisualizationMeta(insight: IInsightDefinition): IVisua
 // @internal (undocumented)
 export function getInsightWithAppliedDrillDown(insight: IInsight, drillEvent: IDrillEvent, drillDefinition: IDrillDownDefinition): IInsight;
 
+// @alpha
+export interface IComponentMeta {
+    // (undocumented)
+    name: string;
+    // (undocumented)
+    package: string;
+}
+
 // @beta
 export interface IDrillDownDefinition {
     origin: LocalIdRef;
@@ -217,6 +225,7 @@ export interface ISizeInfo {
 
 // @alpha
 export interface IVisualizationMeta {
+    componentInfo?: IComponentMeta;
     documentationUrl?: string;
     supportsExport: boolean;
 }

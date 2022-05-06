@@ -20,12 +20,18 @@ import {
     filtersInsightConversion,
     getInsightToPropsConverter,
     getReactEmbeddingCodeGenerator,
+    IImportInfo,
     multipleAttributesOrMeasuresBucketConversion,
     singleAttributeBucketConversion,
     sortsInsightConversion,
 } from "../../../utils/embeddingCodeGenerator";
 import { chartAdditionalFactories, chartConfigInsightConversion } from "../chartCodeGenUtils";
 
+const component: IImportInfo = {
+    importType: "named",
+    name: "LineChart",
+    package: "@gooddata/sdk-ui-charts",
+};
 export class LineChartDescriptor extends BaseChartDescriptor implements IVisualizationDescriptor {
     public getFactory(): PluggableVisualizationFactory {
         return (params) => new PluggableLineChart(params);
@@ -37,11 +43,7 @@ export class LineChartDescriptor extends BaseChartDescriptor implements IVisuali
     }
 
     public getEmbeddingCode = getReactEmbeddingCodeGenerator({
-        component: {
-            importType: "named",
-            name: "LineChart",
-            package: "@gooddata/sdk-ui-charts",
-        },
+        component: component,
         insightToProps: getInsightToPropsConverter<ILineChartProps>({
             measures: multipleAttributesOrMeasuresBucketConversion("measures", BucketNames.MEASURES),
             trendBy: singleAttributeBucketConversion("trendBy", BucketNames.TREND),
@@ -57,6 +59,10 @@ export class LineChartDescriptor extends BaseChartDescriptor implements IVisuali
         return {
             documentationUrl: "https://sdk.gooddata.com/gooddata-ui/docs/line_chart_component.html",
             supportsExport: true,
+            componentInfo: {
+                name: component.name,
+                package: component.package,
+            },
         };
     }
 

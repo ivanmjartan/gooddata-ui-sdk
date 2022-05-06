@@ -17,12 +17,18 @@ import {
     filtersInsightConversion,
     getInsightToPropsConverter,
     getReactEmbeddingCodeGenerator,
+    IImportInfo,
     singleMeasureBucketConversion,
 } from "../../../utils/embeddingCodeGenerator";
 
 const hasSecondaryMeasure = (insight: IInsightDefinition) =>
     insight.insight.buckets.filter((bucket) => bucket.items.length > 0).length > 1;
 
+const component: IImportInfo = {
+    importType: "named",
+    name: "Headline",
+    package: "@gooddata/sdk-ui-charts",
+};
 export class HeadlineDescriptor implements IVisualizationDescriptor {
     public getFactory(): PluggableVisualizationFactory {
         return (params) => new PluggableHeadline(params);
@@ -73,11 +79,7 @@ export class HeadlineDescriptor implements IVisualizationDescriptor {
     }
 
     public getEmbeddingCode = getReactEmbeddingCodeGenerator({
-        component: {
-            importType: "named",
-            name: "Headline",
-            package: "@gooddata/sdk-ui-charts",
-        },
+        component: component,
         insightToProps: getInsightToPropsConverter<IHeadlineProps>({
             primaryMeasure: singleMeasureBucketConversion("primaryMeasure", BucketNames.MEASURES),
             secondaryMeasure: singleMeasureBucketConversion(
@@ -92,6 +94,10 @@ export class HeadlineDescriptor implements IVisualizationDescriptor {
         return {
             documentationUrl: "https://sdk.gooddata.com/gooddata-ui/docs/headline_component.html",
             supportsExport: false,
+            componentInfo: {
+                name: component.name,
+                package: component.package,
+            },
         };
     }
 }

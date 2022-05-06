@@ -23,6 +23,7 @@ import {
     filtersInsightConversion,
     getInsightToPropsConverter,
     getReactEmbeddingCodeGenerator,
+    IImportInfo,
     multipleAttributesBucketConversion,
     multipleAttributesOrMeasuresBucketConversion,
     singleAttributeBucketConversion,
@@ -30,6 +31,11 @@ import {
 } from "../../../utils/embeddingCodeGenerator";
 import { chartAdditionalFactories, chartConfigInsightConversion } from "../chartCodeGenUtils";
 
+const component: IImportInfo = {
+    importType: "named",
+    name: "ColumnChart",
+    package: "@gooddata/sdk-ui-charts",
+};
 export class ColumnChartDescriptor extends BaseChartDescriptor implements IVisualizationDescriptor {
     public getFactory(): PluggableVisualizationFactory {
         return (params) => new PluggableColumnChart(params);
@@ -45,11 +51,7 @@ export class ColumnChartDescriptor extends BaseChartDescriptor implements IVisua
     }
 
     public getEmbeddingCode = getReactEmbeddingCodeGenerator({
-        component: {
-            importType: "named",
-            name: "ColumnChart",
-            package: "@gooddata/sdk-ui-charts",
-        },
+        component: component,
         insightToProps: getInsightToPropsConverter<IColumnChartProps>({
             measures: multipleAttributesOrMeasuresBucketConversion("measures", BucketNames.MEASURES),
             viewBy: multipleAttributesBucketConversion("viewBy", BucketNames.VIEW),
@@ -65,6 +67,10 @@ export class ColumnChartDescriptor extends BaseChartDescriptor implements IVisua
         return {
             documentationUrl: "https://sdk.gooddata.com/gooddata-ui/docs/column_chart_component.html",
             supportsExport: true,
+            componentInfo: {
+                name: component.name,
+                package: component.package,
+            },
         };
     }
 

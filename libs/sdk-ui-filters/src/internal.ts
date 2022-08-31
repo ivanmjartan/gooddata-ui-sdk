@@ -65,3 +65,5 @@ export {
 } from "./AttributeFilter@next/Components/Addons/AttributeDisplayFormSelect/AttributeDisplayFormSelect";
 
 export { EmptyElementsSearchBar } from "./AttributeFilter@next/Components/Addons/EmptyElementsSearchBar";
+
+export { useAttributeFilterSelection } from "./AttributeFilter@next/Components/Addons/useAttributeFilterSelectionTitles";

@@ -2,6 +2,8 @@
 import React, { useMemo } from "react";
 import { BackendProvider, WorkspaceProvider } from "@gooddata/sdk-ui";
 import { createBackend } from "./createBackend";
+import { AttributeFilterTitles, filter } from "./playground/AttributeFilterTitles";
+import { AttributeExample } from "./playground/OneAttribute";
 
 function hasCredentialsSetup(): boolean {
     if (BACKEND_TYPE === "tiger") {
@@ -19,7 +21,8 @@ const AppWithBackend: React.FC = () => {
     return (
         <BackendProvider backend={backend}>
             <WorkspaceProvider workspace={WORKSPACE}>
-                {/* Build your playground components under the playground directory.*/}
+                <AttributeFilterTitles backend={backend} workspace={WORKSPACE} filter={filter} />
+                <AttributeExample backend={backend} workspace={WORKSPACE} />
             </WorkspaceProvider>
         </BackendProvider>
     );

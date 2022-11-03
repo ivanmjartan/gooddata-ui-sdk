@@ -50,6 +50,7 @@ export const DefaultMenuButton = (props: IMenuButtonProps): JSX.Element | null =
                 className="gd-header-menu-overlay"
                 closeOnMouseDrag={true}
                 closeOnOutsideClick={true}
+                closeOnParentScroll={true}
                 onClose={onMenuButtonClick}
             >
                 <ItemsWrapper smallItemsSpacing>

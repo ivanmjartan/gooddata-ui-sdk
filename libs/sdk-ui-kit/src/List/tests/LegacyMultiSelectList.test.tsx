@@ -1,11 +1,11 @@
 // (C) 2007-2022 GoodData Corporation
 import React from "react";
-import includes from "lodash/includes";
+import includes from "lodash/includes.js";
 import { withIntl } from "@gooddata/sdk-ui";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { customMessages } from "./customDictionary";
+import { customMessages } from "./customDictionary.js";
 
 import LegacyMultiSelectList, { ILegacyMultiSelectListProps } from "../LegacyMultiSelectList";
 
@@ -56,7 +56,7 @@ describe("LegacyMultiSelectList", () => {
     });
 
     it("List should maintain selection as items are clicked", async () => {
-        const onSelect = jest.fn();
+        const onSelect = vi.fn();
         renderList({
             items,
             onSelect,
@@ -68,7 +68,7 @@ describe("LegacyMultiSelectList", () => {
     });
 
     it("should deselect previously selected item on second click", async () => {
-        const onSelect = jest.fn();
+        const onSelect = vi.fn();
         renderList({
             items,
             selection: [firstItem, secondItem],
@@ -80,7 +80,7 @@ describe("LegacyMultiSelectList", () => {
     });
 
     it('should correctly handle "only" option', async () => {
-        const onSelectOnly = jest.fn();
+        const onSelectOnly = vi.fn();
         renderList({
             items,
             selection: [firstItem, secondItem],
@@ -116,7 +116,7 @@ describe("LegacyMultiSelectList", () => {
 
     describe("selectAllCheckbox", () => {
         it("should trigger selectAll if none is selected", async () => {
-            const onSelectAll = jest.fn();
+            const onSelectAll = vi.fn();
             renderList({
                 items,
                 selectAllCheckbox: true,
@@ -128,7 +128,7 @@ describe("LegacyMultiSelectList", () => {
         });
 
         it("should trigger selectNone if all are selected", async () => {
-            const onSelectNone = jest.fn();
+            const onSelectNone = vi.fn();
             renderList({
                 items,
                 selection: items,
@@ -140,7 +140,7 @@ describe("LegacyMultiSelectList", () => {
         });
 
         it("should trigger selectAll if some are selected", async () => {
-            const onSelectAll = jest.fn();
+            const onSelectAll = vi.fn();
             renderList({
                 items,
                 selection: [firstItem],

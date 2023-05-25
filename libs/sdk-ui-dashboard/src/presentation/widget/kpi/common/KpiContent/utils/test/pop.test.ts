@@ -1,7 +1,7 @@
 // (C) 2007-2020 GoodData Corporation
 
-import { HYPHEN } from "../format";
-import { getPopInfo, IPopInfo, LIMIT } from "../pop";
+import { HYPHEN } from "../format.js";
+import { getPopInfo, IPopInfo, LIMIT } from "../pop.js";
 
 describe("getPopInfo", () => {
     type TestCase = [

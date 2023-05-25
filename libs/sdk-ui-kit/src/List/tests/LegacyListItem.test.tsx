@@ -2,7 +2,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { LegacyListItem } from "../LegacyListItem";
+import { LegacyListItem } from "../LegacyListItem.js";
 
 describe("LegacyListItem", () => {
     const dummyListItemRenderer = (props: any) => {

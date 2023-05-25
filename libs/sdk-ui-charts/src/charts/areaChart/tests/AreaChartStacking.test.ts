@@ -1,6 +1,6 @@
 // (C) 2007-2021 GoodData Corporation
-import { getBucketsProps, getConfigProps, IAreaChartProps } from "../AreaChart";
-import { IChartConfig } from "../../../interfaces";
+import { getBucketsProps, getConfigProps, IAreaChartProps } from "../AreaChart.js";
+import { IChartConfig } from "../../../interfaces/index.js";
 import { IAttributeOrMeasure, IAttribute } from "@gooddata/sdk-model";
 import { ReferenceMd } from "@gooddata/reference-workspace";
 import { dummyBackend } from "@gooddata/sdk-backend-mockingbird";

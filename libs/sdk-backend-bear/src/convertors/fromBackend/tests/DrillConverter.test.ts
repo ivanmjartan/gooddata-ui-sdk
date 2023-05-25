@@ -1,12 +1,12 @@
 // (C) 2021 GoodData Corporation
 
-import { convertDrillOrigin, convertVisualizationWidgetDrill } from "../DashboardConverter";
+import { convertDrillOrigin, convertVisualizationWidgetDrill } from "../DashboardConverter/index.js";
 import {
     drillFromAttribute,
     drillFromMeasure,
     drillToDashboardWithDrillFromMeasure,
     drillToDashboardWithDrillFromAttribute,
-} from "./DrillConverter.fixtures";
+} from "./DrillConverter.fixtures.js";
 
 describe("convert drill", () => {
     describe("origin", () => {

@@ -2,8 +2,8 @@
 
 import { uriRef, IDashboardAttachment, IWidgetAttachment } from "@gooddata/sdk-model";
 import { Icon } from "@gooddata/sdk-ui-kit";
-import { createInternalIntl } from "../../../localization";
-import { getAttachmentType, getFormatsLabel, getRecipientsLabel } from "../utils";
+import { createInternalIntl } from "../../../localization/index.js";
+import { getAttachmentType, getFormatsLabel, getRecipientsLabel } from "../utils.js";
 
 describe("Scheduled email management utils", () => {
     const intl = createInternalIntl();

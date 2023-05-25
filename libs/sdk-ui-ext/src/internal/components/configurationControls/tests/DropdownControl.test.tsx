@@ -2,10 +2,10 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import noop from "lodash/noop";
-import DropdownControl, { IDropdownControlProps } from "../DropdownControl";
-import { InternalIntlWrapper } from "../../../utils/internalIntlProvider";
-import { IDropdownItem } from "../../../interfaces/Dropdown";
+import noop from "lodash/noop.js";
+import DropdownControl, { IDropdownControlProps } from "../DropdownControl.js";
+import { InternalIntlWrapper } from "../../../utils/internalIntlProvider.js";
+import { IDropdownItem } from "../../../interfaces/Dropdown.js";
 
 describe("DropdownControl", () => {
     const defaultProps = {

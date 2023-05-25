@@ -7,7 +7,7 @@ import {
     getLeastContrastColor,
     mixWith0ComplementaryColor,
     mixWith8ComplementaryColor,
-} from "../derivedColors";
+} from "../derivedColors.js";
 
 describe("derivedColors", () => {
     describe("getHigherContrastColor", () => {

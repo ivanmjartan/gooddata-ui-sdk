@@ -3,9 +3,9 @@
 import {
     resolveUseCancelablePromisesStatus,
     resolveUseCancelablePromisesError,
-} from "../useCancelablePromiseUtils";
-import { UseCancelablePromiseState, UseCancelablePromiseStatus } from "../useCancelablePromise";
-import { GoodDataSdkError, UnexpectedSdkError } from "../../errors/GoodDataSdkError";
+} from "../useCancelablePromiseUtils.js";
+import { UseCancelablePromiseState, UseCancelablePromiseStatus } from "../useCancelablePromise.js";
+import { GoodDataSdkError, UnexpectedSdkError } from "../../errors/GoodDataSdkError.js";
 
 const pendingState: UseCancelablePromiseState<unknown, GoodDataSdkError> = {
     status: "pending",

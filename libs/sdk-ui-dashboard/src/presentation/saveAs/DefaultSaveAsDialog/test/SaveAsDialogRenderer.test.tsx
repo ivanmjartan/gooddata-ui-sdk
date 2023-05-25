@@ -1,10 +1,11 @@
 // (C) 2020-2022 GoodData Corporation
 import React from "react";
-import noop from "lodash/noop";
+import { vi } from "vitest";
+import noop from "lodash/noop.js";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { ISaveAsDialogRendererOwnProps, SaveAsDialogRenderer } from "../SaveAsDialogRenderer";
+import { ISaveAsDialogRendererOwnProps, SaveAsDialogRenderer } from "../SaveAsDialogRenderer.js";
 
 describe("Test SaveAsNewDashboardDialog: ", () => {
     const defaultProps: ISaveAsDialogRendererOwnProps = {
@@ -51,7 +52,7 @@ describe("Test SaveAsNewDashboardDialog: ", () => {
     });
 
     it("Should allow save as new dashboard when the title is not empty and the page is ready", async () => {
-        const onSubmit = jest.fn();
+        const onSubmit = vi.fn();
         renderComponent({ ...defaultProps, onSubmit });
 
         await userEvent.click(screen.getByText("Create dashboard"));
@@ -62,7 +63,7 @@ describe("Test SaveAsNewDashboardDialog: ", () => {
     });
 
     it("Should not allow save as new dashboard when the title is empty and the page is not ready", async () => {
-        const onSubmit = jest.fn();
+        const onSubmit = vi.fn();
         const { rerender } = renderComponent({
             ...defaultProps,
             onSubmit,

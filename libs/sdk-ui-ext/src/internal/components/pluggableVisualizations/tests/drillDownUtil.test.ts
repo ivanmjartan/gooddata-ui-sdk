@@ -1,12 +1,14 @@
 // (C) 2020-2021 GoodData Corporation
 
 import { localIdRef, newAttribute, newBucket, newInsightDefinition } from "@gooddata/sdk-model";
-import { reverseAndTrimIntersection, modifyBucketsAttributesForDrillDown } from "../drillDownUtil";
-import { Account, Department, Region, Status, Won } from "@gooddata/reference-workspace/dist/md/full";
-import { insightDefinitionToInsight } from "./testHelpers";
+import { reverseAndTrimIntersection, modifyBucketsAttributesForDrillDown } from "../drillDownUtil.js";
+import { ReferenceMd } from "@gooddata/reference-workspace";
+import { insightDefinitionToInsight } from "./testHelpers.js";
 import { IDrillEventIntersectionElement } from "@gooddata/sdk-ui";
-import { reverseAndTrimIntersectionMock } from "./reverseAndTrimIntersectionMock";
-import { IDrillDownDefinition } from "../../../interfaces/Visualization";
+import { reverseAndTrimIntersectionMock } from "./reverseAndTrimIntersectionMock.js";
+import { IDrillDownDefinition } from "../../../interfaces/Visualization.js";
+
+const { Account, Department, Region, Status, Won } = ReferenceMd;
 
 describe("drillDownUtil", () => {
     describe("modifyBucketsAttributesForDrillDown", () => {

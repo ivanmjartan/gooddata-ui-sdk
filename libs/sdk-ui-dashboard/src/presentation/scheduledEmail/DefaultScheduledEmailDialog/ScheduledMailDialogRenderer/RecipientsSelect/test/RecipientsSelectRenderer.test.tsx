@@ -2,13 +2,13 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import noop from "lodash/noop";
+import noop from "lodash/noop.js";
 import { IUser, uriRef } from "@gooddata/sdk-model";
 
-import { IRecipientsSelectRendererProps, RecipientsSelectRenderer } from "../RecipientsSelectRenderer";
+import { IRecipientsSelectRendererProps, RecipientsSelectRenderer } from "../RecipientsSelectRenderer.js";
 
-import { IScheduleEmailRecipient } from "../../../interfaces";
-import { IntlWrapper } from "../../../../../localization/IntlWrapper";
+import { IScheduleEmailRecipient } from "../../../interfaces.js";
+import { IntlWrapper } from "../../../../../localization/IntlWrapper.js";
 
 const author: IScheduleEmailRecipient = {
     user: {

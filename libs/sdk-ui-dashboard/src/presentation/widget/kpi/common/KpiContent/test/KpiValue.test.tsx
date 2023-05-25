@@ -2,9 +2,9 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import KpiValue, { IKpiValueProps } from "../KpiValue";
+import KpiValue, { IKpiValueProps } from "../KpiValue.js";
 
-import { IntlWrapper } from "../../../../../localization";
+import { IntlWrapper } from "../../../../../localization/index.js";
 
 function renderKpiValue(props: IKpiValueProps) {
     return render(

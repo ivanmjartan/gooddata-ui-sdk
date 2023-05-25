@@ -5,8 +5,8 @@ import {
     createClusterLabels,
     createClusterPoints,
     createUnclusterPoints,
-} from "../geoChartDataLayers";
-import { IGeoConfig, IGeoData } from "../../../GeoChart";
+} from "../geoChartDataLayers.js";
+import { IGeoConfig, IGeoData } from "../../../GeoChart.js";
 
 const TEST_LOCATION = [
     {

@@ -1,6 +1,6 @@
 // (C) 2019-2022 GoodData Corporation
-import { newTestAttributeFilterHandler } from "./fixtures";
-import { waitForAsync } from "./testUtils";
+import { newTestAttributeFilterHandler } from "./fixtures.js";
+import { waitForAsync } from "./testUtils.js";
 
 describe("AttributeFilterHandler", () => {
     it("getAttribute() should return the attribute after successful initialization", async () => {
@@ -25,7 +25,7 @@ describe("AttributeFilterHandler", () => {
     });
 
     it("loadAttribute() should trigger onLoadAttributeStart() callback", async () => {
-        const onLoadAttributeStart = jest.fn();
+        const onLoadAttributeStart = vi.fn();
         const attributeFilterHandler = newTestAttributeFilterHandler("positive");
 
         attributeFilterHandler.init();
@@ -41,7 +41,7 @@ describe("AttributeFilterHandler", () => {
     });
 
     it("loadAttribute() that was successful should trigger onLoadAttributeSuccess() callback", async () => {
-        const onLoadAttributeSuccess = jest.fn();
+        const onLoadAttributeSuccess = vi.fn();
         const attributeFilterHandler = newTestAttributeFilterHandler("positive");
 
         attributeFilterHandler.init();
@@ -57,7 +57,7 @@ describe("AttributeFilterHandler", () => {
     });
 
     it("loadAttribute() that failed should trigger onLoadAttributeError() callback", async () => {
-        const onLoadAttributeError = jest.fn();
+        const onLoadAttributeError = vi.fn();
         const attributeFilterHandler = newTestAttributeFilterHandler("nonExisting");
 
         attributeFilterHandler.init();
@@ -73,7 +73,7 @@ describe("AttributeFilterHandler", () => {
     });
 
     it("loadAttribute() that was canceled by another loadAttribute() call should trigger onLoadAttributeCancel() callback", async () => {
-        const onLoadAttributeCancel = jest.fn();
+        const onLoadAttributeCancel = vi.fn();
         const attributeFilterHandler = newTestAttributeFilterHandler("positive");
 
         attributeFilterHandler.init();
@@ -90,7 +90,7 @@ describe("AttributeFilterHandler", () => {
     });
 
     it("loadAttribute() that was canceled by cancelAttributeLoad() call should trigger onLoadAttributeCancel() callback", async () => {
-        const onLoadAttributeCancel = jest.fn();
+        const onLoadAttributeCancel = vi.fn();
         const attributeFilterHandler = newTestAttributeFilterHandler("positive");
 
         attributeFilterHandler.init();

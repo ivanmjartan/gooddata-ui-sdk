@@ -11,7 +11,7 @@ describe("DialogListHeader", () => {
 
     it("should call onClick when clicked on button", async () => {
         const buttonTitle = "Add";
-        const onButtonClickMock = jest.fn();
+        const onButtonClickMock = vi.fn();
         createComponent({ onButtonClick: onButtonClickMock, buttonTitle });
 
         expect(screen.getByRole("dialog-list-header")).toBeInTheDocument();
@@ -24,7 +24,7 @@ describe("DialogListHeader", () => {
 
     it("should not call onClick when clicked on disabled button", async () => {
         const buttonTitle = "Add";
-        const onButtonClickMock = jest.fn();
+        const onButtonClickMock = vi.fn();
         createComponent({
             onButtonClick: onButtonClickMock,
             buttonTitle,

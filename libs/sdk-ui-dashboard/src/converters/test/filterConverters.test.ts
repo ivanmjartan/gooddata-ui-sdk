@@ -5,7 +5,7 @@ import { idRef, FilterContextItem, IFilterContext, IWidgetDefinition } from "@go
 import {
     filterContextToDashboardFiltersByDateDataSet,
     filterContextToDashboardFiltersByWidget,
-} from "../filterConverters";
+} from "../filterConverters.js";
 
 describe("filterConverters tests", () => {
     type Scenario = [string, IFilterContext | undefined];

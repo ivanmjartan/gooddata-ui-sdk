@@ -1,6 +1,6 @@
 // (C) 2007-2022 GoodData Corporation
-import { addCssToStylesheet } from "../addCssToStylesheet";
-import { removeFromDom } from "../../utils/domUtilities";
+import { addCssToStylesheet } from "../addCssToStylesheet.js";
+import { removeFromDom } from "../../utils/domUtilities.js";
 
 describe("addCssToStylesheet", () => {
     const sheets: HTMLElement[] = [];

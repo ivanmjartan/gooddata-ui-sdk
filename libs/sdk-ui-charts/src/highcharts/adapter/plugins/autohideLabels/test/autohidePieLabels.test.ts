@@ -1,5 +1,5 @@
 // (C) 2007-2018 GoodData Corporation
-import autohidePieLabels from "../autohidePieLabels";
+import autohidePieLabels from "../autohidePieLabels.js";
 
 function setupMockData(indexOfFirst: number, indexOfSecond: number): any {
     const positions = [

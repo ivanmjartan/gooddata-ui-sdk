@@ -2,7 +2,7 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import assignIn from "lodash/assignIn";
+import assignIn from "lodash/assignIn.js";
 
 import { ExportDialogBase } from "../ExportDialogBase";
 
@@ -45,7 +45,7 @@ describe("ExportDialogBase", () => {
     });
 
     it("should update value correctly", async () => {
-        const submitSpy = jest.fn();
+        const submitSpy = vi.fn();
         const newProps = {
             includeFilterContext: defaultProps.includeFilterContext,
             mergeHeaders: defaultProps.mergeHeaders,

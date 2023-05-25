@@ -1,9 +1,9 @@
 // (C) 2019-2020 GoodData Corporation
 import { DefaultLocale, VisualizationTypes } from "@gooddata/sdk-ui";
-import * as referencePointMock from "../../../tests/mocks/referencePointMocks";
-import { setComboChartUiConfig } from "../comboChartUiConfigHelper";
-import { createInternalIntl } from "../../internalIntlProvider";
-import { COMBO_CHART_UICONFIG } from "../../../constants/uiConfig";
+import * as referencePointMock from "../../../tests/mocks/referencePointMocks.js";
+import { setComboChartUiConfig } from "../comboChartUiConfigHelper.js";
+import { createInternalIntl } from "../../internalIntlProvider.js";
+import { COMBO_CHART_UICONFIG } from "../../../constants/uiConfig.js";
 
 describe("comboChartUiConfigHelper", () => {
     describe("setComboChartUiConfig", () => {

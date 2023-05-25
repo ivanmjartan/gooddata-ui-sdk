@@ -1,7 +1,7 @@
 // (C) 2007-2022 GoodData Corporation
 
 import React from "react";
-import invariant from "ts-invariant";
+import { invariant } from "ts-invariant";
 import {
     IScenario,
     ScenarioBuilder,
@@ -13,10 +13,10 @@ import {
     ScenarioTestInput,
     WorkspaceType,
     ScenarioAndDescription,
-} from "./scenario";
-import intersection from "lodash/intersection";
-import identity from "lodash/identity";
-import cloneDeep from "lodash/cloneDeep";
+} from "./scenario.js";
+import intersection from "lodash/intersection.js";
+import identity from "lodash/identity.js";
+import cloneDeep from "lodash/cloneDeep.js";
 import { ISettings } from "@gooddata/sdk-model";
 
 //

@@ -1,5 +1,5 @@
 // (C) 2020 GoodData Corporation
-import { appendFilters } from "../filterMerging";
+import { appendFilters } from "../filterMerging.js";
 import {
     isIdentifierRef,
     newPositiveAttributeFilter,

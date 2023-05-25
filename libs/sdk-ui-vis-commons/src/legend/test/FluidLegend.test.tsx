@@ -1,8 +1,8 @@
 // (C) 2007-2023 GoodData Corporation
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import noop from "lodash/noop";
-import { FluidLegend } from "../FluidLegend";
+import noop from "lodash/noop.js";
+import { FluidLegend } from "../FluidLegend.js";
 
 describe("FluidLegend", () => {
     function renderComponent(customProps: any = {}) {

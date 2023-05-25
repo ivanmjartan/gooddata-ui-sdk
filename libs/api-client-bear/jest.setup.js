@@ -1,7 +1,10 @@
 // (C) 2018-2023 GoodData Corporation
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-global.Blob = require("blob-polyfill").Blob;
+import blob from "blob-polyfill";
+import { jest } from "@jest/globals";
+
+global.Blob = blob.Blob;
+global.jest = jest;
 
 // Fail test on console error (react proptypes validation etc.)
 const consoleError = console.error;

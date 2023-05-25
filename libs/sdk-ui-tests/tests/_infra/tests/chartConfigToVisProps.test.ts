@@ -1,5 +1,5 @@
 // (C) 2020 GoodData Corporation
-import { chartConfigToVisProperties } from "../chartConfigToVisProps";
+import { chartConfigToVisProperties } from "../chartConfigToVisProps.js";
 import { IChartConfig } from "@gooddata/sdk-ui-charts";
 
 describe("chartConfigToControls", () => {

@@ -2,7 +2,7 @@
 import { IAbsoluteDateFilterForm } from "@gooddata/sdk-model";
 import { IUiAbsoluteDateFilterForm, IUiRelativeDateFilterForm } from "@gooddata/sdk-ui-filters";
 
-import { sanitizeDateFilterOption } from "../sanitization";
+import { sanitizeDateFilterOption } from "../sanitization.js";
 
 describe("sanitizeDateFilterOption", () => {
     type TestCaseCollection<T> = Array<[string, T, T]>;

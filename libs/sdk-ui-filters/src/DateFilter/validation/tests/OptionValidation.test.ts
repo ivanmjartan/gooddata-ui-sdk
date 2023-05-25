@@ -1,11 +1,11 @@
 // (C) 2019-2021 GoodData Corporation
-import { validateFilterOption } from "../OptionValidation";
+import { validateFilterOption } from "../OptionValidation.js";
 import {
     IExtendedDateFilterErrors,
     IUiAbsoluteDateFilterForm,
     IUiRelativeDateFilterForm,
     DateFilterOption,
-} from "../../interfaces";
+} from "../../interfaces/index.js";
 
 describe("validateFilterOption", () => {
     describe("absoluteForm validation", () => {

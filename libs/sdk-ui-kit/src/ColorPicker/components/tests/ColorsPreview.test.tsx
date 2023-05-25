@@ -2,7 +2,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { ColorsPreview, IColorsPreviewProps } from "../ColorsPreview";
+import { ColorsPreview, IColorsPreviewProps } from "../ColorsPreview.js";
 
 describe("ColorsPreview", () => {
     it("should render colors preview with proper colors", () => {

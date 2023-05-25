@@ -4,7 +4,7 @@ import { screen, waitFor, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { Messages } from "../Messages";
-import { IMessage, IMessagesProps } from "../typings";
+import { IMessage, IMessagesProps } from "../typings.js";
 
 const mockMessages: Array<IMessage> = [
     {
@@ -32,7 +32,7 @@ function renderMessages(options: Partial<IMessagesProps>) {
 describe("Messages", () => {
     describe("message close", () => {
         it("should call callback on message close", async () => {
-            const onMessageClose = jest.fn();
+            const onMessageClose = vi.fn();
             renderMessages({
                 messages: mockMessages,
                 onMessageClose,
@@ -47,7 +47,7 @@ describe("Messages", () => {
     });
 
     it("Show More", async () => {
-        const onMessageClose = jest.fn();
+        const onMessageClose = vi.fn();
         renderMessages({
             messages: mockError,
             onMessageClose,

@@ -10,10 +10,10 @@ import { ReferenceRecordings } from "@gooddata/reference-workspace";
 import {
     AttributeFilterParentsValidationResult,
     validateAttributeFilterParents,
-} from "../parentFiltersValidation";
-import { DashboardContext } from "../../../../../types/commonTypes";
-import { SimpleDashboardIdentifier } from "../../../../../tests/fixtures/SimpleDashboard.fixtures";
-import { newDisplayFormMap, ObjRefMap } from "../../../../../../_staging/metadata/objRefMap";
+} from "../parentFiltersValidation.js";
+import { DashboardContext } from "../../../../../types/commonTypes.js";
+import { SimpleDashboardIdentifier } from "../../../../../tests/fixtures/SimpleDashboard.fixtures.js";
+import { newDisplayFormMap, ObjRefMap } from "../../../../../../_staging/metadata/objRefMap.js";
 
 describe("validateAttributeFilterParents", () => {
     function getAttributeFilter(displayFormId: string): IDashboardAttributeFilter {

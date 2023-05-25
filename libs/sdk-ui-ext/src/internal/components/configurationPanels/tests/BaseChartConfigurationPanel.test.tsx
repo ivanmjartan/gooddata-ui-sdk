@@ -5,10 +5,10 @@ import userEvent from "@testing-library/user-event";
 import { IAttribute, IInsightDefinition, IMeasure } from "@gooddata/sdk-model";
 import { VisualizationTypes, DefaultLocale } from "@gooddata/sdk-ui";
 
-import BaseChartConfigurationPanel from "../BaseChartConfigurationPanel";
-import { IConfigurationPanelContentProps } from "../ConfigurationPanelContent";
+import BaseChartConfigurationPanel from "../BaseChartConfigurationPanel.js";
+import { IConfigurationPanelContentProps } from "../ConfigurationPanelContent.js";
 
-import { insightWithSingleAttribute } from "../../../tests/mocks/testMocks";
+import { insightWithSingleAttribute } from "../../../tests/mocks/testMocks.js";
 
 describe("BaseChartConfigurationPanel", () => {
     describe("axis name configuration", () => {

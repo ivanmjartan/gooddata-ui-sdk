@@ -4,7 +4,7 @@ import cx from "classnames";
 import { render, screen } from "@testing-library/react";
 import Kefir, { constant, merge } from "kefir";
 
-import { LegacyList, ILegacyListProps } from "../LegacyList";
+import { LegacyList, ILegacyListProps } from "../LegacyList.js";
 
 const MAX_RESPONSE_TIME = 5000;
 

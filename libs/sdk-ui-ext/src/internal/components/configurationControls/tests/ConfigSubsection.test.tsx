@@ -2,8 +2,9 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import ConfigSubsection, { IConfigSubsectionOwnProps } from "../ConfigSubsection";
-import { InternalIntlWrapper } from "../../../utils/internalIntlProvider";
+import ConfigSubsection, { IConfigSubsectionOwnProps } from "../ConfigSubsection.js";
+import { InternalIntlWrapper } from "../../../utils/internalIntlProvider.js";
+import { vi } from "vitest";
 
 describe("ConfigSubsection", () => {
     const defaultProps = {
@@ -43,7 +44,7 @@ describe("ConfigSubsection", () => {
         });
 
         it("should call pushData when click on toggle switch and", async () => {
-            const pushData = jest.fn();
+            const pushData = vi.fn();
             createComponent({
                 canBeToggled: true,
                 properties: {},

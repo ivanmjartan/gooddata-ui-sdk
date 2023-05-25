@@ -1,7 +1,7 @@
 // (C) 2019-2023 GoodData Corporation
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { ILegendAxisIndicatorProps, LegendAxisIndicator } from "../LegendAxisIndicator";
+import { ILegendAxisIndicatorProps, LegendAxisIndicator } from "../LegendAxisIndicator.js";
 import { withIntl } from "@gooddata/sdk-ui";
 
 describe("LegendAxisIndicator", () => {

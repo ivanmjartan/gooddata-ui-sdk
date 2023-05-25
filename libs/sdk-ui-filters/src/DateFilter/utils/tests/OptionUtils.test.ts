@@ -7,13 +7,13 @@ import {
     IAllTimeDateFilterOption,
 } from "@gooddata/sdk-model";
 
-import { IDateFilterOptionsByType } from "../../interfaces";
+import { IDateFilterOptionsByType } from "../../interfaces/index.js";
 import {
     getDateFilterOptionGranularity,
     filterVisibleDateFilterOptions,
     sanitizePresetIntervals,
-} from "../OptionUtils";
-import { absoluteFormFilter, relativePresetFilter } from "../Translations/tests/fixtures";
+} from "../OptionUtils.js";
+import { absoluteFormFilter, relativePresetFilter } from "../Translations/tests/fixtures.js";
 
 describe("optionUtils", () => {
     describe("getDateFilterOptionGranularity", () => {

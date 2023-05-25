@@ -5,7 +5,7 @@ import {
     setCustomLabels,
     setCustomMetrics,
     setDerivedMetrics,
-} from "../utils";
+} from "../utils.js";
 import { IDimensionDescriptor, IExecutionDefinition } from "@gooddata/sdk-model";
 
 describe("Export payload", () => {

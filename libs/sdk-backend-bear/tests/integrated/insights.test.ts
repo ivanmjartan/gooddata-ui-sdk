@@ -1,6 +1,6 @@
 // (C) 2020 GoodData Corporation
 
-import { testBackend, testWorkspace } from "./backend";
+import { testBackend, testWorkspace } from "./backend.js";
 const backend = testBackend();
 
 beforeAll(async () => {

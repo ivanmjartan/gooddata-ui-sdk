@@ -4,7 +4,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { recordedBackend } from "@gooddata/sdk-backend-mockingbird";
 import { ReferenceRecordings } from "@gooddata/reference-workspace";
 
-import { TranslationsCustomizationProvider } from "../TranslationsCustomizationProvider";
+import { TranslationsCustomizationProvider } from "../TranslationsCustomizationProvider.js";
 
 const workspace = "testWorkspace";
 const getBackend = (enableInsightToReport = true) =>

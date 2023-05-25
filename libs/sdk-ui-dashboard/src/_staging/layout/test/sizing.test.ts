@@ -7,7 +7,7 @@ import {
     getDashboardLayoutWidgetMinGridWidth,
     getDashboardLayoutItemHeight,
     getDashboardLayoutItemHeightForGrid,
-} from "../sizing";
+} from "../sizing.js";
 import { VisType } from "@gooddata/sdk-ui";
 import { AnalyticalWidgetType, idRef, newInsightDefinition } from "@gooddata/sdk-model";
 

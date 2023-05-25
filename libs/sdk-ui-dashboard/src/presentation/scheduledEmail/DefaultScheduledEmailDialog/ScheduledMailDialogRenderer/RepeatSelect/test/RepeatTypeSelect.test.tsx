@@ -3,16 +3,17 @@ import React from "react";
 import { IntlShape } from "react-intl";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import noop from "lodash/noop";
+import noop from "lodash/noop.js";
+import { vi } from "vitest";
 
-import { RepeatTypeSelect, IRepeatTypeSelectProps } from "../RepeatTypeSelect";
+import { RepeatTypeSelect, IRepeatTypeSelectProps } from "../RepeatTypeSelect.js";
 
-import { getIntlDayName, getWeek } from "../../../utils/datetime";
-import { REPEAT_TYPES } from "../../../constants";
-import { IntlWrapper } from "../../../../../localization/IntlWrapper";
-import { createInternalIntl } from "../../../../../localization/createInternalIntl";
+import { getIntlDayName, getWeek } from "../../../utils/datetime.js";
+import { REPEAT_TYPES } from "../../../constants.js";
+import { IntlWrapper } from "../../../../../localization/IntlWrapper.js";
+import { createInternalIntl } from "../../../../../localization/createInternalIntl.js";
 
-import { TEXT_INDEX } from "./testUtils";
+import { TEXT_INDEX } from "./testUtils.js";
 
 describe("RepeatTypeSelect", () => {
     const intl: IntlShape = createInternalIntl();
@@ -57,7 +58,7 @@ describe("RepeatTypeSelect", () => {
     });
 
     it("should trigger onChange", async () => {
-        const onChange = jest.fn();
+        const onChange = vi.fn();
         renderComponent({ onChange });
 
         await userEvent.click(screen.getByText(titleTypeDaily));

@@ -4,14 +4,14 @@ import {
     limitingDateFilters,
     limitingMeasures,
     newTestAttributeFilterHandler,
-} from "./fixtures";
-import { waitForAsync } from "./testUtils";
-import * as elements from "../internal/redux/elements/loadElements";
+} from "./fixtures.js";
+import { waitForAsync } from "./testUtils.js";
+import * as elements from "../internal/redux/elements/loadElements.js";
 import { BadRequestSdkError } from "@gooddata/sdk-ui";
 
 describe("AttributeFilterHandler", () => {
     it("loadInitialElementsPage() should trigger onLoadInitialElementsPageStart() callback", async () => {
-        const onLoadInitialElementsPageStart = jest.fn();
+        const onLoadInitialElementsPageStart = vi.fn();
         const attributeFilterHandler = newTestAttributeFilterHandler("positive");
 
         attributeFilterHandler.init();
@@ -27,7 +27,7 @@ describe("AttributeFilterHandler", () => {
     });
 
     it("loadInitialElementsPage() that was successful should trigger onLoadInitialElementsPageSuccess() callback", async () => {
-        const onLoadInitialElementsPageSuccess = jest.fn();
+        const onLoadInitialElementsPageSuccess = vi.fn();
         const attributeFilterHandler = newTestAttributeFilterHandler("positive");
 
         attributeFilterHandler.init();
@@ -43,13 +43,13 @@ describe("AttributeFilterHandler", () => {
     });
 
     it("loadInitialElementsPage() that failed should trigger onLoadInitialElementsPageError() callback", async () => {
-        const onLoadInitialElementsPageError = jest.fn();
+        const onLoadInitialElementsPageError = vi.fn();
         const attributeFilterHandler = newTestAttributeFilterHandler("positive");
 
         attributeFilterHandler.init();
         await waitForAsync();
 
-        jest.spyOn(elements, "loadElements").mockRejectedValueOnce(new BadRequestSdkError("Elements error"));
+        vi.spyOn(elements, "loadElements").mockRejectedValueOnce(new BadRequestSdkError("Elements error"));
         attributeFilterHandler.onLoadInitialElementsPageError(onLoadInitialElementsPageError);
         attributeFilterHandler.loadInitialElementsPage("error");
 
@@ -60,7 +60,7 @@ describe("AttributeFilterHandler", () => {
     });
 
     it("loadInitialElementsPage() that was canceled by another loadInitialElementsPage() call should trigger onLoadInitialElementsPageCancel() callback", async () => {
-        const onLoadInitialElementsPageCancel = jest.fn();
+        const onLoadInitialElementsPageCancel = vi.fn();
         const attributeFilterHandler = newTestAttributeFilterHandler("positive");
 
         attributeFilterHandler.init();
@@ -77,7 +77,7 @@ describe("AttributeFilterHandler", () => {
     });
 
     it("loadInitialElementsPage() that was canceled by cancelInitialElementsPageLoad() call should trigger onLoadInitialElementsPageCancel() callback", async () => {
-        const onLoadInitialElementsPageCancel = jest.fn();
+        const onLoadInitialElementsPageCancel = vi.fn();
         const attributeFilterHandler = newTestAttributeFilterHandler("positive");
 
         attributeFilterHandler.init();
@@ -132,7 +132,7 @@ describe("AttributeFilterHandler", () => {
         attributeFilterHandler.init();
         await waitForAsync();
 
-        jest.spyOn(elements, "loadElements").mockRejectedValueOnce(new BadRequestSdkError("Elements error"));
+        vi.spyOn(elements, "loadElements").mockRejectedValueOnce(new BadRequestSdkError("Elements error"));
         attributeFilterHandler.loadInitialElementsPage();
 
         await waitForAsync();

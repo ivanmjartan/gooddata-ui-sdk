@@ -1,10 +1,10 @@
 // (C) 2019-2022 GoodData Corporation
-import { newTestAttributeFilterHandler } from "./fixtures";
-import { waitForAsync } from "./testUtils";
+import { newTestAttributeFilterHandler } from "./fixtures.js";
+import { waitForAsync } from "./testUtils.js";
 
 describe("AttributeFilterHandler", () => {
     it("init() should trigger onInitStart() callback", async () => {
-        const onInitStart = jest.fn();
+        const onInitStart = vi.fn();
         const attributeFilterHandler = newTestAttributeFilterHandler("positive");
 
         attributeFilterHandler.onInitStart(onInitStart);
@@ -17,7 +17,7 @@ describe("AttributeFilterHandler", () => {
     });
 
     it("init() that was successful should trigger onInitSuccess() callback", async () => {
-        const onInitSuccess = jest.fn();
+        const onInitSuccess = vi.fn();
         const attributeFilterHandler = newTestAttributeFilterHandler("positive");
 
         attributeFilterHandler.onInitSuccess(onInitSuccess);
@@ -30,7 +30,7 @@ describe("AttributeFilterHandler", () => {
     });
 
     it("init() that failed should trigger onInitError() callback", async () => {
-        const onInitError = jest.fn();
+        const onInitError = vi.fn();
         const attributeFilterHandler = newTestAttributeFilterHandler("nonExisting");
 
         attributeFilterHandler.onInitError(onInitError);
@@ -43,7 +43,7 @@ describe("AttributeFilterHandler", () => {
     });
 
     it("init() that was canceled should trigger onInitCancel() callback", async () => {
-        const onInitCancel = jest.fn();
+        const onInitCancel = vi.fn();
         const attributeFilterHandler = newTestAttributeFilterHandler("positive");
 
         attributeFilterHandler.onInitCancel(onInitCancel);

@@ -3,7 +3,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { ColorFormats } from "tinycolor2";
 
-import { HueColorPicker, IHueColorPickerProps } from "../HueColorPicker";
+import { HueColorPicker, IHueColorPickerProps } from "../HueColorPicker.js";
 
 const initColor: ColorFormats.HSL = {
     h: 3,

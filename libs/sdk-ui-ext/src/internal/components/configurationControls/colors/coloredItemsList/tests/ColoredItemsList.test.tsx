@@ -2,12 +2,12 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import noop from "lodash/noop";
-import cloneDeep from "lodash/cloneDeep";
-import ColoredItemsList, { IColoredItemsListProps } from "../ColoredItemsList";
-import { colorPalette } from "../../../../../tests/mocks/testColorHelper";
-import { InternalIntlWrapper, createInternalIntl } from "../../../../../utils/internalIntlProvider";
-import { inputItemsMock } from "./mock";
+import noop from "lodash/noop.js";
+import cloneDeep from "lodash/cloneDeep.js";
+import ColoredItemsList, { IColoredItemsListProps } from "../ColoredItemsList.js";
+import { colorPalette } from "../../../../../tests/mocks/testColorHelper.js";
+import { InternalIntlWrapper, createInternalIntl } from "../../../../../utils/internalIntlProvider.js";
+import { inputItemsMock } from "./mock.js";
 
 const defaultProps: IColoredItemsListProps = {
     colorPalette,

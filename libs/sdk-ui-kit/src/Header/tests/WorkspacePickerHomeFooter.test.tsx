@@ -12,7 +12,7 @@ describe("WorkspacePickerHomeFooter", () => {
     }
 
     it("should render home icon and call onClick when clicked", async () => {
-        const onClick = jest.fn();
+        const onClick = vi.fn();
         renderWorkspacePickerHomeFooter({ onClick });
         const homeIcon = screen.getByRole("icon-home");
 

@@ -7,14 +7,14 @@ import {
     newWidthForAllMeasureColumns,
     newWidthForAttributeColumn,
     newWidthForSelectedColumns,
-} from "../../../columnWidths";
-import { TableDescriptor } from "../../structure/tableDescriptor";
+} from "../../../columnWidths.js";
+import { TableDescriptor } from "../../structure/tableDescriptor.js";
 import {
     testStore,
     TwoMeasuresWithRowAttribute,
     TwoMeasuresWithTwoRowAndTwoColumnAttributes,
-} from "./columnSizing.fixture";
-import { MANUALLY_SIZED_MAX_WIDTH, updateColumnDefinitionsWithWidths } from "../columnSizing";
+} from "./columnSizing.fixture.js";
+import { MANUALLY_SIZED_MAX_WIDTH, updateColumnDefinitionsWithWidths } from "../columnSizing.js";
 import { ReferenceData, ReferenceMd } from "@gooddata/reference-workspace";
 
 // NOTE: the function under test mutate inputs (by design). each test must use its own instance of TableDescriptor

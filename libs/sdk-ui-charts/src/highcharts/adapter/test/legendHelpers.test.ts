@@ -9,9 +9,9 @@ import {
     LEGEND_AXIS_INDICATOR,
     LEGEND_SEPARATOR,
     groupSeriesItemsByType,
-} from "../legendHelpers";
+} from "../legendHelpers.js";
 import { VisualizationTypes } from "@gooddata/sdk-ui";
-import { ISeriesItem } from "../../typings/unsafe";
+import { ISeriesItem } from "../../typings/unsafe.js";
 
 describe("helpers", () => {
     describe("calculateFluidLegend", () => {

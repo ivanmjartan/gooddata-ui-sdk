@@ -2,7 +2,7 @@
 import { ReferenceMd } from "@gooddata/reference-workspace";
 import { newAttribute } from "@gooddata/sdk-model";
 
-import { convertAttribute } from "../AttributeConverter";
+import { convertAttribute } from "../AttributeConverter.js";
 
 describe("attribute converter", () => {
     const displayFormRef = ReferenceMd.Account.Name.attribute.displayForm;

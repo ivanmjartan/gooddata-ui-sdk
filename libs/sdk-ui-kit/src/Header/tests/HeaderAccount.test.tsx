@@ -2,11 +2,11 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import noop from "lodash/noop";
+import noop from "lodash/noop.js";
 import { withIntl, ITranslations } from "@gooddata/sdk-ui";
 
 import { HeaderAccount } from "../HeaderAccount";
-import { IHeaderMenuItem } from "../typings";
+import { IHeaderMenuItem } from "../typings.js";
 
 const menuItems: IHeaderMenuItem[] = [
     { isActive: true, key: "gs.header.account", href: "https://example.com" },
@@ -30,7 +30,7 @@ describe("HeaderAccount", () => {
     });
 
     it("should open menu on click", async () => {
-        const clickSpy = jest.fn();
+        const clickSpy = vi.fn();
         render(<Wrapper items={menuItems} onMenuItemClick={clickSpy} />);
         await userEvent.click(document.querySelector(".gd-header-account"));
         await userEvent.click(screen.getByText("Account"));

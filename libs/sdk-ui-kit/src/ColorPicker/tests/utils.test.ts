@@ -9,7 +9,7 @@ import {
     getColorStyle,
     isHexColorValid,
     isHslColorBlackOrWhite,
-} from "../utils";
+} from "../utils.js";
 
 const redRgb: ColorFormats.RGB = {
     r: 255,

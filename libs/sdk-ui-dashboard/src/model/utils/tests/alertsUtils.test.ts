@@ -11,10 +11,10 @@ import {
     IAttributeDisplayFormMetadataObject,
     IWidgetDefinition,
 } from "@gooddata/sdk-model";
-import { IBrokenAlertFilterBasicInfo } from "../../types/alertTypes";
-import { getBrokenAlertFiltersBasicInfo } from "../alertsUtils";
+import { IBrokenAlertFilterBasicInfo } from "../../types/alertTypes.js";
+import { getBrokenAlertFiltersBasicInfo } from "../alertsUtils.js";
 import { ReferenceMd, ReferenceRecordings } from "@gooddata/reference-workspace";
-import { newDisplayFormMap } from "../../../_staging/metadata/objRefMap";
+import { newDisplayFormMap } from "../../../_staging/metadata/objRefMap.js";
 
 describe("getBrokenAlertFiltersBasicInfo", () => {
     const kpiBase: IWidgetDefinition = {

@@ -2,9 +2,9 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { DropdownList, IDropdownListNoDataRenderProps, IDropdownListProps } from "../DropdownList";
-import { IRenderListItemProps } from "../../List";
+import { IRenderListItemProps } from "../../List/index.js";
 import { withIntl } from "@gooddata/sdk-ui";
-import { customMessages } from "./customDictionary";
+import { customMessages } from "./customDictionary.js";
 import { componentMock } from "./testUtils";
 
 type IDropdownListMockProps = IDropdownListProps<string>;

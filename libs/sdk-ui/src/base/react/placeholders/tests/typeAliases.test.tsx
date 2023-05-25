@@ -23,7 +23,7 @@ import {
     IMeasureSortItem,
     ITotal,
 } from "@gooddata/sdk-model";
-import { newPlaceholder, newComposedPlaceholder } from "../factory";
+import { newPlaceholder, newComposedPlaceholder } from "../factory.js";
 import {
     AttributeFilterOrPlaceholder,
     AttributeFiltersOrPlaceholders,
@@ -39,7 +39,7 @@ import {
     NullableFiltersOrPlaceholders,
     SortsOrPlaceholders,
     TotalsOrPlaceholders,
-} from "../aliases";
+} from "../aliases.js";
 
 describe("Check assignability of filters and its placeholders to relevant aliases", () => {
     const nullableFilter: INullableFilter = null as any;

@@ -4,9 +4,9 @@ import {
     pickCorrectInsightWording,
     removeAllInsightToReportTranslations,
     removeAllWordingTranslationsWithSpecialSuffix,
-} from "../utils";
+} from "../utils.js";
 import { IWorkspaceSettings } from "@gooddata/sdk-backend-spi";
-import { ITranslations } from "../../../localization/messagesMap";
+import { ITranslations } from "../../messagesMap.js";
 
 const mockTranslation: ITranslations = {
     "mock.translation|insight": "Insight",

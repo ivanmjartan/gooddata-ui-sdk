@@ -7,10 +7,10 @@ ROOT_DIR=$(echo $(cd $(dirname $0)/.. && pwd -P))
 # and at the moment (when we use barebone `node` image) it is not possible to start sibling containers from it
 #
 
-JEST_JUNIT_OUTPUT=./ci/results/test-results.xml jest --ci --config jest.ci.js
+JEST_JUNIT_OUTPUT=./ci/results/test-results.xml NODE_NO_WARNINGS=1 node --experimental-vm-modules node_modules/jest/bin/jest.js --ci --config jest.ci.js
 UNIT_RC=$?
 
-JEST_JUNIT_OUTPUT=./ci/results/integrated-test-results.xml NODE_TLS_REJECT_UNAUTHORIZED=0 jest --config "integrated-test.config.js"
+JEST_JUNIT_OUTPUT=./ci/results/integrated-test-results.xml NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_NO_WARNINGS=1 node --experimental-vm-modules node_modules/jest/bin/jest.js --config "integrated-test.config.js"
 INTEGRATED_RC=$?
 
 if [[ $UNIT_RC -ne 0 || $INTEGRATED_RC -ne 0 ]]; then

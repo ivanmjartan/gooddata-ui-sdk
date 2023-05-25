@@ -13,7 +13,7 @@ import {
 } from "@gooddata/sdk-model";
 import { ReferenceMd } from "@gooddata/reference-workspace";
 
-import { areKpiAlertFiltersSameAsDashboard } from "../filterUtils";
+import { areKpiAlertFiltersSameAsDashboard } from "../filterUtils.js";
 
 describe("areKpiAlertFiltersSameAsDashboard", () => {
     const alertBase: IWidgetAlertDefinition = {

@@ -1,5 +1,5 @@
 // (C) 2021 GoodData Corporation
-import { getHeadlineResponsiveClassName } from "../headlineResponsiveClassName";
+import { getHeadlineResponsiveClassName } from "../headlineResponsiveClassName.js";
 
 describe("getHeadlineResponsiveClassName", () => {
     it.each([

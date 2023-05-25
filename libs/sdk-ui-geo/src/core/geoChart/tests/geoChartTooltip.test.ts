@@ -1,6 +1,6 @@
 // (C) 2020-2022 GoodData Corporation
 import { ISeparators } from "@gooddata/numberjs";
-import { getTooltipHtml, shouldShowTooltip, TOOLTIP_MAX_WIDTH } from "../geoChartTooltip";
+import { getTooltipHtml, shouldShowTooltip, TOOLTIP_MAX_WIDTH } from "../geoChartTooltip.js";
 
 describe("geoChartTooltip", () => {
     describe("getTooltipHtml", () => {

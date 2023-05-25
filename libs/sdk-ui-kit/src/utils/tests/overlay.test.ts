@@ -1,5 +1,5 @@
 // (C) 2020-2022 GoodData Corporation
-import { getOptimalAlignment, getOptimalAlignmentForRegion } from "../overlay";
+import { getOptimalAlignment, getOptimalAlignmentForRegion } from "../overlay.js";
 
 function generateOverlay() {
     const boundaryRegion = {

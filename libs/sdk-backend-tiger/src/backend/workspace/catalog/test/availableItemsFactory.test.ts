@@ -2,7 +2,7 @@
 
 import { ReferenceRecordings } from "@gooddata/reference-workspace";
 import { uriRef, CatalogItem } from "@gooddata/sdk-model";
-import { filterAvailableItems } from "../availableItemsFactory";
+import { filterAvailableItems } from "../availableItemsFactory.js";
 
 describe("available item filtering", () => {
     describe("item filtering", () => {

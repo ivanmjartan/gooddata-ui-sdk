@@ -8,7 +8,7 @@ import {
     newRelativeDateFilter,
     uriRef,
 } from "@gooddata/sdk-model";
-import { resolveWidgetFilters } from "../widgetFilters";
+import { resolveWidgetFilters } from "../widgetFilters.js";
 
 describe("resolveWidgetFilters", () => {
     const objRefsToUrisMock: Parameters<typeof resolveWidgetFilters>[3] = (refs) =>

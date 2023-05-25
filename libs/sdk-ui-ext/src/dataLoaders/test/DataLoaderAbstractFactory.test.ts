@@ -1,5 +1,5 @@
 // (C) 2020-2021 GoodData Corporation
-import { dataLoaderAbstractFactory } from "../DataLoaderAbstractFactory";
+import { dataLoaderAbstractFactory } from "../DataLoaderAbstractFactory.js";
 
 describe("dataLoaderAbstractFactory result", () => {
     class MockLoader {

@@ -5,7 +5,7 @@ import {
     evaluateAlertTriggered,
     thresholdFromDecimalToPercent,
     thresholdFromPercentToDecimal,
-} from "../alertThresholdUtils";
+} from "../alertThresholdUtils.js";
 
 describe("thresholdFromDecimalToPercent", () => {
     it.each([

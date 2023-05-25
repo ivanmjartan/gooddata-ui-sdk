@@ -1,6 +1,6 @@
 // (C) 2020-2023 GoodData Corporation
 
-import { convertState } from "../state";
+import { convertState } from "../state.js";
 
 describe("state convert", () => {
     it("BOOLEAN to true", () => {

@@ -1,6 +1,6 @@
 // (C) 2019-2020 GoodData Corporation
 
-import { createNumberJsFormatter } from "../dataAccessConfig";
+import { createNumberJsFormatter } from "../dataAccessConfig.js";
 
 const typicalFormat = "$#,#.##";
 

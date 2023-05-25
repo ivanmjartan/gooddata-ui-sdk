@@ -1,7 +1,7 @@
 // (C) 2022 GoodData Corporation
 
 import { IDashboardLayout } from "@gooddata/sdk-model";
-import { getDrillToCustomUrlPaths } from "../toBackend/AnalyticalDashboardConverter";
+import { getDrillToCustomUrlPaths } from "../toBackend/AnalyticalDashboardConverter.js";
 
 const layout: IDashboardLayout = {
     type: "IDashboardLayout",

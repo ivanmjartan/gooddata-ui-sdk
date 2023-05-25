@@ -10,7 +10,7 @@ import {
     HubspotConversionTouchPointDialogBase,
     IHubspotFormField,
 } from "../HubspotConversionTouchPointDialogBase";
-import { IHubspotConversionTouchPointDialogBaseProps } from "../index";
+import { IHubspotConversionTouchPointDialogBaseProps } from "../index.js";
 
 interface IFormReadyProps {
     onFormReady: ($form: IHubspotFormField[]) => void;
@@ -18,14 +18,14 @@ interface IFormReadyProps {
 
 let formReadyCalled = false;
 
-jest.mock("@aaronhayes/react-use-hubspot-form", () => ({
-    useHubspotForm: jest.fn().mockImplementation((arg: IFormReadyProps) => {
+vi.mock("@aaronhayes/react-use-hubspot-form", () => ({
+    useHubspotForm: vi.fn().mockImplementation((arg: IFormReadyProps) => {
         if (!formReadyCalled) {
             arg.onFormReady([
                 {
                     name: "email",
                     value: "",
-                    click: jest.fn(),
+                    click: vi.fn(),
                 },
             ]);
             formReadyCalled = true;
@@ -43,8 +43,8 @@ describe("HubspotConversionTouchPointDialogBase", () => {
         return render(
             <IntlWrapper locale="en-US">
                 <HubspotConversionTouchPointDialogBase
-                    onClose={jest.fn()}
-                    onFormSubmitted={jest.fn()}
+                    onClose={vi.fn()}
+                    onFormSubmitted={vi.fn()}
                     values={{ email: "test@gooddata.com", clientId: "23984723" }}
                     dialogTitle="How can we help!"
                     hubspotPortalId="98798"
@@ -82,7 +82,7 @@ describe("HubspotConversionTouchPointDialogBase", () => {
     });
 
     it("Should call the onClose function when clicking on the cancel button", async () => {
-        const spyCancel = jest.fn();
+        const spyCancel = vi.fn();
         renderComponent({
             showCancelButton: true,
             onClose: spyCancel,

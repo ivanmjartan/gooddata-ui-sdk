@@ -3,7 +3,7 @@
 import { ReferenceMd } from "@gooddata/reference-workspace";
 import { IBucket } from "@gooddata/sdk-model";
 
-import { testBackend, testWorkspace } from "./backend";
+import { testBackend, testWorkspace } from "./backend.js";
 const backend = testBackend();
 
 beforeAll(async () => {

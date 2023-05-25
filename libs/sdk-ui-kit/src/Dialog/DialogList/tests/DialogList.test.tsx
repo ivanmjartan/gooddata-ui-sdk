@@ -2,7 +2,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { DialogList } from "../DialogList";
-import { IDialogListProps } from "../typings";
+import { IDialogListProps } from "../typings.js";
 
 describe("DialogList", () => {
     const createComponent = (props: IDialogListProps) => {

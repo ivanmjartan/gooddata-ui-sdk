@@ -1,5 +1,5 @@
 // (C) 2019-2020 GoodData Corporation
-import { calculateXirr } from "../calculateXirr";
+import { calculateXirr } from "../calculateXirr.js";
 
 /*
  * NOTE

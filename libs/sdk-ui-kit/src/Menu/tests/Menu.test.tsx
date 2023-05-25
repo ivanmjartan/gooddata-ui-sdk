@@ -3,8 +3,8 @@ import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { IMenuProps, Menu } from "../Menu";
-import { SubMenu } from "../SubMenu";
+import { IMenuProps, Menu } from "../Menu.js";
+import { SubMenu } from "../SubMenu.js";
 
 const Toggler = () => <button>toggler</button>;
 

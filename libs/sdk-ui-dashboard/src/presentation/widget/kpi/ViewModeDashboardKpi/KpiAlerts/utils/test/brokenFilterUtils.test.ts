@@ -8,9 +8,9 @@ import {
 import { createIntlMock } from "@gooddata/sdk-ui";
 import { ReferenceMd, ReferenceRecordings } from "@gooddata/reference-workspace";
 
-import { enrichBrokenAlertsInfo, IAttributeFilterMetaCollection } from "../brokenFilterUtils";
-import { IBrokenAlertFilter } from "../../types";
-import { BrokenAlertType, IBrokenAlertFilterBasicInfo } from "../../../../../../../model";
+import { enrichBrokenAlertsInfo, IAttributeFilterMetaCollection } from "../brokenFilterUtils.js";
+import { IBrokenAlertFilter } from "../../types.js";
+import { BrokenAlertType, IBrokenAlertFilterBasicInfo } from "../../../../../../../model/index.js";
 
 describe("enrichBrokenAlertsInfo", () => {
     const DEFAULT_DATE_TITLE = "Date";

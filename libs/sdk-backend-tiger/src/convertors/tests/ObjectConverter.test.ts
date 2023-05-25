@@ -1,8 +1,8 @@
 // (C) 2021-2022 GoodData Corporation
-import { TigerObjectType } from "../../types";
-import { TigerCompatibleObjectType } from "../../types/refTypeMapping";
-import { toObjectType } from "../fromBackend/ObjRefConverter";
-import { toTigerType } from "../toBackend/ObjRefConverter";
+import { TigerObjectType } from "../../types/index.js";
+import { TigerCompatibleObjectType } from "../../types/refTypeMapping.js";
+import { toObjectType } from "../fromBackend/ObjRefConverter.js";
+import { toTigerType } from "../toBackend/ObjRefConverter.js";
 
 const mapping: [TigerCompatibleObjectType, TigerObjectType][] = [
     ["attribute", "attribute"],

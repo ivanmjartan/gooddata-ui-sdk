@@ -1,11 +1,11 @@
 // (C) 2019-2023 GoodData Corporation
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import range from "lodash/range";
-import { DynamicSelect, IDynamicSelectProps } from "../DynamicSelect";
-import { getRelativeDateFilterItems, DAY, WEEK_US, MONTH, QUARTER, YEAR } from "../utils";
-import { IMessageTranslator } from "../../utils/Translations/Translators";
-import { DynamicSelectItem } from "../types";
+import range from "lodash/range.js";
+import { DynamicSelect, IDynamicSelectProps } from "../DynamicSelect.js";
+import { getRelativeDateFilterItems, DAY, WEEK_US, MONTH, QUARTER, YEAR } from "../utils.js";
+import { IMessageTranslator } from "../../utils/Translations/Translators.js";
+import { DynamicSelectItem } from "../types.js";
 import { DateFilterGranularity } from "@gooddata/sdk-model";
 
 const optionTranslator =
@@ -133,7 +133,7 @@ describe("DynamicSelect", () => {
     });
 
     it("should call onChange when option is selected after searching for white-space string", () => {
-        const onChange = jest.fn();
+        const onChange = vi.fn();
         mountDynamicSelect({ onChange });
 
         fireEvent.change(screen.getByRole("textbox"), { target: { value: "   " } });
@@ -144,7 +144,7 @@ describe("DynamicSelect", () => {
     });
 
     it("should not call onChange when blurred", () => {
-        const onChange = jest.fn();
+        const onChange = vi.fn();
         mountDynamicSelect({ onChange, value: 1 });
 
         const input = screen.getByRole("textbox");
@@ -155,7 +155,7 @@ describe("DynamicSelect", () => {
     });
 
     it("should call onChange when option is selected after searching for non-white-space string", () => {
-        const onChange = jest.fn();
+        const onChange = vi.fn();
         mountDynamicSelect({ onChange });
 
         const input = screen.getByRole("textbox");
@@ -167,7 +167,7 @@ describe("DynamicSelect", () => {
     });
 
     it("should move the highlight on arrow press", () => {
-        const onChange = jest.fn();
+        const onChange = vi.fn();
         mountDynamicSelect({ onChange });
 
         const input = screen.getByRole("textbox");
@@ -180,7 +180,7 @@ describe("DynamicSelect", () => {
     });
 
     it("should select the highlighted item on Enter", () => {
-        const onChange = jest.fn();
+        const onChange = vi.fn();
         mountDynamicSelect({ onChange });
 
         const input = screen.getByRole("textbox");

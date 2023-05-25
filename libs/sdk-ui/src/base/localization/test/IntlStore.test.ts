@@ -1,6 +1,6 @@
 // (C) 2007-2022 GoodData Corporation
-import { DefaultLocale, ILocale } from "../Locale";
-import { getIntl, getTranslation } from "../IntlStore";
+import { DefaultLocale, ILocale } from "../Locale.js";
+import { getIntl, getTranslation } from "../IntlStore.js";
 
 describe("IntlStore", () => {
     describe("getIntl", () => {

@@ -1,6 +1,6 @@
 // (C) 2020-2023 GoodData Corporation
-import { convertFilter, newFilterWithApplyOnResult } from "../FilterConverter";
-import { absoluteFilter, relativeFilter } from "./InvalidInputs.fixture";
+import { convertFilter, newFilterWithApplyOnResult } from "../FilterConverter.js";
+import { absoluteFilter, relativeFilter } from "./InvalidInputs.fixture.js";
 import {
     DateGranularity,
     idRef,

@@ -6,10 +6,10 @@ import { BucketNames, DefaultLocale, VisualizationTypes, DefaultColorPalette } f
 import { ExamplesMd } from "@gooddata/live-examples-workspace";
 import { IInsightDefinition, modifyMeasure, newBucket, newInsightDefinition } from "@gooddata/sdk-model";
 
-import { IConfigurationPanelContentProps } from "../ConfigurationPanelContent";
-import GeoPushpinConfigurationPanel from "../GeoPushpinConfigurationPanel";
+import { IConfigurationPanelContentProps } from "../ConfigurationPanelContent.js";
+import GeoPushpinConfigurationPanel from "../GeoPushpinConfigurationPanel.js";
 
-import { IColorConfiguration } from "../../../interfaces/Colors";
+import { IColorConfiguration } from "../../../interfaces/Colors.js";
 
 const Location = ExamplesMd.City.Location;
 const Size = ExamplesMd.Population.Sum;

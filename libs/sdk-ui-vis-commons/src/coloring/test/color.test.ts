@@ -1,7 +1,7 @@
 // (C) 2020-2021 GoodData Corporation
 
 import { IRgbColorValue } from "@gooddata/sdk-model";
-import { normalizeColorToRGB, parseRGBString } from "../color";
+import { normalizeColorToRGB, parseRGBString } from "../color.js";
 
 describe("parseRGBString", () => {
     const Scenarios: Array<[string, IRgbColorValue | null]> = [

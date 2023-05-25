@@ -7,7 +7,7 @@ import {
     clearCssProperties,
     handleUnits,
     generateShadowColor,
-} from "../cssProperties";
+} from "../cssProperties.js";
 
 describe("cssProperties", () => {
     describe("parseThemeToCssProperties", () => {

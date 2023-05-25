@@ -34,7 +34,7 @@ describe("LegacySingleSelectList", () => {
     }
 
     beforeEach(() => {
-        onSelectStub = jest.fn();
+        onSelectStub = vi.fn();
     });
 
     it("should call onSelect when item clicked", async () => {

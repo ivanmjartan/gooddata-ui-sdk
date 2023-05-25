@@ -1,6 +1,6 @@
 // (C) 2022-2023 GoodData Corporation
 
-import { buildDashboardPermissions } from "../dashboardPermissions";
+import { buildDashboardPermissions } from "../dashboardPermissions.js";
 import { IDashboardPermissions } from "@gooddata/sdk-model";
 
 describe("Dashboard permissions helpers", () => {

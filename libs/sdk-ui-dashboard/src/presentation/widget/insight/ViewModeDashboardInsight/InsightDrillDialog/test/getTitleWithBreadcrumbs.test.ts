@@ -1,5 +1,5 @@
 // (C) 2021 GoodData Corporation
-import { getTitleWithBreadcrumbs } from "../getTitleWithBreadcrumbs";
+import { getTitleWithBreadcrumbs } from "../getTitleWithBreadcrumbs.js";
 
 describe("getTitleWithBreadcrumbs", () => {
     it("should return just title with empty breadcrumbs", () => {

@@ -1,7 +1,7 @@
 // (C) 2020-2021 GoodData Corporation
 
-import { convertMeasure } from "../MeasureConverter";
-import { invalidMeasureDefinition } from "./InvalidInputs.fixture";
+import { convertMeasure } from "../MeasureConverter.js";
+import { invalidMeasureDefinition } from "./InvalidInputs.fixture.js";
 import { ReferenceMd } from "@gooddata/reference-workspace";
 import {
     newArithmeticMeasure,

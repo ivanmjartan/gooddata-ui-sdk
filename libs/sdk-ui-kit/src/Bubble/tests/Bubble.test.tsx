@@ -2,7 +2,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import { Bubble, IBubbleProps } from "../Bubble";
+import { Bubble, IBubbleProps } from "../Bubble.js";
 
 function renderBubble(options: Partial<IBubbleProps>) {
     return render(<Bubble {...options}>lorem ipsum</Bubble>);

@@ -6,9 +6,9 @@ import {
 } from "@gooddata/sdk-ui-filters";
 import { IRelativeDateFilterPresetOfGranularity, IDashboardDateFilter } from "@gooddata/sdk-model";
 
-import { matchDateFilterToDateFilterOption } from "../dateFilterOptionMapping";
+import { matchDateFilterToDateFilterOption } from "../dateFilterOptionMapping.js";
 
-import { allTime, last30days } from "./fixtures";
+import { allTime, last30days } from "./fixtures.js";
 
 describe("matchDateFilterToDateFilterOption", () => {
     it.each<

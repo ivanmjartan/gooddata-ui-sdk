@@ -2,7 +2,11 @@
 import React from "react";
 import { ITheme } from "@gooddata/sdk-model";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { IStylingEditorDialogProps, StylingEditorDialog, IStylingPickerItem } from "../StylingEditorDialog";
+import {
+    IStylingEditorDialogProps,
+    StylingEditorDialog,
+    IStylingPickerItem,
+} from "../StylingEditorDialog/index.js";
 
 describe("Styling editor dialog", () => {
     const theme = (color: string): IStylingPickerItem<ITheme> => {

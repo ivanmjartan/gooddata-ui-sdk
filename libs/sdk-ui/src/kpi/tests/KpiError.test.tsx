@@ -2,7 +2,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { KpiError } from "../KpiError";
+import { KpiError } from "../KpiError.js";
 
 describe("KpiError", () => {
     it("should render with correct message", () => {

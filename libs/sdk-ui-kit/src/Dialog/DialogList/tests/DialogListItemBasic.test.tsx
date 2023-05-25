@@ -3,7 +3,7 @@ import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { DialogListItemBasic } from "../DialogListItemBasic";
-import { IDialogListItemComponentProps } from "../typings";
+import { IDialogListItemComponentProps } from "../typings.js";
 
 describe("DialogListItemBasic", () => {
     const createComponent = (props?: IDialogListItemComponentProps) => {
@@ -11,7 +11,7 @@ describe("DialogListItemBasic", () => {
     };
 
     it("should call onClick when clicked on item", async () => {
-        const onClickMock = jest.fn();
+        const onClickMock = vi.fn();
         createComponent({
             item: { id: "id", title: "title", isClickable: true },
             onClick: onClickMock,
@@ -24,7 +24,7 @@ describe("DialogListItemBasic", () => {
     });
 
     it("should not call onClick when clicked on disabled item", async () => {
-        const onClickMock = jest.fn();
+        const onClickMock = vi.fn();
         createComponent({
             item: { id: "id", title: "title", isDisabled: true },
             onClick: onClickMock,
@@ -37,7 +37,7 @@ describe("DialogListItemBasic", () => {
     });
 
     it("should not call onClick when clicked on item that is not clickable", async () => {
-        const onClickMock = jest.fn();
+        const onClickMock = vi.fn();
         createComponent({
             item: { id: "id", title: "title", isClickable: false },
             onClick: onClickMock,
@@ -50,7 +50,7 @@ describe("DialogListItemBasic", () => {
     });
 
     it("should call onDelete when clicked on delete icon", async () => {
-        const onDeleteMock = jest.fn();
+        const onDeleteMock = vi.fn();
         createComponent({ item: { id: "id", title: "title" }, onDelete: onDeleteMock });
 
         await userEvent.click(screen.getByRole("icon-delete"));

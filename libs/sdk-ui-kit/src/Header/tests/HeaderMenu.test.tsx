@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import { withIntl, ITranslations } from "@gooddata/sdk-ui";
 
 import { HeaderMenu } from "../HeaderMenu";
-import { IHeaderMenuItem } from "../typings";
+import { IHeaderMenuItem } from "../typings.js";
 
 const sections: IHeaderMenuItem[][] = [
     [
@@ -38,7 +38,7 @@ describe("ReactHeaderMenu", () => {
     });
 
     it("should call click handler on menu item", async () => {
-        const clickSpy = jest.fn();
+        const clickSpy = vi.fn();
         render(<Wrapped sections={sections} onMenuItemClick={clickSpy} />);
 
         await userEvent.click(screen.getByText(mockTranslation.dic));

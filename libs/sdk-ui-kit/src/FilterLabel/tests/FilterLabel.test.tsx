@@ -4,7 +4,7 @@ import { render, screen } from "@testing-library/react";
 import { withIntl } from "@gooddata/sdk-ui";
 
 import { FilterLabel } from "../FilterLabel";
-import { IFilterLabelProps } from "../typings";
+import { IFilterLabelProps } from "../typings.js";
 
 const customMessages = {
     "gs.filterLabel.none": "None",

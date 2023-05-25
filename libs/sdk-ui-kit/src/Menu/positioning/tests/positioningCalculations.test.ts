@@ -1,5 +1,5 @@
 // (C) 2007-2018 GoodData Corporation
-import { calculateMenuPosition, IMenuPositionConfig } from "../positioningCalculations";
+import { calculateMenuPosition, IMenuPositionConfig } from "../positioningCalculations.js";
 
 const sharedSettings: IMenuPositionConfig = {
     alignment: ["bottom", "right"],

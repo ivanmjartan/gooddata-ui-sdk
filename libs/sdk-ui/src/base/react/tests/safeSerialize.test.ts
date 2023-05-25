@@ -1,6 +1,6 @@
 // (C) 2019-2021 GoodData Corporation
 
-import { safeSerialize } from "../safeSerialize";
+import { safeSerialize } from "../safeSerialize.js";
 
 describe("safeSerialize", () => {
     type Scenario = [string, any];

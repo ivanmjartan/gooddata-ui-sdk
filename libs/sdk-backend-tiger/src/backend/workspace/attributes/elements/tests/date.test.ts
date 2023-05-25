@@ -2,7 +2,7 @@
 
 import { newRelativeDateFilter, IRelativeDateFilter, DateAttributeGranularity } from "@gooddata/sdk-model";
 
-import { getRelativeDateFilterShiftedValues } from "../date";
+import { getRelativeDateFilterShiftedValues } from "../date.js";
 
 const generateRelativeDateFilter = (granularity: DateAttributeGranularity) =>
     newRelativeDateFilter("gdc/uri/rf", granularity, -3, 0);

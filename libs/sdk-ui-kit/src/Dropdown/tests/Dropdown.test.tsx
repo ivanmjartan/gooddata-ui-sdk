@@ -84,7 +84,7 @@ describe("Dropdown", () => {
     });
 
     it("should call onOpenStateChanged, on isOpen change", async () => {
-        const onOpenStateChanged = jest.fn();
+        const onOpenStateChanged = vi.fn();
         const ToggleButton = buttonMock.componentWithProps(({ toggleDropdown }) => ({
             onClick: toggleDropdown,
         }));

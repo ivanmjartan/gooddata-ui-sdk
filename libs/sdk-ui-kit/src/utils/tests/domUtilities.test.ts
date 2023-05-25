@@ -1,6 +1,6 @@
 // (C) 2020 GoodData Corporation
-import { IRegion } from "../../typings/domUtilities";
-import { region, removeFromDom } from "../domUtilities";
+import { IRegion } from "../../typings/domUtilities.js";
+import { region, removeFromDom } from "../domUtilities.js";
 
 interface IConfig {
     height: number;

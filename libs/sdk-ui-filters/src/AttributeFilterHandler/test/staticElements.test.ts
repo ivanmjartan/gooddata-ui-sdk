@@ -4,8 +4,8 @@ import {
     limitingDateFilters,
     limitingMeasures,
     newTestAttributeFilterHandler,
-} from "./fixtures";
-import { waitForAsync } from "./testUtils";
+} from "./fixtures.js";
+import { waitForAsync } from "./testUtils.js";
 
 describe("AttributeFilterHandler", () => {
     it("staticElements option should replace loaded elements on init", async () => {

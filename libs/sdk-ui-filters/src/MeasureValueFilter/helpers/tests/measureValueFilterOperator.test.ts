@@ -1,5 +1,5 @@
 // (C) 2007-2019 GoodData Corporation
-import { getOperatorTranslationKey, getOperatorIcon } from "../measureValueFilterOperator";
+import { getOperatorTranslationKey, getOperatorIcon } from "../measureValueFilterOperator.js";
 
 describe("getOperatorTranslationKey", () => {
     it.each`

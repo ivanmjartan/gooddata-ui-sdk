@@ -1,6 +1,7 @@
 // (C) 2019-2020 GoodData Corporation
-import { convertPostMessageToDrillablePredicates } from "../drillablePredicates";
-import SpyInstance = jest.SpyInstance;
+import { convertPostMessageToDrillablePredicates } from "../drillablePredicates.js";
+import { vi } from "vitest";
+import SpyInstance = vi.SpyInstance;
 import { IHeaderPredicate, HeaderPredicates } from "@gooddata/sdk-ui";
 import { IDrillableItemsCommandBody } from "@gooddata/sdk-embedding";
 
@@ -18,10 +19,10 @@ describe("convertPostMessageToDrillablePredicates", () => {
     }
 
     beforeEach(() => {
-        uriMatchSpy = jest.spyOn(HeaderPredicates, "uriMatch");
-        identifierMatchSpy = jest.spyOn(HeaderPredicates, "identifierMatch");
-        composedFromUriSpy = jest.spyOn(HeaderPredicates, "composedFromUri");
-        composedFromIdentifierSpy = jest.spyOn(HeaderPredicates, "composedFromIdentifier");
+        uriMatchSpy = vi.spyOn(HeaderPredicates, "uriMatch");
+        identifierMatchSpy = vi.spyOn(HeaderPredicates, "identifierMatch");
+        composedFromUriSpy = vi.spyOn(HeaderPredicates, "composedFromUri");
+        composedFromIdentifierSpy = vi.spyOn(HeaderPredicates, "composedFromIdentifier");
     });
 
     afterEach(() => {

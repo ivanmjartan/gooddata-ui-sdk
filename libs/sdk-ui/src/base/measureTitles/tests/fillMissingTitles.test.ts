@@ -6,7 +6,7 @@ import {
     bucketMeasures,
     idMatchMeasure,
 } from "@gooddata/sdk-model";
-import { fillMissingTitles } from "../fillMissingTitles";
+import { fillMissingTitles } from "../fillMissingTitles.js";
 import {
     insightWithPoP,
     insightWithPoPAndAlias,
@@ -14,7 +14,7 @@ import {
     insightWithArithmeticMeasureTree,
     insightWithComplexArithmeticMeasureTree,
     insightWithMultipleMeasureBuckets,
-} from "../../../../__mocks__/fixtures";
+} from "../../../../__mocks__/fixtures.js";
 
 describe("measureTitleHelper", () => {
     describe("fillMissingTitles", () => {

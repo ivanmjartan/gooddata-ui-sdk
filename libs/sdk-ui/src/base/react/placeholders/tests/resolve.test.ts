@@ -5,11 +5,11 @@ import {
     resolvePlaceholderValue,
     setPlaceholder,
     resolveComposedPlaceholderValue,
-} from "../resolve";
-import { newPlaceholder, newComposedPlaceholder } from "../factory";
+} from "../resolve.js";
+import { newPlaceholder, newComposedPlaceholder } from "../factory.js";
 import { newMeasure, newAttribute, newPositiveAttributeFilter, newAttributeSort } from "@gooddata/sdk-model";
-import { PlaceholdersState } from "../context";
-import flow from "lodash/flow";
+import { PlaceholdersState } from "../context.js";
+import flow from "lodash/flow.js";
 
 export const emptyState: PlaceholdersState = { placeholders: {} };
 

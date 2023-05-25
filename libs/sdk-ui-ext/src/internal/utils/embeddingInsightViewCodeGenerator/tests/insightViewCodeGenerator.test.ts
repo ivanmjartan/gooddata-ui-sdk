@@ -1,6 +1,6 @@
 // (C) 2022 GoodData Corporation
 
-import { insightViewCodeGenerator } from "../insightViewCodeGenerator";
+import { insightViewCodeGenerator } from "../insightViewCodeGenerator.js";
 import { recordedInsights } from "@gooddata/sdk-backend-mockingbird";
 import { ReferenceRecordings } from "@gooddata/reference-workspace";
 import { idRef, IInsight, insightUri, newInsightDefinition } from "@gooddata/sdk-model";

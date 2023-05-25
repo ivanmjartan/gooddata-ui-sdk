@@ -8,10 +8,10 @@ import {
     IMeasureDefinition,
 } from "@gooddata/sdk-model";
 import { render, screen } from "@testing-library/react";
-import { PlaceholdersProvider, IPlaceholdersProviderProps } from "../context";
-import { newComposedPlaceholder, newPlaceholder } from "../factory";
-import { IComposedPlaceholder } from "../base";
-import { useComposedPlaceholder } from "../hooks";
+import { PlaceholdersProvider, IPlaceholdersProviderProps } from "../context.js";
+import { newComposedPlaceholder, newPlaceholder } from "../factory.js";
+import { IComposedPlaceholder } from "../base.js";
+import { useComposedPlaceholder } from "../hooks.js";
 
 const createComponent = (
     componentProps: IComponentWithUsePlaceholderHookProps,

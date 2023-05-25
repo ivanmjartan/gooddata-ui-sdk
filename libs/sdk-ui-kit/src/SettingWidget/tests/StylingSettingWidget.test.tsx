@@ -6,10 +6,10 @@ import userEvent from "@testing-library/user-event";
 import { IntlWrapper } from "@gooddata/sdk-ui";
 import { ITheme } from "@gooddata/sdk-model";
 
-import { defaultItemMock, customItemsMock } from "./mocks";
+import { defaultItemMock, customItemsMock } from "./mocks.js";
 
-import * as useMediaQuery from "../../responsive/useMediaQuery";
-import { StylingSettingWidget, IStylingSettingWidgetProps } from "../StylingSettingWidget";
+import * as useMediaQuery from "../../responsive/useMediaQuery.js";
+import { StylingSettingWidget, IStylingSettingWidgetProps } from "../StylingSettingWidget/index.js";
 
 const expectedButtonsState = (buttons: HTMLElement[], disabled = true) => {
     return buttons.forEach((item) => {
@@ -39,7 +39,7 @@ describe("StylingPicker", () => {
     };
 
     beforeEach(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
     });
 
     it("should render component with basic item selected by default", () => {
@@ -116,7 +116,7 @@ describe("StylingPicker", () => {
 
     it("should call onCancel when shouldDisableCancelButton is false and cancel button is clicked", async () => {
         const selectedItemRef = customItemsMock[0].ref;
-        const onCancel = jest.fn();
+        const onCancel = vi.fn();
         renderComponent({ selectedItemRef, shouldDisableCancelButton: false, onCancel });
 
         await userEvent.click(screen.getByText("Cancel"));
@@ -127,7 +127,7 @@ describe("StylingPicker", () => {
     });
 
     it("should call onListButtonClick when list action link is clicked", async () => {
-        const onListActionClick = jest.fn();
+        const onListActionClick = vi.fn();
         renderComponent({ onListActionClick });
 
         await userEvent.click(screen.getByText("Create"));
@@ -143,7 +143,7 @@ describe("StylingPicker", () => {
     });
 
     it("should call onItemEdit when list item menu is clicked", async () => {
-        const onItemEdit = jest.fn();
+        const onItemEdit = vi.fn();
         renderComponent({ onItemEdit });
 
         await userEvent.click(screen.getAllByRole("button", { name: /\.\.\./ })[0]);
@@ -155,7 +155,7 @@ describe("StylingPicker", () => {
     });
 
     it("should call onItemDelete when list item menu is clicked", async () => {
-        const onItemDelete = jest.fn();
+        const onItemDelete = vi.fn();
         renderComponent({ onItemDelete });
 
         await userEvent.click(screen.getAllByRole("button", { name: /\.\.\./ })[0]);
@@ -166,7 +166,7 @@ describe("StylingPicker", () => {
     });
 
     it("should call onApply when apply button is clicked", async () => {
-        const onApply = jest.fn();
+        const onApply = vi.fn();
         renderComponent({ onApply });
 
         await userEvent.click(screen.getByText("First theme"));
@@ -177,15 +177,15 @@ describe("StylingPicker", () => {
     });
 
     it("should not render list action link on mobile device", () => {
-        jest.spyOn(useMediaQuery, "useMediaQuery").mockReturnValue(true);
+        vi.spyOn(useMediaQuery, "useMediaQuery").mockReturnValue(true);
         renderComponent({});
         expect(screen.queryByText("Create")).not.toBeInTheDocument();
     });
 
     it("should not render list item Actions menu on mobile device", () => {
-        jest.spyOn(useMediaQuery, "useMediaQuery").mockReturnValue(true);
-        const onItemEdit = jest.fn();
-        const onItemDelete = jest.fn();
+        vi.spyOn(useMediaQuery, "useMediaQuery").mockReturnValue(true);
+        const onItemEdit = vi.fn();
+        const onItemDelete = vi.fn();
         renderComponent({ onItemEdit, onItemDelete });
         expect(screen.queryByRole("button", { name: /\.\.\./ })).not.toBeInTheDocument();
     });

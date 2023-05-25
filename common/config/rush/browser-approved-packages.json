@@ -223,6 +223,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "@jest/globals",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
       "name": "@microsoft/api-documenter",
       "allowedCategories": [ "production", "tools" ]
     },
@@ -475,6 +479,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "@types/tough-cookie",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "@types/uuid",
       "allowedCategories": [ "production" ]
     },
@@ -611,6 +619,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "default-import",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "dependency-cruiser",
       "allowedCategories": [ "production", "tools" ]
     },
@@ -631,11 +643,19 @@
       "allowedCategories": [ "examples", "production", "tools" ]
     },
     {
+      "name": "eslint-import-resolver-typescript",
+      "allowedCategories": [ "examples", "production" ]
+    },
+    {
       "name": "eslint-plugin-header",
       "allowedCategories": [ "examples", "production", "tools" ]
     },
     {
       "name": "eslint-plugin-import",
+      "allowedCategories": [ "examples", "production", "tools" ]
+    },
+    {
+      "name": "eslint-plugin-import-esm",
       "allowedCategories": [ "examples", "production", "tools" ]
     },
     {
@@ -695,6 +715,10 @@
       "allowedCategories": [ "tools" ]
     },
     {
+      "name": "fix-esm-import-path",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "fixed-data-table-2",
       "allowedCategories": [ "production" ]
     },
@@ -709,6 +733,10 @@
     {
       "name": "full-icu",
       "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "happy-dom",
+      "allowedCategories": [ "production", "tools" ]
     },
     {
       "name": "heroku",
@@ -772,6 +800,14 @@
     },
     {
       "name": "js-object-pretty-print",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "jsdom",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "json-loader",
       "allowedCategories": [ "production" ]
     },
     {
@@ -1105,6 +1141,10 @@
     {
       "name": "uuid",
       "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "vitest",
+      "allowedCategories": [ "production", "tools" ]
     },
     {
       "name": "wait-on",

@@ -1,7 +1,7 @@
 // (C) 2007-2023 GoodData Corporation
 import { IInsight, insightMeasures, idMatchMeasure } from "@gooddata/sdk-model";
-import { ignoreTitlesForSimpleMeasures } from "../ignoreTitlesForSimpleMeasures";
-import { insightWithComplexArithmeticMeasureTree } from "../../../../__mocks__/fixtures";
+import { ignoreTitlesForSimpleMeasures } from "../ignoreTitlesForSimpleMeasures.js";
+import { insightWithComplexArithmeticMeasureTree } from "../../../../__mocks__/fixtures.js";
 
 describe("measureTitleHelper", () => {
     describe("ignoreTitlesForSimpleMeasures", () => {

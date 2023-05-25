@@ -2,8 +2,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { ResizeOverlayProps, ResizeOverlay } from "../ResizeOverlay";
-import { IntlWrapper } from "../../../localization";
+import { ResizeOverlayProps, ResizeOverlay } from "../ResizeOverlay.js";
+import { IntlWrapper } from "../../../localization/index.js";
 
 const defaultProps: ResizeOverlayProps = {
     isResizingColumnOrRow: false,

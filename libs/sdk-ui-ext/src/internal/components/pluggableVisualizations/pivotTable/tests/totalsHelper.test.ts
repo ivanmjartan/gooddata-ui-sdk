@@ -1,9 +1,9 @@
 // (C) 2020 GoodData Corporation
 
-import { removeInvalidTotals } from "../totalsHelpers";
-import { IBucketFilter } from "../../../../interfaces/Visualization";
+import { removeInvalidTotals } from "../totalsHelpers.js";
+import { IBucketFilter } from "../../../../interfaces/Visualization.js";
 import { ITotal } from "@gooddata/sdk-model";
-import * as referencePointMocks from "../../../../tests/mocks/referencePointMocks";
+import * as referencePointMocks from "../../../../tests/mocks/referencePointMocks.js";
 
 describe("removeInvalidTotals", () => {
     describe("remove native totals", () => {

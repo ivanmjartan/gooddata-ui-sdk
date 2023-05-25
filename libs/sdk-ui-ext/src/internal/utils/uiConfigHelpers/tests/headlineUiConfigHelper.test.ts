@@ -1,8 +1,8 @@
 // (C) 2019-2020 GoodData Corporation
 import { DefaultLocale } from "@gooddata/sdk-ui";
-import { createInternalIntl } from "../../internalIntlProvider";
-import { getHeadlineUiConfig } from "../headlineUiConfigHelper";
-import * as referencePointMocks from "../../../tests/mocks/referencePointMocks";
+import { createInternalIntl } from "../../internalIntlProvider.js";
+import { getHeadlineUiConfig } from "../headlineUiConfigHelper.js";
+import * as referencePointMocks from "../../../tests/mocks/referencePointMocks.js";
 
 describe("headlineUiConfigHelper", () => {
     describe("getHeadlineUiConfig", () => {

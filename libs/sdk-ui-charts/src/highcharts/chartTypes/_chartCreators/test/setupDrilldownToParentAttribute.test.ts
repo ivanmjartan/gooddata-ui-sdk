@@ -1,7 +1,7 @@
 // (C) 2007-2020 GoodData Corporation
-import { getDDPointsInParentTick, setupDrilldown } from "../setupDrilldownToParentAttribute";
-import { styleVariables } from "../styles/variables";
-import { IHighchartsPointObject } from "../isGroupHighchartsDrillEvent";
+import { getDDPointsInParentTick, setupDrilldown } from "../setupDrilldownToParentAttribute.js";
+import { styleVariables } from "../styles/variables.js";
+import { IHighchartsPointObject } from "../isGroupHighchartsDrillEvent.js";
 
 class MockHighChartsLabel {
     public basicStyles = { cursor: "default" };

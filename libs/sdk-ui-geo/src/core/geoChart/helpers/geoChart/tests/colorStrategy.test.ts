@@ -1,8 +1,8 @@
 // (C) 2020 GoodData Corporation
 
-import { getColorStrategy } from "../../../colorStrategy/geoChart";
+import { getColorStrategy } from "../../../colorStrategy/geoChart.js";
 import { DefaultColorPalette } from "@gooddata/sdk-ui";
-import { RecShortcuts } from "../../../../../../__mocks__/recordings";
+import { RecShortcuts } from "../../../../../../__mocks__/recordings.js";
 
 describe("getColorStrategy", () => {
     it("should return GeoChartColorStrategy", () => {

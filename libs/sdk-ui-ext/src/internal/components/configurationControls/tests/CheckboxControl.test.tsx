@@ -2,9 +2,10 @@
 import React from "react";
 import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import noop from "lodash/noop";
-import { InternalIntlWrapper } from "../../../utils/internalIntlProvider";
-import CheckboxControl, { ICheckboxControlProps } from "../CheckboxControl";
+import noop from "lodash/noop.js";
+import { InternalIntlWrapper } from "../../../utils/internalIntlProvider.js";
+import CheckboxControl, { ICheckboxControlProps } from "../CheckboxControl.js";
+import { vi } from "vitest";
 
 describe("CheckboxControl", () => {
     const defaultProps = {
@@ -61,7 +62,7 @@ describe("CheckboxControl", () => {
     });
 
     it("should call pushData when checkbox value changes", async () => {
-        const pushData = jest.fn();
+        const pushData = vi.fn();
         createComponent({
             properties: {},
             pushData,

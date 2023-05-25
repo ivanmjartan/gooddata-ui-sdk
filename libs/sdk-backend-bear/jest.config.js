@@ -1,6 +1,15 @@
 // (C) 2019 GoodData Corporation
-const base = require("../../common/config/jest/jest.config.base.js");
-module.exports = {
+import { createRequire } from "module";
+import base from "../../common/config/jest/jest.config.base.mjs";
+
+const require = createRequire(import.meta.url);
+
+export default {
     ...base,
+    moduleNameMapper: {
+        ...base.moduleNameMapper,
+        "^uuid$": require.resolve("uuid"),
+    },
+    testEnvironment: "jsdom",
     testRegex: "(/src).*\\.test\\.tsx?$",
 };

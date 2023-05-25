@@ -2,9 +2,14 @@
 import React from "react";
 import { ICatalogDateDataset, isInsightWidget, IWidget } from "@gooddata/sdk-model";
 import { FormattedMessage } from "react-intl";
-import Measure from "react-measure";
-import { DateDatasetDropdown } from "./DateDatasetDropdown";
-import { getUnrelatedDateDataset, removeDateFromTitle } from "./utils";
+import DefaultMeasure from "react-measure";
+import { DateDatasetDropdown } from "./DateDatasetDropdown.js";
+import { getUnrelatedDateDataset, removeDateFromTitle } from "./utils.js";
+
+// There are known compatibility issues between CommonJS (CJS) and ECMAScript modules (ESM).
+// In ESM, default exports of CJS modules are wrapped in default properties instead of being exposed directly.
+// https://github.com/microsoft/TypeScript/issues/52086#issuecomment-1385978414
+const Measure = DefaultMeasure as unknown as typeof DefaultMeasure.default;
 
 export interface IDateDatasetPickerProps {
     autoOpen?: boolean;

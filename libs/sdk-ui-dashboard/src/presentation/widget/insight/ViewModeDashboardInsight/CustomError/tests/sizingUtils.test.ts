@@ -1,5 +1,5 @@
 // (C) 2021 GoodData Corporation
-import { shouldRenderFullContent } from "../sizingUtils";
+import { shouldRenderFullContent } from "../sizingUtils.js";
 
 describe("Report Visualization - resize utils", () => {
     describe("shouldRenderFullContent", () => {

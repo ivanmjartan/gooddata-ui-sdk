@@ -3,8 +3,8 @@
 import { ISortItem, newAttributeLocator, newMeasureSort } from "@gooddata/sdk-model";
 import { ReferenceRecordings, ReferenceMd, ReferenceData } from "@gooddata/reference-workspace";
 import { DataViewFirstPage, recordedDataView, ScenarioRecording } from "@gooddata/sdk-backend-mockingbird";
-import cloneDeep from "lodash/cloneDeep";
-import { DataViewFacade } from "../../facade";
+import cloneDeep from "lodash/cloneDeep.js";
+import { DataViewFacade } from "../../facade.js";
 
 function dataViewWithModifiedSorts(
     scenario: ScenarioRecording,

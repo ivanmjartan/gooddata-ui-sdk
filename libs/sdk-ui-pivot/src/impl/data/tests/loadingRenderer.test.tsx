@@ -1,11 +1,11 @@
 // (C) 2019-2023 GoodData Corporation
 import { render, screen } from "@testing-library/react";
 import React from "react";
-import { createLoadingRenderer } from "../loadingRenderer";
+import { createLoadingRenderer } from "../loadingRenderer.js";
 import { ICellRendererParams } from "@ag-grid-community/all-modules";
-import noop from "lodash/noop";
-import { SingleMeasureWithRowAndColumnAttributes } from "../../structure/tests/table.fixture";
-import { createTestTableFacade } from "../../tests/tableFacade.fixture";
+import noop from "lodash/noop.js";
+import { SingleMeasureWithRowAndColumnAttributes } from "../../structure/tests/table.fixture.js";
+import { createTestTableFacade } from "../../tests/tableFacade.fixture.js";
 import { ThemeProvider } from "@gooddata/sdk-ui-theme-provider";
 import { ITheme } from "@gooddata/sdk-model";
 

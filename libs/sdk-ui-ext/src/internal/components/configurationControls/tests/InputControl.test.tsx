@@ -2,9 +2,10 @@
 import React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import noop from "lodash/noop";
-import { InputControl, IInputControlProps } from "../InputControl";
-import { createInternalIntl, InternalIntlWrapper } from "../../../utils/internalIntlProvider";
+import noop from "lodash/noop.js";
+import { InputControl, IInputControlProps } from "../InputControl.js";
+import { createInternalIntl, InternalIntlWrapper } from "../../../utils/internalIntlProvider.js";
+import { vi } from "vitest";
 
 describe("InputControl", () => {
     const defaultProps = {
@@ -55,7 +56,7 @@ describe("InputControl", () => {
     });
 
     it("should pushData when press Enter and value in state is different than in props", async () => {
-        const pushData = jest.fn();
+        const pushData = vi.fn();
         createComponent({
             value: "foo",
             pushData,
@@ -71,7 +72,7 @@ describe("InputControl", () => {
     });
 
     it("should not call pushData when value is the same", async () => {
-        const pushData = jest.fn();
+        const pushData = vi.fn();
         createComponent({
             value: "4",
             pushData,
@@ -84,7 +85,7 @@ describe("InputControl", () => {
     });
 
     it("should pushData when focus is changed and value in state is different than in props", async () => {
-        const pushData = jest.fn();
+        const pushData = vi.fn();
         createComponent({
             value: "foo",
             pushData,
@@ -97,7 +98,7 @@ describe("InputControl", () => {
     });
 
     it("should pushData with value", async () => {
-        const pushData = jest.fn();
+        const pushData = vi.fn();
         createComponent({
             value: "foo",
             pushData,
@@ -112,7 +113,7 @@ describe("InputControl", () => {
     });
 
     it("should remove trailing dot when type:number", async () => {
-        const pushData = jest.fn();
+        const pushData = vi.fn();
         createComponent({
             type: "number",
             value: "foo",

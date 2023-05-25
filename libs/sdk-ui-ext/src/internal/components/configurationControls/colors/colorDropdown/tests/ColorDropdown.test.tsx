@@ -2,13 +2,14 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import noop from "lodash/noop";
-import cloneDeep from "lodash/cloneDeep";
+import noop from "lodash/noop.js";
+import cloneDeep from "lodash/cloneDeep.js";
 import { IColor } from "@gooddata/sdk-model";
-import { colorPalette } from "../../../../../tests/mocks/testColorHelper";
-import { InternalIntlWrapper } from "../../../../../utils/internalIntlProvider";
-import ColorDropdown, { IColorDropdownOwnProps, IconPosition, ISelectableChild } from "../ColorDropdown";
-import { IColoredItemContentProps } from "../../coloredItemsList/ColoredItemContent";
+import { colorPalette } from "../../../../../tests/mocks/testColorHelper.js";
+import { InternalIntlWrapper } from "../../../../../utils/internalIntlProvider.js";
+import ColorDropdown, { IColorDropdownOwnProps, IconPosition, ISelectableChild } from "../ColorDropdown.js";
+import { IColoredItemContentProps } from "../../coloredItemsList/ColoredItemContent.js";
+import { vi } from "vitest";
 
 export type IMockItemProps = IColoredItemContentProps & ISelectableChild;
 
@@ -130,7 +131,7 @@ describe("ColorDropdown", () => {
     );
 
     it("should call onColorSelected once when colorItem clicked and return type guid and given guid value", async () => {
-        const onColorSelected = jest.fn();
+        const onColorSelected = vi.fn();
         const { guid, fill } = colorPalette[2];
         createComponent({ onColorSelected });
 
@@ -228,7 +229,7 @@ describe("ColorDropdown", () => {
         "should call onColorSelected once when ColorPicker select color" +
             " and return type rgb and given rgb value",
         async () => {
-            const onColorSelected = jest.fn();
+            const onColorSelected = vi.fn();
             createComponent({
                 showCustomPicker: true,
                 onColorSelected,

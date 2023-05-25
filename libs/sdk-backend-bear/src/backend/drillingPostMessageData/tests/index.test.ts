@@ -1,6 +1,6 @@
 // (C) 2020 GoodData Corporation
 import { IUriIdentifierPair } from "@gooddata/api-client-bear";
-import { sanitizeDrillingActivationPostMessageData } from "..";
+import { sanitizeDrillingActivationPostMessageData } from "../index.js";
 import { IDrillableItemsCommandBody } from "@gooddata/sdk-embedding";
 
 describe("sanitizeDrillingPostMessageData", () => {

@@ -1,6 +1,6 @@
 // (C) 2007-2021 GoodData Corporation
-import { PositionType } from "../../types";
-import { ILegendDetails, getLegendDetails, ILegendDetailOptions } from "../helpers";
+import { PositionType } from "../../types.js";
+import { ILegendDetails, getLegendDetails, ILegendDetailOptions } from "../helpers.js";
 import { ContentRect } from "react-measure";
 
 describe("helpers", () => {

@@ -2,8 +2,8 @@
 
 import { IInsightDefinition } from "@gooddata/sdk-model";
 import { BucketNames } from "@gooddata/sdk-ui";
-import { countBucketItems, countItemsOnAxes } from "../insightIntrospection";
-import { IVisualizationProperties } from "../../../../interfaces/Visualization";
+import { countBucketItems, countItemsOnAxes } from "../insightIntrospection.js";
+import { IVisualizationProperties } from "../../../../interfaces/Visualization.js";
 
 describe("countItemsOnAxesInMdObject", () => {
     it("should return number of items in buckets", () => {

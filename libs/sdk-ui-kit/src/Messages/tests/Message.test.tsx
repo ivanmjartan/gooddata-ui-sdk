@@ -2,10 +2,10 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import noop from "lodash/noop";
+import noop from "lodash/noop.js";
 
-import { Message } from "../Message";
-import { IMessageProps } from "../typings";
+import { Message } from "../Message.js";
+import { IMessageProps } from "../typings.js";
 
 function renderMessage(options: Partial<IMessageProps>, children: JSX.Element = null) {
     return render(
@@ -45,7 +45,7 @@ describe("Message", () => {
     });
 
     it("should create message with custom component containing link and click on it once", async () => {
-        const onClick = jest.fn();
+        const onClick = vi.fn();
         renderMessage(
             {
                 type: "error",
@@ -60,7 +60,7 @@ describe("Message", () => {
     });
 
     it("should show close button and be able to click", async () => {
-        const onClose = jest.fn();
+        const onClose = vi.fn();
         renderMessage({
             type: "error",
             onClose,

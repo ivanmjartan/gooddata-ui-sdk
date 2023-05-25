@@ -2,10 +2,10 @@
 import { ReferenceRecordings } from "@gooddata/reference-workspace";
 import { DefaultColorPalette } from "@gooddata/sdk-ui";
 
-import { recordedDataFacade } from "../../../../../__mocks__/recordings";
-import { getMVS } from "../../_util/test/helper";
-import { getWaterfallChartSeries } from "../waterfallChartsSeries";
-import { WaterfallChartColorStrategy } from "../waterfallChartColoring";
+import { recordedDataFacade } from "../../../../../__mocks__/recordings.js";
+import { getMVS } from "../../_util/test/helper.js";
+import { getWaterfallChartSeries } from "../waterfallChartsSeries.js";
+import { WaterfallChartColorStrategy } from "../waterfallChartColoring.js";
 
 const emptyHeaderTitle = "(empty title)";
 

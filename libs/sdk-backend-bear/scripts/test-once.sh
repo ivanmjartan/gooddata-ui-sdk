@@ -15,7 +15,7 @@ fi
 jest
 UNIT_RC=$?
 
-NODE_TLS_REJECT_UNAUTHORIZED=0 jest --config "integrated-test.config.js"
+NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_NO_WARNINGS=1 node --experimental-vm-modules node_modules/jest/bin/jest.js --maxWorkers=${JEST_MAX_WORKERS:-'45%'} --config "integrated-test.config.js"
 INTEGRATED_RC=$?
 
 npm run stop-wiremock

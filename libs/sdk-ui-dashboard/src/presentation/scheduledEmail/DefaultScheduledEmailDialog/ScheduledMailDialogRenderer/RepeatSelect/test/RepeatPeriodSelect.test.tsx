@@ -1,12 +1,12 @@
 // (C) 2019-2022 GoodData Corporation
 import React from "react";
-import noop from "lodash/noop";
+import noop from "lodash/noop.js";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { RepeatPeriodSelect, IRepeatPeriodSelectProps } from "../RepeatPeriodSelect";
+import { RepeatPeriodSelect, IRepeatPeriodSelectProps } from "../RepeatPeriodSelect.js";
 
-import { IntlWrapper } from "../../../../../localization/IntlWrapper";
+import { IntlWrapper } from "../../../../../localization/IntlWrapper.js";
 
 describe("RepeatPeriodSelect", () => {
     function renderComponent(customProps: Partial<IRepeatPeriodSelectProps> = {}) {

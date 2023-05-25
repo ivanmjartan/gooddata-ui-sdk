@@ -2,7 +2,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { FormattedPreview, IFormattedPreviewProps } from "../FormattedPreview";
+import { FormattedPreview, IFormattedPreviewProps } from "../FormattedPreview.js";
 
 describe("FormattedPreview", () => {
     function renderComponent(props: Partial<IFormattedPreviewProps> = {}) {

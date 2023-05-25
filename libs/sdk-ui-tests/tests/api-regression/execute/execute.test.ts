@@ -1,10 +1,10 @@
 // (C) 2007-2019 GoodData Corporation
 
-import executeScenarios from "../../../scenarios/execute/base";
-import { ScenarioAndDescription } from "../../../src";
-import { mountChartAndCapture } from "../../_infra/render";
+import executeScenarios from "../../../scenarios/execute/base.js";
+import { ScenarioAndDescription } from "../../../src/index.js";
+import { mountChartAndCapture } from "../../_infra/render.js";
 import { IExecuteProps } from "@gooddata/sdk-ui";
-import flatMap from "lodash/flatMap";
+import flatMap from "lodash/flatMap.js";
 
 const Component = "Execute";
 

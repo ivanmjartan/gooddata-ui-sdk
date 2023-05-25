@@ -2,10 +2,11 @@
 import React from "react";
 import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import noop from "lodash/noop";
+import noop from "lodash/noop.js";
+import { vi } from "vitest";
 
-import { InternalIntlWrapper } from "../../../../utils/internalIntlProvider";
-import TotalSection, { ITotalSectionProps } from "../TotalSection";
+import { InternalIntlWrapper } from "../../../../utils/internalIntlProvider.js";
+import TotalSection, { ITotalSectionProps } from "../TotalSection.js";
 
 describe("TotalSection", () => {
     const defaultProps: ITotalSectionProps = {
@@ -79,7 +80,7 @@ describe("TotalSection", () => {
     });
 
     it("should call pushData when the toggle value changes", async () => {
-        const pushData = jest.fn();
+        const pushData = vi.fn();
         createComponent({
             properties: {},
             pushData,

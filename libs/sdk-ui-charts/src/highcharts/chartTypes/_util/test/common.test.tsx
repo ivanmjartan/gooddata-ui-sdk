@@ -9,7 +9,7 @@ import {
     unwrap,
     percentFormatter,
     getAxesCounts,
-} from "../common";
+} from "../common.js";
 
 describe("Common utils", () => {
     describe("parseValue", () => {

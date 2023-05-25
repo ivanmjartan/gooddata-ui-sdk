@@ -8,14 +8,14 @@ import * as SyntaxHighlightingInput from "../SyntaxHighlightingInput";
 
 const defaultProps: SyntaxHighlightingInput.ISyntaxHighlightingInputProps = {
     value: "",
-    onChange: jest.fn(),
+    onChange: vi.fn(),
 };
 
-(window as any).document.body.createTextRange = jest.fn(() => ({
-    setStart: jest.fn(),
-    setEnd: jest.fn(),
-    getBoundingClientRect: jest.fn(),
-    getClientRects: jest.fn(() => ({ length: null })),
+(window as any).document.body.createTextRange = vi.fn(() => ({
+    setStart: vi.fn(),
+    setEnd: vi.fn(),
+    getBoundingClientRect: vi.fn(),
+    getClientRects: vi.fn(() => ({ length: null })),
 }));
 
 const renderComponent = (props?: Partial<SyntaxHighlightingInput.ISyntaxHighlightingInputProps>) => {
@@ -26,7 +26,7 @@ const multiLineValue = "01234\n01234\n01234";
 
 describe("SyntaxHighlightingInput", () => {
     beforeAll(() => {
-        jest.spyOn(SyntaxHighlightingInput, "SyntaxHighlightingInput").mockImplementation(
+        vi.spyOn(SyntaxHighlightingInput, "SyntaxHighlightingInput").mockImplementation(
             ({
                 onChange,
                 value,
@@ -53,7 +53,7 @@ describe("SyntaxHighlightingInput", () => {
     });
 
     afterAll(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
     });
 
     it("should render CodeMirrorInput component", () => {
@@ -75,7 +75,7 @@ describe("SyntaxHighlightingInput", () => {
     });
 
     it("should call onChangeHandler function on value change", async () => {
-        const onChange = jest.fn();
+        const onChange = vi.fn();
         const newValue = "new text content";
         renderComponent({ onChange });
 
@@ -87,7 +87,7 @@ describe("SyntaxHighlightingInput", () => {
 
     describe("onCursor", () => {
         it("should call onCursor function with expected parameters on cursor position change", async () => {
-            const onCursor = jest.fn();
+            const onCursor = vi.fn();
             renderComponent({ onCursor, value: multiLineValue });
 
             await userEvent.type(screen.getByRole("textbox"), multiLineValue);

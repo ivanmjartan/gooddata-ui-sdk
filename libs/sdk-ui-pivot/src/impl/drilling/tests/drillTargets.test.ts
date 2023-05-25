@@ -2,8 +2,8 @@
 import {
     TwoMeasuresWithTwoRowAndTwoColumnAttributes,
     OneMeasureAndRepeatingRowAttributesOnDifferentPositions,
-} from "./drilling.fixture";
-import { getAvailableDrillTargets } from "../drillTargets";
+} from "./drilling.fixture.js";
+import { getAvailableDrillTargets } from "../drillTargets.js";
 
 describe("getAvailableDrillTargets", () => {
     it("gets propper available drill targets - ignoring column attributes", () => {

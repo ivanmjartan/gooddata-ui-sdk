@@ -5,11 +5,11 @@ import userEvent from "@testing-library/user-event";
 import { DefaultLocale, VisualizationTypes } from "@gooddata/sdk-ui";
 import { IBucket, IInsightDefinition } from "@gooddata/sdk-model";
 
-import BulletChartConfigurationPanel from "../BulletChartConfigurationPanel";
-import { IConfigurationPanelContentProps } from "../ConfigurationPanelContent";
+import BulletChartConfigurationPanel from "../BulletChartConfigurationPanel.js";
+import { IConfigurationPanelContentProps } from "../ConfigurationPanelContent.js";
 
-import { attributeItemA1, attributeItemA2 } from "../../../tests/mocks/visualizationObjectMocks";
-import { emptyInsight } from "../../../tests/mocks/testMocks";
+import { attributeItemA1, attributeItemA2 } from "../../../tests/mocks/visualizationObjectMocks.js";
+import { emptyInsight } from "../../../tests/mocks/testMocks.js";
 
 function testInsight(buckets: IBucket[]): IInsightDefinition {
     return {

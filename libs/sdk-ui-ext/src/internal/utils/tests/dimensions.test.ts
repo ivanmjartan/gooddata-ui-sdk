@@ -1,12 +1,12 @@
 // (C) 2007-2020 GoodData Corporation
-import cloneDeep from "lodash/cloneDeep";
+import cloneDeep from "lodash/cloneDeep.js";
 import { VisualizationTypes, BucketNames } from "@gooddata/sdk-ui";
 import {
     generateDimensions,
     generateStackedDimensions,
     getHeadlinesDimensions,
     getPivotTableDimensions,
-} from "../dimensions";
+} from "../dimensions.js";
 import {
     bucketsFind,
     IBucket,

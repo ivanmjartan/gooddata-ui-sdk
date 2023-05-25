@@ -7,7 +7,7 @@ import {
     newWidthForAllMeasureColumns,
     newWidthForAttributeColumn,
     newWidthForSelectedColumns,
-} from "../columnWidths";
+} from "../columnWidths.js";
 import { IAttribute, IMeasure } from "@gooddata/sdk-model";
 import { ReferenceMd } from "@gooddata/reference-workspace";
 

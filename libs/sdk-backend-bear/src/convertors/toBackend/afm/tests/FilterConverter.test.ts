@@ -6,13 +6,13 @@ import {
     convertFilter,
     convertMeasureFilter,
     convertRankingFilter,
-} from "../FilterConverter";
+} from "../FilterConverter.js";
 import {
     absoluteFilter,
     relativeFilter,
     measureValueFilterWithoutCondition,
     negativeEmptyAttributeFilter,
-} from "./InvalidInputs.fixture";
+} from "./InvalidInputs.fixture.js";
 import {
     newAbsoluteDateFilter,
     newRelativeDateFilter,

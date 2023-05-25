@@ -11,7 +11,7 @@ import {
     IScheduledMailDefinition,
     IInsightWidget,
 } from "@gooddata/sdk-model";
-import isEqual from "lodash/isEqual";
+import isEqual from "lodash/isEqual.js";
 
 import {
     CommandProcessingStatus,
@@ -32,11 +32,11 @@ import {
     selectCanExportTabular,
     selectScheduleEmailDialogDefaultAttachment,
     selectInsightsMap,
-} from "../../../model";
-import { useCreateScheduledEmail } from "./useCreateScheduledEmail";
+} from "../../../model/index.js";
+import { useCreateScheduledEmail } from "./useCreateScheduledEmail.js";
 import { invariant } from "ts-invariant";
-import { useSaveScheduledEmail } from "./useSaveScheduledEmail";
-import { stripLocalIdentifierFromFilters } from "./utils/stripLocalIdentifierFromFilters";
+import { useSaveScheduledEmail } from "./useSaveScheduledEmail.js";
+import { stripLocalIdentifierFromFilters } from "./utils/stripLocalIdentifierFromFilters.js";
 
 export interface IInsightWidgetExtended extends IInsightWidget {
     visualizationUrl?: string;

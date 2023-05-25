@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import { withIntl } from "@gooddata/sdk-ui";
 
 import { SettingItem } from "../SettingItem";
-import { ISettingItem } from "../typings";
+import { ISettingItem } from "../typings.js";
 
 const Wrapped = withIntl(SettingItem);
 
@@ -31,7 +31,7 @@ describe("ReactSettingItem", () => {
             value: "Setting Item value",
             actionType: "Switcher",
             actionValue: true,
-            onAction: jest.fn(),
+            onAction: vi.fn(),
         };
         const { container } = render(<Wrapped {...props} />);
 
@@ -40,7 +40,7 @@ describe("ReactSettingItem", () => {
     });
 
     it("should call click action on setting item", async () => {
-        const clickSpy = jest.fn();
+        const clickSpy = vi.fn();
         const props: ISettingItem = {
             title: "Setting Item title",
             value: "",

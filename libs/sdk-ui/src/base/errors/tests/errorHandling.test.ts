@@ -1,6 +1,6 @@
 // (C) 2007-2020 GoodData Corporation
 
-import { ErrorCodes, UnexpectedSdkError } from "../GoodDataSdkError";
+import { ErrorCodes, UnexpectedSdkError } from "../GoodDataSdkError.js";
 import {
     DataTooLargeError,
     NoDataError,
@@ -8,7 +8,7 @@ import {
     ProtectedDataError,
     UnexpectedResponseError,
 } from "@gooddata/sdk-backend-spi";
-import { convertError } from "../errorHandling";
+import { convertError } from "../errorHandling.js";
 
 describe("convertErrors", () => {
     const Scenarios: Array<[string, any, string]> = [

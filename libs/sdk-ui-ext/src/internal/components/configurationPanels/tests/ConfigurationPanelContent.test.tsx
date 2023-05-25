@@ -3,9 +3,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { DefaultLocale } from "@gooddata/sdk-ui";
 
-import ConfigurationPanelContent, {
-    IConfigurationPanelContentProps,
-} from "../../configurationPanels/ConfigurationPanelContent";
+import ConfigurationPanelContent, { IConfigurationPanelContentProps } from "../ConfigurationPanelContent.js";
 
 class DummyConfigurationPanel extends ConfigurationPanelContent {
     constructor(props: IConfigurationPanelContentProps) {

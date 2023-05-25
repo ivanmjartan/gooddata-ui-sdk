@@ -1,6 +1,6 @@
 // (C) 2020-2023 GoodData Corporation
-import { toAfmExecution } from "../ExecutionConverter";
-import { defWithAlias, defWithoutFilters } from "./InvalidInputs.fixture";
+import { toAfmExecution } from "../ExecutionConverter.js";
+import { defWithAlias, defWithoutFilters } from "./InvalidInputs.fixture.js";
 import { ReferenceMd } from "@gooddata/reference-workspace";
 
 import {

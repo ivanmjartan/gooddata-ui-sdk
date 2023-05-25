@@ -8,7 +8,7 @@ import { Checkbox } from "../Checkbox";
 describe("ReactCheckbox", () => {
     function renderCheckbox(options = {}) {
         const props = {
-            onChange: jest.fn(),
+            onChange: vi.fn(),
             ...options,
         };
         render(<Checkbox {...props} />);
@@ -45,7 +45,7 @@ describe("ReactCheckbox", () => {
 
         it("should call onChange when value changed", async () => {
             const changedValue = true;
-            const onChange = jest.fn();
+            const onChange = vi.fn();
             const { checkbox } = renderCheckbox({ onChange });
 
             await userEvent.click(checkbox);

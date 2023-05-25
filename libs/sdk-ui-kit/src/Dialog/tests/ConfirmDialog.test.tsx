@@ -2,7 +2,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { ConfirmDialog } from "../ConfirmDialog";
+import { ConfirmDialog } from "../ConfirmDialog.js";
 
 describe("ConfirmDialog", () => {
     it("should render content", () => {

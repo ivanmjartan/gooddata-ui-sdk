@@ -2,9 +2,9 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import KpiPop, { IKpiPopProps } from "../KpiPop";
+import KpiPop, { IKpiPopProps } from "../KpiPop.js";
 
-import { IntlWrapper } from "../../../../../localization";
+import { IntlWrapper } from "../../../../../localization/index.js";
 
 function renderKpiPop(props: IKpiPopProps) {
     return render(

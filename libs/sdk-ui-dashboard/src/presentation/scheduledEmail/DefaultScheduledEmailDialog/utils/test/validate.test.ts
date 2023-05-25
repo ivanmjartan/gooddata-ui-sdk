@@ -1,5 +1,5 @@
 // (C) 2019-2020 GoodData Corporation
-import { isEmail } from "../validate";
+import { isEmail } from "../validate.js";
 
 describe("isEmail", () => {
     it.each([

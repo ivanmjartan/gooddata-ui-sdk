@@ -4,9 +4,7 @@ import * as process from "process";
 import fs from "fs";
 import * as path from "path";
 
-import {    
-    readJsonSync,
-} from "../src/_base/utils";
+import * as utils from "../src/_base/utils.js";
 
 /*
  * This script is used during build to clean up the contents of package.json that will be shipped with
@@ -27,7 +25,7 @@ import {
  */
 
 const GdScriptsReplace = {
-    clean: "rm -rf dist *.log",
+    clean: "rm -rf esm *.log",
     test: null,
     "test-once": null,
     "test-ci": null,
@@ -48,6 +46,7 @@ const UnnecessaryDependencies = [
     /^eslint/i,
     /^jest/i,
     "prettier",
+    "vitest",
     "@types/jest",
     /^@typescript-eslint\//,
 ];
@@ -73,7 +72,7 @@ function removeItems(search: Array<string | RegExp>, targets: { [key: string]: s
 }
 
 function replaceItems(search: { [key: string]: null | string }, targets: { [key: string]: string }) {
-    for (let [searchKey, searchValue] of Object.entries(search)) {
+    for (const [searchKey, searchValue] of Object.entries(search)) {
         if (searchValue === null) {
             delete targets[searchKey];
         } else {
@@ -82,16 +81,16 @@ function replaceItems(search: { [key: string]: null | string }, targets: { [key:
     }
 }
 
-function resolveCurrentPackageVersion(){
+function resolveCurrentPackageVersion() {
     //we need current version of app-toolkit
     const parenPackagePath = path.resolve("./", "package.json");
-    const parentPackage = readJsonSync(parenPackagePath);
+    const parentPackage = utils.readJsonSync(parenPackagePath);
     return parentPackage.version;
 }
 
-function updateGDPackageVersion(version:string, targets: { [key: string]: string }) {
-    //replace workspace version definition 
-    for (let [searchKey, searchValue] of Object.entries(targets)) {
+function updateGDPackageVersion(version: string, targets: { [key: string]: string }) {
+    //replace workspace version definition
+    for (const [searchKey, searchValue] of Object.entries(targets)) {
         if (searchValue === "workspace:*") {
             targets[searchKey] = version;
         } else {
@@ -113,8 +112,8 @@ function removeGdStuff(packageJson: Record<string, any>) {
 
     const packageVersion = resolveCurrentPackageVersion();
 
-    updateGDPackageVersion(packageVersion,devDependencies);
-    updateGDPackageVersion(packageVersion,dependencies);
+    updateGDPackageVersion(packageVersion, devDependencies);
+    updateGDPackageVersion(packageVersion, dependencies);
 
     delete packageJson.repository;
     delete packageJson.sideEffects;

@@ -11,11 +11,11 @@ import {
     UnexpectedSdkError,
 } from "@gooddata/sdk-ui";
 
-import { CustomError } from "../CustomError";
-import { DataTooLargeError } from "../DataTooLargeError";
-import { OtherError } from "../OtherError";
-import { NoDataError } from "../NoDataError";
-import { ExecuteProtectedError } from "../ExecuteProtectedError";
+import { CustomError } from "../CustomError.js";
+import { DataTooLargeError } from "../DataTooLargeError.js";
+import { OtherError } from "../OtherError.js";
+import { NoDataError } from "../NoDataError.js";
+import { ExecuteProtectedError } from "../ExecuteProtectedError.js";
 
 const DefaultLocale = "en-US";
 

@@ -2,9 +2,9 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import { AttachmentNoWidgets, IAttachmentProps } from "../AttachmentNoWidgets";
+import { AttachmentNoWidgets, IAttachmentProps } from "../AttachmentNoWidgets.js";
 
-import { IntlWrapper } from "../../../../../localization/IntlWrapper";
+import { IntlWrapper } from "../../../../../localization/IntlWrapper.js";
 
 describe("AttachmentNoWidgets", () => {
     const FILE_NAME = "ABC.pdf";

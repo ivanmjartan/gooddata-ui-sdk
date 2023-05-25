@@ -3,7 +3,7 @@ import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { ConfirmDialogBase } from "../ConfirmDialogBase";
+import { ConfirmDialogBase } from "../ConfirmDialogBase.js";
 
 describe("ConfirmDialogBase", () => {
     it("should render content", () => {
@@ -17,7 +17,7 @@ describe("ConfirmDialogBase", () => {
     });
 
     it("should call cancel handler", async () => {
-        const cancelSpy = jest.fn();
+        const cancelSpy = vi.fn();
         render(
             <ConfirmDialogBase onCancel={cancelSpy} cancelButtonText="Cancel">
                 ConfirmDialogBase content
@@ -29,7 +29,7 @@ describe("ConfirmDialogBase", () => {
     });
 
     it("should call submit handler", async () => {
-        const submitSpy = jest.fn();
+        const submitSpy = vi.fn();
         render(
             <ConfirmDialogBase onSubmit={submitSpy} submitButtonText="Submit">
                 ConfirmDialogBase content

@@ -8,7 +8,7 @@ import {
     preparePrimaryColor,
     prepareTheme,
     stripComplementaryPalette,
-} from "./../prepareTheme";
+} from "../prepareTheme.js";
 
 describe("prepareTheme", () => {
     it("should prepare the theme", () => {

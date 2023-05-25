@@ -4,7 +4,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ColorFormats } from "tinycolor2";
 
-import { HexColorInput, IHexColorInputProps } from "../HexColorInput";
+import { HexColorInput, IHexColorInputProps } from "../HexColorInput.js";
 
 const initColor: ColorFormats.HSL = {
     h: 3,
@@ -24,7 +24,7 @@ function renderInput(options?: Partial<IHexColorInputProps>) {
 
 describe("HexColorInput", () => {
     it("should call onInputChanged with valid hex color", async () => {
-        const changedMock = jest.fn();
+        const changedMock = vi.fn();
         const expectedHslColor: ColorFormats.HSL = {
             h: 0,
             s: 0,
@@ -40,7 +40,7 @@ describe("HexColorInput", () => {
     });
 
     it("shouldn't call onInputChanged with invalid hex color", async () => {
-        const changedMock = jest.fn();
+        const changedMock = vi.fn();
         renderInput({ onInputChanged: changedMock });
 
         await userEvent.clear(screen.getByRole("textbox"));
@@ -50,7 +50,7 @@ describe("HexColorInput", () => {
     });
 
     it("shouldn't call onInputChanged with too short but valid hex color", async () => {
-        const changedMock = jest.fn();
+        const changedMock = vi.fn();
         renderInput({ onInputChanged: changedMock });
 
         await userEvent.clear(screen.getByRole("textbox"));

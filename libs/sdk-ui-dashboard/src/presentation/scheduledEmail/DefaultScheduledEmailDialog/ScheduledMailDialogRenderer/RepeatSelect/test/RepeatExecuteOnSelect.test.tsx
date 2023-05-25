@@ -1,18 +1,19 @@
 // (C) 2019-2022 GoodData Corporation
 import React from "react";
+import { vi } from "vitest";
 import { IntlShape } from "react-intl";
-import noop from "lodash/noop";
+import noop from "lodash/noop.js";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { TEXT_INDEX } from "./testUtils";
-import { RepeatExecuteOnSelect, IRepeatExecuteOnSelectProps } from "../RepeatExecuteOnSelect";
+import { TEXT_INDEX } from "./testUtils.js";
+import { RepeatExecuteOnSelect, IRepeatExecuteOnSelectProps } from "../RepeatExecuteOnSelect.js";
 
-import { REPEAT_EXECUTE_ON } from "../../../constants";
-import { getDate, getIntlDayName, getWeek } from "../../../utils/datetime";
+import { REPEAT_EXECUTE_ON } from "../../../constants.js";
+import { getDate, getIntlDayName, getWeek } from "../../../utils/datetime.js";
 
-import { IntlWrapper } from "../../../../../localization/IntlWrapper";
-import { createInternalIntl } from "../../../../../localization/createInternalIntl";
+import { IntlWrapper } from "../../../../../localization/IntlWrapper.js";
+import { createInternalIntl } from "../../../../../localization/createInternalIntl.js";
 
 describe("RepeatExecuteOnSelect", () => {
     const intl: IntlShape = createInternalIntl();
@@ -52,7 +53,7 @@ describe("RepeatExecuteOnSelect", () => {
     });
 
     it("should trigger onChange", async () => {
-        const onChange = jest.fn();
+        const onChange = vi.fn();
         renderComponent({ onChange });
         await userEvent.click(screen.getByText(titleDayOfMonth));
         await userEvent.click(screen.getByText(titleDayOfWeek));

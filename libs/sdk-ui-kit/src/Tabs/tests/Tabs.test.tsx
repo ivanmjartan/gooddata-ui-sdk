@@ -46,7 +46,7 @@ describe("Tabs", () => {
     });
 
     it("should call callback on tab select", async () => {
-        const tabSelectStub = jest.fn();
+        const tabSelectStub = vi.fn();
         renderTabs({ onTabSelect: tabSelectStub });
         await userEvent.click(screen.getByLabelText("tab2"));
         await waitFor(() => {

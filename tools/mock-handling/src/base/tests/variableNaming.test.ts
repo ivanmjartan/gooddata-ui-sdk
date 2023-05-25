@@ -1,6 +1,6 @@
 // (C) 2007-2020 GoodData Corporation
 
-import { createUniqueVariableName, createUniqueVariableNameForIdentifier } from "../variableNaming";
+import { createUniqueVariableName, createUniqueVariableNameForIdentifier } from "../variableNaming.js";
 
 describe("createUniqueVariableName", () => {
     describe("from title", () => {

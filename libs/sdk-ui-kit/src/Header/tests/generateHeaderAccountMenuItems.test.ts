@@ -1,6 +1,6 @@
 // (C) 2021-2022 GoodData Corporation
-import { generateHeaderAccountMenuItems } from "../generateHeaderAccountMenuItems";
-import { getAccountMenuFeatureFlagsMock, getWorkspacePermissionsMock } from "./mock";
+import { generateHeaderAccountMenuItems } from "../generateHeaderAccountMenuItems.js";
+import { getAccountMenuFeatureFlagsMock, getWorkspacePermissionsMock } from "./mock.js";
 
 describe("generateHeaderAccountMenuItems", () => {
     it("should return account, dic and logout items if workspace id is specified ", () => {

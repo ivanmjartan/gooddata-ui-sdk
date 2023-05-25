@@ -1,6 +1,10 @@
 // (C) 2019-2021 GoodData Corporation
 
-import { calculateGeoPushpinWidgetHeight, getGeoPushpinWidgetStyle, isFullWidthGeoPushpin } from "../legacy";
+import {
+    calculateGeoPushpinWidgetHeight,
+    getGeoPushpinWidgetStyle,
+    isFullWidthGeoPushpin,
+} from "../legacy.js";
 
 describe("legacy", () => {
     describe("calculateGeoPushpinWidgetHeight", () => {

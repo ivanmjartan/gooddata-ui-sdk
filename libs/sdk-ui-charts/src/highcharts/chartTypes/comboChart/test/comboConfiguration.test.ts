@@ -1,6 +1,6 @@
 // (C) 2019-2020 GoodData Corporation
-import { IChartConfig } from "../../../../interfaces";
-import { getComboConfiguration, getDefaultChartType } from "../comboConfiguration";
+import { IChartConfig } from "../../../../interfaces/index.js";
+import { getComboConfiguration, getDefaultChartType } from "../comboConfiguration.js";
 import { VisualizationTypes, BucketNames } from "@gooddata/sdk-ui";
 import { newBucket, newDefForBuckets } from "@gooddata/sdk-model";
 

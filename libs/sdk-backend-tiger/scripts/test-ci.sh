@@ -10,7 +10,7 @@ ROOT_DIR=$(echo $(cd $(dirname $0)/.. && pwd -P))
 vitest run --reporter=junit --outputFile=./ci/results/test-results.xml
 UNIT_RC=$?
 
-NODE_TLS_REJECT_UNAUTHORIZED=0 vitest --config vite.integrated.config.ts run --reporter=junit --outputFile=./ci/results/test-results.xml
+NODE_TLS_REJECT_UNAUTHORIZED=0 vitest --config vite.integrated.config.ts run --reporter=junit --outputFile=./ci/results/integrated-test-results.xml
 INTEGRATED_RC=$?
 
 if [[ $UNIT_RC -ne 0 || $INTEGRATED_RC -ne 0 ]]; then

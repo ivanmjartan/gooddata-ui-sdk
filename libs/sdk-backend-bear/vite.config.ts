@@ -4,7 +4,6 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
     test: {
         globals: true,
-        include: ["**/tests/integrated/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
-        setupFiles: "./integrated-test.setup.js",
+        include: ["**/src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
     },
 });

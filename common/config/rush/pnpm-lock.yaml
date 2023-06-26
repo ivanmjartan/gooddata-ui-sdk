@@ -652,7 +652,6 @@ importers:
       '@gooddata/sdk-model': workspace:*
       '@microsoft/api-documenter': ^7.17.0
       '@microsoft/api-extractor': ^7.36.0
-      '@types/jest': ^29.5.1
       '@types/json-stable-stringify': ^1.0.32
       '@types/lodash': ^4.14.158
       '@types/node': ^16.18.23
@@ -675,17 +674,15 @@ importers:
       eslint-plugin-sonarjs: ^0.16.0
       eslint-plugin-tsdoc: ^0.2.14
       http-status-codes: ^2.1.4
-      jest: ^29.5.0
-      jest-junit: ^3.0.0
       json-stable-stringify: ^1.0.1
       lodash: ^4.17.19
       prettier: ~2.5.0
       spark-md5: ^3.0.0
       ts-invariant: ^0.7.3
-      ts-jest: ^29.1.0
       tslib: ^2.5.0
       typescript: 5.0.2
       uuid: ^8.3.2
+      vitest: ^0.31.3
     dependencies:
       '@gooddata/api-client-bear': link:../api-client-bear
       '@gooddata/api-model-bear': link:../api-model-bear
@@ -707,7 +704,6 @@ importers:
       '@gooddata/sdk-backend-mockingbird': link:../sdk-backend-mockingbird
       '@microsoft/api-documenter': 7.21.7_@types+node@16.18.23
       '@microsoft/api-extractor': 7.36.0_@types+node@16.18.23
-      '@types/jest': 29.5.1
       '@types/json-stable-stringify': 1.0.34
       '@types/lodash': 4.14.194
       '@types/node': 16.18.23
@@ -722,17 +718,15 @@ importers:
       eslint-plugin-header: 3.1.1_eslint@8.38.0
       eslint-plugin-import: 2.27.5_eslint@8.38.0
       eslint-plugin-import-esm: 1.2.1_eslint@8.38.0
-      eslint-plugin-jest: 27.2.1_dqn24hrnvdtdd4mxnskmahyyq4
+      eslint-plugin-jest: 27.2.1_aibbwtblh3szmfs3unchjrozni
       eslint-plugin-no-only-tests: 2.6.0
       eslint-plugin-prettier: 4.2.1_odtficzbtx3ydo73x7yvkhbrxu
       eslint-plugin-regexp: 1.14.0_eslint@8.38.0
       eslint-plugin-sonarjs: 0.16.0_eslint@8.38.0
       eslint-plugin-tsdoc: 0.2.17
-      jest: 29.5.0_@types+node@16.18.23
-      jest-junit: 3.7.0
       prettier: 2.5.1
-      ts-jest: 29.1.0_44ttdtjaknnkcgzh5px4h2qxl4
       typescript: 5.0.2
+      vitest: 0.31.3
 
   ../../libs/sdk-backend-mockingbird:
     specifiers:
@@ -16730,7 +16724,6 @@ packages:
       - '@types/node'
       - supports-color
       - ts-node
-    dev: true
 
   /jest-cli/29.5.0_@types+node@16.18.23:
     resolution: {integrity: sha512-L1KcP1l4HtfwdxXNFCL5bmUbLQiKrakMUriBEcc1Vfz6gx31ORKdreuWvmQVBit+1ss9NNR3yxjwfwzZNdQXJw==}
@@ -16823,7 +16816,6 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /jest-config/29.5.0_@types+node@16.18.23:
     resolution: {integrity: sha512-kvDUKBnNJPNBmFFOhDbm59iu1Fii1Q6SxyhXfvylq3UTHbg6o7j/g8k2dZyXWLvfdKB1vAPxNZnMgtKJcmu3kA==}
@@ -17226,7 +17218,6 @@ packages:
       - '@types/node'
       - supports-color
       - ts-node
-    dev: true
 
   /jest/29.5.0_@types+node@16.18.23:
     resolution: {integrity: sha512-juMg3he2uru1QoXX078zTa7pO85QyB9xajZc6bU+d9yEGwrKX6+vGmJQ3UdVZsvTEUARIdObzH68QItim6OSSQ==}
@@ -22748,7 +22739,7 @@ packages:
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
-      jest: 29.5.0_@types+node@16.18.23
+      jest: 29.5.0
       jest-util: 29.5.0
       json5: 2.2.3
       lodash.memoize: 4.1.2

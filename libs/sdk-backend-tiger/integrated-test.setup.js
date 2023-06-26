@@ -1,4 +1,4 @@
-// (C) 2020 GoodData Corporation
+// (C) 2021 GoodData Corporation
 
 import https from "https";
 
@@ -53,11 +53,11 @@ function addDomain(cookies, domain) {
     });
 }
 
-https.request = function cookieRewritingRequestFactory(_options, req) {
+https.request = function cookieRewritingRequestFactory(req) {
     const requestCookies = req.headers["cookie"];
 
     if (requestCookies) {
-        req.headers["cookie"] = addDomain(requestCookies, "secure.gooddata.com");
+        req.headers["cookie"] = addDomain(requestCookies, "staging.anywhere.gooddata.com");
     }
 
     const newRequest = originalRequest.apply(this, arguments);
@@ -66,7 +66,7 @@ https.request = function cookieRewritingRequestFactory(_options, req) {
         const responseCookies = res.headers["set-cookie"];
 
         if (responseCookies) {
-            res.headers["set-cookie"] = stripDomain(responseCookies, "secure.gooddata.com");
+            res.headers["set-cookie"] = stripDomain(responseCookies, "staging.anywhere.gooddata.com");
         }
     });
 

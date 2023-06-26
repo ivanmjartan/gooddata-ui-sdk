@@ -1212,7 +1212,6 @@ importers:
       prettier: ~2.5.0
       tslib: ^2.5.0
       typescript: 5.0.2
-      vitest: ^0.31.3
     dependencies:
       '@gooddata/sdk-backend-spi': link:../sdk-backend-spi
       '@gooddata/sdk-model': link:../sdk-model
@@ -1243,7 +1242,6 @@ importers:
       eslint-plugin-tsdoc: 0.2.17
       prettier: 2.5.1
       typescript: 5.0.2
-      vitest: 0.31.3
 
   ../../libs/sdk-ui-charts:
     specifiers:
@@ -2198,7 +2196,6 @@ importers:
       ts-invariant: ^0.7.3
       tslib: ^2.5.0
       typescript: 5.0.2
-      vitest: ^0.31.3
     dependencies:
       '@gooddata/sdk-backend-spi': link:../sdk-backend-spi
       '@gooddata/sdk-model': link:../sdk-model
@@ -2242,7 +2239,6 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       typescript: 5.0.2
-      vitest: 0.31.3
 
   ../../libs/sdk-ui-pivot:
     specifiers:
@@ -3666,7 +3662,6 @@ importers:
       prettier: ~2.5.0
       tslib: ^2.5.0
       typescript: 5.0.2
-      vitest: ^0.31.3
     dependencies:
       '@gooddata/sdk-backend-spi': link:../../libs/sdk-backend-spi
       '@gooddata/sdk-model': link:../../libs/sdk-model
@@ -3694,7 +3689,6 @@ importers:
       eslint-plugin-tsdoc: 0.2.17
       prettier: 2.5.1
       typescript: 5.0.2
-      vitest: 0.31.3
 
   ../../tools/i18n-toolkit:
     specifiers:
@@ -3795,7 +3789,6 @@ importers:
       prettier: ~2.5.0
       tslib: ^2.5.0
       typescript: 5.0.2
-      vitest: ^0.31.3
     dependencies:
       '@gooddata/sdk-backend-spi': link:../../libs/sdk-backend-spi
       '@gooddata/sdk-model': link:../../libs/sdk-model
@@ -3822,7 +3815,6 @@ importers:
       eslint-plugin-tsdoc: 0.2.17
       prettier: 2.5.1
       typescript: 5.0.2
-      vitest: 0.31.3
 
   ../../tools/mock-handling:
     specifiers:
@@ -4143,7 +4135,6 @@ importers:
       prettier: ~2.5.0
       tslib: ^2.5.0
       typescript: 5.0.2
-      vitest: ^0.31.3
     dependencies:
       '@gooddata/sdk-backend-spi': link:../../libs/sdk-backend-spi
       '@gooddata/sdk-model': link:../../libs/sdk-model
@@ -4168,7 +4159,6 @@ importers:
       eslint-plugin-tsdoc: 0.2.17
       prettier: 2.5.1
       typescript: 5.0.2
-      vitest: 0.31.3
 
   ../../tools/reference-workspace-mgmt:
     specifiers:

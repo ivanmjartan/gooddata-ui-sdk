@@ -23,9 +23,6 @@
         "dev": "tsc -p tsconfig.dev.json --watch",
         "copy-data": "mkdir -p esm/recordings && cp -R src/recordings/* esm/recordings && rm -f esm/recordings/index.ts esm/recordings/dataSample.ts",
         "build": "rm -rf esm/recordings && tsc -p tsconfig.build.json && npm run copy-data",
-        "test": "vitest --watch --passWithNoTests",
-        "test-once": "vitest --passWithNoTests",
-        "test-ci": "vitest run --reporter=junit --outputFile=./ci/results/test-results.xml --passWithNoTests",
         "eslint": "eslint -c .eslintrc.cjs src/",
         "eslint-fix": "eslint -c .eslintrc.cjs src/ --fix",
         "eslint-ci": "mkdir -p ./ci/results && eslint -f checkstyle -o ci/results/eslint-results.xml -c .eslintrc.cjs src/",
@@ -48,7 +45,7 @@
         "@gooddata/catalog-export": "workspace:*",
         "@gooddata/eslint-config": "^4.1.0",
         "@gooddata/mock-handling": "workspace:*",
-        "@microsoft/api-extractor": "^7.36.0",        
+        "@microsoft/api-extractor": "^7.36.0",
         "@types/lodash": "^4.14.158",
         "@types/node": "^16.18.23",
         "@typescript-eslint/eslint-plugin": "^5.57.1",
@@ -64,8 +61,7 @@
         "eslint-plugin-regexp": "^1.9.0",
         "eslint-plugin-sonarjs": "^0.16.0",
         "eslint-plugin-tsdoc": "^0.2.14",
-        "prettier": "~2.5.0",        
-        "typescript": "5.0.2",
-        "vitest": "^0.31.3"
+        "prettier": "~2.5.0",
+        "typescript": "5.0.2"
     }
 }

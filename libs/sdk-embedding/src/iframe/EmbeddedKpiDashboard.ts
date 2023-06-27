@@ -11,7 +11,7 @@ import {
 import * as EmbeddedGdc from "./EmbeddedGdc.js";
 
 import { ObjRef } from "@gooddata/sdk-model";
-import { GdcVisualizationObject } from "@gooddata/api-model-bear";
+import * as GdcVisualizationObject from "@gooddata/api-model-bear/GdcVisualizationObject";
 
 /**
  * Base type for KD events.

@@ -13,7 +13,8 @@ import {
 } from "./common.js";
 import * as EmbeddedGdc from "./EmbeddedGdc.js";
 import { IInsightDefinition } from "@gooddata/sdk-model";
-import { GdcExport, GdcVisualizationObject } from "@gooddata/api-model-bear";
+import * as GdcExport from "@gooddata/api-model-bear/GdcExport";
+import * as GdcVisualizationObject from "@gooddata/api-model-bear/GdcVisualizationObject";
 
 /**
  * Insight Export configuration

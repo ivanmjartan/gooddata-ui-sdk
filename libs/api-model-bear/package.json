@@ -9,7 +9,12 @@
     },
     "type": "module",
     "browser": "./esm/index.js",
-    "exports": "./esm/index.js",
+    "exports": {
+        ".":"./esm/index.js",
+        "./GdcExecuteAFM":"./esm/executeAfm/GdcExecuteAFM.js",
+        "./GdcExport":"./esm/export/GdcExport.js",
+        "./GdcVisualizationObject":"./esm/visualizationObject/GdcVisualizationObject.js"
+    },
     "types": "./esm/index.d.ts",
     "sideEffects": false,
     "files": [

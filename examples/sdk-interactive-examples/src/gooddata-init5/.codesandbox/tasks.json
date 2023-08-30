@@ -1,0 +1,31 @@
+{
+    "$schema": "https://codesandbox.io/schemas/tasks.json",
+    // These tasks will run in order when initializing your CodeSandbox project.
+    "setupTasks": [
+        {
+            "name": "delete test folder",
+            "command": "rm -rf 'test'"
+        },
+        {
+            "name": "Install Dependencies root",
+            "command": "npx --yes @gooddata/app-toolkit@latest init 'test' --language ts"
+        },
+        {
+            "name": "copy files",
+            "command": "cp ./data/Example.tsx ./test/src/Example.tsx && cp ./data/App.tsx ./test/src/App.tsx && cp ./data/webpack.config.cjs ./test/webpack.config.cjs && cp ./data/Hint.tsx ./test/src/Hint.tsx"
+        }
+    ],
+
+    // These tasks can be run from CodeSandbox. Running one will open a log in the app.
+    "tasks": {
+        "start": {
+            "name": "Start Dev Server",
+            "command": "cd test && npm start",
+            "runAtStart": true,
+            "preview": {
+                "port": 8080,
+                "prLink": "direct"
+            }
+        }
+    }
+}

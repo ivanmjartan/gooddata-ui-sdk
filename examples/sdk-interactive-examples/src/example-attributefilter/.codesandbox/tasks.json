@@ -1,16 +1,23 @@
 {
     "$schema": "https://codesandbox.io/schemas/tasks.json",
-    "tasks": {
-      "start": {
-        "name": "Start Dev Server",
-        "command": "npm start",
-        // With the `preview` field set, the GitHub App will also add a link
-        // to that preview to PRs, and it will become part of a GitHub
-        // deployment:
-        "preview": {
-          "port": 8080,
-          "prLink": "direct"
+    // These tasks will run in order when initializing your CodeSandbox project.
+    "setupTasks": [
+        {
+            "name": "Install Dependencies",
+            "command": "npm install"
         }
-      }
+    ],
+
+    // These tasks can be run from CodeSandbox. Running one will open a log in the app.
+    "tasks": {
+        "start": {
+            "name": "Start Dev Server",
+            "command": "npm start",
+            "runAtStart": true,
+            "preview": {
+                "port": 8080,
+                "prLink": "direct"
+            }
+        }
     }
-  }
+}

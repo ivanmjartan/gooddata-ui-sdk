@@ -508,7 +508,7 @@
     },
     {
       "name": "case-sensitive-paths-webpack-plugin",
-      "allowedCategories": [ "tools" ]
+      "allowedCategories": [ "examples", "tools" ]
     },
     {
       "name": "chalk",
@@ -596,7 +596,7 @@
     },
     {
       "name": "default-import",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "examples", "production" ]
     },
     {
       "name": "dependency-cruiser",
@@ -604,7 +604,7 @@
     },
     {
       "name": "dotenv",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "examples", "production", "tools" ]
     },
     {
       "name": "dotenv-webpack",
@@ -716,7 +716,11 @@
     },
     {
       "name": "highcharts",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "examples", "production" ]
+    },
+    {
+      "name": "highcharts-react-official",
+      "allowedCategories": [ "examples" ]
     },
     {
       "name": "history",
@@ -856,7 +860,7 @@
     },
     {
       "name": "process",
-      "allowedCategories": [ "tools" ]
+      "allowedCategories": [ "examples", "tools" ]
     },
     {
       "name": "prop-types",
@@ -1060,7 +1064,7 @@
     },
     {
       "name": "ts-loader",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "examples", "production", "tools" ]
     },
     {
       "name": "ts-morph",
@@ -1084,7 +1088,7 @@
     },
     {
       "name": "util",
-      "allowedCategories": [ "tools" ]
+      "allowedCategories": [ "examples", "tools" ]
     },
     {
       "name": "uuid",

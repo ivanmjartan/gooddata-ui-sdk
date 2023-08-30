@@ -132,7 +132,7 @@ module.exports = (_env, argv) => {
                 },
                 host: "127.0.0.1",
                 proxy,
-                server: protocol === "https:" ? "https" : "http",
+                server: "http",
                 open: true,
             },
         },

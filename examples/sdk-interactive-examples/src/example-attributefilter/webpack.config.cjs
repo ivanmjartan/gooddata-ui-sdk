@@ -127,11 +127,12 @@ module.exports = (_env, argv) => {
             // Some dependencies have invalid source maps, we do not care that much
             ignoreWarnings: [/Failed to parse source map/],
             devServer: {
+                historyApiFallback: true,
                 allowedHosts: 'all',
                 static: {
                     directory: path.join(__dirname, "esm"),
                 },
-                host: "127.0.0.1",
+                host: "localhost",
                 proxy,
                 server: "http",
                 open: true,

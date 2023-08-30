@@ -127,6 +127,7 @@ module.exports = (_env, argv) => {
             // Some dependencies have invalid source maps, we do not care that much
             ignoreWarnings: [/Failed to parse source map/],
             devServer: {
+                allowedHosts: 'all',
                 static: {
                     directory: path.join(__dirname, "esm"),
                 },

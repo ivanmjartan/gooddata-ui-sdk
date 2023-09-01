@@ -3,8 +3,20 @@
     // These tasks will run in order when initializing your CodeSandbox project.
     "setupTasks": [
         {
-            "name": "Install Dependencies",
-            "command": "rm -rf 'test' && npx --yes @gooddata/app-toolkit@latest init 'test' --language ts && cd test"
+            "name": "delete test folder",
+            "command": "rm -rf 'test'"
+        },
+        {
+            "name": "Install Dependencies root",
+            "command": "npx --yes @gooddata/app-toolkit@latest init 'test' --language ts"
+        },
+        {
+            "name": "copy files",
+            "command": "cp ./Example/Example.tsx ./test/src/Example.tsx && cp ./Example/App.tsx ./test/src/App.tsx"
+        },
+        {
+            "name": "cd test",
+            "command": "cd test"
         }
     ],
 

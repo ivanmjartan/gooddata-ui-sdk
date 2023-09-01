@@ -12,19 +12,15 @@
         },
         {
             "name": "copy files",
-            "command": "cp ./Example/Example.tsx ./test/src/Example.tsx && cp ./Example/App.tsx ./test/src/App.tsx"
-        },
-        {
-            "name": "cd test",
-            "command": "cd test"
-        }
+            "command": "cp ./Example/Example.tsx ./test/src/Example.tsx && cp ./Example/App.tsx ./test/src/App.tsx && cp ./Example/webpack.config.cjs ./test/webpack.config.cjs"
+        }        
     ],
 
     // These tasks can be run from CodeSandbox. Running one will open a log in the app.
     "tasks": {
         "start": {
             "name": "Start Dev Server",
-            "command": "npm start",
+            "command": "cd test && npm start",
             "runAtStart": true,
             "preview": {
                 "port": 8080,

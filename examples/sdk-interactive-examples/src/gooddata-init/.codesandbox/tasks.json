@@ -4,7 +4,7 @@
     "setupTasks": [
         {
             "name": "Install Dependencies",
-            "command": "npx --yes @gooddata/app-toolkit@latest init 'test' --language ts && cd test"
+            "command": "rm -rf 'test' && npx --yes @gooddata/app-toolkit@latest init 'test' --language ts && cd test"
         }
     ],
 

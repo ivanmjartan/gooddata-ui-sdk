@@ -12,8 +12,8 @@
         },
         {
             "name": "copy files",
-            "command": "cp ./Example/Example.tsx ./test/src/Example.tsx && cp ./Example/App.tsx ./test/src/App.tsx && cp ./Example/webpack.config.cjs ./test/webpack.config.cjs"
-        }        
+            "command": "cp ./data/Example.tsx ./test/src/Example.tsx && cp ./data/App.tsx ./test/src/App.tsx && cp ./data/webpack.config.cjs ./test/webpack.config.cjs && cp ./data/Hint.tsx ./test/src/Hint.tsx"
+        }
     ],
 
     // These tasks can be run from CodeSandbox. Running one will open a log in the app.

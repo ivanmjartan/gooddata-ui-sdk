@@ -508,7 +508,7 @@
     },
     {
       "name": "case-sensitive-paths-webpack-plugin",
-      "allowedCategories": [ "tools" ]
+      "allowedCategories": [ "examples", "tools" ]
     },
     {
       "name": "chalk",
@@ -600,7 +600,7 @@
     },
     {
       "name": "dotenv",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "examples", "production", "tools" ]
     },
     {
       "name": "dotenv-webpack",
@@ -844,7 +844,7 @@
     },
     {
       "name": "process",
-      "allowedCategories": [ "tools" ]
+      "allowedCategories": [ "examples", "tools" ]
     },
     {
       "name": "prop-types",
@@ -1048,7 +1048,7 @@
     },
     {
       "name": "ts-loader",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "examples", "production", "tools" ]
     },
     {
       "name": "ts-morph",
@@ -1072,7 +1072,7 @@
     },
     {
       "name": "util",
-      "allowedCategories": [ "tools" ]
+      "allowedCategories": [ "examples", "tools" ]
     },
     {
       "name": "uuid",

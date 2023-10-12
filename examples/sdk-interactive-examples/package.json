@@ -1,0 +1,21 @@
+{
+    "name": "@gooddata/sdk-interactive-examples",
+    "version": "9.3.0-alpha.13",
+    "description": "GoodData React interactive examples",
+    "license": "LicenseRef-LICENSE",
+    "author": "GoodData Corporation",
+    "type": "module",
+    "private": false,    
+    "scripts": {
+        "clean": "",
+        "build": "",
+        "start": "",
+        "refresh-md": "",
+        "create-example": "node ./scripts/createExample.mjs",
+        "update-examples-template": "node ./scripts/updateTemplate.mjs"
+    },
+    "dependencies": {
+    },
+    "devDependencies": {
+    }
+}

@@ -353,6 +353,240 @@ importers:
       webpack-cli: 4.10.0_p36zd373urxldnwcoqg4c3uxta
       webpack-dev-server: 4.13.3_twduw4g6gld2ld7kevqi3javqa
 
+  ../../examples/sdk-interactive-examples:
+    specifiers: {}
+
+  ../../examples/sdk-interactive-examples/examples-template:
+    specifiers:
+      '@babel/core': ^7.7.2
+      '@babel/preset-env': ^7.7.2
+      '@babel/preset-react': ^7.7.2
+      '@gooddata/catalog-export': workspace:*
+      '@gooddata/sdk-backend-base': workspace:*
+      '@gooddata/sdk-backend-bear': workspace:*
+      '@gooddata/sdk-backend-spi': workspace:*
+      '@gooddata/sdk-backend-tiger': workspace:*
+      '@gooddata/sdk-model': workspace:*
+      '@gooddata/sdk-ui': workspace:*
+      '@gooddata/sdk-ui-charts': workspace:*
+      '@gooddata/sdk-ui-dashboard': workspace:*
+      '@gooddata/sdk-ui-ext': workspace:*
+      '@gooddata/sdk-ui-filters': workspace:*
+      '@gooddata/sdk-ui-geo': workspace:*
+      '@gooddata/sdk-ui-kit': workspace:*
+      '@gooddata/sdk-ui-pivot': workspace:*
+      '@types/react': ^18.2.0
+      '@types/react-dom': ^18.2.1
+      babel-loader: ^8.0.5
+      case-sensitive-paths-webpack-plugin: ^2.4.0
+      css-loader: ^6.7.1
+      dotenv: 16.0.3
+      html-webpack-plugin: ^5.3.1
+      process: ^0.11.10
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      source-map-loader: ^4.0.0
+      style-loader: ^3.3.1
+      ts-loader: ^8.3.0
+      tslib: ^2.5.0
+      typescript: 5.0.2
+      util: ^0.12.3
+      webpack: ^5.58.0
+      webpack-cli: ^4.9.2
+      webpack-dev-server: ^4.9.1
+    dependencies:
+      '@gooddata/sdk-backend-base': link:../../../libs/sdk-backend-base
+      '@gooddata/sdk-backend-bear': link:../../../libs/sdk-backend-bear
+      '@gooddata/sdk-backend-spi': link:../../../libs/sdk-backend-spi
+      '@gooddata/sdk-backend-tiger': link:../../../libs/sdk-backend-tiger
+      '@gooddata/sdk-model': link:../../../libs/sdk-model
+      '@gooddata/sdk-ui': link:../../../libs/sdk-ui
+      '@gooddata/sdk-ui-charts': link:../../../libs/sdk-ui-charts
+      '@gooddata/sdk-ui-dashboard': link:../../../libs/sdk-ui-dashboard
+      '@gooddata/sdk-ui-ext': link:../../../libs/sdk-ui-ext
+      '@gooddata/sdk-ui-filters': link:../../../libs/sdk-ui-filters
+      '@gooddata/sdk-ui-geo': link:../../../libs/sdk-ui-geo
+      '@gooddata/sdk-ui-pivot': link:../../../libs/sdk-ui-pivot
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tslib: 2.5.0
+    devDependencies:
+      '@babel/core': 7.21.4
+      '@babel/preset-env': 7.21.4_@babel+core@7.21.4
+      '@babel/preset-react': 7.18.6_@babel+core@7.21.4
+      '@gooddata/catalog-export': link:../../../tools/catalog-export
+      '@gooddata/sdk-ui-kit': link:../../../libs/sdk-ui-kit
+      '@types/react': 18.2.0
+      '@types/react-dom': 18.2.1
+      babel-loader: 8.3.0_c3tfwv7p35clwcmkb5fnkshzei
+      case-sensitive-paths-webpack-plugin: 2.4.0
+      css-loader: 6.7.3_webpack@5.79.0
+      dotenv: 16.0.3
+      html-webpack-plugin: 5.5.1_webpack@5.79.0
+      process: 0.11.10
+      source-map-loader: 4.0.1_webpack@5.79.0
+      style-loader: 3.3.2_webpack@5.79.0
+      ts-loader: 8.4.0_kxsien4e7rjqn4zxld6vb2o5cu
+      typescript: 5.0.2
+      util: 0.12.5
+      webpack: 5.79.0_webpack-cli@4.10.0
+      webpack-cli: 4.10.0_p36zd373urxldnwcoqg4c3uxta
+      webpack-dev-server: 4.13.3_twduw4g6gld2ld7kevqi3javqa
+
+  ../../examples/sdk-interactive-examples/examples/example-attributefilter:
+    specifiers:
+      '@babel/core': ^7.7.2
+      '@babel/preset-env': ^7.7.2
+      '@babel/preset-react': ^7.7.2
+      '@gooddata/catalog-export': workspace:*
+      '@gooddata/sdk-backend-base': workspace:*
+      '@gooddata/sdk-backend-bear': workspace:*
+      '@gooddata/sdk-backend-spi': workspace:*
+      '@gooddata/sdk-backend-tiger': workspace:*
+      '@gooddata/sdk-model': workspace:*
+      '@gooddata/sdk-ui': workspace:*
+      '@gooddata/sdk-ui-charts': workspace:*
+      '@gooddata/sdk-ui-dashboard': workspace:*
+      '@gooddata/sdk-ui-ext': workspace:*
+      '@gooddata/sdk-ui-filters': workspace:*
+      '@gooddata/sdk-ui-geo': workspace:*
+      '@gooddata/sdk-ui-kit': workspace:*
+      '@gooddata/sdk-ui-pivot': workspace:*
+      '@types/react': ^18.2.0
+      '@types/react-dom': ^18.2.1
+      babel-loader: ^8.0.5
+      case-sensitive-paths-webpack-plugin: ^2.4.0
+      css-loader: ^6.7.1
+      dotenv: 16.0.3
+      html-webpack-plugin: ^5.3.1
+      process: ^0.11.10
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      source-map-loader: ^4.0.0
+      style-loader: ^3.3.1
+      ts-loader: ^8.3.0
+      tslib: ^2.5.0
+      typescript: 5.0.2
+      util: ^0.12.3
+      webpack: ^5.58.0
+      webpack-cli: ^4.9.2
+      webpack-dev-server: ^4.9.1
+    dependencies:
+      '@gooddata/sdk-backend-base': link:../../../../libs/sdk-backend-base
+      '@gooddata/sdk-backend-bear': link:../../../../libs/sdk-backend-bear
+      '@gooddata/sdk-backend-spi': link:../../../../libs/sdk-backend-spi
+      '@gooddata/sdk-backend-tiger': link:../../../../libs/sdk-backend-tiger
+      '@gooddata/sdk-model': link:../../../../libs/sdk-model
+      '@gooddata/sdk-ui': link:../../../../libs/sdk-ui
+      '@gooddata/sdk-ui-charts': link:../../../../libs/sdk-ui-charts
+      '@gooddata/sdk-ui-dashboard': link:../../../../libs/sdk-ui-dashboard
+      '@gooddata/sdk-ui-ext': link:../../../../libs/sdk-ui-ext
+      '@gooddata/sdk-ui-filters': link:../../../../libs/sdk-ui-filters
+      '@gooddata/sdk-ui-geo': link:../../../../libs/sdk-ui-geo
+      '@gooddata/sdk-ui-pivot': link:../../../../libs/sdk-ui-pivot
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tslib: 2.5.0
+    devDependencies:
+      '@babel/core': 7.21.4
+      '@babel/preset-env': 7.21.4_@babel+core@7.21.4
+      '@babel/preset-react': 7.18.6_@babel+core@7.21.4
+      '@gooddata/catalog-export': link:../../../../tools/catalog-export
+      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
+      '@types/react': 18.2.0
+      '@types/react-dom': 18.2.1
+      babel-loader: 8.3.0_c3tfwv7p35clwcmkb5fnkshzei
+      case-sensitive-paths-webpack-plugin: 2.4.0
+      css-loader: 6.7.3_webpack@5.79.0
+      dotenv: 16.0.3
+      html-webpack-plugin: 5.5.1_webpack@5.79.0
+      process: 0.11.10
+      source-map-loader: 4.0.1_webpack@5.79.0
+      style-loader: 3.3.2_webpack@5.79.0
+      ts-loader: 8.4.0_kxsien4e7rjqn4zxld6vb2o5cu
+      typescript: 5.0.2
+      util: 0.12.5
+      webpack: 5.79.0_webpack-cli@4.10.0
+      webpack-cli: 4.10.0_p36zd373urxldnwcoqg4c3uxta
+      webpack-dev-server: 4.13.3_twduw4g6gld2ld7kevqi3javqa
+
+  ../../examples/sdk-interactive-examples/examples/example-chartconfig:
+    specifiers:
+      '@babel/core': ^7.7.2
+      '@babel/preset-env': ^7.7.2
+      '@babel/preset-react': ^7.7.2
+      '@gooddata/catalog-export': workspace:*
+      '@gooddata/sdk-backend-base': workspace:*
+      '@gooddata/sdk-backend-bear': workspace:*
+      '@gooddata/sdk-backend-spi': workspace:*
+      '@gooddata/sdk-backend-tiger': workspace:*
+      '@gooddata/sdk-model': workspace:*
+      '@gooddata/sdk-ui': workspace:*
+      '@gooddata/sdk-ui-charts': workspace:*
+      '@gooddata/sdk-ui-dashboard': workspace:*
+      '@gooddata/sdk-ui-ext': workspace:*
+      '@gooddata/sdk-ui-filters': workspace:*
+      '@gooddata/sdk-ui-geo': workspace:*
+      '@gooddata/sdk-ui-kit': workspace:*
+      '@gooddata/sdk-ui-pivot': workspace:*
+      '@types/react': ^18.2.0
+      '@types/react-dom': ^18.2.1
+      babel-loader: ^8.0.5
+      case-sensitive-paths-webpack-plugin: ^2.4.0
+      css-loader: ^6.7.1
+      dotenv: 16.0.3
+      html-webpack-plugin: ^5.3.1
+      process: ^0.11.10
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      source-map-loader: ^4.0.0
+      style-loader: ^3.3.1
+      ts-loader: ^8.3.0
+      tslib: ^2.5.0
+      typescript: 5.0.2
+      util: ^0.12.3
+      webpack: ^5.58.0
+      webpack-cli: ^4.9.2
+      webpack-dev-server: ^4.9.1
+    dependencies:
+      '@gooddata/sdk-backend-base': link:../../../../libs/sdk-backend-base
+      '@gooddata/sdk-backend-bear': link:../../../../libs/sdk-backend-bear
+      '@gooddata/sdk-backend-spi': link:../../../../libs/sdk-backend-spi
+      '@gooddata/sdk-backend-tiger': link:../../../../libs/sdk-backend-tiger
+      '@gooddata/sdk-model': link:../../../../libs/sdk-model
+      '@gooddata/sdk-ui': link:../../../../libs/sdk-ui
+      '@gooddata/sdk-ui-charts': link:../../../../libs/sdk-ui-charts
+      '@gooddata/sdk-ui-dashboard': link:../../../../libs/sdk-ui-dashboard
+      '@gooddata/sdk-ui-ext': link:../../../../libs/sdk-ui-ext
+      '@gooddata/sdk-ui-filters': link:../../../../libs/sdk-ui-filters
+      '@gooddata/sdk-ui-geo': link:../../../../libs/sdk-ui-geo
+      '@gooddata/sdk-ui-pivot': link:../../../../libs/sdk-ui-pivot
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tslib: 2.5.0
+    devDependencies:
+      '@babel/core': 7.21.4
+      '@babel/preset-env': 7.21.4_@babel+core@7.21.4
+      '@babel/preset-react': 7.18.6_@babel+core@7.21.4
+      '@gooddata/catalog-export': link:../../../../tools/catalog-export
+      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
+      '@types/react': 18.2.0
+      '@types/react-dom': 18.2.1
+      babel-loader: 8.3.0_c3tfwv7p35clwcmkb5fnkshzei
+      case-sensitive-paths-webpack-plugin: 2.4.0
+      css-loader: 6.7.3_webpack@5.79.0
+      dotenv: 16.0.3
+      html-webpack-plugin: 5.5.1_webpack@5.79.0
+      process: 0.11.10
+      source-map-loader: 4.0.1_webpack@5.79.0
+      style-loader: 3.3.2_webpack@5.79.0
+      ts-loader: 8.4.0_kxsien4e7rjqn4zxld6vb2o5cu
+      typescript: 5.0.2
+      util: 0.12.5
+      webpack: 5.79.0_webpack-cli@4.10.0
+      webpack-cli: 4.10.0_p36zd373urxldnwcoqg4c3uxta
+      webpack-dev-server: 4.13.3_twduw4g6gld2ld7kevqi3javqa
+
   ../../libs/api-client-bear:
     specifiers:
       '@gooddata/api-model-bear': workspace:*
@@ -7024,7 +7258,7 @@ packages:
       '@oclif/command': 1.8.15
       ansi-escapes: 4.3.2
       debug: 4.3.4
-      semver: 7.5.1
+      semver: 7.5.4
       tslib: 2.5.0
     transitivePeerDependencies:
       - supports-color
@@ -7052,7 +7286,7 @@ packages:
       http-call: 5.3.0
       load-json-file: 5.3.0
       npm-run-path: 4.0.1
-      semver: 7.5.1
+      semver: 7.5.4
       tslib: 2.5.0
       yarn: 1.22.19
     transitivePeerDependencies:
@@ -7077,7 +7311,7 @@ packages:
       inquirer: 8.2.5
       lodash.throttle: 4.1.1
       log-chopper: 1.0.2
-      semver: 7.5.1
+      semver: 7.5.4
       tar-fs: 2.1.1
     transitivePeerDependencies:
       - '@swc/core'
@@ -7109,7 +7343,7 @@ packages:
       fs-extra: 9.1.0
       http-call: 5.3.0
       lodash: 4.17.21
-      semver: 7.5.1
+      semver: 7.5.4
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/wasm'
@@ -7235,7 +7469,7 @@ packages:
       '@types/shimmer': 1.0.3
       import-in-the-middle: 1.4.2
       require-in-the-middle: 7.2.0
-      semver: 7.5.1
+      semver: 7.5.4
       shimmer: 1.2.1
     transitivePeerDependencies:
       - supports-color
@@ -8263,7 +8497,7 @@ packages:
       pretty-hrtime: 1.0.3
       prompts: 2.4.2
       read-pkg-up: 7.0.1
-      semver: 7.5.1
+      semver: 7.5.4
       serve-favicon: 2.5.0
       telejson: 7.1.0
       ts-dedent: 2.2.0
@@ -8358,7 +8592,7 @@ packages:
       memoizerific: 1.11.3
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      semver: 7.5.1
+      semver: 7.5.4
       store2: 2.14.2
       telejson: 7.1.0
       ts-dedent: 2.2.0
@@ -8475,7 +8709,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-refresh: 0.11.0
-      semver: 7.5.1
+      semver: 7.5.4
       typescript: 5.0.2
       webpack: 5.79.0
     transitivePeerDependencies:
@@ -9590,7 +9824,7 @@ packages:
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.5.1
+      semver: 7.5.4
       tsutils: 3.21.0_typescript@5.0.2
       typescript: 5.0.2
     transitivePeerDependencies:
@@ -9610,7 +9844,7 @@ packages:
       '@typescript-eslint/typescript-estree': 5.59.0_typescript@5.0.2
       eslint: 8.38.0
       eslint-scope: 5.1.1
-      semver: 7.5.1
+      semver: 7.5.4
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -11081,7 +11315,7 @@ packages:
   /builtins/5.0.1:
     resolution: {integrity: sha512-qwVpFEHNfhYJIzNRBvd2C1kyo6jz3ZSMPyyuR47OPdiKWlbYnZNyDWuyR175qDnAJLiCo5fBBqPb3RiXgWlkOQ==}
     dependencies:
-      semver: 7.5.1
+      semver: 7.5.4
     dev: false
 
   /bundle-name/3.0.0:
@@ -11806,7 +12040,7 @@ packages:
       js-string-escape: 1.0.1
       lodash: 4.17.21
       md5-hex: 3.0.1
-      semver: 7.5.1
+      semver: 7.5.4
       well-known-symbols: 2.0.0
     dev: true
 
@@ -17534,7 +17768,7 @@ packages:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.12.0
-      semver: 7.5.1
+      semver: 7.5.4
       validate-npm-package-license: 3.0.4
     dev: true
 
@@ -19915,7 +20149,7 @@ packages:
     resolution: {integrity: sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ==}
     engines: {npm: '>=2.0.0'}
     dependencies:
-      tslib: 1.9.3
+      tslib: 1.14.1
     dev: true
 
   /rxjs/7.8.0:
@@ -20096,7 +20330,7 @@ packages:
     resolution: {integrity: sha512-Pyr1mG/kyBxL2+hNfU/VPRhBRdm/+EJAyWlusn7t9NDRkZEvsbwPjlocZ4ji0TD4ALPmW9ZkrzMQADjrRCDQ5w==}
     engines: {node: ^14||^16||>=18}
     dependencies:
-      semver: 7.5.1
+      semver: 7.5.4
     dev: true
 
   /semver/5.6.0:
@@ -20133,6 +20367,7 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
+    dev: true
 
   /semver/7.5.4:
     resolution: {integrity: sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==}
@@ -21621,7 +21856,7 @@ packages:
       enhanced-resolve: 4.5.0
       loader-utils: 2.0.4
       micromatch: 4.0.5
-      semver: 7.5.0
+      semver: 7.5.4
       typescript: 5.0.2
       webpack: 5.79.0_webpack-cli@4.10.0
     dev: true
@@ -21640,7 +21875,7 @@ packages:
       enhanced-resolve: 4.5.0
       loader-utils: 2.0.4
       micromatch: 4.0.5
-      semver: 7.5.0
+      semver: 7.5.4
       typescript: 5.0.2
     dev: false
 
@@ -21723,10 +21958,6 @@ packages:
 
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
-    dev: true
-
-  /tslib/1.9.3:
-    resolution: {integrity: sha512-4krF8scpejhaOgqzBEcGM7yDIEfi0/8+8zDRZhNZZ2kjmHJ4hv3zCbQWxoJGz1iw5U0Jl0nma13xzHXcncMavQ==}
 
   /tslib/2.0.3:
     resolution: {integrity: sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==}
@@ -21741,7 +21972,7 @@ packages:
     peerDependencies:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
     dependencies:
-      tslib: 1.9.3
+      tslib: 1.14.1
       typescript: 5.0.2
 
   /tty-browserify/0.0.0:
@@ -22375,7 +22606,7 @@ packages:
       dom-accessibility-api: 0.6.1
       lodash-es: 4.17.21
       redent: 4.0.0
-      vitest: 0.31.4_happy-dom@9.20.3
+      vitest: 0.31.4_jsdom@22.1.0+sass@1.62.0
     dev: true
 
   /vitest/0.31.4:

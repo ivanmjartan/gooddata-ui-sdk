@@ -1,0 +1,31 @@
+/monorepo-root
+├── /common
+├── /interactive-examples
+│   ├── package.json (pro skripty manipulace s příklady)
+│   ├── /example-template
+│   │   ├── /node_modules
+│   │   ├── /.rush
+│   │   ├── /src
+│   │   │   ├── app.tsx
+│   │   │   └── /example
+│   │   │       └── example.tsx
+│   │   └── package.json (základní šablona pro všechny příklady)
+│   └── /examples
+│       ├── /example1
+│       │   ├── /node_modules
+│       │   ├── /.rush
+│       │   ├── /src
+│       │   │   ├── app.tsx
+│       │   │   └── /example
+│       │   │       └── example.tsx
+│       │   └── package.json (specifické nastavení pro example1)
+│       ├── /example2
+│       │   ├── /node_modules
+│       │   ├── /.rush
+│       │   ├── /src
+│       │   │   ├── app.tsx
+│       │   │   └── /example
+│       │   │       └── example.tsx
+│       │   └── package.json (specifické nastavení pro example2)
+│       └── ...
+└── rush.json

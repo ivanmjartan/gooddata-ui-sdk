@@ -1,7 +1,0 @@
-{
-    "title": "GoodData test template",
-    "description": "This is first test template",
-    "iconUrl": "https://www.gooddata.com/favicon.ico",
-    "tags": ["react", "typescript","gooddata-ui-sdk"],
-    "published": true
-  }

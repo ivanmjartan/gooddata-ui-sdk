@@ -2,67 +2,229 @@
 
 Here are basic usage examples of [GoodData.UI](https://github.com/gooddata/gooddata-ui-sdk).
 
-> Please note that these Interactive Examples work well in all major browsers (Firefox, Chrome, Safari, …) except for [Brave](https://brave.com/).
-
 ## List of Examples
 
-* Headline - [open in CodeSandbox](https://codesandbox.io/s/github/gooddata/gooddata-ui-examples/tree/master/example-headline?file=/src/App/index.js)
-* ComboChart - [open in CodeSandbox](https://codesandbox.io/s/github/gooddata/gooddata-ui-examples/tree/master/example-combochart?file=/src/App/index.js)
-* RelativeDateFilter - [open in CodeSandbox](https://codesandbox.io/s/github/gooddata/gooddata-ui-examples/tree/master/example-relativedatefilter?file=/src/App/index.js)
-* ChartConfig - [open in CodeSandbox](https://codesandbox.io/s/github/gooddata/gooddata-ui-examples/tree/master/example-chartconfig?file=/src/App/index.js)
-* PivotTable - [open in CodeSandbox](https://codesandbox.io/s/github/gooddata/gooddata-ui-examples/tree/master/example-pivottable?file=/src/App/index.js)
-* InsightView - [open in CodeSandbox](https://codesandbox.io/s/github/gooddata/gooddata-ui-examples/tree/master/example-insightview?file=/src/App/index.js)
-* DashboardView - [open in CodeSandbox](https://codesandbox.io/s/github/gooddata/gooddata-ui-examples/tree/master/example-dashboardview?file=/src/App/index.js)
-* Execute - [open in CodeSandbox](https://codesandbox.io/s/github/gooddata/gooddata-ui-examples/tree/master/example-execute?file=/src/App/index.js)
-* Year Filter - [open in CodeSandbox](https://codesandbox.io/s/github/gooddata/gooddata-ui-examples/tree/master/example-yearfilter?file=/src/App/index.js)
-* AttributeFilter - [open in CodeSandbox](https://codesandbox.io/s/github/gooddata/gooddata-ui-examples/tree/master/example-attributefilter?file=/src/App/index.js)
-* Custom Attribute Filter - [open in CodeSandbox](https://codesandbox.io/s/github/gooddata/gooddata-ui-examples/tree/master/example-customattributefilter?file=/src/App/index.js)
-* Granularity - [open in CodeSandbox](https://codesandbox.io/s/github/gooddata/gooddata-ui-examples/tree/master/example-granularity?file=/src/App/index.js)
-* DateFilter - [open in CodeSandbox](https://codesandbox.io/s/github/gooddata/gooddata-ui-examples/tree/master/example-datefilter?file=/src/App/index.js)
-* ColumnChart - [open in CodeSandbox](https://codesandbox.io/s/github/gooddata/gooddata-ui-examples/tree/master/example-columnchart?file=/src/App/index.js)
-* Measure Value Filter - [open in CodeSandbox](https://codesandbox.io/s/github/gooddata/gooddata-ui-examples/tree/master/example-measurevaluefilter?file=/src/App/index.js)
+<!---{LIST-START}-->
+* Attribute Filter Example - [open in CodeSandbox](https://codesandbox.io/p/sandbox/github/ivanmjartan/gooddata-ui-sdk/tree/IMJ-RAIL-5122-test2/examples/sdk-interactive-examples/examples/example-attributefilter?file=/src/example/Example.tsx)
+
+* Chart config manipulation - [open in CodeSandbox](https://codesandbox.io/p/sandbox/github/ivanmjartan/gooddata-ui-sdk/tree/IMJ-RAIL-5122-test2/examples/sdk-interactive-examples/examples/example-chartconfig?file=/src/example/Example.tsx)
+
+* Execute - [open in CodeSandbox](https://codesandbox.io/p/sandbox/github/ivanmjartan/gooddata-ui-sdk/tree/IMJ-RAIL-5122-test2/examples/sdk-interactive-examples/examples/example-execute?file=/src/example/Example.tsx)
+
+
+<!---{LIST-END}}-->
 
 ## Running Examples in CodeSandbox using GitHubBox
 
 An easy way to open an example in [CodeSandbox](https://codesandbox.io/) via URL is with [GitHubBox.com](https://github.com/dferber90/githubbox). Append 'box' to the github.com URL in between 'hub' and '.com' and it will redirect to CodeSandbox. Here's an example:
 
 Change the GitHub URL:\
-https://github.com/gooddata/gooddata-ui-examples/tree/master/example-headline.
+https://github.com/ivanmjartan/gooddata-ui-sdk/tree/IMJ-RAIL-5122-test2/examples/sdk-interactive-examples/examples/example-attributefilter.
 
 To:\
-https://githubbox.com/gooddata/gooddata-ui-examples/tree/master/example-headline.
+https://githubbox.com/ivanmjartan/gooddata-ui-sdk/tree/IMJ-RAIL-5122-test2/examples/sdk-interactive-examples/examples/example-attributefilter
 
-[![Headline](assets/example-codesandbox-headline.png)](https://codesandbox.io/s/github/gooddata/gooddata-ui-examples/tree/master/example-headline?file=/src/App/index.js)
 
 ## Running Examples locally 
 
-Clone whole SDK 1) 
 You can also run any example on your localhost.
 
-1. `git clone git@github.com:gooddata/gooddata-ui-examples.git`
-1. `cd gooddata-ui-examples/example-headline`
-1. `yarn install`
-1. `yarn start`
+#### Clone whole SDK
 
-Clone just example directory.  
+1.  Install [nvm](https://github.com/nvm-sh/nvm)
+    ```bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+    ```
+2.  Clone and bootstrap
 
-## Upgrading GoodData.UI SDK in all examples at once
+    ```bash
+    git clone git@github.com:gooddata/gooddata-ui-sdk.git
+    cd gooddata-ui-sdk
+    nvm install
+    nvm use
+    npm i -g @microsoft/rush
+    rush install
+    ```
 
-TODO: Describe monorepo upgrade is for free because it works on workspaces
+3.  Build
 
-TODO: SCRIP not valid: 
+    ```bash
+    rush build
+    ```
+4. Navigate to example directory 
 
-To bump GoodData.UI SDK to the latest version in all the examples at once, you can run the script:
+    ```bash
+    cd examples/sdk-interactive-examples/examples/example-attributefilter
+    ```
+4. Run example 
 
-```bash
-./scripts/bump-sdk.sh
+    ```bash
+    npm run start
+    ```
+
+
+#### Clone just example directory
+
+1) ```bash 
+    navigate to example directory
+    ```
+2) ```bash 
+    npm run update-version
+   ```
+3) ```bash
+    npm install
+    ```
+4) ```bash
+    npm start
+    ```
+
+
+# Developers guide
+
+## Examples structure
+
+Each examples and template are valid monorepo packages. 
+
+```
+/sdk-ui-sdk
+*
+├── /sdk-interactive-examples
+│   ├── package.json (interactive-examples root directory)
+│   ├── /script (scripts for example template update or create new examples etc.)
+│   ├── /example-template (Example template)
+│   │   ├── /node_modules
+│   │   ├── /.codesandbox (codesandbox template settings)
+│   │   ├── /.example (specific template files like preview.png)
+│   │   ├── /scripts (specific template/example scripts)
+│   │   ├── /src
+│   │   │   ├── app.tsx
+│   │   │   └── /example
+│   │   │       └── example.tsx (template code)
+│   │   └── package.json (template package)
+│   └── /examples (examples root directory)
+│       ├── /example1
+│       │   ├── /node_modules
+│       │   ├── /.codesandbox (codesandbox example settings)
+│       │   ├── /.example (specific example files like preview.png)
+│       │   ├── /src
+│       │   │   ├── app.tsx
+│       │   │   └── /example
+│       │   │       └── example.tsx (example code)
+│       │   └── package.json (specific example settings, like title,dependency etc.)
+│       ├── /example2
+│       │   |...
+|
+└── rush.json (monorepo packages definitions)
 ```
 
-This will upgrade all `@gooddata` packages in all the `example-*` folders. This can take several minutes, so be patient.
+## Examples template
 
-## Troubleshooting
+The template application in the examples-template directory serves as the foundation for each example. This template is utilized for updating and creating new examples. The entire content, excluding the src/example and .example directories, is synchronized between the template and the example directory.
+
+## Example
+
+The example application in the example directory represents an example. Within the ./src/example directory, you'll find the example code, and within the ./.example directory, there are example-specific files like preview.png. These directories are not synchronized with the template. All other files or directories will not be retained during an update.
+
+In package.json, each example defines:
+
+* name: The name of the package.
+* title: The title of the example.
+* description: The description of the example.
+* exampleDependencies:  Specific example dependencies, define dependencies that should by added after template update. 
+
+This information persists through template updates and is used to define readme.md and CodeSandbox templates links etc.
+
+## Creating new Example
+
+1) ```bash 
+    Navigate to the sdk-interactive-examples directory.
+    cd sdk-interactive-examples
+   ```
+2) ```bash 
+    npm run create-example
+   ```
+The script will ask you for example-directory **name**, **title** and **description**, after that will bootstrap new example application base on template. Prepare **package.json** and generate **readme.md** also list of all examples in readme.md in examples root directory.    
+
+Navigate to the newly created example directory and begin implementing your example within the **src/example** directory. The entry point is a default exported parameterless component located in **Example.tsx**.
+
+After you finish example coding create preview of example (1024*768px)PNG and save it to **.example/preview.png**
+
+## Adding example specific dependencies 
+
+Each example is valid package in rush monorepo if you need add specific example dependencies, its needed to add via rush command. Rush will check version etc. (Only one version of package is allowed in monorepo)
+
+```
+rush add -p highcharts -m
+```
+
+After that is necessary specify name of newly added dependency in **package.json** in array **exampleDependencies**  
+
+```
+"exampleDependencies": [
+    "highcharts",
+],
+```
+## Validating example
+
+In sdk-interactive-examples directory are prepared validating scripts. This scripts checks that additional example dependencies are also defined in example package.json in array **exampleDependencies**  
+
+1) ```bash 
+    Navigate to the sdk-interactive-examples directory.
+    cd sdk-interactive-examples
+   ```
+2) ```bash 
+    npm run validate
+   ```
 
 
+## Updating example 
+If you change **description**, **title** in example package.json is necessary propagate changes into other files like sandboxcode template, list of examples in root readme.md, example readme.md etc. 
+
+1) ```bash 
+    Navigate to the sdk-interactive-examples directory.
+    cd sdk-interactive-examples
+   ```
+2) ```bash 
+    npm run update-examples-template
+   ```
+
+Script will do it for you 
+
+## Updating template
+
+All files in the template are synchronized with example directories, except for the **src/example** and **.example** directories, which are excluded from synchronization.
+
+Information such as **name**, **title**, **description**, and **exampleDependencies** in package.json persists through updates. Additionally, **dependencies** with names defined in exampleDependencies also persist through updates.
+
+After you are done with template update 
+
+1) ```bash 
+    Navigate to the sdk-interactive-examples directory.
+    cd sdk-interactive-examples
+   ```
+2) ```bash 
+    npm run update-examples-template
+   ```
+
+## Updating Catalog Export
+
+At first we need update Catalog in examples-template directory and than update template to all examples. 
+Do not update catalog in specific example. It will be lost in next template update. 
+
+1) ```bash 
+    Navigate to the examples-template directory.
+    cd examples-template
+   ```
+2) ```bash     
+    npm run refresh-md 
+   ```
+3) ```bash 
+    Navigate to the sdk-interactive-examples directory.
+    cd sdk-interactive-examples
+   ```   
+4) ```bash 
+    npm run update-examples-template
+   ```
 
 ## License
 

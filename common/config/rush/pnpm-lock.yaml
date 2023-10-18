@@ -587,6 +587,89 @@ importers:
       webpack-cli: 4.10.0_p36zd373urxldnwcoqg4c3uxta
       webpack-dev-server: 4.13.3_twduw4g6gld2ld7kevqi3javqa
 
+  ../../examples/sdk-interactive-examples/examples/example-execute:
+    specifiers:
+      '@babel/core': ^7.7.2
+      '@babel/preset-env': ^7.7.2
+      '@babel/preset-react': ^7.7.2
+      '@gooddata/catalog-export': workspace:*
+      '@gooddata/sdk-backend-base': workspace:*
+      '@gooddata/sdk-backend-bear': workspace:*
+      '@gooddata/sdk-backend-spi': workspace:*
+      '@gooddata/sdk-backend-tiger': workspace:*
+      '@gooddata/sdk-model': workspace:*
+      '@gooddata/sdk-ui': workspace:*
+      '@gooddata/sdk-ui-charts': workspace:*
+      '@gooddata/sdk-ui-dashboard': workspace:*
+      '@gooddata/sdk-ui-ext': workspace:*
+      '@gooddata/sdk-ui-filters': workspace:*
+      '@gooddata/sdk-ui-geo': workspace:*
+      '@gooddata/sdk-ui-kit': workspace:*
+      '@gooddata/sdk-ui-pivot': workspace:*
+      '@types/react': ^18.2.0
+      '@types/react-dom': ^18.2.1
+      babel-loader: ^8.0.5
+      case-sensitive-paths-webpack-plugin: ^2.4.0
+      css-loader: ^6.7.1
+      default-import: ^1.1.5
+      dotenv: 16.0.3
+      highcharts: 9.3.0
+      highcharts-react-official: 3.2.1
+      html-webpack-plugin: ^5.3.1
+      process: ^0.11.10
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      source-map-loader: ^4.0.0
+      style-loader: ^3.3.1
+      ts-loader: ^8.3.0
+      tslib: ^2.5.0
+      typescript: 5.0.2
+      util: ^0.12.3
+      webpack: ^5.58.0
+      webpack-cli: ^4.9.2
+      webpack-dev-server: ^4.9.1
+    dependencies:
+      '@gooddata/sdk-backend-base': link:../../../../libs/sdk-backend-base
+      '@gooddata/sdk-backend-bear': link:../../../../libs/sdk-backend-bear
+      '@gooddata/sdk-backend-spi': link:../../../../libs/sdk-backend-spi
+      '@gooddata/sdk-backend-tiger': link:../../../../libs/sdk-backend-tiger
+      '@gooddata/sdk-model': link:../../../../libs/sdk-model
+      '@gooddata/sdk-ui': link:../../../../libs/sdk-ui
+      '@gooddata/sdk-ui-charts': link:../../../../libs/sdk-ui-charts
+      '@gooddata/sdk-ui-dashboard': link:../../../../libs/sdk-ui-dashboard
+      '@gooddata/sdk-ui-ext': link:../../../../libs/sdk-ui-ext
+      '@gooddata/sdk-ui-filters': link:../../../../libs/sdk-ui-filters
+      '@gooddata/sdk-ui-geo': link:../../../../libs/sdk-ui-geo
+      '@gooddata/sdk-ui-pivot': link:../../../../libs/sdk-ui-pivot
+      default-import: 1.1.5
+      highcharts: 9.3.0
+      highcharts-react-official: 3.2.1_pfudujrlmivslf3wcinkje6q6q
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tslib: 2.5.0
+    devDependencies:
+      '@babel/core': 7.21.4
+      '@babel/preset-env': 7.21.4_@babel+core@7.21.4
+      '@babel/preset-react': 7.18.6_@babel+core@7.21.4
+      '@gooddata/catalog-export': link:../../../../tools/catalog-export
+      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
+      '@types/react': 18.2.0
+      '@types/react-dom': 18.2.1
+      babel-loader: 8.3.0_c3tfwv7p35clwcmkb5fnkshzei
+      case-sensitive-paths-webpack-plugin: 2.4.0
+      css-loader: 6.7.3_webpack@5.79.0
+      dotenv: 16.0.3
+      html-webpack-plugin: 5.5.1_webpack@5.79.0
+      process: 0.11.10
+      source-map-loader: 4.0.1_webpack@5.79.0
+      style-loader: 3.3.2_webpack@5.79.0
+      ts-loader: 8.4.0_kxsien4e7rjqn4zxld6vb2o5cu
+      typescript: 5.0.2
+      util: 0.12.5
+      webpack: 5.79.0_webpack-cli@4.10.0
+      webpack-cli: 4.10.0_p36zd373urxldnwcoqg4c3uxta
+      webpack-dev-server: 4.13.3_twduw4g6gld2ld7kevqi3javqa
+
   ../../libs/api-client-bear:
     specifiers:
       '@gooddata/api-model-bear': workspace:*
@@ -15334,6 +15417,16 @@ packages:
       - typescript
     dev: true
 
+  /highcharts-react-official/3.2.1_pfudujrlmivslf3wcinkje6q6q:
+    resolution: {integrity: sha512-hyQTX7ezCxl7JqumaWiGsroGWalzh24GedQIgO3vJbkGOZ6ySRAltIYjfxhrq4HszJOySZegotEF7v+haQ75UA==}
+    peerDependencies:
+      highcharts: '>=6.0.0'
+      react: '>=16.8.0'
+    dependencies:
+      highcharts: 9.3.0
+      react: 18.2.0
+    dev: false
+
   /highcharts/9.3.0:
     resolution: {integrity: sha512-nQ7yW5ni7wFiPgDN2IWrS6o6NjL1gK/OhZjrdpyB3FQuefMkTQngygP+JqZFMx7PDrP3YAvfejx0M5IgkC01ow==}
     dev: false
@@ -22606,7 +22699,7 @@ packages:
       dom-accessibility-api: 0.6.1
       lodash-es: 4.17.21
       redent: 4.0.0
-      vitest: 0.31.4_jsdom@22.1.0+sass@1.62.0
+      vitest: 0.31.4_happy-dom@9.20.3
     dev: true
 
   /vitest/0.31.4:

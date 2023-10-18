@@ -272,6 +272,13 @@
      */
     "projects": [
         {
+            "packageName": "@gooddata/sdk-interactive-example-execute",
+            "projectFolder": "examples/sdk-interactive-examples/examples/example-execute",
+            "reviewCategory": "examples",
+            "versionPolicyName": "sdk",
+            "shouldPublish": false
+        },
+        {
             "packageName": "@gooddata/sdk-interactive-example-chartconfig",
             "projectFolder": "examples/sdk-interactive-examples/examples/example-chartconfig",
             "reviewCategory": "examples",

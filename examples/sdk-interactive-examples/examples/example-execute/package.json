@@ -1,8 +1,8 @@
 {
-  "name": "@gooddata/sdk-interactive-example-chartconfig",
+  "name": "@gooddata/sdk-interactive-example-execute",
   "version": "9.3.0-alpha.13",
-  "title": "Chart config manipulation",
-  "description": "This interactive example demonstrates how to manipulate the chart config.",
+  "title": "Execute",
+  "description": "This example demonstrate using Execute component and build custom visualization.",
   "author": "GoodData Corporation",
   "private": false,
   "license": "LicenseRef-LICENSE",
@@ -20,7 +20,11 @@
     "refresh-md": "gdc-catalog-export",
     "update-version": "node ./scripts/updateWorkspaceVersion.mjs"
   },
-  "exampleDependencies": [],
+  "exampleDependencies": [
+    "highcharts",
+    "default-import",
+    "highcharts-react-official"
+  ],
   "dependencies": {
     "@gooddata/sdk-backend-base": "workspace:*",
     "@gooddata/sdk-backend-bear": "workspace:*",
@@ -34,6 +38,9 @@
     "@gooddata/sdk-ui-filters": "workspace:*",
     "@gooddata/sdk-ui-geo": "workspace:*",
     "@gooddata/sdk-ui-pivot": "workspace:*",
+    "default-import": "^1.1.5",
+    "highcharts": "9.3.0",
+    "highcharts-react-official": "3.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tslib": "^2.5.0"

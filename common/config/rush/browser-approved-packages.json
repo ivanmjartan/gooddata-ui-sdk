@@ -592,7 +592,7 @@
     },
     {
       "name": "default-import",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "examples", "production" ]
     },
     {
       "name": "dependency-cruiser",
@@ -712,7 +712,11 @@
     },
     {
       "name": "highcharts",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "examples", "production" ]
+    },
+    {
+      "name": "highcharts-react-official",
+      "allowedCategories": [ "examples" ]
     },
     {
       "name": "history",

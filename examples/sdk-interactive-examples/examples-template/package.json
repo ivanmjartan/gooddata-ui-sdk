@@ -20,6 +20,7 @@
         "refresh-md": "gdc-catalog-export",
         "update-version": "node ./scripts/updateWorkspaceVersion.mjs"
     },
+    "exampleDependencies": [],
     "dependencies": {
         "@gooddata/sdk-backend-base": "workspace:*",
         "@gooddata/sdk-backend-bear": "workspace:*",

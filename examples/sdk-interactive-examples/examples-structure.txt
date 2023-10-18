@@ -1,31 +1,35 @@
-/monorepo-root
-├── /common
+/sdk-ui-sdk
+*
 ├── /interactive-examples
-│   ├── package.json (pro skripty manipulace s příklady)
+│   ├── package.json (root example directory)
 │   ├── /example-template
 │   │   ├── /node_modules
-│   │   ├── /.rush
+│   │   ├── /.codesandbox (codesandbox settings)
+│   │   ├── /.example (specific template files like preview.png)
+│   │   ├── /scripts (specific template/example scripts)
 │   │   ├── /src
 │   │   │   ├── app.tsx
 │   │   │   └── /example
-│   │   │       └── example.tsx
-│   │   └── package.json (základní šablona pro všechny příklady)
+│   │   │       └── example.tsx (template code)
+│   │   └── package.json (template package)
 │   └── /examples
 │       ├── /example1
 │       │   ├── /node_modules
-│       │   ├── /.rush
+│       │   ├── /.codesandbox
+│       │   ├── /.example (specific example files like preview.png)
 │       │   ├── /src
 │       │   │   ├── app.tsx
 │       │   │   └── /example
-│       │   │       └── example.tsx
-│       │   └── package.json (specifické nastavení pro example1)
+│       │   │       └── example.tsx (example code)
+│       │   └── package.json (specific example settings, like title,dependency etc.)
 │       ├── /example2
 │       │   ├── /node_modules
-│       │   ├── /.rush
+│       │   ├── /.codesandbox
+│       │   ├── /.example (specific example files like preview.png)
 │       │   ├── /src
 │       │   │   ├── app.tsx
 │       │   │   └── /example
-│       │   │       └── example.tsx
-│       │   └── package.json (specifické nastavení pro example2)
+│       │   │       └── example.tsx (example code)
+│       │   └── package.json (specific example settings, like title,dependency etc.)
 │       └── ...
-└── rush.json
+└── rush.json (monorepo packages definitions)

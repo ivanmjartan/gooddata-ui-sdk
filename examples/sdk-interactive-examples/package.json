@@ -11,8 +11,11 @@
         "build": "",
         "start": "",
         "refresh-md": "",
-        "create-example": "node ./scripts/createExample.mjs",
-        "update-examples-template": "node ./scripts/updateTemplate.mjs"
+        "create-example": "node ./scripts/createExample.mjs && node ./scripts/updateRootReadme.mjs",
+        "update-examples-template": "node ./scripts/updateTemplate.mjs && node ./scripts/updateRootReadme.mjs",
+        "update-root-readme":"node ./scripts/updateRootReadme.mjs",
+        "validate": "node ./scripts/validateExamplesDependencies.mjs",
+        "validate-ci": "node ./scripts/validateExamplesDependencies.mjs"
     },
     "dependencies": {
     },

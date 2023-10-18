@@ -2,9 +2,26 @@
 
 {EXAMPLE-DESCRIPTION}
 
-You can run this example in [CodeSandbox]({CODESANDBOX-PATH}). Navigate [up](https://github.com/gooddata/gooddata-ui-examples) for more information.
+You can run this example in [CodeSandbox]({CODESANDBOX-PATH}). Navigate [up](../../) for more information.
 
-[![ColumnChart](/assets/example-localhost-columnchart.png)](https://codesandbox.io/s/github/gooddata/gooddata-ui-examples/tree/master/example-columnchart?file=/src/App/index.js)
+[![{EXAMPLE-TITLE}](./.example/preview.png)]({CODESANDBOX-PATH})
+
+## Run example locally
+
+### In sdk-ui-sdk 
+If you cloned whole sdk-ui-sdk repository
+
+1) ```rush install```
+2) ```rush build```
+3) navigate to example directory
+4) ```npm run start``` 
+
+### Just example directory
+
+1) navigate to example directory
+2) ```npm run update-version```
+3) ```npm install```
+4) ```npm start```
 
 ## License
 

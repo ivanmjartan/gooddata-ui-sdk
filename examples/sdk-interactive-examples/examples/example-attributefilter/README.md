@@ -1,10 +1,27 @@
-# GoodData.UI SDK - Interactive Examples - {EXAMPLE-TITLE}
+# GoodData.UI SDK - Interactive Examples - Attribute Filter Example
 
 This example demonstrates how to use the AttributeFilter component to filter data in a visualization.
 
-You can run this example in [CodeSandbox](https://codesandbox.io/p/sandbox/github/ivanmjartan/gooddata-ui-sdk/tree/IMJ-RAIL-5122-test2/examples/sdk-interactive-examples/examples/example-attributefilter?file=/src/example/Example.tsx). Navigate [up](https://github.com/gooddata/gooddata-ui-examples) for more information.
+You can run this example in [CodeSandbox](https://codesandbox.io/p/sandbox/github/ivanmjartan/gooddata-ui-sdk/tree/IMJ-RAIL-5122-test2/examples/sdk-interactive-examples/examples/example-attributefilter?file=/src/example/Example.tsx). Navigate [up](../../) for more information.
 
-[![ColumnChart](/assets/example-localhost-columnchart.png)](https://codesandbox.io/s/github/gooddata/gooddata-ui-examples/tree/master/example-columnchart?file=/src/App/index.js)
+[![Attribute Filter Example](./.example/preview.png)](https://codesandbox.io/p/sandbox/github/ivanmjartan/gooddata-ui-sdk/tree/IMJ-RAIL-5122-test2/examples/sdk-interactive-examples/examples/example-attributefilter?file=/src/example/Example.tsx)
+
+## Run example locally
+
+### In sdk-ui-sdk 
+If you cloned whole sdk-ui-sdk repository
+
+1) ```rush install```
+2) ```rush build```
+3) navigate to example directory
+4) ```npm run start``` 
+
+### Just example directory
+
+1) navigate to example directory
+2) ```npm run update-version```
+3) ```npm install```
+4) ```npm start```
 
 ## License
 

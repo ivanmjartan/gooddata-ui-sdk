@@ -7,5 +7,5 @@ import Hint from "../Hint.js";
 */
 
 export default () => {
-    return <>this is a example template</>;
+    return <>this is a example template jede</>;
 };

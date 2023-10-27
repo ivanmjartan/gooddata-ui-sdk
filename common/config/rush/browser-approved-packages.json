@@ -475,6 +475,14 @@
       "allowedCategories": [ "examples", "production", "tools" ]
     },
     {
+      "name": "@vitejs/plugin-basic-ssl",
+      "allowedCategories": [ "examples" ]
+    },
+    {
+      "name": "@vitejs/plugin-react",
+      "allowedCategories": [ "examples" ]
+    },
+    {
       "name": "@welldone-software/why-did-you-render",
       "allowedCategories": [ "examples" ]
     },
@@ -1097,6 +1105,14 @@
     {
       "name": "validate-npm-package-name",
       "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "vite",
+      "allowedCategories": [ "examples" ]
+    },
+    {
+      "name": "vite-plugin-html",
+      "allowedCategories": [ "examples" ]
     },
     {
       "name": "vitest",

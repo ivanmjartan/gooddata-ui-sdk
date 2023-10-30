@@ -19,7 +19,7 @@
             "command": "npm start",
             "runAtStart": true,
             "preview": {
-                "port": 8080,
+                "port": 3000,
                 "prLink": "direct"
             }
         }

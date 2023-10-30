@@ -415,9 +415,6 @@ importers:
 
   ../../examples/sdk-interactive-examples/examples/example-attributefilter:
     specifiers:
-      '@babel/core': ^7.7.2
-      '@babel/preset-env': ^7.7.2
-      '@babel/preset-react': ^7.7.2
       '@gooddata/catalog-export': workspace:*
       '@gooddata/sdk-backend-base': workspace:*
       '@gooddata/sdk-backend-bear': workspace:*
@@ -434,24 +431,16 @@ importers:
       '@gooddata/sdk-ui-pivot': workspace:*
       '@types/react': ^18.2.0
       '@types/react-dom': ^18.2.1
-      babel-loader: ^8.0.5
-      case-sensitive-paths-webpack-plugin: ^2.4.0
-      css-loader: ^6.7.1
-      dotenv: 16.0.3
-      html-webpack-plugin: ^5.3.1
+      '@vitejs/plugin-basic-ssl': ~1.0.1
+      '@vitejs/plugin-react': ~4.1.0
       prettier: ~2.5.0
       process: ^0.11.10
       react: ^18.2.0
       react-dom: ^18.2.0
-      source-map-loader: ^4.0.0
-      style-loader: ^3.3.1
-      ts-loader: ^8.3.0
       tslib: ^2.5.0
       typescript: 5.0.2
-      util: ^0.12.3
-      webpack: ^5.58.0
-      webpack-cli: ^4.9.2
-      webpack-dev-server: ^4.9.1
+      vite: ~4.5.0
+      vite-plugin-html: ~3.2.0
     dependencies:
       '@gooddata/sdk-backend-base': link:../../../../libs/sdk-backend-base
       '@gooddata/sdk-backend-bear': link:../../../../libs/sdk-backend-bear
@@ -464,39 +453,25 @@ importers:
       '@gooddata/sdk-ui-ext': link:../../../../libs/sdk-ui-ext
       '@gooddata/sdk-ui-filters': link:../../../../libs/sdk-ui-filters
       '@gooddata/sdk-ui-geo': link:../../../../libs/sdk-ui-geo
+      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@gooddata/sdk-ui-pivot': link:../../../../libs/sdk-ui-pivot
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       tslib: 2.5.0
     devDependencies:
-      '@babel/core': 7.21.4
-      '@babel/preset-env': 7.21.4_@babel+core@7.21.4
-      '@babel/preset-react': 7.18.6_@babel+core@7.21.4
       '@gooddata/catalog-export': link:../../../../tools/catalog-export
-      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@types/react': 18.2.0
       '@types/react-dom': 18.2.1
-      babel-loader: 8.3.0_c3tfwv7p35clwcmkb5fnkshzei
-      case-sensitive-paths-webpack-plugin: 2.4.0
-      css-loader: 6.7.3_webpack@5.79.0
-      dotenv: 16.0.3
-      html-webpack-plugin: 5.5.1_webpack@5.79.0
+      '@vitejs/plugin-basic-ssl': 1.0.1_vite@4.5.0
+      '@vitejs/plugin-react': 4.1.0_vite@4.5.0
       prettier: 2.5.1
       process: 0.11.10
-      source-map-loader: 4.0.1_webpack@5.79.0
-      style-loader: 3.3.2_webpack@5.79.0
-      ts-loader: 8.4.0_kxsien4e7rjqn4zxld6vb2o5cu
       typescript: 5.0.2
-      util: 0.12.5
-      webpack: 5.79.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_p36zd373urxldnwcoqg4c3uxta
-      webpack-dev-server: 4.13.3_twduw4g6gld2ld7kevqi3javqa
+      vite: 4.5.0
+      vite-plugin-html: 3.2.0_vite@4.5.0
 
   ../../examples/sdk-interactive-examples/examples/example-chartconfig:
     specifiers:
-      '@babel/core': ^7.7.2
-      '@babel/preset-env': ^7.7.2
-      '@babel/preset-react': ^7.7.2
       '@gooddata/catalog-export': workspace:*
       '@gooddata/sdk-backend-base': workspace:*
       '@gooddata/sdk-backend-bear': workspace:*
@@ -513,24 +488,16 @@ importers:
       '@gooddata/sdk-ui-pivot': workspace:*
       '@types/react': ^18.2.0
       '@types/react-dom': ^18.2.1
-      babel-loader: ^8.0.5
-      case-sensitive-paths-webpack-plugin: ^2.4.0
-      css-loader: ^6.7.1
-      dotenv: 16.0.3
-      html-webpack-plugin: ^5.3.1
+      '@vitejs/plugin-basic-ssl': ~1.0.1
+      '@vitejs/plugin-react': ~4.1.0
       prettier: ~2.5.0
       process: ^0.11.10
       react: ^18.2.0
       react-dom: ^18.2.0
-      source-map-loader: ^4.0.0
-      style-loader: ^3.3.1
-      ts-loader: ^8.3.0
       tslib: ^2.5.0
       typescript: 5.0.2
-      util: ^0.12.3
-      webpack: ^5.58.0
-      webpack-cli: ^4.9.2
-      webpack-dev-server: ^4.9.1
+      vite: ~4.5.0
+      vite-plugin-html: ~3.2.0
     dependencies:
       '@gooddata/sdk-backend-base': link:../../../../libs/sdk-backend-base
       '@gooddata/sdk-backend-bear': link:../../../../libs/sdk-backend-bear
@@ -543,39 +510,25 @@ importers:
       '@gooddata/sdk-ui-ext': link:../../../../libs/sdk-ui-ext
       '@gooddata/sdk-ui-filters': link:../../../../libs/sdk-ui-filters
       '@gooddata/sdk-ui-geo': link:../../../../libs/sdk-ui-geo
+      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@gooddata/sdk-ui-pivot': link:../../../../libs/sdk-ui-pivot
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       tslib: 2.5.0
     devDependencies:
-      '@babel/core': 7.21.4
-      '@babel/preset-env': 7.21.4_@babel+core@7.21.4
-      '@babel/preset-react': 7.18.6_@babel+core@7.21.4
       '@gooddata/catalog-export': link:../../../../tools/catalog-export
-      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@types/react': 18.2.0
       '@types/react-dom': 18.2.1
-      babel-loader: 8.3.0_c3tfwv7p35clwcmkb5fnkshzei
-      case-sensitive-paths-webpack-plugin: 2.4.0
-      css-loader: 6.7.3_webpack@5.79.0
-      dotenv: 16.0.3
-      html-webpack-plugin: 5.5.1_webpack@5.79.0
+      '@vitejs/plugin-basic-ssl': 1.0.1_vite@4.5.0
+      '@vitejs/plugin-react': 4.1.0_vite@4.5.0
       prettier: 2.5.1
       process: 0.11.10
-      source-map-loader: 4.0.1_webpack@5.79.0
-      style-loader: 3.3.2_webpack@5.79.0
-      ts-loader: 8.4.0_kxsien4e7rjqn4zxld6vb2o5cu
       typescript: 5.0.2
-      util: 0.12.5
-      webpack: 5.79.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_p36zd373urxldnwcoqg4c3uxta
-      webpack-dev-server: 4.13.3_twduw4g6gld2ld7kevqi3javqa
+      vite: 4.5.0
+      vite-plugin-html: 3.2.0_vite@4.5.0
 
   ../../examples/sdk-interactive-examples/examples/example-columnchart:
     specifiers:
-      '@babel/core': ^7.7.2
-      '@babel/preset-env': ^7.7.2
-      '@babel/preset-react': ^7.7.2
       '@gooddata/catalog-export': workspace:*
       '@gooddata/sdk-backend-base': workspace:*
       '@gooddata/sdk-backend-bear': workspace:*
@@ -592,24 +545,16 @@ importers:
       '@gooddata/sdk-ui-pivot': workspace:*
       '@types/react': ^18.2.0
       '@types/react-dom': ^18.2.1
-      babel-loader: ^8.0.5
-      case-sensitive-paths-webpack-plugin: ^2.4.0
-      css-loader: ^6.7.1
-      dotenv: 16.0.3
-      html-webpack-plugin: ^5.3.1
+      '@vitejs/plugin-basic-ssl': ~1.0.1
+      '@vitejs/plugin-react': ~4.1.0
       prettier: ~2.5.0
       process: ^0.11.10
       react: ^18.2.0
       react-dom: ^18.2.0
-      source-map-loader: ^4.0.0
-      style-loader: ^3.3.1
-      ts-loader: ^8.3.0
       tslib: ^2.5.0
       typescript: 5.0.2
-      util: ^0.12.3
-      webpack: ^5.58.0
-      webpack-cli: ^4.9.2
-      webpack-dev-server: ^4.9.1
+      vite: ~4.5.0
+      vite-plugin-html: ~3.2.0
     dependencies:
       '@gooddata/sdk-backend-base': link:../../../../libs/sdk-backend-base
       '@gooddata/sdk-backend-bear': link:../../../../libs/sdk-backend-bear
@@ -622,39 +567,25 @@ importers:
       '@gooddata/sdk-ui-ext': link:../../../../libs/sdk-ui-ext
       '@gooddata/sdk-ui-filters': link:../../../../libs/sdk-ui-filters
       '@gooddata/sdk-ui-geo': link:../../../../libs/sdk-ui-geo
+      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@gooddata/sdk-ui-pivot': link:../../../../libs/sdk-ui-pivot
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       tslib: 2.5.0
     devDependencies:
-      '@babel/core': 7.21.4
-      '@babel/preset-env': 7.21.4_@babel+core@7.21.4
-      '@babel/preset-react': 7.18.6_@babel+core@7.21.4
       '@gooddata/catalog-export': link:../../../../tools/catalog-export
-      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@types/react': 18.2.0
       '@types/react-dom': 18.2.1
-      babel-loader: 8.3.0_c3tfwv7p35clwcmkb5fnkshzei
-      case-sensitive-paths-webpack-plugin: 2.4.0
-      css-loader: 6.7.3_webpack@5.79.0
-      dotenv: 16.0.3
-      html-webpack-plugin: 5.5.1_webpack@5.79.0
+      '@vitejs/plugin-basic-ssl': 1.0.1_vite@4.5.0
+      '@vitejs/plugin-react': 4.1.0_vite@4.5.0
       prettier: 2.5.1
       process: 0.11.10
-      source-map-loader: 4.0.1_webpack@5.79.0
-      style-loader: 3.3.2_webpack@5.79.0
-      ts-loader: 8.4.0_kxsien4e7rjqn4zxld6vb2o5cu
       typescript: 5.0.2
-      util: 0.12.5
-      webpack: 5.79.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_p36zd373urxldnwcoqg4c3uxta
-      webpack-dev-server: 4.13.3_twduw4g6gld2ld7kevqi3javqa
+      vite: 4.5.0
+      vite-plugin-html: 3.2.0_vite@4.5.0
 
   ../../examples/sdk-interactive-examples/examples/example-combochart:
     specifiers:
-      '@babel/core': ^7.7.2
-      '@babel/preset-env': ^7.7.2
-      '@babel/preset-react': ^7.7.2
       '@gooddata/catalog-export': workspace:*
       '@gooddata/sdk-backend-base': workspace:*
       '@gooddata/sdk-backend-bear': workspace:*
@@ -671,24 +602,16 @@ importers:
       '@gooddata/sdk-ui-pivot': workspace:*
       '@types/react': ^18.2.0
       '@types/react-dom': ^18.2.1
-      babel-loader: ^8.0.5
-      case-sensitive-paths-webpack-plugin: ^2.4.0
-      css-loader: ^6.7.1
-      dotenv: 16.0.3
-      html-webpack-plugin: ^5.3.1
+      '@vitejs/plugin-basic-ssl': ~1.0.1
+      '@vitejs/plugin-react': ~4.1.0
       prettier: ~2.5.0
       process: ^0.11.10
       react: ^18.2.0
       react-dom: ^18.2.0
-      source-map-loader: ^4.0.0
-      style-loader: ^3.3.1
-      ts-loader: ^8.3.0
       tslib: ^2.5.0
       typescript: 5.0.2
-      util: ^0.12.3
-      webpack: ^5.58.0
-      webpack-cli: ^4.9.2
-      webpack-dev-server: ^4.9.1
+      vite: ~4.5.0
+      vite-plugin-html: ~3.2.0
     dependencies:
       '@gooddata/sdk-backend-base': link:../../../../libs/sdk-backend-base
       '@gooddata/sdk-backend-bear': link:../../../../libs/sdk-backend-bear
@@ -701,39 +624,25 @@ importers:
       '@gooddata/sdk-ui-ext': link:../../../../libs/sdk-ui-ext
       '@gooddata/sdk-ui-filters': link:../../../../libs/sdk-ui-filters
       '@gooddata/sdk-ui-geo': link:../../../../libs/sdk-ui-geo
+      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@gooddata/sdk-ui-pivot': link:../../../../libs/sdk-ui-pivot
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       tslib: 2.5.0
     devDependencies:
-      '@babel/core': 7.21.4
-      '@babel/preset-env': 7.21.4_@babel+core@7.21.4
-      '@babel/preset-react': 7.18.6_@babel+core@7.21.4
       '@gooddata/catalog-export': link:../../../../tools/catalog-export
-      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@types/react': 18.2.0
       '@types/react-dom': 18.2.1
-      babel-loader: 8.3.0_c3tfwv7p35clwcmkb5fnkshzei
-      case-sensitive-paths-webpack-plugin: 2.4.0
-      css-loader: 6.7.3_webpack@5.79.0
-      dotenv: 16.0.3
-      html-webpack-plugin: 5.5.1_webpack@5.79.0
+      '@vitejs/plugin-basic-ssl': 1.0.1_vite@4.5.0
+      '@vitejs/plugin-react': 4.1.0_vite@4.5.0
       prettier: 2.5.1
       process: 0.11.10
-      source-map-loader: 4.0.1_webpack@5.79.0
-      style-loader: 3.3.2_webpack@5.79.0
-      ts-loader: 8.4.0_kxsien4e7rjqn4zxld6vb2o5cu
       typescript: 5.0.2
-      util: 0.12.5
-      webpack: 5.79.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_p36zd373urxldnwcoqg4c3uxta
-      webpack-dev-server: 4.13.3_twduw4g6gld2ld7kevqi3javqa
+      vite: 4.5.0
+      vite-plugin-html: 3.2.0_vite@4.5.0
 
   ../../examples/sdk-interactive-examples/examples/example-dashboard:
     specifiers:
-      '@babel/core': ^7.7.2
-      '@babel/preset-env': ^7.7.2
-      '@babel/preset-react': ^7.7.2
       '@gooddata/catalog-export': workspace:*
       '@gooddata/sdk-backend-base': workspace:*
       '@gooddata/sdk-backend-bear': workspace:*
@@ -750,24 +659,16 @@ importers:
       '@gooddata/sdk-ui-pivot': workspace:*
       '@types/react': ^18.2.0
       '@types/react-dom': ^18.2.1
-      babel-loader: ^8.0.5
-      case-sensitive-paths-webpack-plugin: ^2.4.0
-      css-loader: ^6.7.1
-      dotenv: 16.0.3
-      html-webpack-plugin: ^5.3.1
+      '@vitejs/plugin-basic-ssl': ~1.0.1
+      '@vitejs/plugin-react': ~4.1.0
       prettier: ~2.5.0
       process: ^0.11.10
       react: ^18.2.0
       react-dom: ^18.2.0
-      source-map-loader: ^4.0.0
-      style-loader: ^3.3.1
-      ts-loader: ^8.3.0
       tslib: ^2.5.0
       typescript: 5.0.2
-      util: ^0.12.3
-      webpack: ^5.58.0
-      webpack-cli: ^4.9.2
-      webpack-dev-server: ^4.9.1
+      vite: ~4.5.0
+      vite-plugin-html: ~3.2.0
     dependencies:
       '@gooddata/sdk-backend-base': link:../../../../libs/sdk-backend-base
       '@gooddata/sdk-backend-bear': link:../../../../libs/sdk-backend-bear
@@ -780,39 +681,25 @@ importers:
       '@gooddata/sdk-ui-ext': link:../../../../libs/sdk-ui-ext
       '@gooddata/sdk-ui-filters': link:../../../../libs/sdk-ui-filters
       '@gooddata/sdk-ui-geo': link:../../../../libs/sdk-ui-geo
+      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@gooddata/sdk-ui-pivot': link:../../../../libs/sdk-ui-pivot
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       tslib: 2.5.0
     devDependencies:
-      '@babel/core': 7.21.4
-      '@babel/preset-env': 7.21.4_@babel+core@7.21.4
-      '@babel/preset-react': 7.18.6_@babel+core@7.21.4
       '@gooddata/catalog-export': link:../../../../tools/catalog-export
-      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@types/react': 18.2.0
       '@types/react-dom': 18.2.1
-      babel-loader: 8.3.0_c3tfwv7p35clwcmkb5fnkshzei
-      case-sensitive-paths-webpack-plugin: 2.4.0
-      css-loader: 6.7.3_webpack@5.79.0
-      dotenv: 16.0.3
-      html-webpack-plugin: 5.5.1_webpack@5.79.0
+      '@vitejs/plugin-basic-ssl': 1.0.1_vite@4.5.0
+      '@vitejs/plugin-react': 4.1.0_vite@4.5.0
       prettier: 2.5.1
       process: 0.11.10
-      source-map-loader: 4.0.1_webpack@5.79.0
-      style-loader: 3.3.2_webpack@5.79.0
-      ts-loader: 8.4.0_kxsien4e7rjqn4zxld6vb2o5cu
       typescript: 5.0.2
-      util: 0.12.5
-      webpack: 5.79.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_p36zd373urxldnwcoqg4c3uxta
-      webpack-dev-server: 4.13.3_twduw4g6gld2ld7kevqi3javqa
+      vite: 4.5.0
+      vite-plugin-html: 3.2.0_vite@4.5.0
 
   ../../examples/sdk-interactive-examples/examples/example-datefilter:
     specifiers:
-      '@babel/core': ^7.7.2
-      '@babel/preset-env': ^7.7.2
-      '@babel/preset-react': ^7.7.2
       '@gooddata/catalog-export': workspace:*
       '@gooddata/sdk-backend-base': workspace:*
       '@gooddata/sdk-backend-bear': workspace:*
@@ -829,24 +716,16 @@ importers:
       '@gooddata/sdk-ui-pivot': workspace:*
       '@types/react': ^18.2.0
       '@types/react-dom': ^18.2.1
-      babel-loader: ^8.0.5
-      case-sensitive-paths-webpack-plugin: ^2.4.0
-      css-loader: ^6.7.1
-      dotenv: 16.0.3
-      html-webpack-plugin: ^5.3.1
+      '@vitejs/plugin-basic-ssl': ~1.0.1
+      '@vitejs/plugin-react': ~4.1.0
       prettier: ~2.5.0
       process: ^0.11.10
       react: ^18.2.0
       react-dom: ^18.2.0
-      source-map-loader: ^4.0.0
-      style-loader: ^3.3.1
-      ts-loader: ^8.3.0
       tslib: ^2.5.0
       typescript: 5.0.2
-      util: ^0.12.3
-      webpack: ^5.58.0
-      webpack-cli: ^4.9.2
-      webpack-dev-server: ^4.9.1
+      vite: ~4.5.0
+      vite-plugin-html: ~3.2.0
     dependencies:
       '@gooddata/sdk-backend-base': link:../../../../libs/sdk-backend-base
       '@gooddata/sdk-backend-bear': link:../../../../libs/sdk-backend-bear
@@ -859,39 +738,25 @@ importers:
       '@gooddata/sdk-ui-ext': link:../../../../libs/sdk-ui-ext
       '@gooddata/sdk-ui-filters': link:../../../../libs/sdk-ui-filters
       '@gooddata/sdk-ui-geo': link:../../../../libs/sdk-ui-geo
+      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@gooddata/sdk-ui-pivot': link:../../../../libs/sdk-ui-pivot
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       tslib: 2.5.0
     devDependencies:
-      '@babel/core': 7.21.4
-      '@babel/preset-env': 7.21.4_@babel+core@7.21.4
-      '@babel/preset-react': 7.18.6_@babel+core@7.21.4
       '@gooddata/catalog-export': link:../../../../tools/catalog-export
-      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@types/react': 18.2.0
       '@types/react-dom': 18.2.1
-      babel-loader: 8.3.0_c3tfwv7p35clwcmkb5fnkshzei
-      case-sensitive-paths-webpack-plugin: 2.4.0
-      css-loader: 6.7.3_webpack@5.79.0
-      dotenv: 16.0.3
-      html-webpack-plugin: 5.5.1_webpack@5.79.0
+      '@vitejs/plugin-basic-ssl': 1.0.1_vite@4.5.0
+      '@vitejs/plugin-react': 4.1.0_vite@4.5.0
       prettier: 2.5.1
       process: 0.11.10
-      source-map-loader: 4.0.1_webpack@5.79.0
-      style-loader: 3.3.2_webpack@5.79.0
-      ts-loader: 8.4.0_kxsien4e7rjqn4zxld6vb2o5cu
       typescript: 5.0.2
-      util: 0.12.5
-      webpack: 5.79.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_p36zd373urxldnwcoqg4c3uxta
-      webpack-dev-server: 4.13.3_twduw4g6gld2ld7kevqi3javqa
+      vite: 4.5.0
+      vite-plugin-html: 3.2.0_vite@4.5.0
 
   ../../examples/sdk-interactive-examples/examples/example-execute:
     specifiers:
-      '@babel/core': ^7.7.2
-      '@babel/preset-env': ^7.7.2
-      '@babel/preset-react': ^7.7.2
       '@gooddata/catalog-export': workspace:*
       '@gooddata/sdk-backend-base': workspace:*
       '@gooddata/sdk-backend-bear': workspace:*
@@ -908,27 +773,19 @@ importers:
       '@gooddata/sdk-ui-pivot': workspace:*
       '@types/react': ^18.2.0
       '@types/react-dom': ^18.2.1
-      babel-loader: ^8.0.5
-      case-sensitive-paths-webpack-plugin: ^2.4.0
-      css-loader: ^6.7.1
+      '@vitejs/plugin-basic-ssl': ~1.0.1
+      '@vitejs/plugin-react': ~4.1.0
       default-import: ^1.1.5
-      dotenv: 16.0.3
       highcharts: 9.3.0
       highcharts-react-official: 3.2.1
-      html-webpack-plugin: ^5.3.1
       prettier: ~2.5.0
       process: ^0.11.10
       react: ^18.2.0
       react-dom: ^18.2.0
-      source-map-loader: ^4.0.0
-      style-loader: ^3.3.1
-      ts-loader: ^8.3.0
       tslib: ^2.5.0
       typescript: 5.0.2
-      util: ^0.12.3
-      webpack: ^5.58.0
-      webpack-cli: ^4.9.2
-      webpack-dev-server: ^4.9.1
+      vite: ~4.5.0
+      vite-plugin-html: ~3.2.0
     dependencies:
       '@gooddata/sdk-backend-base': link:../../../../libs/sdk-backend-base
       '@gooddata/sdk-backend-bear': link:../../../../libs/sdk-backend-bear
@@ -941,6 +798,7 @@ importers:
       '@gooddata/sdk-ui-ext': link:../../../../libs/sdk-ui-ext
       '@gooddata/sdk-ui-filters': link:../../../../libs/sdk-ui-filters
       '@gooddata/sdk-ui-geo': link:../../../../libs/sdk-ui-geo
+      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@gooddata/sdk-ui-pivot': link:../../../../libs/sdk-ui-pivot
       default-import: 1.1.5
       highcharts: 9.3.0
@@ -949,34 +807,19 @@ importers:
       react-dom: 18.2.0_react@18.2.0
       tslib: 2.5.0
     devDependencies:
-      '@babel/core': 7.21.4
-      '@babel/preset-env': 7.21.4_@babel+core@7.21.4
-      '@babel/preset-react': 7.18.6_@babel+core@7.21.4
       '@gooddata/catalog-export': link:../../../../tools/catalog-export
-      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@types/react': 18.2.0
       '@types/react-dom': 18.2.1
-      babel-loader: 8.3.0_c3tfwv7p35clwcmkb5fnkshzei
-      case-sensitive-paths-webpack-plugin: 2.4.0
-      css-loader: 6.7.3_webpack@5.79.0
-      dotenv: 16.0.3
-      html-webpack-plugin: 5.5.1_webpack@5.79.0
+      '@vitejs/plugin-basic-ssl': 1.0.1_vite@4.5.0
+      '@vitejs/plugin-react': 4.1.0_vite@4.5.0
       prettier: 2.5.1
       process: 0.11.10
-      source-map-loader: 4.0.1_webpack@5.79.0
-      style-loader: 3.3.2_webpack@5.79.0
-      ts-loader: 8.4.0_kxsien4e7rjqn4zxld6vb2o5cu
       typescript: 5.0.2
-      util: 0.12.5
-      webpack: 5.79.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_p36zd373urxldnwcoqg4c3uxta
-      webpack-dev-server: 4.13.3_twduw4g6gld2ld7kevqi3javqa
+      vite: 4.5.0
+      vite-plugin-html: 3.2.0_vite@4.5.0
 
   ../../examples/sdk-interactive-examples/examples/example-granularity:
     specifiers:
-      '@babel/core': ^7.7.2
-      '@babel/preset-env': ^7.7.2
-      '@babel/preset-react': ^7.7.2
       '@gooddata/catalog-export': workspace:*
       '@gooddata/sdk-backend-base': workspace:*
       '@gooddata/sdk-backend-bear': workspace:*
@@ -993,24 +836,16 @@ importers:
       '@gooddata/sdk-ui-pivot': workspace:*
       '@types/react': ^18.2.0
       '@types/react-dom': ^18.2.1
-      babel-loader: ^8.0.5
-      case-sensitive-paths-webpack-plugin: ^2.4.0
-      css-loader: ^6.7.1
-      dotenv: 16.0.3
-      html-webpack-plugin: ^5.3.1
+      '@vitejs/plugin-basic-ssl': ~1.0.1
+      '@vitejs/plugin-react': ~4.1.0
       prettier: ~2.5.0
       process: ^0.11.10
       react: ^18.2.0
       react-dom: ^18.2.0
-      source-map-loader: ^4.0.0
-      style-loader: ^3.3.1
-      ts-loader: ^8.3.0
       tslib: ^2.5.0
       typescript: 5.0.2
-      util: ^0.12.3
-      webpack: ^5.58.0
-      webpack-cli: ^4.9.2
-      webpack-dev-server: ^4.9.1
+      vite: ~4.5.0
+      vite-plugin-html: ~3.2.0
     dependencies:
       '@gooddata/sdk-backend-base': link:../../../../libs/sdk-backend-base
       '@gooddata/sdk-backend-bear': link:../../../../libs/sdk-backend-bear
@@ -1023,39 +858,25 @@ importers:
       '@gooddata/sdk-ui-ext': link:../../../../libs/sdk-ui-ext
       '@gooddata/sdk-ui-filters': link:../../../../libs/sdk-ui-filters
       '@gooddata/sdk-ui-geo': link:../../../../libs/sdk-ui-geo
+      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@gooddata/sdk-ui-pivot': link:../../../../libs/sdk-ui-pivot
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       tslib: 2.5.0
     devDependencies:
-      '@babel/core': 7.21.4
-      '@babel/preset-env': 7.21.4_@babel+core@7.21.4
-      '@babel/preset-react': 7.18.6_@babel+core@7.21.4
       '@gooddata/catalog-export': link:../../../../tools/catalog-export
-      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@types/react': 18.2.0
       '@types/react-dom': 18.2.1
-      babel-loader: 8.3.0_c3tfwv7p35clwcmkb5fnkshzei
-      case-sensitive-paths-webpack-plugin: 2.4.0
-      css-loader: 6.7.3_webpack@5.79.0
-      dotenv: 16.0.3
-      html-webpack-plugin: 5.5.1_webpack@5.79.0
+      '@vitejs/plugin-basic-ssl': 1.0.1_vite@4.5.0
+      '@vitejs/plugin-react': 4.1.0_vite@4.5.0
       prettier: 2.5.1
       process: 0.11.10
-      source-map-loader: 4.0.1_webpack@5.79.0
-      style-loader: 3.3.2_webpack@5.79.0
-      ts-loader: 8.4.0_kxsien4e7rjqn4zxld6vb2o5cu
       typescript: 5.0.2
-      util: 0.12.5
-      webpack: 5.79.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_p36zd373urxldnwcoqg4c3uxta
-      webpack-dev-server: 4.13.3_twduw4g6gld2ld7kevqi3javqa
+      vite: 4.5.0
+      vite-plugin-html: 3.2.0_vite@4.5.0
 
   ../../examples/sdk-interactive-examples/examples/example-headline:
     specifiers:
-      '@babel/core': ^7.7.2
-      '@babel/preset-env': ^7.7.2
-      '@babel/preset-react': ^7.7.2
       '@gooddata/catalog-export': workspace:*
       '@gooddata/sdk-backend-base': workspace:*
       '@gooddata/sdk-backend-bear': workspace:*
@@ -1072,24 +893,16 @@ importers:
       '@gooddata/sdk-ui-pivot': workspace:*
       '@types/react': ^18.2.0
       '@types/react-dom': ^18.2.1
-      babel-loader: ^8.0.5
-      case-sensitive-paths-webpack-plugin: ^2.4.0
-      css-loader: ^6.7.1
-      dotenv: 16.0.3
-      html-webpack-plugin: ^5.3.1
+      '@vitejs/plugin-basic-ssl': ~1.0.1
+      '@vitejs/plugin-react': ~4.1.0
       prettier: ~2.5.0
       process: ^0.11.10
       react: ^18.2.0
       react-dom: ^18.2.0
-      source-map-loader: ^4.0.0
-      style-loader: ^3.3.1
-      ts-loader: ^8.3.0
       tslib: ^2.5.0
       typescript: 5.0.2
-      util: ^0.12.3
-      webpack: ^5.58.0
-      webpack-cli: ^4.9.2
-      webpack-dev-server: ^4.9.1
+      vite: ~4.5.0
+      vite-plugin-html: ~3.2.0
     dependencies:
       '@gooddata/sdk-backend-base': link:../../../../libs/sdk-backend-base
       '@gooddata/sdk-backend-bear': link:../../../../libs/sdk-backend-bear
@@ -1102,39 +915,25 @@ importers:
       '@gooddata/sdk-ui-ext': link:../../../../libs/sdk-ui-ext
       '@gooddata/sdk-ui-filters': link:../../../../libs/sdk-ui-filters
       '@gooddata/sdk-ui-geo': link:../../../../libs/sdk-ui-geo
+      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@gooddata/sdk-ui-pivot': link:../../../../libs/sdk-ui-pivot
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       tslib: 2.5.0
     devDependencies:
-      '@babel/core': 7.21.4
-      '@babel/preset-env': 7.21.4_@babel+core@7.21.4
-      '@babel/preset-react': 7.18.6_@babel+core@7.21.4
       '@gooddata/catalog-export': link:../../../../tools/catalog-export
-      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@types/react': 18.2.0
       '@types/react-dom': 18.2.1
-      babel-loader: 8.3.0_c3tfwv7p35clwcmkb5fnkshzei
-      case-sensitive-paths-webpack-plugin: 2.4.0
-      css-loader: 6.7.3_webpack@5.79.0
-      dotenv: 16.0.3
-      html-webpack-plugin: 5.5.1_webpack@5.79.0
+      '@vitejs/plugin-basic-ssl': 1.0.1_vite@4.5.0
+      '@vitejs/plugin-react': 4.1.0_vite@4.5.0
       prettier: 2.5.1
       process: 0.11.10
-      source-map-loader: 4.0.1_webpack@5.79.0
-      style-loader: 3.3.2_webpack@5.79.0
-      ts-loader: 8.4.0_kxsien4e7rjqn4zxld6vb2o5cu
       typescript: 5.0.2
-      util: 0.12.5
-      webpack: 5.79.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_p36zd373urxldnwcoqg4c3uxta
-      webpack-dev-server: 4.13.3_twduw4g6gld2ld7kevqi3javqa
+      vite: 4.5.0
+      vite-plugin-html: 3.2.0_vite@4.5.0
 
   ../../examples/sdk-interactive-examples/examples/example-pivottable:
     specifiers:
-      '@babel/core': ^7.7.2
-      '@babel/preset-env': ^7.7.2
-      '@babel/preset-react': ^7.7.2
       '@gooddata/catalog-export': workspace:*
       '@gooddata/sdk-backend-base': workspace:*
       '@gooddata/sdk-backend-bear': workspace:*
@@ -1151,24 +950,16 @@ importers:
       '@gooddata/sdk-ui-pivot': workspace:*
       '@types/react': ^18.2.0
       '@types/react-dom': ^18.2.1
-      babel-loader: ^8.0.5
-      case-sensitive-paths-webpack-plugin: ^2.4.0
-      css-loader: ^6.7.1
-      dotenv: 16.0.3
-      html-webpack-plugin: ^5.3.1
+      '@vitejs/plugin-basic-ssl': ~1.0.1
+      '@vitejs/plugin-react': ~4.1.0
       prettier: ~2.5.0
       process: ^0.11.10
       react: ^18.2.0
       react-dom: ^18.2.0
-      source-map-loader: ^4.0.0
-      style-loader: ^3.3.1
-      ts-loader: ^8.3.0
       tslib: ^2.5.0
       typescript: 5.0.2
-      util: ^0.12.3
-      webpack: ^5.58.0
-      webpack-cli: ^4.9.2
-      webpack-dev-server: ^4.9.1
+      vite: ~4.5.0
+      vite-plugin-html: ~3.2.0
     dependencies:
       '@gooddata/sdk-backend-base': link:../../../../libs/sdk-backend-base
       '@gooddata/sdk-backend-bear': link:../../../../libs/sdk-backend-bear
@@ -1181,39 +972,25 @@ importers:
       '@gooddata/sdk-ui-ext': link:../../../../libs/sdk-ui-ext
       '@gooddata/sdk-ui-filters': link:../../../../libs/sdk-ui-filters
       '@gooddata/sdk-ui-geo': link:../../../../libs/sdk-ui-geo
+      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@gooddata/sdk-ui-pivot': link:../../../../libs/sdk-ui-pivot
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       tslib: 2.5.0
     devDependencies:
-      '@babel/core': 7.21.4
-      '@babel/preset-env': 7.21.4_@babel+core@7.21.4
-      '@babel/preset-react': 7.18.6_@babel+core@7.21.4
       '@gooddata/catalog-export': link:../../../../tools/catalog-export
-      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@types/react': 18.2.0
       '@types/react-dom': 18.2.1
-      babel-loader: 8.3.0_c3tfwv7p35clwcmkb5fnkshzei
-      case-sensitive-paths-webpack-plugin: 2.4.0
-      css-loader: 6.7.3_webpack@5.79.0
-      dotenv: 16.0.3
-      html-webpack-plugin: 5.5.1_webpack@5.79.0
+      '@vitejs/plugin-basic-ssl': 1.0.1_vite@4.5.0
+      '@vitejs/plugin-react': 4.1.0_vite@4.5.0
       prettier: 2.5.1
       process: 0.11.10
-      source-map-loader: 4.0.1_webpack@5.79.0
-      style-loader: 3.3.2_webpack@5.79.0
-      ts-loader: 8.4.0_kxsien4e7rjqn4zxld6vb2o5cu
       typescript: 5.0.2
-      util: 0.12.5
-      webpack: 5.79.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_p36zd373urxldnwcoqg4c3uxta
-      webpack-dev-server: 4.13.3_twduw4g6gld2ld7kevqi3javqa
+      vite: 4.5.0
+      vite-plugin-html: 3.2.0_vite@4.5.0
 
   ../../examples/sdk-interactive-examples/examples/example-relativedatefilter:
     specifiers:
-      '@babel/core': ^7.7.2
-      '@babel/preset-env': ^7.7.2
-      '@babel/preset-react': ^7.7.2
       '@gooddata/catalog-export': workspace:*
       '@gooddata/sdk-backend-base': workspace:*
       '@gooddata/sdk-backend-bear': workspace:*
@@ -1230,24 +1007,16 @@ importers:
       '@gooddata/sdk-ui-pivot': workspace:*
       '@types/react': ^18.2.0
       '@types/react-dom': ^18.2.1
-      babel-loader: ^8.0.5
-      case-sensitive-paths-webpack-plugin: ^2.4.0
-      css-loader: ^6.7.1
-      dotenv: 16.0.3
-      html-webpack-plugin: ^5.3.1
+      '@vitejs/plugin-basic-ssl': ~1.0.1
+      '@vitejs/plugin-react': ~4.1.0
       prettier: ~2.5.0
       process: ^0.11.10
       react: ^18.2.0
       react-dom: ^18.2.0
-      source-map-loader: ^4.0.0
-      style-loader: ^3.3.1
-      ts-loader: ^8.3.0
       tslib: ^2.5.0
       typescript: 5.0.2
-      util: ^0.12.3
-      webpack: ^5.58.0
-      webpack-cli: ^4.9.2
-      webpack-dev-server: ^4.9.1
+      vite: ~4.5.0
+      vite-plugin-html: ~3.2.0
     dependencies:
       '@gooddata/sdk-backend-base': link:../../../../libs/sdk-backend-base
       '@gooddata/sdk-backend-bear': link:../../../../libs/sdk-backend-bear
@@ -1260,33 +1029,22 @@ importers:
       '@gooddata/sdk-ui-ext': link:../../../../libs/sdk-ui-ext
       '@gooddata/sdk-ui-filters': link:../../../../libs/sdk-ui-filters
       '@gooddata/sdk-ui-geo': link:../../../../libs/sdk-ui-geo
+      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@gooddata/sdk-ui-pivot': link:../../../../libs/sdk-ui-pivot
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       tslib: 2.5.0
     devDependencies:
-      '@babel/core': 7.21.4
-      '@babel/preset-env': 7.21.4_@babel+core@7.21.4
-      '@babel/preset-react': 7.18.6_@babel+core@7.21.4
       '@gooddata/catalog-export': link:../../../../tools/catalog-export
-      '@gooddata/sdk-ui-kit': link:../../../../libs/sdk-ui-kit
       '@types/react': 18.2.0
       '@types/react-dom': 18.2.1
-      babel-loader: 8.3.0_c3tfwv7p35clwcmkb5fnkshzei
-      case-sensitive-paths-webpack-plugin: 2.4.0
-      css-loader: 6.7.3_webpack@5.79.0
-      dotenv: 16.0.3
-      html-webpack-plugin: 5.5.1_webpack@5.79.0
+      '@vitejs/plugin-basic-ssl': 1.0.1_vite@4.5.0
+      '@vitejs/plugin-react': 4.1.0_vite@4.5.0
       prettier: 2.5.1
       process: 0.11.10
-      source-map-loader: 4.0.1_webpack@5.79.0
-      style-loader: 3.3.2_webpack@5.79.0
-      ts-loader: 8.4.0_kxsien4e7rjqn4zxld6vb2o5cu
       typescript: 5.0.2
-      util: 0.12.5
-      webpack: 5.79.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_p36zd373urxldnwcoqg4c3uxta
-      webpack-dev-server: 4.13.3_twduw4g6gld2ld7kevqi3javqa
+      vite: 4.5.0
+      vite-plugin-html: 3.2.0_vite@4.5.0
 
   ../../libs/api-client-bear:
     specifiers:
@@ -11349,8 +11107,8 @@ packages:
   /@types/babel__core/7.20.3:
     resolution: {integrity: sha512-54fjTSeSHwfan8AyHWrKbfBWiEUrNTZsUwPTDSNaaP1QDQIZbeNUg3a59E9D+375MzUw/x1vx2/0F5LBz+AeYA==}
     dependencies:
-      '@babel/parser': 7.21.4
-      '@babel/types': 7.21.4
+      '@babel/parser': 7.23.0
+      '@babel/types': 7.23.0
       '@types/babel__generator': 7.6.4
       '@types/babel__template': 7.4.1
       '@types/babel__traverse': 7.18.3

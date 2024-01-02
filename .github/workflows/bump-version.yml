@@ -1,0 +1,41 @@
+name: Bump Version and Commit
+
+on:
+  workflow_dispatch:
+    inputs:
+      branchName:
+        description: 'Branch to run the action on'
+        required: true
+        default: 'main'
+
+jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.inputs.branchName }}
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # Specify the Node.js version
+
+    - name: Install Rush
+      run: npm install -g @microsoft/rush
+
+    - name: Install Dependencies
+      run: rush install
+
+    - name: Bump Versions
+      run: rush version --bump
+
+    - name: Commit and Push Changes
+      run: |
+        git config --global user.name 'Your Name'
+        git config --global user.email 'your-email@example.com'
+        git add -A
+        git commit -m "Bump package versions"
+        git push origin ${{ github.event.inputs.branchName }}

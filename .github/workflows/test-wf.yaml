@@ -1,0 +1,27 @@
+# (C) 2024 GoodData Corporation
+
+name: Prerelease ~ test
+on:
+    workflow_dispatch:
+
+jobs:
+    bump-version:
+        uses: ./.github/workflows/rw-bump-version.yml
+        permissions:
+          contents: write
+          id-token: write
+        secrets: inherit
+        with:
+          source-branch: "IMJ-Test-workflow"
+          bump: "prerelease"
+          skip-bump: true
+    
+    test:
+        needs: [bump-version]
+        runs-on: ubuntu-latest
+        steps:
+            - name: output
+              id: output
+              env:
+                  OUT_BUMP: ${{ needs.bump-version.outputs.version }}
+              run: echo "test"

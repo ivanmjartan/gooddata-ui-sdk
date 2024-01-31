@@ -27,7 +27,7 @@ jobs:
               });
 
               const res = pullRequests?.data[0]?.labels?.some((it)=>it.name==='publish pre-release');
-              return { shouldprerelease: res };
+              const result = { shouldprerelease: res };
           result-encoding: string
       - name: Extract branch name
         env:

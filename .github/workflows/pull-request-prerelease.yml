@@ -11,8 +11,8 @@ jobs:
   get-label-and-author-from-pr:
     runs-on: [ubuntu-latest]
     outputs:
-      should-prerelease: ${{ steps.pr_info.outputs.shouldPrerelease }}
-      author: ${{ steps.pr_info.outputs.author }}
+      should-prerelease: ${{ steps.pr_info.outputs.result.shouldPrerelease }}
+      author: ${{ steps.pr_info.outputs.result.author }}
       branch-name: ${{ steps.extract-branch.outputs.branch }}
     steps:
       - uses: actions/github-script@v7

@@ -18,13 +18,21 @@ jobs:
         id: needs-prerelease
         with:
           script: |
-              return (
+              /*return (
                 await github.rest.repos.listPullRequestsAssociatedWithCommit({
                   commit_sha: context.sha,
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                 })
-              ).data[0]?.labels?.some((it)=>it.name==='publish pre-release');            
+              ).data[0]?.labels?.some((it)=>it.name==='publish pre-release');*/
+              
+              const pullRequests = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+                commit_sha: context.sha,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+              });
+
+              return pullRequests?.data[0]?.labels?.some((it)=>it.name==='publish pre-release');
           result-encoding: string
       - name: Extract branch name
         env:

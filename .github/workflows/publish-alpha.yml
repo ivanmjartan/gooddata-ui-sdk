@@ -1,5 +1,7 @@
 # (C) 2024 GoodData Corporation
 
+# test 
+
 name: Prerelease ~ Publish alpha
 on:
     workflow_dispatch:

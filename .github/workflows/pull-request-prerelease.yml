@@ -1,5 +1,7 @@
 # (C) 2024 GoodData Corporation
 
+#zmena
+
 name: Pull request ~ Prerelease
 on:
   push:    

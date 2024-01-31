@@ -1,4 +1,5 @@
 # (C) 2024 GoodData Corporation
+#test 2
 
 name: rw ~ Release ~ Publish prerelease
 on:

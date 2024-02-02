@@ -1,0 +1,16 @@
+# (C) 2022 GoodData Corporation
+
+name: "Check pull request commits"
+description: "Simple action that checks pull request commits"
+
+inputs:
+    path-to-version-config:
+        description: "Path to hugo version config"
+        required: true
+    version:
+        description: "New version to be set"
+        required: true
+
+runs:
+    using: "node20"
+    main: "action-build/index.js"

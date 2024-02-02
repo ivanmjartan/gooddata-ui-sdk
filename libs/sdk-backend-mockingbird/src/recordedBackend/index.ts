@@ -1,4 +1,4 @@
-// (C) 2019-2023 GoodData Corporation
+// (C) 2019-2024 GoodData Corporation
 
 import {
     IAuthenticatedPrincipal,
@@ -95,7 +95,6 @@ export const defaultRecordedBackendCapabilities: IBackendCapabilities = {
     allowsInconsistentRelations: false,
     supportsHierarchicalWorkspaces: false,
     supportsCustomColorPalettes: true,
-    supportsElementsQueryParentFiltering: true,
     supportsElementUris: true,
     supportsEveryoneUserGroupForAccessControl: true,
 };
@@ -375,6 +374,9 @@ function recordedOrganization(organizationId: string, implConfig: RecordedBacken
         },
         users(): IOrganizationUserService {
             return {
+                createUser: () => {
+                    throw new NotSupported("not supported");
+                },
                 addUsersToUserGroups: () => Promise.resolve(),
                 createUserGroup: () => Promise.resolve(),
                 deleteUsers: () => Promise.resolve(),

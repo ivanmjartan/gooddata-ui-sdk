@@ -2480,6 +2480,7 @@ export interface ISettings {
     enableColumnHeadersPosition?: boolean;
     enableCompanyLogoInEmbeddedUI?: boolean;
     enableCompositeGrain?: boolean;
+    enableCreateUser?: boolean;
     enableCustomColorPicker?: boolean;
     enableDataSampling?: boolean;
     enableDescriptions?: boolean;
@@ -2491,7 +2492,6 @@ export interface ISettings {
     enableInsightExportScheduling?: boolean;
     enableInsightToReport?: boolean;
     enableKDCrossFiltering?: boolean;
-    enableKDDependentFilters?: boolean;
     enableKDRichText?: boolean;
     enableKDWidgetCustomHeight?: boolean;
     enableKDZooming?: boolean;
@@ -3089,6 +3089,7 @@ export interface ITotalLocatorItemBody {
 
 // @public
 export interface IUser {
+    authenticationId?: string;
     email?: string;
     firstName?: string;
     fullName?: string;

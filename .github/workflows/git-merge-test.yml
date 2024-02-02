@@ -1,0 +1,13 @@
+name: Git ~ Merge Test
+on:
+    workflow_dispatch:
+jobs:
+    auto-merge:
+        uses: ./.github/workflows/rw-git-merge-test.yml
+        permissions:
+            contents: write
+            pull-requests: write
+            repository-projects: write
+        secrets: inherit
+        with:
+            branch_name: "release"            

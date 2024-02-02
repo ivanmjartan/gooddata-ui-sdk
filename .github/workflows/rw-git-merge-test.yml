@@ -1,0 +1,118 @@
+name: Automated Merge and Conflict Resolution
+
+on:
+  workflow_call:
+    inputs:
+      branch_name:
+        required: false
+        type: string
+        default: 'release'
+    outputs:
+      pull-request:
+        description: "The URL of the created Pull Request"
+        value: ${{ jobs.merge-and-resolve-conflicts.outputs.pr_url }}
+
+jobs:
+  merge-and-resolve-conflicts:
+    runs-on: ubuntu-latest
+    outputs:
+      pr_url: ${{ steps.merge_resolve_create_pr.outputs.pr_url }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name 'github-actions'
+          git config user.email 'github-actions@github.com'
+
+      - name: Merge and Resolve Conflicts or Create Pull Request
+        id: merge_resolve_create_pr
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Checkout the target branch
+          git checkout ${{ inputs.branch_name }}
+          
+          # Define temporary branch name
+          TEMP_BRANCH="${{ inputs.branch_name }}2master"
+          
+          # Check if the remote temporary branch exists and delete it if it does
+          if git ls-remote --heads origin "$TEMP_BRANCH" | grep "$TEMP_BRANCH" >/dev/null; then
+              echo "Remote branch $TEMP_BRANCH exists. Deleting..."
+              git push origin --delete "$TEMP_BRANCH"
+          fi
+          
+          # Check if local temporary branch exists and delete it if it does
+          if git rev-parse --verify "$TEMP_BRANCH" >/dev/null 2>&1; then
+              echo "Local branch $TEMP_BRANCH exists. Deleting..."
+              git branch -D "$TEMP_BRANCH"
+          fi
+          
+          # Create a temporary branch
+          git checkout -b "$TEMP_BRANCH"
+          
+          # Attempt to merge master into the temporary branch
+          echo "Attempting to merge master into $TEMP_BRANCH..."
+          git merge origin/master --no-commit --no-ff || true  # Proceed even if merge fails
+          MERGE_STATUS=$(git ls-files -u | wc -l)  # Count unmerged files
+          
+          echo "Number of files with merge conflicts: $MERGE_STATUS"
+          
+          if [ $MERGE_STATUS -ne 0 ]; then
+            echo "Conflicts detected during merge. Attempting to resolve..."
+            
+            # Collect conflicting package.json and version-policies.json files
+            CONFLICTING_FILES=$(git diff --name-only --diff-filter=U | grep -E 'package.json|version-policies.json')
+            echo "Conflicting Files:"
+            echo "$CONFLICTING_FILES"
+            
+            if [ ! -z "$CONFLICTING_FILES" ]; then
+              # Resolve conflicts by accepting changes from master for these files
+              for FILE in $CONFLICTING_FILES; do
+                echo "Resolving conflict in $FILE"
+                git checkout --theirs "$FILE"
+                git add "$FILE"
+              done
+              
+              REMAINING_CONFLICTS=$(git ls-files -u | wc -l)
+              if [ "$REMAINING_CONFLICTS" -eq 0 ]; then
+                # If no more conflicts, commit the merge
+                git commit -m "Merge master into $TEMP_BRANCH with resolved conflicts"
+                echo "Conflicts resolved and merge committed successfully."
+              else
+                echo "Remaining conflicts after resolution attempt:"
+                git diff --name-only --diff-filter=U
+              fi
+            fi
+            
+            # Whether resolved or not, push the temporary branch and create a PR
+            git push origin "$TEMP_BRANCH" --force
+            PR_TITLE="Auto-merged master into $TEMP_BRANCH"
+            PR_BODY="This PR is created automatically by GitHub Actions."
+            if [ "$REMAINING_CONFLICTS" -ne 0 ]; then
+              PR_TITLE="Resolve Merge Conflicts: $TEMP_BRANCH"
+              PR_BODY="This PR is created automatically by GitHub Actions due to unresolved conflicts after merging 'master' into '$TEMP_BRANCH'. Manual conflict resolution is required."
+            fi
+            PR_OUTPUT=$(gh pr create --title "$PR_TITLE" --body "$PR_BODY" --base master --head "$TEMP_BRANCH")
+            echo "$PR_OUTPUT"
+            PR_URL=$(echo "$PR_OUTPUT" | grep -o 'https://github.com[^ ]*')
+            echo "Pull Request URL: $PR_URL"
+            echo "pr_url=$PR_URL >> $GITHUB_OUTPUT"
+            
+          else
+            echo "No conflicts detected. Committing the merge..."
+            git commit -m "Merge master into $TEMP_BRANCH"
+            echo "Merge committed successfully."
+            
+            # Push the temporary branch and create a PR
+            git push origin "$TEMP_BRANCH" --force
+            PR_OUTPUT=$(gh pr create --title "Auto-merged master into $TEMP_BRANCH" --body "This PR is created automatically by GitHub Actions after successfully merging 'master' into '$TEMP_BRANCH' without conflicts." --base master --head "$TEMP_BRANCH")
+            echo "$PR_OUTPUT"
+            PR_URL=$(echo "$PR_OUTPUT" | grep -o 'https://github.com[^ ]*')
+            echo "Pull Request URL: $PR_URL"
+            echo "pr_url=$PR_URL >> $GITHUB_OUTPUT"
+          fi
+

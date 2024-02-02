@@ -15,9 +15,9 @@ on:
 
 jobs:
     publish-version:
-        runs-on: [infra1-medium]
+        runs-on: [ubuntu-latest] # public runner testing form my fork
         container:
-            image: 020413372491.dkr.ecr.us-east-1.amazonaws.com/3rdparty/library/node:18.17.0-bullseye
+            image: node:18.17.0-bullseye
         permissions:
             contents: read
             id-token: write
@@ -28,29 +28,30 @@ jobs:
                   ref: ${{ inputs.source-branch }}
             - name: Add repository to git safe directories to avoid dubious ownership issue
               run: git config --global --add safe.directory $GITHUB_WORKSPACE
-            - name: Get NPM_PUBLISH_TOKEN from Vault and set it as env variable
-              uses: hashicorp/vault-action@v2
-              with:
-                  url: "https://vault.ord1.infra.intgdc.com"
-                  method: jwt
-                  path: jwt/github
-                  role: front-end
-                  secrets: |
-                    secret/data/v3/int/npm/rw-token secret | NPM_PUBLISH_TOKEN ;
+            # - name: Get NPM_PUBLISH_TOKEN from Vault and set it as env variable
+            #   uses: hashicorp/vault-action@v2
+            #   with:
+            #       url: "https://vault.ord1.infra.intgdc.com"
+            #       method: jwt
+            #       path: jwt/github
+            #       role: front-end
+            #       secrets: |
+            #         secret/data/v3/int/npm/rw-token secret | NPM_PUBLISH_TOKEN ;
             - name: Install rush
               run: |
                   npm install -g @microsoft/rush
-            - name: Rush install
-              run: |
-                  rush install
-            - name: Rush build
-              run: |
-                  rush build
-            - name: Rush publish dry run
-              run: |
-                  rush publish --include-all --version-policy sdk --set-access-level public
-            - name: Rush publish
-              env:
-                  TAG: ${{ inputs.release-tag }}
-              run: |
-                  rush publish --publish --include-all --version-policy sdk --tag $TAG --set-access-level public
+            # I am testing from fork Install is ok no need publish
+            # - name: Rush install 
+            #   run: |
+            #       rush install
+            # - name: Rush build
+            #   run: |
+            #       rush build
+            # - name: Rush publish dry run
+            #   run: |
+            #       rush publish --include-all --version-policy sdk --set-access-level public
+            # - name: Rush publish
+            #   env:
+            #       TAG: ${{ inputs.release-tag }}
+            #   run: |
+            #       rush publish --publish --include-all --version-policy sdk --tag $TAG --set-access-level public

@@ -1,6 +1,6 @@
 {
     "name": "@gooddata/sdk-interactive-example-execute",
-    "version": "9.7.0-beta.3",
+    "version": "9.8.0-alpha.13",
     "title": "Execute",
     "description": "This example demonstrates using Execute component and build custom visualization.",
     "author": "GoodData Corporation",
@@ -60,7 +60,7 @@
         "@vitejs/plugin-react-swc": "~3.5.0",
         "prettier": "~2.5.0",
         "process": "^0.11.10",
-        "typescript": "5.0.2",
+        "typescript": "5.3.3",
         "vite": "~5.0.8",
         "vite-plugin-html": "~3.2.0"
     }

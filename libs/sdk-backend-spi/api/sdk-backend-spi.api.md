@@ -264,7 +264,6 @@ export interface IBackendCapabilities {
     supportsCrossFiltering?: boolean;
     supportsCsvUploader?: boolean;
     supportsCustomColorPalettes?: boolean;
-    supportsElementsQueryParentFiltering?: boolean;
     supportsElementUris?: boolean;
     supportsEnumeratingDatetimeAttributes?: boolean;
     supportsEveryoneUserGroupForAccessControl?: boolean;
@@ -614,6 +613,7 @@ export interface IOrganizationStylingService {
 // @alpha
 export interface IOrganizationUserService {
     addUsersToUserGroups(userIds: string[], userGroupIds: string[]): Promise<void>;
+    createUser(user: IUser): Promise<IUser>;
     createUserGroup(group: IUserGroup): Promise<void>;
     deleteUserGroups(ids: string[]): Promise<void>;
     deleteUsers(ids: string[]): Promise<void>;

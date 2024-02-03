@@ -1,6 +1,6 @@
 <!--
 
-Description of changes.
+Conflict2 of changes.
 
 -->
 

@@ -1,6 +1,6 @@
 {
     "name": "@gooddata/sdk-backend-tiger",
-    "version": "9.7.0-beta.3",
+    "version": "9.8.0-alpha.13",
     "author": "GoodData",
     "description": "GoodData Backend SPI implementation for GoodData Cloud and GoodData.CN",
     "repository": {
@@ -89,7 +89,7 @@
         "eslint-plugin-sonarjs": "^0.16.0",
         "eslint-plugin-tsdoc": "^0.2.14",
         "prettier": "~2.5.0",
-        "typescript": "5.0.2",
+        "typescript": "5.3.3",
         "vitest": "1.0.4"
     }
 }

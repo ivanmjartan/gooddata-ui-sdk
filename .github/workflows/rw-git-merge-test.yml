@@ -94,8 +94,6 @@ jobs:
             echo "There are conflicts which still need to be resolved, aborting"
             has_conflicts=true
             git merge --abort
-          else
-            git commit --no-verify -m "Resolved merge conflicts to match $TARGET_BRANCH"
           fi
 
           git push origin $TMP_BRANCH

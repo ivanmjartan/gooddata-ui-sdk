@@ -88,7 +88,7 @@ jobs:
           done
 
           # commit only if bump produced some changes
-          git diff --exit-code || git commit --no-verify -m "Bumped version to what is in $TARGET_BRANCH"
+          git diff --exit-code || git commit --no-verify -a -m "Bumped version to what is in $TARGET_BRANCH"
 
           # rush bump to something that's in target branch
           git merge --verbose --no-commit --no-ff origin/$TARGET_BRANCH || true

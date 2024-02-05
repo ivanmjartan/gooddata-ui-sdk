@@ -2,6 +2,8 @@
 
 Simple action that checks if pull request commits adhere to SDK contribution guide rules.
 
+simple zmena
+
 ## Usage
 
 ```

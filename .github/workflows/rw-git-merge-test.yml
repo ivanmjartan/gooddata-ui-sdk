@@ -84,7 +84,7 @@ jobs:
           git diff --exit-code || git commit --no-verify -a -m "Bumped version of sdk packages to $version which is in $TARGET_BRANCH"
 
           # rush bump to something that's in target branch
-          git merge --verbose --no-commit --no-ff origin/$TARGET_BRANCH || true
+          git merge --verbose --no-ff origin/$TARGET_BRANCH || true
 
           # we are resolving only conflicts which we can do, we silently ignore other potential conflits
           conflicting_files=$(git diff --name-only --diff-filter=U)

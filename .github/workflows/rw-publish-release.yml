@@ -77,7 +77,7 @@ jobs:
       - name: Notify to slack
         uses: slackapi/slack-github-action@v1.25.0
         with:
-          channel-id: "#javascript-notifications"
+          channel-id: "#sdk-wf-test"
           slack-message: "The latest *${{ env.BUMP }}* version, *gooddata-ui-sdk@${{ env.RELEASE_VERSION }}*, has been successfully published on NPM by the user *${{env.GITHUB_USER}}*. :tada:"
         env:
           RELEASE_VERSION: ${{ needs.bump-version.outputs.version }}

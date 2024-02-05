@@ -65,7 +65,7 @@ jobs:
 
           git checkout -b $TMP_BRANCH
           # rush bump to something that's in master
-          git merge --verbose origin/$TARGET_BRANCH || true
+          git merge --verbose --no-commit --no-ff origin/$TARGET_BRANCH || true
 
           # we are resolving only conflicts which we can do, we silently ignore other potential conflits
           conflicting_files=$(git diff --name-only --diff-filter=U | grep -E 'package.json|version-policies.json')

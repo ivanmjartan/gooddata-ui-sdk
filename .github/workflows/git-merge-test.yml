@@ -10,7 +10,8 @@ jobs:
             repository-projects: write
         secrets: inherit
         with:
-            branch_name: "release"
+            source-branch: "release"
+            target-branch: "master"
     
     slack-notification:
         runs-on: [ubuntu-latest]

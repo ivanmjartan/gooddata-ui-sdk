@@ -28,18 +28,15 @@ jobs:
       pr_url: ${{ steps.prepare-pr.outputs.pr_url }}
       pr_has_conflicts: ${{ steps.prepare-pr.outputs.pr_has_conflicts }}
     steps:
-
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-
       - name: Setup node
         uses: actions/setup-node@v4
         with:
           node-version: 18.17.0
-
 
       - name: Install rush
         run: |
@@ -53,14 +50,11 @@ jobs:
       - name: Merge and Resolve Conflicts or Create Pull Request
         id: prepare-pr
         run: |
-
           git checkout $TARGET_BRANCH
           version=$(node -p "require('./libs/sdk-ui/package.json').version")
 
-          # Checkout the target branch
           git checkout $SOURCE_BRANCH
 
-          # Define temporary branch name
           TMP_BRANCH=$SOURCE_BRANCH-to-$TARGET_BRANCH
 
           # Check if the remote temporary branch exists and delete it if it does
@@ -76,10 +70,9 @@ jobs:
           fi
 
           # Create a temporary branch
-
           git checkout -b $TMP_BRANCH
 
-          # policies is not a valid json, cannot use `cat common/config/rush/version-policies.json | jq -r '.[].policyName'`
+          # policies.json is not a valid json, cannot use `cat common/config/rush/version-policies.json | jq -r '.[].policyName'`
           policies=$(cat common/config/rush/version-policies.json | grep '^\s\+"policyName' | sed 's/.*"policyName": "\(.*\)",/\1/')
 
           for policy in $policies
@@ -88,7 +81,7 @@ jobs:
           done
 
           # commit only if bump produced some changes
-          git diff --exit-code || git commit --no-verify -a -m "Bumped version to what is in $TARGET_BRANCH"
+          git diff --exit-code || git commit --no-verify -a -m "Bumped version of sdk packages to $version which is in $TARGET_BRANCH"
 
           # rush bump to something that's in target branch
           git merge --verbose --no-commit --no-ff origin/$TARGET_BRANCH || true

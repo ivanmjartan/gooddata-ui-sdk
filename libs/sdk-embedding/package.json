@@ -1,6 +1,6 @@
 {
     "name": "@gooddata/sdk-embedding",
-    "version": "9.12.0",
+    "version": "9.13.0",
     "author": "GoodData",
     "description": "GoodData Embedding APIs",
     "repository": {

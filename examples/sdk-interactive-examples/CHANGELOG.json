@@ -2,6 +2,12 @@
   "name": "@gooddata/sdk-interactive-examples",
   "entries": [
     {
+      "version": "9.8.0",
+      "tag": "@gooddata/sdk-interactive-examples_v9.8.0",
+      "date": "Tue, 06 Feb 2024 16:55:26 GMT",
+      "comments": {}
+    },
+    {
       "version": "9.7.0",
       "tag": "@gooddata/sdk-interactive-examples_v9.7.0",
       "date": "Tue, 06 Feb 2024 16:48:54 GMT",

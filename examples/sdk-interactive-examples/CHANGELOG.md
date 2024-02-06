@@ -1,6 +1,11 @@
 # Change Log - @gooddata/sdk-interactive-examples
 
-This log was last generated on Tue, 06 Feb 2024 15:19:15 GMT and should not be manually modified.
+This log was last generated on Tue, 06 Feb 2024 15:31:47 GMT and should not be manually modified.
+
+## 9.11.0
+Tue, 06 Feb 2024 15:31:47 GMT
+
+_Version update only_
 
 ## 9.10.0
 Tue, 06 Feb 2024 15:19:15 GMT

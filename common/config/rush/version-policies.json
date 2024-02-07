@@ -21,7 +21,7 @@
     "policyName": "sdk-examples",
     "version": "9.8.0-alpha.20",
     "nextBump": "prerelease",
-    "mainProject": "@gooddata/sdk-interactive-examples"
+    "exemptFromRushChange": true
   }
   // {
   //   /**

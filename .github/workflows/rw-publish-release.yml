@@ -57,7 +57,7 @@ jobs:
         uses: ./.github/actions/check-npm-version
         with:
           package: "@gooddata/sdk-ui"
-          version: ${{ needs.bump-version.outputs.version }}          
+          version: "9.6.0"
         
   slack-notification:
     runs-on: [ubuntu-latest]

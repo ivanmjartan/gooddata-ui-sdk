@@ -45,12 +45,15 @@ jobs:
       release-tag: "latest"
   
   check-npm-package:
+    outputs:
+      verified: ${{ steps.check-npm-package.outputs.exists }}
     runs-on: [ubuntu-latest]
     needs: [bump-version,publish-release]
     steps:
       - name: checkout
         uses: actions/checkout@v4
       - name: Check NPM package
+        id: check-npm-package
         uses: ./.github/actions/check-npm-version
         with:
           package: "@gooddata/sdk-ui"
@@ -60,14 +63,23 @@ jobs:
     runs-on: [ubuntu-latest]
     needs: [bump-version, check-npm-package]
     steps:
+      - name: Set up message
+        id: set-up-message
+        run: |
+            if [[ "${{ env.NPM_PACKAGE_VERIFIED }}" == "true" ]]; then
+              echo "RELEASE_MESSAGE=The latest *${{ env.BUMP }}* version, *gooddata-ui-sdk@${{ env.RELEASE_VERSION }}*, has been successfully published on NPM by the user *${{env.GITHUB_USER}}*. :tada:" >> $GITHUB_ENV
+            else
+              echo "RELEASE_MESSAGE=The latest *${{ env.BUMP }}* version, *gooddata-ui-sdk@${{ env.RELEASE_VERSION }}*, has been published on NPM by the user *${{env.GITHUB_USER}}*, but the NPM package verification failed. :warning:" >> $GITHUB_ENV
+            fi
+        env:
+          RELEASE_VERSION: ${{ needs.bump-version.outputs.version }}
+          BUMP: ${{ inputs.bump }}
+          GITHUB_USER: ${{ github.actor }}
+          NPM_PACKAGE_VERIFIED: ${{ needs.check-npm-package.outputs.verified }}
       - name: Notify to slack
         uses: slackapi/slack-github-action@v1.25.0
         with:
           channel-id: "#sdk-wf-test"
-          slack-message: "The latest *${{ env.BUMP }}* version, *gooddata-ui-sdk@${{ env.RELEASE_VERSION }}*, has been successfully published on NPM by the user *${{env.GITHUB_USER}}*. :tada:"
+          slack-message: ${{ env.RELEASE_MESSAGE }}
         env:
-          RELEASE_VERSION: ${{ needs.bump-version.outputs.version }}
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-          BUMP: ${{ inputs.bump }}
-          GITHUB_USER: ${{ github.actor }}
-# add waring when check-npm-package fails

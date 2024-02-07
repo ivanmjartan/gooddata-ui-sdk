@@ -91,12 +91,12 @@ jobs:
       - name: Set up message
         id: set-up-message
         run: |
-            if [[ "${{ env.NPM_PACKAGE_VERIFIED }}" == "true" ]]; then
-              echo "RELEASE_MESSAGE=The latest *${{ env.BUMP }}* version, *gooddata-ui-sdk@${{ env.RELEASE_VERSION }}*, has been successfully published on NPM by the user *${{env.GITHUB_USER}}*. :tada:" >> $GITHUB_ENV
+            if [[ "$NPM_PACKAGE_VERIFIED" == "true" ]]; then
+              echo "RELEASE_MESSAGE=The latest *${{ env.BUMP }}* version, *gooddata-ui-sdk@${RELEASE_VERSION}*, has been successfully published on NPM by the user *${GITHUB_USER}*. :tada:" >> $GITHUB_ENV
             else
-              NPM_PACKAGE_LINK="https://www.npmjs.com/package/@gooddata/sdk-ui/v/${{ env.RELEASE_VERSION }}"
+              NPM_PACKAGE_LINK="https://www.npmjs.com/package/@gooddata/sdk-ui/v/${RELEASE_VERSION}"
               SLACK_LINK="<$NPM_PACKAGE_LINK|link>"
-              echo "RELEASE_MESSAGE=The latest *${{ env.BUMP }}* version, *gooddata-ui-sdk@${{ env.RELEASE_VERSION }}*, has been published on NPM by the user *${{env.GITHUB_USER}}*, but the NPM package verification failed. Check it on NPM manually at $SLACK_LINK. :warning:" >> $GITHUB_ENV
+              echo "RELEASE_MESSAGE=The latest *${{ env.BUMP }}* version, *gooddata-ui-sdk@${RELEASE_VERSION}*, has been published on NPM by the user *${GITHUB_USER}*, but the NPM package verification failed. Check it on NPM manually at $SLACK_LINK. :warning:" >> $GITHUB_ENV
             fi
         env:
           RELEASE_VERSION: ${{ needs.bump-version.outputs.version }}

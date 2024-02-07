@@ -51,9 +51,10 @@ jobs:
               git config --global --add safe.directory $GITHUB_WORKSPACE/source
               git config --global user.email "git-action@gooddata.com"
               git config --global user.name "git-action"  
-              git add ${{ inputs.path-to-version-config }}
-              git commit -m "Update Hugo version to ${{ inputs.version }}"
-              git push origin ${{ env.branch-name }}
+              git add $CONFIG_PATH
+              git commit -m "Update Hugo version to $VERSION"
+              git push origin $BRANCH_NAME
         env:
-          branch-name: ${{inputs.source-branch}}
-          version: ${{inputs.version}}
+          BRANCH_NAME: ${{inputs.source-branch}}
+          VERSION: ${{inputs.version}}
+          CONFIG_PATH: ${{ inputs.path-to-version-config }}

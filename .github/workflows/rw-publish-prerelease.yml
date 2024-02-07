@@ -31,13 +31,11 @@ jobs:
 
   check-version:
     runs-on: [ubuntu-latest]
-    outputs:
-      version: ${{ steps.get-version.outputs.version }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: "release"
+          ref: ${{ inputs.source-branch }}
       - name: Setup node
         uses: actions/setup-node@v4
         with:
@@ -47,13 +45,14 @@ jobs:
         run: echo "VERSION=$(node -p "require('./libs/sdk-ui/package.json').version")" >> $GITHUB_ENV
       - name: Check version
         run: |
-          if [[ ! $VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+-beta\.[0-9]+$ ]]; then
-            echo "The version $VERSION does not match X.Y.Z-beta.W"
+          if [[ ! $VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+-(beta|alpha)\.[0-9]+$ ]]; then
+            echo "The version "$VERSION" does not match X.Y.Z-beta.W or X.Y.Z-alpha.W"
             exit 1
           fi
   
 
   setup-params:
+    needs: [check-version]
     runs-on: [ubuntu-latest]
     outputs:
       prerelease-id: ${{ steps.validate-params.outputs.prerelease-id }}

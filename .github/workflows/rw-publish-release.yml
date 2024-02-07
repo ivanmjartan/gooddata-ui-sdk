@@ -24,7 +24,7 @@ concurrency:
 
 jobs:
 
-  chek-version:
+  check-version:
     runs-on: [ubuntu-latest]
     outputs:
       version: ${{ steps.get-version.outputs.version }}
@@ -48,7 +48,7 @@ jobs:
           fi
 
   bump-version:
-    needs: [chek-version]
+    needs: [check-version]
     uses: ./.github/workflows/rw-bump-version.yml    
     permissions:
       contents: write

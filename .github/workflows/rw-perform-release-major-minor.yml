@@ -98,7 +98,7 @@ jobs:
           if: ${{ needs.back-merge-release-to-master.outputs.has-conflicts == 'false' }}
           uses: slackapi/slack-github-action@v1.25.0
           with:
-            channel-id: "#javascript-notifications"
+            channel-id: "#sdk-wf-test"
             slack-message: "The backmerge from the release is ready and can be easily merged to the master branch. It won't cause any problems because there are *no conflicts*. ${{env.PULL_REQUEST }}"
           env:            
             PULL_REQUEST: ${{ needs.back-merge-release-to-master.outputs.pull-request-url }}
@@ -107,7 +107,7 @@ jobs:
           if: ${{ needs.back-merge-release-to-master.outputs.has-conflicts == 'true' }}
           uses: slackapi/slack-github-action@v1.25.0
           with:
-            channel-id: "#javascript-notifications"
+            channel-id: "#sdk-wf-test"
             slack-message: "The backmerge from the release is ready and can not be easily merged into the master branch. However, *there are conflicts* in the PR that needs to be resolved. ${{env.PULL_REQUEST }}"
           env:            
             PULL_REQUEST: ${{ needs.back-merge-release-to-master.outputs.pull-request-url }}

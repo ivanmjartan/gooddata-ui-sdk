@@ -70,7 +70,7 @@ jobs:
               echo "RELEASE_MESSAGE=The latest *${{ env.BUMP }}* version, *gooddata-ui-sdk@${{ env.RELEASE_VERSION }}*, has been successfully published on NPM by the user *${{env.GITHUB_USER}}*. :tada:" >> $GITHUB_ENV
             else
               NPM_PACKAGE_LINK="https://www.npmjs.com/package/@gooddata/sdk-ui/v/${{ env.RELEASE_VERSION }}"
-              SLACK_LINK = "<$NPM_PACKAGE_LINK|here>"
+              SLACK_LINK="<$NPM_PACKAGE_LINK|here>"
               echo "RELEASE_MESSAGE=The latest *${{ env.BUMP }}* version, *gooddata-ui-sdk@${{ env.RELEASE_VERSION }}*, has been published on NPM by the user *${{env.GITHUB_USER}}*, but the NPM package verification failed. Check it on NPM manually at $SLACK_LINK. :warning:" >> $GITHUB_ENV
             fi
         env:

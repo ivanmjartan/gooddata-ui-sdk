@@ -77,11 +77,9 @@ jobs:
     runs-on: [ubuntu-latest]
     needs: [bump-version,publish-release]
     steps:
-      - name: checkout
-        uses: actions/checkout@v4
       - name: Check NPM package
         id: check-npm-package
-        uses: ./.github/actions/check-npm-version
+        uses: ivanmjartan/gooddata-ui-sdk/.github/actions/check-npm-version@master
         with:
           package: "@gooddata/sdk-ui"
           version: ${{ needs.bump-version.outputs.version }}

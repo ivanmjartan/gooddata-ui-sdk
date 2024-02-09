@@ -7,7 +7,9 @@ outputs:
     value: ${{ steps.version.outputs.version }}
 
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
-    - id: version
+    - name: Get version
+      id: version
       run: echo "version=$(node -p "require('./libs/sdk-ui/package.json').version")" >> $GITHUB_OUTPUT
+      shell: bash

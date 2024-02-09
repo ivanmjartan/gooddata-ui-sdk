@@ -48,7 +48,7 @@ jobs:
               token: ${{ secrets.GITHUB_TOKEN }}
 
         - name: Get version
-          uses: ./.github/actions/get-version-action
+          uses: ivanmjartan/gooddata-ui-sdk/.github/actions/get-version-action@master
           id: version
 
     bump-version-and-commit:
@@ -91,7 +91,7 @@ jobs:
 
 
             - name: Get version
-              uses: ./.github/actions/get-version-action
+              uses: ivanmjartan/gooddata-ui-sdk/.github/actions/get-version-action@master
               id: version
 
             - name: Git commit and push

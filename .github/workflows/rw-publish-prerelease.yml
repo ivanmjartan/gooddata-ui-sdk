@@ -41,7 +41,7 @@ jobs:
           node-version: 18.17.0
 
       - name: Get version
-        uses: ./.github/actions/get-version-action
+        uses: ivanmjartan/gooddata-ui-sdk/.github/actions/get-version-action@master
         id: get-version
 
       - name: Check version

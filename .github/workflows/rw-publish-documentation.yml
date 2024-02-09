@@ -60,7 +60,7 @@ jobs:
           - name: Notify to slack
             uses: slackapi/slack-github-action@v1.25.0
             with:
-              channel-id: "#javascript-notifications"
+              channel-id: "#sdk-wf-test"
               slack-message: "The documentation for ui sdk *${{ env.RELEASE_VERSION }}* was successfully released by *${{ env.GITHUB_USER }}*"
             env:
               RELEASE_VERSION: ${{ needs.get-version.outputs.version }}

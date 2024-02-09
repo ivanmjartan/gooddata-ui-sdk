@@ -24,7 +24,7 @@ jobs:
               id: create_release
               uses: ncipollo/release-action@v1.14.0
               env:
-                  GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB_YENKINS_ADMIN }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                   tag: v${{inputs.version}}
                   name: Release ${{inputs.version}}

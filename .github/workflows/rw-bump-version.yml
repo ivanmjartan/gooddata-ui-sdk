@@ -38,9 +38,11 @@ jobs:
       runs-on: [ubuntu-latest]
       outputs:
         version: ${{ steps.version.outputs.version }}
-      container:
-        image: node:18.17.0-bullseye
       steps:
+        - name: Setup node
+          uses: actions/setup-node@v4
+          with:
+            node-version: 18.17.0
         - name: Checkout code
           uses: actions/checkout@v4
           with:
@@ -56,9 +58,11 @@ jobs:
         runs-on: [ubuntu-latest]
         outputs:
             version: ${{ steps.version.outputs.version }}
-        container:
-            image: node:18.17.0-bullseye
         steps:
+            - name: Setup node
+              uses: actions/setup-node@v4
+              with:
+                node-version: 18.17.0
             - name: Checkout code
               uses: actions/checkout@v4
               with:

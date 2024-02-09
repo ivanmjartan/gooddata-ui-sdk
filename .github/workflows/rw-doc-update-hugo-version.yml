@@ -40,10 +40,10 @@ jobs:
             - name: Create and push branch
               shell: bash
               run: |
-                    git add ${path-to-version-config}
+                    git add ${path_to_version_config}
                     git commit -m "Update Hugo version to ${version}"
-                    git push origin ${brach-name}
+                    git push origin ${brach_name}
               env:
-                brach-name: ${{inputs.source-branch}}
+                brach_name: ${{inputs.source-branch}}
                 version: ${{inputs.version}}
-                path-to-version-config: ${{ inputs.path-to-version-config }}
+                path_to_version_config: ${{ inputs.path-to-version-config }}

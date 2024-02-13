@@ -53,13 +53,13 @@ jobs:
 
             - name: Prepare next major version
               env:
-                  VERSION: ${{ steps.current_version.outputs.version }}
+                  CURRENT_VERSION: ${{ steps.current_version.outputs.version }}
                   PRERELEASE_ID: ${{ inputs.prerelease-id }}
               run: |
-                echo "Bumping version to next major from ${VERSION}"
+                echo "Bumping version to next major from ${CURRENT_VERSION}"
 
                 # Extract the major version
-                major_version=$(echo $current_version | cut -d '.' -f 1)
+                major_version=$(echo $CURRENT_VERSION | cut -d '.' -f 1)
 
                 echo "current major version: ${major_version}"
 

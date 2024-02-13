@@ -61,6 +61,8 @@ jobs:
                 # Extract the major version
                 major_version=$(echo $current_version | cut -d '.' -f 1)
 
+                echo "current major version: ${major_version}"
+
                 # Increment the major version
                 next_major_version=$((major_version + 1))
 

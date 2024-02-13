@@ -1,0 +1,68 @@
+# (C) 2024 GoodData Corporation
+
+# This workflow is triggered by a workflow call. It will bump the version of the repository and push the changes to the source branch.
+# It will also return the version which was created.
+# if the 'skip-bump' input is set to true, it will just return the current version without bumping it.
+
+name: rw ~ Rush ~ Bump version
+on:
+    workflow_call:
+        inputs:
+            source-branch:
+                required: true
+                description: "The name of the source branch"
+                type: string            
+        outputs:
+            version:
+                description: "Version which was created"
+                value: ${{ jobs.get-version.outputs.version }}
+
+jobs:
+    bump-version-and-commit:        
+        runs-on: [ubuntu-latest]
+        outputs:
+            version: ${{ steps.version.outputs.version }}
+        steps:
+            - name: Setup node
+              uses: actions/setup-node@v4
+              with:
+                node-version: 18.17.0
+            - name: Checkout code
+              uses: actions/checkout@v4
+              with:
+                  ref: ${{ inputs.source-branch }}
+                  token: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Add repository to git safe directories to avoid dubious ownership issue
+              run: git config --global --add safe.directory $GITHUB_WORKSPACE
+
+            - name: Install rush
+              run: npm install -g @microsoft/rush
+
+            - name: Config user
+              run: |
+                  git config --global user.email "git-action@gooddata.com"
+                  git config --global user.name "git-action"
+            - name: Get current version
+              uses: gooddata/gooddata-ui-sdk/.github/actions/get-version-action@master
+              id: current_version
+
+            - name: Rush bump version to next major              
+              env:
+                  VERSION: ${{ steps.current_version.version }}
+              run: |
+                echo "Bumping version to next major ${VERSION}"
+
+            - name: Get version
+              uses: gooddata/gooddata-ui-sdk/.github/actions/get-version-action@master
+              id: version
+
+            # - name: Git commit and push
+            #   run: |
+            #     # add changelogs
+            #     git ls-files | grep '\.json' | xargs git add
+
+            #     git commit -a -m "Bump versions to $VERSION"
+            #     git push origin ${{ inputs.source-branch }}
+            #   env:
+            #     VERSION: ${{ steps.version.outputs.version }}

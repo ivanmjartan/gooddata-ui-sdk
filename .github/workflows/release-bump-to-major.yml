@@ -15,11 +15,9 @@ jobs:
   prepare-versions-master:
     # have dummy password to prevent accidental run
     if: github.event.inputs.password == 'dummy'
-    uses: ./.github/workflows/rw-bump-version.yml
+    uses: ./.github/workflows/rw-bump-version-major.yml
     secrets: inherit
     permissions:
       contents: write
     with:
         source-branch: 'master'
-        bump: 'major'
-        prerelease-id: 'alpha'

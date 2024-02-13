@@ -11,7 +11,11 @@ on:
             source-branch:
                 required: true
                 description: "The name of the source branch"
-                type: string            
+                type: string
+            prerelease-id:
+                required: true                
+                description: "The prerelease ID (alpha, beta, etc.)"
+                type: string
         outputs:
             version:
                 description: "Version which was created"
@@ -47,11 +51,23 @@ jobs:
               uses: gooddata/gooddata-ui-sdk/.github/actions/get-version-action@master
               id: current_version
 
-            - name: Rush bump version to next major              
+            - name: Prepare next major version
               env:
                   VERSION: ${{ steps.current_version.outputs.version }}
+                  PRERELEASE_ID: ${{ inputs.prerelease-id }}
               run: |
-                echo "Bumping version to next major ${VERSION}"
+                echo "Bumping version to next major from ${VERSION}"
+
+                # Extract the major version
+                major_version=$(echo $current_version | cut -d '.' -f 1)
+
+                # Increment the major version
+                next_major_version=$((major_version + 1))
+
+                # Construct the next version string
+                next_version="${next_major_version}.0.0-${PRERELEASE_ID}.0"
+
+                echo "Next version: $next_version"
 
             - name: Get version
               uses: gooddata/gooddata-ui-sdk/.github/actions/get-version-action@master

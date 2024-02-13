@@ -21,3 +21,4 @@ jobs:
       contents: write
     with:
         source-branch: 'master'
+        prerelease-id: 'alpha'

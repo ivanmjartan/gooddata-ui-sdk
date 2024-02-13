@@ -49,7 +49,7 @@ jobs:
 
             - name: Rush bump version to next major              
               env:
-                  VERSION: ${{ steps.current_version.version }}
+                  VERSION: ${{ steps.current_version.outputs.version }}
               run: |
                 echo "Bumping version to next major ${VERSION}"
 

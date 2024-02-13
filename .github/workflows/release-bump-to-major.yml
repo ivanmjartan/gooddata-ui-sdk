@@ -1,0 +1,25 @@
+# (C) 2024 GoodData Corporation
+
+# Automated Code Drop Workflow: Initiates a code drop from the master branch to a new release branch. 
+# Manages version increments, setting the master to a new alpha preminor version and the release branch to a beta prerelease version. 
+# Notifies the team via Slack upon successful completion.
+name: Release ~ Bump master to major
+on:
+  workflow_dispatch:
+      inputs:
+        password:
+          description: Password for the workflow to run
+          required: true
+
+jobs:
+  prepare-versions-master:
+    # have dummy password to prevent accidental run
+    if: github.event.inputs.password == 'dummy'
+    uses: ./.github/workflows/rw-bump-version.yml
+    secrets: inherit
+    permissions:
+      contents: write
+    with:
+        source-branch: 'master'
+        bump: 'major'
+        prerelease-id: 'alpha'

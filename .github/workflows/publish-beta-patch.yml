@@ -14,8 +14,8 @@ jobs:
         outputs:
             branch: ${{ steps.check-version.outputs.branch }}
         steps:
-#            - name: Checkout code
-#              uses: actions/checkout@v4
+            - name: Checkout code
+              uses: actions/checkout@v4
             - name: Check if version is
               id: check-version
               run: |

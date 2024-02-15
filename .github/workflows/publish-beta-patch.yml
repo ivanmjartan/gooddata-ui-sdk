@@ -1,6 +1,6 @@
 # (C) 2024 GoodData Corporation
 
-name: Prerelease ~ Publish beta
+name: Prerelease ~ Publish beta for patch
 on:
     workflow_dispatch:
       inputs:

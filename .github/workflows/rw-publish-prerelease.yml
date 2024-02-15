@@ -63,9 +63,11 @@ jobs:
       - name: validate params
         id: validate-params
         run: |
-          if [ "${{ inputs.source-branch }}" = "master" ]; then
+          if [[ "${{ inputs.source-branch }}" = "master" ]]; then
             echo "prerelease-id=alpha" >> $GITHUB_OUTPUT
-          elif [ "${{ inputs.source-branch }}" = "release" ]; then
+          elif [[ "${{ inputs.source-branch }}" = "release" ]]; then
+            echo "prerelease-id=beta" >> $GITHUB_OUTPUT
+          elif [[ "${{ inputs.source-branch }}" == rel/* ]]; then
             echo "prerelease-id=beta" >> $GITHUB_OUTPUT
           else
             echo "Invalid branch provided. Please provide either 'master' or 'release'."

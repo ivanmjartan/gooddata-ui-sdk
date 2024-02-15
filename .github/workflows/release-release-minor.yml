@@ -22,3 +22,5 @@ jobs:
       secrets: inherit
       with:
         bump: "minor"
+        source-branch: "release"
+

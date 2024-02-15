@@ -10,6 +10,7 @@ on:
             type: string
 jobs:
     check-version:
+        runs-on: ubuntu-latest
         outputs:
             branch: ${{ steps.check-version.outputs.branch }}
         steps:

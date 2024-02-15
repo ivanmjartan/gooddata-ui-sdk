@@ -25,7 +25,7 @@ jobs:
                   # TODO: brackets for if?
                   if git ls-remote --heads origin ${base} | grep ${base}; then
                     echo "Branch ${base} exists for version ${VERSION}"
-                    echo "branch=${base} >> $GITHUB_OUTPUT"
+                    echo "branch=${base}" >> $GITHUB_OUTPUT
                   else
                     echo "Branch ${base} does not exist for release ${VERSION} on remote, aborting release"
                     exit 1

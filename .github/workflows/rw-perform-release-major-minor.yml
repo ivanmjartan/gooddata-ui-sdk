@@ -74,6 +74,8 @@ jobs:
         permissions:
             contents: write
         steps:
+            # TODO: his action does not have checkouted before
+            # either put checkout here or add it to the action itself
             - name: check if branch exists
               id: check-branch
               uses: pbenes/gooddata-ui-sdk/.github/actions/branch-exists-action@master

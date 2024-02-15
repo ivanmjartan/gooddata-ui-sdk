@@ -1,0 +1,21 @@
+name: A ~ Rush cache test
+on:
+    workflow_dispatch:
+jobs:
+    test-build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                ref: 'master'
+            - name: Setup node
+              uses: actions/setup-node@v4
+              with:
+                node-version: 18.17.0
+
+            - name: Setup rush
+              uses: ivanmjartan/gooddata-ui-sdk/.github/actions/set-up-rush-with-cache@master
+
+            - name: Build rush
+              run: |
+                node common/scripts/install-run-rush.js build

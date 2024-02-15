@@ -25,5 +25,5 @@ runs:
 
         echo "exists=$branch_exists >> $GITHUB_OUTPUT"
       env:
-          SOURCE_BRANCH: {{ inputs.source-branch }}
+          SOURCE_BRANCH: ${{ inputs.source-branch }}
       shell: bash

@@ -63,6 +63,7 @@ jobs:
       - name: validate params
         id: validate-params
         run: |
+          # TODO: remove inputs from bash script, use env
           if [[ "${{ inputs.source-branch }}" = "master" ]]; then
             echo "prerelease-id=alpha" >> $GITHUB_OUTPUT
           elif [[ "${{ inputs.source-branch }}" = "release" ]]; then

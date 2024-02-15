@@ -6,7 +6,7 @@ on:
       inputs:
         version:
             required: true
-            description: "Specify the minor version to patch (example: 9.5)"
+            description: "Specify the minor version to patch (example: 9.5.0)"
             type: string
 
 jobs:
@@ -15,8 +15,9 @@ jobs:
         outputs:
             branch: ${{ steps.check-version.outputs.branch }}
         steps:
-#            - name: Checkout code
-#              uses: actions/checkout@v4
+            - name: Checkout code
+              uses: actions/checkout@v4
+              # TODO: can we use our existing action?
             - name: Check if version is
               id: check-version
               run: |

@@ -4,6 +4,10 @@ name: rw ~ Release ~ Publish release
 on:
   workflow_call:
     inputs:
+      source-branch:
+        required: true
+        description: "source branch"
+        type: string
       bump:
         required: true
         description: "The type of version bump (major, minor, patch)"
@@ -31,7 +35,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: "release"
+          ref: ${{ inputs.source-branch }}
       - name: Setup node
         uses: actions/setup-node@v4
         with:
@@ -56,7 +60,7 @@ jobs:
       id-token: write
     secrets: inherit
     with:
-      source-branch: "release"
+      source-branch: ${{ inputs.source-branch }}
       bump: ${{ inputs.bump }}
 
   publish-release:
@@ -67,7 +71,7 @@ jobs:
       id-token: write
     secrets: inherit
     with:
-      source-branch: "release"
+      source-branch: ${{ inputs.source-branch }}
       release-tag: "latest"
 
   check-npm-package:

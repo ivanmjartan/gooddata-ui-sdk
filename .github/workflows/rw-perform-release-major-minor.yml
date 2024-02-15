@@ -77,7 +77,7 @@ jobs:
             - name: check if branch exists
               id: check-branch
               uses: pbenes/gooddata-ui-sdk/.github/actions/branch-exists-action@master
-                with: ${{ inputs.source-branch}}
+              with: ${{ inputs.source-branch}}
 
             - name: Run copy branch action
               if: steps.check-branch.opututs.exists != 'true'

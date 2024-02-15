@@ -56,7 +56,7 @@ jobs:
         secrets: inherit
         with:
           source-branch: ${{ inputs.source-branch }}
-          version: ${{ needs.prepare-variables.outputs.short-version }}
+          version: ${{ needs.prepare-variables.outputs.version }}
 
     add-release-tag:
         needs: [prepare-variables,update-hugo-version]
@@ -75,12 +75,12 @@ jobs:
         steps:
             - name: check if branch exists
               id: check-branch
-              uses: gooddata/gooddata-ui-sdk/.github/actions/branch-exists-action@master
+              uses: pbenes/gooddata-ui-sdk/.github/actions/branch-exists-action@master
                 with: ${{ inputs.source-branch}}
 
             - name: Run copy branch action
               if: steps.check-branch.opututs.exists != 'true'
-              uses: gooddata/gooddata-ui-sdk/.github/actions/branch-cutoff-action@master
+              uses: pbenes/gooddata-ui-sdk/.github/actions/branch-cutoff-action@master
               with:
                   source-branch: ${{ inputs.source-branch }}
                   target-branch: ${{ needs.prepare-variables.outputs.rel-branch }}

@@ -31,7 +31,7 @@ jobs:
               uses: actions/checkout@v4
               with:
                   ref: ${{ inputs.source-branch }}
-                  token: ${{ secrets.TOKEN_GITHUB_YENKINS_ADMIN }}
+                  token: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Add repository to git safe directories to avoid dubious ownership issue
               run: git config --global --add safe.directory $GITHUB_WORKSPACE
@@ -44,7 +44,7 @@ jobs:
                   git config --global user.email "git-action@gooddata.com"
                   git config --global user.name "git-action"
             - name: Get current version
-              uses: gooddata/gooddata-ui-sdk/.github/actions/get-version-action@master
+              uses: pbenes/gooddata-ui-sdk/.github/actions/get-version-action@master
               id: current_version
 
             - name: Prepare next major version
@@ -89,5 +89,5 @@ jobs:
                 git push origin ${SOURCE_BRANCH}
 
             - name: Get version
-              uses: gooddata/gooddata-ui-sdk/.github/actions/get-version-action@master
+              uses: pbenes/gooddata-ui-sdk/.github/actions/get-version-action@master
               id: version

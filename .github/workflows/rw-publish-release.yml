@@ -38,7 +38,7 @@ jobs:
           node-version: 18.17.0
       - name: Get version
         id: get-version
-        uses: gooddata/gooddata-ui-sdk/.github/actions/get-version-action@master
+        uses: pbenes/gooddata-ui-sdk/.github/actions/get-version-action@master
       - name: Check version
         run: |
           if [[ ! $VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+-beta\.[0-9]+$ ]]; then
@@ -78,7 +78,7 @@ jobs:
     steps:
       - name: Check NPM package
         id: check-npm-package
-        uses: gooddata/gooddata-ui-sdk/.github/actions/check-npm-version@master
+        uses: pbenes/gooddata-ui-sdk/.github/actions/check-npm-version@master
         with:
           package: "@gooddata/sdk-ui"
           version: ${{ needs.bump-version.outputs.version }}

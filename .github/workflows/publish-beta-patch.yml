@@ -9,6 +9,7 @@ on:
             description: "Specify the minor version to patch (example: 9.5.0)"
             type: string
 jobs:
+    # TODO: check-input-version-param
     check-version:
         runs-on: ubuntu-latest
         outputs:

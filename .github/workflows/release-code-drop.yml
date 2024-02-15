@@ -79,7 +79,7 @@ jobs:
       - name: Inform to slack
         uses: slackapi/slack-github-action@v1.25.0
         with:
-            channel-id: '#javascript-notifications'
+            channel-id: '#sdk-wf-test'
             slack-message: "The *gooddata-ui-sdk*, has successfully completed its code drop. The bumped versions are *${{ env.RELEASE_VERSION }}* (release) and *${{ env.MASTER_VERSION }}* (master)."
         env:
             RELEASE_VERSION: ${{ needs.prepare-versions-release.outputs.version }}

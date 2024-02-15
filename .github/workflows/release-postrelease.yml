@@ -25,5 +25,5 @@ jobs:
           - name: Notify to slack
             uses: slackapi/slack-github-action@v1.25.0
             with:
-              channel-id: "#javascript-notifications"
+              channel-id: "#sdk-wf-test"
               slack-message: "Post-release task was done"

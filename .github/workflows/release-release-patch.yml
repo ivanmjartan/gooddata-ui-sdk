@@ -48,6 +48,7 @@ jobs:
       permissions:
         pull-requests: write
         contents: write
+        id-token: write
       secrets: inherit
       with:
         bump: "patch"

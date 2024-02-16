@@ -85,7 +85,7 @@ jobs:
                   echo "Skipping creation of rel/X.Y branch because source-branch is not 'release'"
                fi
           env:
-            SOURCE_BRANCH: ${{ github.event.inputs.source-branch }}
+            SOURCE_BRANCH: ${{ inputs.source-branch }}
         - name: Run copy branch action
           if: steps.decision.outputs.need_rel_branch == 'true'
           uses: ivanmjartan/gooddata-ui-sdk/.github/actions/branch-cutoff-action@master

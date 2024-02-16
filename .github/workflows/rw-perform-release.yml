@@ -1,10 +1,10 @@
-name: rw ~ Release ~ Perform release major or minor
+name: rw ~ Release ~ Perform release
 on:
     workflow_call:
         inputs:
             bump:
                 required: true
-                description: "The type of version bump (major, minor)"
+                description: "The type of version bump (minor, path)"
                 type: string
             source-branch:
                 required: true
@@ -67,6 +67,7 @@ jobs:
         with:
           source-branch: ${{ inputs.source-branch }}
           version: ${{ needs.prepare-variables.outputs.version }}
+          bump: ${{ inputs.bump }}
 
     create-rel-branch:
       runs-on: [ubuntu-latest]

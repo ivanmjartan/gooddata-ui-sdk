@@ -91,7 +91,16 @@ jobs:
           conflicting_files=$(git diff --name-only --diff-filter=U)
           has_conflicts=false
 
-          if [ -n "$conflicting_files" ]; then
+          conflicting_files=$(git diff --name-only --diff-filter=U)
+          pnpm_conflict=$(echo "$conflicting_files" | grep 'pnpm-lock.yaml')
+
+          if [ -n "$pnpm_conflict" ] && [ "$conflicting_files" == "$pnpm_conflict" ]; then
+            echo "There is a conflict in pnpm-lock.yaml, running rush update --recheck"
+            rush update --recheck
+            git add pnpm-lock.yaml
+            git commit -m "Resolve merge conflicts in pnpm-lock.yaml"
+            git merge --continue
+          else
             echo "There are conflicts which still need to be resolved, aborting"
             has_conflicts=true
             git merge --abort

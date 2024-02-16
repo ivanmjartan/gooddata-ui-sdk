@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Run copy branch action
-        uses: pbenes/gooddata-ui-sdk/.github/actions/branch-cutoff-action@master
+        uses: ivanmjartan/gooddata-ui-sdk/.github/actions/branch-cutoff-action@master
         with:
           source-branch: 'master'
           target-branch: 'release'

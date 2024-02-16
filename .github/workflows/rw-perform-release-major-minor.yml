@@ -78,13 +78,13 @@ jobs:
             # either put checkout here or add it to the action itself
             - name: check if branch exists
               id: check-branch
-              uses: pbenes/gooddata-ui-sdk/.github/actions/branch-exists-action@master
+              uses: ivanmjartan/gooddata-ui-sdk/.github/actions/branch-exists-action@master
               with:
                   source-branch: ${{ inputs.source-branch }}
 
             - name: Run copy branch action
               if: steps.check-branch.opututs.exists != 'true'
-              uses: pbenes/gooddata-ui-sdk/.github/actions/branch-cutoff-action@master
+              uses: ivanmjartan/gooddata-ui-sdk/.github/actions/branch-cutoff-action@master
               with:
                   source-branch: ${{ inputs.source-branch }}
                   target-branch: ${{ needs.prepare-variables.outputs.rel-branch }}

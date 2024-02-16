@@ -72,7 +72,7 @@ jobs:
     secrets: inherit
     with:
       source-branch: ${{ inputs.source-branch }}
-      release-tag: "latest"
+      release-tag: "latest" # TODO need specifi tad for patch
 
   check-npm-package:
     outputs:

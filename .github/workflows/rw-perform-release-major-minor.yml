@@ -69,25 +69,29 @@ jobs:
           version: ${{ needs.prepare-variables.outputs.version }}
 
     create-rel-branch:
-        runs-on: [ubuntu-latest]
-        needs: [add-release-tag, prepare-variables]
-        permissions:
-            contents: write
-        steps:
-            # TODO: his action does not have checkouted before
-            # either put checkout here or add it to the action itself
-            - name: check if branch exists
-              id: check-branch
-              uses: ivanmjartan/gooddata-ui-sdk/.github/actions/branch-exists-action@master
-              with:
-                  source-branch: ${{ inputs.source-branch }}
-
-            - name: Run copy branch action
-              if: steps.check-branch.opututs.exists != 'true'
-              uses: ivanmjartan/gooddata-ui-sdk/.github/actions/branch-cutoff-action@master
-              with:
-                  source-branch: ${{ inputs.source-branch }}
-                  target-branch: ${{ needs.prepare-variables.outputs.rel-branch }}
+      runs-on: [ubuntu-latest]
+      needs: [add-release-tag, prepare-variables]
+      permissions:
+          contents: write
+      steps:
+        - name: Decision to proceed or skip creating rel/X.Y
+          id: decision
+          run: |
+               if [[ "${SOURCE_BRANCH}" == "release" ]]; then
+                echo "Source-branch is 'release' need to create rel/X.Y branch"
+                  echo "need_rel_branch=true" >> $GITHUB_OUTPUT
+               else
+               echo "need_rel_branch=false" >> $GITHUB_OUTPUT
+                  echo "Skipping creation of rel/X.Y branch because source-branch is not 'release'"
+               fi
+          env:
+            SOURCE_BRANCH: ${{ github.event.inputs.source-branch }}
+        - name: Run copy branch action
+          if: steps.decision.outputs.need_rel_branch == 'true'
+          uses: ivanmjartan/gooddata-ui-sdk/.github/actions/branch-cutoff-action@master
+          with:
+              source-branch: ${{ inputs.source-branch }}
+              target-branch: ${{ needs.prepare-variables.outputs.rel-branch }}
 
     back-merge-release-to-master:
       needs: [create-rel-branch]

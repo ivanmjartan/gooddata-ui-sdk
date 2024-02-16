@@ -1,0 +1,125 @@
+# (C) 2024 GoodData Corporation
+
+name: rw ~ Release ~ Publish prerelease
+on:
+  workflow_call:
+    inputs:
+      source-branch:
+        required: true
+        description: "The name of the source branch"
+        type: string
+      skip-bump:
+        required: false
+        default: false
+        description: "Skip bumping the version"
+        type: boolean
+      author-name:
+        required: false
+        description: "The name of the author"
+        type: string
+
+# limit concurrency to one run per branch at a time
+# so that we can run this from master and a release branch at the same time
+# When a concurrent job or workflow is queued,
+# if another job or workflow using the same concurrency group in the repository is in progress,
+# the queued job or workflow will be pending. Any previously pending job or workflow in the concurrency group will be canceled.
+concurrency:
+  group: prerelease-${{ inputs.source-branch }}
+  cancel-in-progress: false
+
+jobs:
+  check-version:
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.source-branch }}
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.17.0
+
+      - name: Get version
+        uses: ivanmjartan/gooddata-ui-sdk/.github/actions/get-version-action@master
+        id: get-version
+
+      - name: Check version
+        run: |
+          if [[ ! $VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+-(beta|alpha)\.[0-9]+$ ]]; then
+            echo "The version "$VERSION" does not match X.Y.Z-beta.W or X.Y.Z-alpha.W"
+            #TODO: fix condition, only on the release branch, not on rel/*
+            #            exit 1
+          fi
+        env:
+          VERSION: ${{ steps.get-version.outputs.version }}
+
+  setup-params:
+    needs: [check-version]
+    runs-on: [ubuntu-latest]
+    outputs:
+      prerelease-id: ${{ steps.validate-params.outputs.prerelease-id }}
+
+    steps:
+      - name: validate params
+        id: validate-params
+        run: |
+          # TODO: remove inputs from bash script, use env
+          if [[ "${{ inputs.source-branch }}" = "master" ]]; then
+            echo "prerelease-id=alpha" >> $GITHUB_OUTPUT
+          elif [[ "${{ inputs.source-branch }}" = "release" ]]; then
+            echo "prerelease-id=beta" >> $GITHUB_OUTPUT
+          elif [[ "${{ inputs.source-branch }}" == rel/* ]]; then
+            echo "prerelease-id=beta" >> $GITHUB_OUTPUT
+          else
+            echo "Invalid branch provided. Please provide either 'master' or 'release'."
+            exit 1
+          fi
+
+  bump-version:
+    needs: [setup-params]
+    uses: ./.github/workflows/rw-bump-version.yml
+    permissions:
+      contents: write
+      id-token: write
+    secrets: inherit
+    with:
+      source-branch: ${{ inputs.source-branch }}
+      bump: "prerelease"
+      prerelease-id: ${{ needs.setup-params.outputs.prerelease-id }}
+      skip-bump: ${{ inputs.skip-bump }}
+
+  publish-prerelease:
+    needs: [bump-version]
+    uses: ./.github/workflows/rw-publish-version.yml
+    permissions:
+      contents: read
+      id-token: write
+    secrets: inherit
+    with:
+      source-branch: ${{ inputs.source-branch }}
+      release-tag: "prerelease"
+
+  slack-notification:
+    runs-on: [ubuntu-latest]
+    needs: [bump-version, publish-prerelease]
+    steps:
+      - name: Notify to slack with author name
+        if: ${{ inputs.author-name != '' }}
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          channel-id: "#sdk-wf-test"
+          slack-message: "The latest *prerelease* version, *gooddata-ui-sdk@${{ env.RELEASE_VERSION }}*, has been successfully published on NPM by the github user *${{env.GITHUB_USER}}*. :tada:"
+        env:
+          RELEASE_VERSION: ${{ needs.bump-version.outputs.version }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          GITHUB_USER: ${{ inputs.author-name }}
+      - name: Notify to slack with without author name
+        if: ${{ inputs.author-name == '' }}
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          channel-id: "#sdk-wf-test"
+          slack-message: "The latest *prerelease* version, *gooddata-ui-sdk@${{ env.RELEASE_VERSION }}*, has been successfully published on NPM. :tada:"
+        env:
+          RELEASE_VERSION: ${{ needs.bump-version.outputs.version }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

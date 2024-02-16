@@ -78,11 +78,11 @@ jobs:
           id: decision
           run: |
                if [[ "${SOURCE_BRANCH}" == "release" ]]; then
-                echo "Source-branch is 'release' need to create rel/X.Y branch"
+                echo "SOURCE_BRANCH (${SOURCE_BRANCH}) is 'release' need to create rel/X.Y branch"
                   echo "need_rel_branch=true" >> $GITHUB_OUTPUT
                else
                echo "need_rel_branch=false" >> $GITHUB_OUTPUT
-                  echo "Skipping creation of rel/X.Y branch because source-branch is not 'release'"
+                  echo "Skipping creation of rel/X.Y branch because SOURCE_BRANCH (${SOURCE_BRANCH}) is not 'release'"
                fi
           env:
             SOURCE_BRANCH: ${{ inputs.source-branch }}

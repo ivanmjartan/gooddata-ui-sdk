@@ -40,11 +40,11 @@ jobs:
         with:
           node-version: 18.17.0
 
-      - name: Get version
+      - name: Get version from branch ${{ inputs.source-branch }}
         uses: ivanmjartan/gooddata-ui-sdk/.github/actions/get-version-action@master
         id: get-version
 
-      - name: Check version
+      - name: Check version on ${{ inputs.source-branch }} branch
         run: |
           if [[ ! $VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+-(beta|alpha)\.[0-9]+$ ]]; then
             echo "The version "$VERSION" does not match X.Y.Z-beta.W or X.Y.Z-alpha.W"

@@ -97,7 +97,7 @@ jobs:
           if [ -n "$pnpm_conflict" ] && [ "$conflicting_files" == "$pnpm_conflict" ]; then
             echo "There is a conflict in pnpm-lock.yaml, running rush update --recheck"
             rush update --recheck
-            git add pnpm-lock.yaml
+            git add $pnpm_conflict
             git commit -m "Resolve merge conflicts in pnpm-lock.yaml"
             git merge --continue
           else

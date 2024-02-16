@@ -1,0 +1,43 @@
+# (C) 2024 GoodData Corporation
+
+name: Prerelease ~ Publish beta for patch
+on:
+    workflow_dispatch:
+      inputs:
+        version:
+            required: true
+            description: "Specify the minor version to patch (example: 9.5.0)"
+            type: string
+jobs:
+    # TODO: check-input-version-param
+    check-version:
+        runs-on: ubuntu-latest
+        outputs:
+            branch: ${{ steps.check-version.outputs.branch }}
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+            - name: Check if version is
+              id: check-version
+              run: |
+                  base="rel/${VERSION%.*}"
+                  # TODO: brackets for if?
+                  if git ls-remote --heads origin ${base} | grep ${base}; then
+                    echo "Branch ${base} exists for version ${VERSION}"
+                    echo "branch=${base}" >> $GITHUB_OUTPUT
+                  else
+                    echo "Branch ${base} does not exist for release ${VERSION} on remote, aborting release"
+                    exit 1
+                  fi
+              env:
+                  VERSION: ${{ inputs.version }}
+    publish-pre-release:
+        needs: check-version
+        uses: ./.github/workflows/rw-publish-prerelease.yml
+        permissions:
+            contents: write
+            id-token: write
+        secrets: inherit
+        with:
+            source-branch: ${{ needs.check-version.outputs.branch }}
+            author-name: ${{ github.actor }}

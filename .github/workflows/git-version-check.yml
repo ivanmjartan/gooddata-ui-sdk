@@ -1,0 +1,30 @@
+name: A ~ check latest release version
+on:
+    workflow_dispatch:
+        inputs:
+            version:
+                description: 'Version to backmerge'
+                required: true
+                default: '0.0.0'
+jobs:
+    check-release-version:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Setup node
+          uses: actions/setup-node@v4
+          with:
+            node-version: 18.17.0
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: Check Release Version
+          id: check-release
+          uses: ivanmjartan/gooddata-ui-sdk/.github/actions/git-check-release@master
+          with:
+            version: ${{ inputs.version }}
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        - name: print output
+          run: |
+              echo "Release version is ${{ steps.check-release.outputs.is-latest }}"
+
+

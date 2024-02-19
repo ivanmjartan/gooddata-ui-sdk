@@ -34974,7 +34974,7 @@ ${pendingInterceptorsFormatter.format(pending)}
                 const isLatest = semver.gt(newVersion, latestVersion);
 
                 console.log(`New version: ${newVersion}`);
-
+                console.log(`is-latest: ${isLatest}`);
                 // Set output
                 core.setOutput("is-latest", isLatest.toString());
             } catch (error) {

@@ -12,7 +12,7 @@ on:
                 required: false
                 description: "Version semver"
                 type: string
-            bump:
+            is-latest:
                 required: false
                 description: "Bump type minor, major, patch"
                 type: string
@@ -35,4 +35,4 @@ jobs:
                   commit: ${{inputs.source-branch}}
                   body: |
                       Please see the [CHANGELOG.md](https://github.com/gooddata/gooddata-ui-sdk/blob/master/libs/sdk-ui-all/CHANGELOG.md) for details.
-                  makeLatest: ${{ !(inputs.bump == 'patch') }}
+                  makeLatest: ${{ inputs.is-latest }}

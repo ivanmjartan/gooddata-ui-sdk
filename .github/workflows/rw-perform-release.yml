@@ -60,14 +60,14 @@ jobs:
           version: ${{ needs.prepare-variables.outputs.version }}
 
     add-release-tag:
-        needs: [prepare-variables,update-hugo-version]
+        needs: [publish-release,prepare-variables,update-hugo-version]
         uses: ./.github/workflows/rw-git-create-tag.yml
         permissions:
           contents: write
         with:
           source-branch: ${{ inputs.source-branch }}
           version: ${{ needs.prepare-variables.outputs.version }}
-          bump: ${{ inputs.bump }}
+          is-latest: ${{ needs.publish-release.outputs.is-latest}}
 
     create-rel-branch:
       runs-on: [ubuntu-latest]

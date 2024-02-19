@@ -16,6 +16,9 @@ on:
       version:
         description: "Version which was created"
         value: ${{ jobs.bump-version.outputs.version }}
+      is-latest:
+        description: "Is the version latest"
+        value: ${{ jobs.prape-release-releasde-tag.outputs.is_latest }}
 
 # limit concurrency to one run per branch at a time
 # so that we can run this from master and a release branch at the same time
@@ -63,8 +66,45 @@ jobs:
       source-branch: ${{ inputs.source-branch }}
       bump: ${{ inputs.bump }}
 
-  publish-release:
+  prape-release-releasde-tag:
+    outputs:
+      is_latest: ${{ steps.check-release-is-latest.outputs.is-latest }}
+      release_tag: ${{ steps.calculate-release-tag.outputs.release_tag }}
     needs: [bump-version]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.17.0
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Check Release Version is latest
+        id: check-release-is-latest
+        uses: ivanmjartan/gooddata-ui-sdk/.github/actions/git-check-release@master
+        with:
+          version: ${{ needs.bump-version.outputs.version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Calculate release tag and set output
+        id: calculate-release-tag
+        run: |
+          if [[ "$BUMP" == "minor" ]]; then
+            echo "release_tag=latest" >> $GITHUB_OUTPUT
+          else
+            if [[ "$IS_LATEST" == "true" ]]; then
+              echo "release_tag=latest" >> $GITHUB_OUTPUT
+            else
+              echo "release_tag=patch" >> $GITHUB_OUTPUT
+            fi
+          fi
+        env:
+          RELEASE_VERSION: ${{ needs.bump-version.outputs.version }}
+          IS_LATEST: ${{ steps.check-release-is-latest.outputs.is-latest }}
+          BUMP: ${{ inputs.bump }}
+
+  publish-release:
+    needs: [bump-version,prape-release-releasde-tag]
     uses: ./.github/workflows/rw-publish-version.yml
     permissions:
       contents: read
@@ -72,7 +112,7 @@ jobs:
     secrets: inherit
     with:
       source-branch: ${{ inputs.source-branch }}
-      release-tag: ${{ inputs.bump == 'patch' && 'patch' || 'latest' }} # TODO need specifi tad for patch
+      release-tag: ${{ needs.prape-release-releasde-tag.outputs.release_tag }}
 
   check-npm-package:
     outputs:

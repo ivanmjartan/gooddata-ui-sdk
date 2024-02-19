@@ -46,13 +46,20 @@ jobs:
 
       - name: Check version on ${{ inputs.source-branch }} branch
         run: |
-          if [[ ! $VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+-(beta|alpha)\.[0-9]+$ ]]; then
-            echo "The version "$VERSION" does not match X.Y.Z-beta.W or X.Y.Z-alpha.W"
-            #TODO: fix condition, only on the release branch, not on rel/*
-            #            exit 1
+          if [[ "${BRANCH}" == "release" ]]; then
+            # we need check that prerelase will not run on unfinished release where packages publish
+            # but release process not finished yet (branch is not deleted)
+            # when we prerelease from rel/X.Y branch, we are processing patch and its ok becouse bump will
+            # correctly bump version to next patch
+
+            if [[ ! $VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+-(beta|alpha)\.[0-9]+$ ]]; then
+              echo "The version "$VERSION" does not match X.Y.Z-beta.W or X.Y.Z-alpha.W"
+              exit 1
+            fi
           fi
         env:
           VERSION: ${{ steps.get-version.outputs.version }}
+          BRANCH: ${{ inputs.source-branch }}
 
   setup-params:
     needs: [check-version]

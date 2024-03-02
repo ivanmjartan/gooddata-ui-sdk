@@ -8,4 +8,6 @@ on:
 jobs:
   release-ui-sdk-examples-deploy:
     secrets: inherit
-    uses: ./.github/workflows/rw-doc-examples-deploy.yml
+    uses: ./.github/workflows/rw-doc-storybook-deploy.yml
+    with:
+      source-branch: "master"

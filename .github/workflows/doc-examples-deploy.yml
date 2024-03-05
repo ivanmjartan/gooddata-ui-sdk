@@ -12,6 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          ref: "IMJ-FOSSA-TEST"
           token: ${{ secrets.TOKEN_GITHUB_YENKINS_ADMIN }}
       - name: Add repository to git safe directories to avoid dubious ownership issue
         run: git config --global --add safe.directory $GITHUB_WORKSPACE
@@ -26,7 +27,11 @@ jobs:
         run: |
           echo '{}' > common/config/rush/package.json
       - name: Fossa scan
-        run: fossa analyze --project "gooddata-ui-sdk" --branch "IMJ-STL-193"
+        run: fossa analyze --project "gooddata-ui-sdk" --branch "IMJ-FOSSA-TEST"
+        env:
+          FOSSA_API_KEY: ${{ secrets.FOSSA_API_KEY }}
+      - name: list of target
+        run: fossa list-targets
         env:
           FOSSA_API_KEY: ${{ secrets.FOSSA_API_KEY }}
       - name: Generate FOSSA Attribution Report

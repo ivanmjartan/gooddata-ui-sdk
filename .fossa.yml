@@ -5,7 +5,31 @@ project:
 
 telemetry:
   scope: 'off'
-targets:
-  only:
-    - type: pnpm
-      path: common/config/rush
+
+#paths:
+ # only:
+  #  - libs
+
+
+analyze:
+  modules:
+  - name: model
+    type: pnpm
+    target: libs/sdk-model
+    path: common/config/rush
+
+#targets:
+ # only:
+  #  - type: pnpm
+   #   path: common/config/rus
+
+
+  #only:
+  #  - type: bundler
+  #    path: libs/sdk-model
+  #only:
+  #  - type: pnpm
+  #    path: common/config/rush
+  #exclude:
+    #- type: bundler
+    #  path: tools/applink

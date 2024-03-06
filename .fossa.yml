@@ -6,22 +6,14 @@ project:
 telemetry:
   scope: 'off'
 
-#paths:
- # only:
-  #  - libs
+targets:
+  only:
+    - type: pnpm
+      path: common/config/rush
+  exclude:
+    - type: pnpm
+      path: applink
 
-
-analyze:
-  modules:
-  - name: model
-    type: pnpm
-    target: libs/sdk-model
-    path: common/config/rush
-
-#targets:
- # only:
-  #  - type: pnpm
-   #   path: common/config/rus
 
 
   #only:

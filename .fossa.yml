@@ -10,13 +10,3 @@ targets:
   only:
     - type: pnpm
       path: common/config/rush
-
-  #only:
-  #  - type: bundler
-  #    path: libs/sdk-model
-  #only:
-  #  - type: pnpm
-  #    path: common/config/rush
-  #exclude:
-    #- type: bundler
-    #  path: tools/applink

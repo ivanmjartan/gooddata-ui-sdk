@@ -10,11 +10,6 @@ targets:
   only:
     - type: pnpm
       path: common/config/rush
-  exclude:
-    - type: pnpm
-      path: applink
-
-
 
   #only:
   #  - type: bundler

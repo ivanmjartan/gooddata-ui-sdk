@@ -29,10 +29,20 @@ jobs:
           echo "Running tests $pr_number"
           echo "Commit sha is $commit_sha"
           echo "Git ref is $git_ref"
+          echo "Merge commit sha is $merge_commit_sha"
         env:
           pr_number: ${{ github.event.pull_request.number }}
           commit_sha: ${{ github.event.pull_request.head.sha }}
+          merge_commit_sha: ${{ github.event.pull_request.merge_commit_sha }}
           git_ref: ${{ github.ref }}
+
+  e2e-run-isolated:
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: read
+    uses: ./.github/workflows/rw-rush-build-e2e-tests.yml
+    secrets: inherit
 
   ready-to-merge-approved:
     runs-on:
@@ -40,6 +50,7 @@ jobs:
     if: always()
     needs:
       - e2e-tests
+      - e2e-run-isolated
     steps:
       - name: Check if needed jobs succeeded
         uses: re-actors/alls-green@release/v1

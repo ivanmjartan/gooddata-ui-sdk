@@ -1,4 +1,4 @@
-name: check
+name: check-approve
 
 on:
   pull_request_review:
@@ -7,7 +7,7 @@ on:
       - dismissed
 
 concurrency:
-  group: ${{ github.event.pull_request.number }}
+  group: check-approve-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 jobs:

@@ -7,7 +7,7 @@ on:
       - release
 
 concurrency:
-  group: ${{ github.event.pull_request.number }}
+  group: check-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 jobs:

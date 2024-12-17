@@ -6,10 +6,6 @@ on:
       - master
       - release
 
-  pull_request_review:
-    types:
-      - submitted
-
 concurrency:
   group: ${{ github.event.pull_request.number }}
   cancel-in-progress: true
@@ -28,8 +24,8 @@ jobs:
 
   ready-to-merge:
     runs-on:
-      [ubuntu-latest]
-    if: !cancelled()
+       ubuntu-latest
+    if: always()
     needs:
       - build-validate-stage
     steps:

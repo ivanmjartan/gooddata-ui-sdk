@@ -4,6 +4,7 @@ on:
   pull_request_review:
     types:
       - submitted
+      - dismissed
 
 #concurrency:
 #  group: ${{ github.event.pull_request.number }}
@@ -20,7 +21,10 @@ jobs:
         run: echo "Running e2e tests"
         shell: bash
       - name: test
-        run: echo "Running tests"
+        run: |
+          echo "Running tests $pr_number"
+        env:
+          pr_number: ${{ github.event.pull_request.number }}
 
   ready-to-merge-approved:
     runs-on:

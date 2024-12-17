@@ -26,28 +26,12 @@ jobs:
       target-branch: ${{ github.event.pull_request.base.ref }}
     secrets: inherit
 
-  e2e-tests:
-    runs-on:
-      [ubuntu-latest]
-    needs:
-      - build-validate-stage
-    if: |
-      (github.event_name == 'pull_request_review' && github.event.review.state == 'approved')
-    steps:
-      - name: Run e2e tests
-        run: echo "Running e2e tests"
-        shell: bash
-      - name: test
-        run: echo "Running tests"
-
   ready-to-merge:
     runs-on:
-      group: infra1-runners-arc
-      labels: runners-small
-    if: always()
+      [ubuntu-latest]
+    if: !cancelled()
     needs:
       - build-validate-stage
-      - e2e-tests
     steps:
       - name: Check if needed jobs succeeded
         uses: re-actors/alls-green@release/v1

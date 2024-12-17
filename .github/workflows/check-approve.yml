@@ -6,9 +6,9 @@ on:
       - submitted
       - dismissed
 
-#concurrency:
-#  group: ${{ github.event.pull_request.number }}
-#  cancel-in-progress: true
+concurrency:
+  group: ${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
 
@@ -17,6 +17,10 @@ jobs:
       ubuntu-latest
     if: github.event.review.state == 'approved'
     steps:
+      - name : Checkout
+        uses: actions/checkout@v4
+      - name: git log
+        run: git log -1
       - name: Run e2e tests
         run: echo "Running e2e tests"
         shell: bash

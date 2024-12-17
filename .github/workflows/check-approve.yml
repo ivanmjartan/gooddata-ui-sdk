@@ -22,7 +22,7 @@ jobs:
       - name: test
         run: echo "Running tests"
 
-  ready-to-merge:
+  ready-to-merge-approved:
     runs-on:
         [ubuntu-latest]
     if: !cancelled()

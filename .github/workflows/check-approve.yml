@@ -27,8 +27,12 @@ jobs:
       - name: test
         run: |
           echo "Running tests $pr_number"
+          echo "Commit sha is $commit_sha"
+          echo "Git ref is $git_ref"
         env:
           pr_number: ${{ github.event.pull_request.number }}
+          commit_sha: ${{ github.event.pull_request.head.sha }}
+          git_ref: ${{ github.ref }}
 
   ready-to-merge-approved:
     runs-on:

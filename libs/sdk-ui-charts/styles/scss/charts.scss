@@ -1,4 +1,4 @@
-// (C) 2007-2024 GoodData Corporation
+// (C) 2007-2025 GoodData Corporation
 @use "sass:meta";
 @use "@gooddata/sdk-ui-kit/styles/scss/variables" as kit-variables;
 @use "@gooddata/sdk-ui-vis-commons/styles/scss/legend";
@@ -49,6 +49,12 @@
     svg {
         // stylelint-disable-next-line declaration-no-important
         width: 100% !important;
+    }
+}
+.highcharts-axis-labels {
+    span {
+        // stylelint-disable-next-line declaration-no-important, property-no-unknown
+        text-wrap-mode: nowrap !important; // we need nowrap on axis labels and in group plugin is not possible to set it for groups level 0
     }
 }
 

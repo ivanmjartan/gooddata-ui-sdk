@@ -1,0 +1,2 @@
+Series.yData is replaced by Series.getColumn('y') fixed in configuration problem stackBy chart
+zoomType moved to object zooming.type (not tested)

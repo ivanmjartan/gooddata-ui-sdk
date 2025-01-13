@@ -1,4 +1,4 @@
-// (C) 2007-2024 GoodData Corporation
+// (C) 2007-2025 GoodData Corporation
 import invoke from "lodash/invoke.js";
 import isEmpty from "lodash/isEmpty.js";
 import set from "lodash/set.js";
@@ -80,9 +80,13 @@ function getThemedConfiguration(theme: ITheme): any {
                 enableMouseTracking: true, // !Status.exportMode,
                 turboThreshold: DEFAULT_CATEGORIES_LIMIT,
                 borderColor: backgroundColor,
+                borderRadius: {
+                    radius: 0,
+                },
                 dataLabels: {
                     style: {
                         textOutline: "none",
+                        textWrapMode: "nowrap",
                     },
                 },
                 events: {
@@ -137,11 +141,22 @@ function getThemedConfiguration(theme: ITheme): any {
                         fixNumericalAxisOutOfMinMaxRange(this);
                     },
                 },
+                labels: {
+                    distance: 7,
+                    style: {
+                        textWrapMode: "nowrap",
+                    },
+                },
             },
         ],
         yAxis: [
             {
                 lineColor: axisLineColor,
+                labels: {
+                    style: {
+                        textWrapMode: "nowrap",
+                    },
+                },
             },
         ],
     };
@@ -162,8 +177,11 @@ function registerDrilldownHandler(configuration: any, chartOptions: any, drillCo
 export function handleChartLoad(chartType: ChartType) {
     return function (): void {
         if (!this.hasLoaded) {
-            // setup drill on initial render
-            setupDrilldown(this, chartType);
+            // setup drill on initial render we need to do in timeout because init of drill down module
+            // is registered on the same event and we need to wait for its job to be done
+            setTimeout(() => {
+                setupDrilldown(this, chartType);
+            });
         }
     };
 }

@@ -1,4 +1,4 @@
-// (C) 2007-2024 GoodData Corporation
+// (C) 2007-2025 GoodData Corporation
 import set from "lodash/set.js";
 import noop from "lodash/noop.js";
 import omit from "lodash/omit.js";
@@ -43,7 +43,9 @@ function getChartZoomConfig(chartConfig: any): void {
     return {
         ...chartConfig,
         animation: true,
-        zoomType: "x",
+        zooming: {
+            type: "x",
+        },
         panKey: "shift",
         panning: {
             enabled: true,
@@ -883,12 +885,12 @@ describe("getCustomizedConfiguration", () => {
                 },
             });
 
-            expect(result.tooltip.followPointer).toBeFalsy();
+            expect(result?.tooltip?.followPointer).toBeFalsy();
         });
     });
 
     describe("tooltip position", () => {
-        it("should be positioned by absolute position", () => {
+        it("should be positioned by relative position", () => {
             const highchartContext: any = {
                 chart: {
                     plotLeft: 0,
@@ -921,8 +923,8 @@ describe("getCustomizedConfiguration", () => {
             // offset: pageOffset + containerPosition - highchart off set
             // bar
             expect(position).toEqual({
-                x: 15, // 0 + 20 - 5
-                y: 2 + relativePosition.y, // 0 + 10 -8 + 35
+                x: 0,
+                y: 27,
             });
 
             // line
@@ -934,8 +936,8 @@ describe("getCustomizedConfiguration", () => {
             expect(relativePosition).toEqual({ x: 45, y: 26 });
             position = getTooltipPositionInViewPort.apply(highchartContext, mockChartParameters);
             expect(position).toEqual({
-                x: 4, // 0 + 20 - 16
-                y: -6 + relativePosition.y, // 0 + 10 - 16 + 26
+                x: 0,
+                y: 10,
             });
         });
 

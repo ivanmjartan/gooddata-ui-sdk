@@ -155,7 +155,7 @@ storiesOf(`${CustomStories}/Pivot Table`)
                         ag-grid has a problem with programatically scrolled header
                         so we used a cell in the body to scroll instead
                     */
-                    scrollToSelector: ".ag-center-cols-clipper .s-cell-0-9",
+                    scrollToSelector: ".s-cell-0-9",
                     postInteractionWait: 1000,
                 },
             },

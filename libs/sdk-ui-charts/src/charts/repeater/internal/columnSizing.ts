@@ -1,4 +1,4 @@
-// (C) 2022-2024 GoodData Corporation
+// (C) 2022-2025 GoodData Corporation
 
 import { invariant, InvariantError } from "ts-invariant";
 import { Column, ColumnResizedEvent } from "@ag-grid-community/all-modules";
@@ -94,6 +94,9 @@ function createMeasureLocator(measure: IMeasure): IRepeaterMeasureColumnLocator 
 //check
 
 export function isManualResizing(columnEvent: ColumnResizedEvent): boolean {
+    //TODO ag-grid upgrade use this after upgraded in repeater
+    //return columnEvent?.source === ColumnEventSourceType.UI_RESIZED
+    //    && !!columnEvent.columns;
     return Boolean(columnEvent?.source === ColumnEventSourceType.UI_DRAGGED && columnEvent.columns);
 }
 

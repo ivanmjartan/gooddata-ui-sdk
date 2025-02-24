@@ -38,7 +38,7 @@ export function isHeaderResizer(target: HTMLElement): boolean {
 }
 
 export function isManualResizing(columnEvent: ColumnResizedEvent): boolean {
-    return Boolean(columnEvent?.source === ColumnEventSourceType.UI_DRAGGED && columnEvent.columns);
+    return columnEvent?.source === ColumnEventSourceType.UI_RESIZED && !!columnEvent.columns;
 }
 
 export function scrollBarExists(target: HTMLDivElement): boolean {

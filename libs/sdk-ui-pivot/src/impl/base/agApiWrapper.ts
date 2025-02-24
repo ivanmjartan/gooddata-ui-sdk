@@ -2,7 +2,8 @@
 import { GridApi } from "ag-grid-community";
 
 function getHeaderHeight(gridApi: GridApi): number {
-    return (gridApi as any)?.ctrlsService?.gridHeaderCtrl?.eGui?.clientHeight ?? 0;
+    const heights = gridApi.getSizesForCurrentTheme();
+    return heights.headerHeight ?? 0;
 }
 
 function getCellElement(gridApi: GridApi, attributeId: string, rowIndex: number): HTMLElement | null {

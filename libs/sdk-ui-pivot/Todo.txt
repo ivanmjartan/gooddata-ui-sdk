@@ -6,12 +6,14 @@ Resize with shift should resize all same columns
 
 Resolve used internals in agApiWrapper.ts
 
+This story ended in loading state
+http://localhost:9001/?path=/story/04-stories-for-pluggable-vis-pivottable-auto-resizing--with-column-attributes-only-and-auto-resizing
 
 
 Visual problems:
 Positions of label in jointed cells
 Position of resizer and resizer is visible only on most bottom headers
 
-Failed screens
+Failed screens (should be fixed by ivec let see screen test)
 BACKSTOP ERROR: Reference file not found /src/reference/storybook_02_Custom_Test_Stories_Pivot_Table_-_auto-resizing_of_visible_columns_-_scrolled_right_0__0_desktop.png
 ^^^ strange this stroy is not visible in storybook

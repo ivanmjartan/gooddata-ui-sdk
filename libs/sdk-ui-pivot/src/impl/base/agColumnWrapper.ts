@@ -22,6 +22,7 @@ export function setColumnMaxWidthIf(
             // We need set maxWidth dynamically before/after autoresize/growToFit.
             // Set this only on column.getColDef().maxWidth not working
             // so we need to set it also on column's private member
+            // DANGER: using ag-grid internals
             (column as any).maxWidth = newMaxWidth;
             column.getColDef().maxWidth = newMaxWidth;
         }

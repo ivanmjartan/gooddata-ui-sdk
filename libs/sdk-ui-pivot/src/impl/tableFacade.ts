@@ -335,7 +335,15 @@ export class TableFacade {
             const columnIds = agColIds(columns);
 
             setColumnMaxWidth(this.columnApi, columnIds, undefined);
+            setTimeout(() => {
+                // this factory method works too hide correctly scroll bars but display one row less
+                // but original method rewritten from internals show correct amount of rows but with scrollbars
+                // http://localhost:9001/?path=/story/04-stories-for-pluggable-vis-pivottable-auto-resizing--with-two-measures-and-row-attribute-with-auto-resizing
+                // gridApi.sizeColumnsToFit();
+            });
+
             this.sizeColumnsToFitWithoutColumnReset(resizingConfig);
+
             setColumnMaxWidthIf(
                 this.columnApi,
                 columnIds,
@@ -647,7 +655,7 @@ export class TableFacade {
      *
      * The comments in code are original from the ag-grid 22 code base.
      */
-    private sizeColumnsToFitWithoutColumnReset(resizingConfig: ColumnResizingConfig): void {
+    public sizeColumnsToFitWithoutColumnReset(resizingConfig: ColumnResizingConfig): void {
         invariant(this.columnApi);
         const localApi = this.columnApi;
         const source = "sizeColumnsToFit";
@@ -719,11 +727,13 @@ export class TableFacade {
                 }
             }
         }
+
         // DANGER: using ag-grid internals
         setTimeout(() => {
             localApi.setColumnWidths(cws, true, source);
+            localApi.refreshCells();
             //        (this.columnApi as any).refreshCells();
-        }, 1);
+        }, 0);
         //        (this.columnApi as any).columnModel.setLeftValues(source);
         //        (this.columnApi as any).columnModel.updateBodyWidths();
     }

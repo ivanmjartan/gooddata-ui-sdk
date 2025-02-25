@@ -114,7 +114,6 @@ $subtotal-odd-background-color: var(
             header-foreground-color: $header-label-color,
             header-cell-hover-background-color: $header-hover-background-color,
 
-                     //supp,
         )
     );
 
@@ -297,15 +296,17 @@ $subtotal-odd-background-color: var(
             opacity: 0;
 
             &::after {
+                position: static;
                 content: "";
                 box-sizing: content-box;
                 display: block;
                 width: calc($header-cell-resize-width / 2);
                 margin-right: calc($header-cell-resize-width / 2);
-                margin-top: 8px;
+                margin-top: 0;
                 border-right: 1px solid kit-variables.$gd-palette-primary-base;
                 text-indent: calc($header-cell-resize-width / 2);
                 height: 16px;
+                cursor: ew-resize;
             }
         }
 

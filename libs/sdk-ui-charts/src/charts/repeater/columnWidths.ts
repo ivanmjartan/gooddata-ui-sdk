@@ -10,7 +10,6 @@ import { Identifier } from "@gooddata/sdk-model";
  */
 export enum ColumnEventSourceType {
     AUTOSIZE_COLUMNS = "autosizeColumns",
-    UI_DRAGGED = "uiColumnDragged", // TODO: ag-grid upgrade remove this line after upgraded in repeater
     FIT_GROW = "growToFit",
     UI_RESIZED = "uiColumnResized",
 }

@@ -8,6 +8,3 @@ Resolve internal agUtils
 
 Visual problems:
 Positions of label in jointed cells
-Position of resizer and resizer is visible only on most bottom headers
-
-Repeater chart upgrade!

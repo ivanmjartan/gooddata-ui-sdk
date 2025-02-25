@@ -1,14 +1,10 @@
 Problems:
-Double click reset column in some tables works 3but here not
-http://localhost:9001/?path=/story/01-stories-from-test-scenarios-pivottable-manual-resizing-combined-with-column-autoresize--simple-table-with-custom-attribute-column-size
 
-Resize with shift should resize all same columns
 
 Resolve used internals in agApiWrapper.ts
 
-This story ended in loading state
-http://localhost:9001/?path=/story/04-stories-for-pluggable-vis-pivottable-auto-resizing--with-column-attributes-only-and-auto-resizing
-
+Sticky headers is nto working
+Resolve internal agUtils
 
 Visual problems:
 Positions of label in jointed cells

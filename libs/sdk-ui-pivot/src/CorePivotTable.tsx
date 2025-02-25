@@ -609,9 +609,15 @@ export class CorePivotTableAgImpl extends React.Component<ICorePivotTableProps, 
         }
 
         this.internal.table.setTooltipFields();
+
+        // when table contains only headers, the onFirstDataRendered
+        // is not triggered; trigger it manually
+        if (this.internal.table.isEmpty()) {
+            this.onFirstDataRendered();
+        }
     };
 
-    private onFirstDataRendered = async (_event: AgGridEvent) => {
+    private onFirstDataRendered = async (_event?: AgGridEvent) => {
         invariant(this.internal.table);
 
         if (this.internal.firstDataRendered) {

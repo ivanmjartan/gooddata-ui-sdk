@@ -948,6 +948,10 @@ export class TableFacade {
         return this.visibleData.rawData().firstDimSize();
     };
 
+    public isEmpty = (): boolean => {
+        return this.visibleData.rawData().isEmpty();
+    };
+
     public getDrillDataContext = (): DataViewFacade => {
         return this.visibleData;
     };

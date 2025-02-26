@@ -314,6 +314,8 @@ export class TableFacade {
         gridApi.refreshHeader();
     };
 
+    // After update to version 32 of ag-grid, sizeColumnsToFit method finally has parameter to specify manual sized columns ISizeColumnsToFitParams
+    // consider get rid of this custom implementation and use ag-grid method directly
     public growToFit = (resizingConfig: ColumnResizingConfig): void => {
         const gridApi = this.gridApiGuard();
 
@@ -339,7 +341,7 @@ export class TableFacade {
                 // this factory method works too hide correctly scroll bars but display one row less
                 // but original method rewritten from internals show correct amount of rows but with scrollbars
                 // http://localhost:9001/?path=/story/04-stories-for-pluggable-vis-pivottable-auto-resizing--with-two-measures-and-row-attribute-with-auto-resizing
-                // gridApi.sizeColumnsToFit();
+                gridApi.sizeColumnsToFit();
             });
 
             this.sizeColumnsToFitWithoutColumnReset(resizingConfig);

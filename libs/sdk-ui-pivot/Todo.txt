@@ -1,10 +1,6 @@
 Problems:
 
-
 Resolve used internals in agApiWrapper.ts
-
 Sticky headers is nto working
 Resolve internal agUtils
 
-Visual problems:
-Positions of label in jointed cells

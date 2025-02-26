@@ -228,7 +228,7 @@ function applyColumnSizes(
     });
 
     setTimeout(() => {
-        columnApi.setColumnWidths(cws);
+        columnApi.setColumnWidths(cws.filter((cw) => !!cw));
         columnApi.refreshCells();
     }, 0);
 }

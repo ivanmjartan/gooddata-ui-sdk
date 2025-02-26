@@ -113,7 +113,6 @@ $subtotal-odd-background-color: var(
             header-background-color: $custom-background-color,
             header-foreground-color: $header-label-color,
             header-cell-hover-background-color: $header-hover-background-color,
-
         )
     );
 
@@ -128,15 +127,6 @@ $subtotal-odd-background-color: var(
         .ag-numeric-cell {
             text-align: right;
         }
-        /*
-        //STL-1137 try to fix position of joined cells
-        .ag-header-cell-comp-wrapper {
-            height: auto !important;
-        }
-        //STL-1137 try to fix position of joined cells
-        .gd-column-group-header {
-            align-items: flex-end;
-        }*/
 
         .ag-header-group-cell.ag-header-group-cell-no-group:not(.ag-header-cell-moving):hover,
         .ag-header-group-cell:not(.ag-column-resizing)
@@ -184,6 +174,12 @@ $subtotal-odd-background-color: var(
 
         .ag-cell {
             outline: none;
+
+            &.ag-cell-value {
+                span {
+                    vertical-align: middle;
+                }
+            }
 
             &,
             &.ag-cell-focus {

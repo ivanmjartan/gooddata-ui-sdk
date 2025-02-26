@@ -30,15 +30,6 @@ function removeCellClass(gridApi: GridApi, attributeId: string, rowIndex: number
     }
 }
 
-function getPaginationBottomRowIndex(gridApi: GridApi): number | null {
-    const paginationProxy = (gridApi as any).paginationProxy;
-    if (paginationProxy) {
-        return paginationProxy.bottomRowBounds?.rowIndex ?? null;
-    }
-
-    return null;
-}
-
 function getPinnedTopRowElement(gridApi: GridApi): HTMLElement | null {
     const pinnedTopRow = gridApi.getPinnedTopRow(0);
     if (!pinnedTopRow) {
@@ -86,5 +77,4 @@ export default {
     removePinnedTopRowClass,
     setPinnedTopRowStyles,
     // pinned row cell element
-    getPaginationBottomRowIndex,
 };

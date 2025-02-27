@@ -1,19 +1,26 @@
-// (C) 2024 GoodData Corporation
+// (C) 2024-2025 GoodData Corporation
 
 import * as React from "react";
-import { Dashboard } from "@gooddata/sdk-ui-dashboard";
+import { InsightView } from "@gooddata/sdk-ui-ext";
 
-const dashboard = import.meta.env.VITE_DASHBOARD;
+const insight = "ee4f3f21-af9e-448e-bb21-a6b0b83eb503";
+const showTitle = "infintive grid";
+const style = { height: 400 };
 
 export const Playground: React.FC = () => {
-    if (!dashboard) return null;
-
     return (
-        <Dashboard
-            dashboard={dashboard}
-            config={{
-                initialRenderMode: "view",
-            }}
-        />
+        <div style={style}>
+            <InsightView insight={insight} showTitle={showTitle} />
+        </div>
     );
 };
+
+/*
+ const rowNode = gridApi.getDisplayedRowAtIndex(rowIndex);
+    if (!rowNode) {
+        return null;
+    }
+
+    const cell = rowNode.allLeafChildren?.find((col: any) => col.column.colId === attributeId);
+    return cell?.eGui ?? null;
+*/

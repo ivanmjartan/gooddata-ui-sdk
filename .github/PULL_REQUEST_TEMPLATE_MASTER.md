@@ -9,10 +9,4 @@ Description of changes.
 
 ---
 
-{% if target_branch contains 'rel/' %}
-
-rel
-
-{% else %}
-other than rel
-{% endif %}
+master
